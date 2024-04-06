@@ -82,6 +82,16 @@
     "allHadith": "Alle Hadithe",
     "explanation": "Erklärung hinzufügen",
     "meanings": "Bedeutungen hinzufügen",
-    "Hadith": "Hadith-Bibliothek"
+    "Hadith": "Hadith-Bibliothek",
+    "calender": "Hijri Kalender",
+    "normalCalender": "Normaler Kalender",
+    "SearchDua": "Suche nach Duaa / Zikr",
+    "Add To Sibha": "Zu Sibha hinzufügen",
+    "Add": "Neuen Zikr hinzufügen",
+    "Enter Custom Zikr": "Eigenen Zikr eingeben",
+    "newBookmark": "Neues Lesezeichen hinzufügen",
+    "nameOfBookmark": "Geben Sie ihm einen eindeutigen Namen",
+    "color": "Farbe des Lesezeichens",
+    "saveBookmark": "Lesezeichen speichern"
 
 }

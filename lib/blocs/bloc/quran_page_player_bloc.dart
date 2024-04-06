@@ -47,7 +47,7 @@ class QuranPagePlayerBloc
         // Listen to errors during playback.
         audioPlayer!.playbackEventStream.listen((event) {},
             onError: (Object e, StackTrace stackTrace) {
-          print('A stream error occurred: $e');
+          // print('A stream error occurred: $e');
         });
         try {
           await audioPlayer!.setAudioSource(ConcatenatingAudioSource(children: [

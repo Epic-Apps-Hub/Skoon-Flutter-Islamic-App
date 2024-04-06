@@ -163,10 +163,10 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
     final screenSize = MediaQuery.of(context).size;
     return  Stack(
         children: [
-          Scaffold(
-            backgroundColor: backgroundColor,
+          Scaffold(extendBodyBehindAppBar: true,
+            backgroundColor:  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
             appBar: AppBar(
-              backgroundColor: quranPagesColor,
+              backgroundColor:  getValue("darkMode")?darkModeSecondaryColor.withOpacity(.9): blueColor,
               elevation: 0,
               title: Text(
                 "${widget.reciter.name} - ${widget.mushaf.name}",
@@ -298,7 +298,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                                                             .all_inclusive_rounded,
                                                         color: selectedMode ==
                                                                 "all"
-                                                            ? quranPagesColor
+                                                            ? blueColor
                                                             : Colors.grey,
                                                       ),
                                                       SizedBox(
@@ -320,7 +320,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                                                                       .circle_empty,
                                                               color: selectedMode ==
                                                                       "all"
-                                                                  ? quranPagesColor
+                                                                  ? blueColor
                                                                   : Colors.grey,
                                                               size: 20.sp,
                                                             ),
@@ -374,7 +374,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                                                         Icons.favorite,
                                                         color: selectedMode ==
                                                                 "favorite"
-                                                            ? quranPagesColor
+                                                            ? blueColor
                                                             : Colors.grey,
                                                       ),
                                                       SizedBox(
@@ -396,7 +396,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                                                                       .circle_empty,
                                                               color: selectedMode ==
                                                                       "favorite"
-                                                                  ? quranPagesColor
+                                                                  ? blueColor
                                                                   : Colors.grey,
                                                               size: 20.sp,
                                                             ),
@@ -450,7 +450,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                                                         Icons.download,
                                                         color: selectedMode ==
                                                                 "downloads"
-                                                            ? quranPagesColor
+                                                            ? blueColor
                                                             : Colors.grey,
                                                       ),
                                                       SizedBox(
@@ -472,7 +472,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                                                                       .circle_empty,
                                                               color: selectedMode ==
                                                                       "downloads"
-                                                                  ? quranPagesColor
+                                                                  ? blueColor
                                                                   : Colors.grey,
                                                               size: 20.sp,
                                                             ),
@@ -504,7 +504,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                 Padding(
                   padding:  const EdgeInsets.all(8.0),
                   child: CircleAvatar(
-                    backgroundColor: quranPagesColor,
+                    backgroundColor: blueColor,
                     backgroundImage: CachedNetworkImageProvider(
                         "${getValue("${widget.reciter.name} photo url")}"),
                   ),
@@ -579,7 +579,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                           initialIndex:   surahs.indexOf(surah),
                           jsonData: widget.jsonData));
                     },
-                    color: Colors.white,
+                    color: getValue("darkMode")?darkModeSecondaryColor.withOpacity(.9): Colors.white,
                     child: ListTile(
                         leading: Image.asset(
                           "assets/images/${quran.getPlaceOfRevelation(int.parse(selectedMode == "all" ? surah["surahNumber"] : surah["surahNumber"])) == "makkah" || quran.getPlaceOfRevelation(int.parse(surah["surahNumber"])) == "Makkah" ? "Makkah" : "Madinah"}.png",
@@ -635,7 +635,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                                   Icons.play_arrow,
                                   size: 24.sp,
                                 ),
-                                color: quranPagesColor,
+                                color: blueColor,
                               ),
                               IconButton(
                                 onPressed: () {
@@ -662,7 +662,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                                         ? Icons.download_done
                                         : Icons.download,
                                     size: 24.sp),
-                                color: quranPagesColor,
+                                color: orangeColor,
                               ),
                               IconButton(
                                 onPressed: () {
@@ -690,7 +690,7 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                                         ? Icons.favorite
                                         : Icons.favorite_border,
                                     size: 24.sp),
-                                color: quranPagesColor,
+                                color: Colors.redAccent,
                               )
                             ],
                           ),
@@ -700,7 +700,9 @@ print(widget.jsonData.where((element)=>element["id"].toString()==e.toString()));
                             Text(
                               "${ context.locale.languageCode=="ar"? widget.jsonData[(int.parse(selectedMode == "all" ? surah["surahNumber"] : surah["surahNumber"])) - 1]["name"]:surah["suraName"]}",
                               style: TextStyle(
-                                  fontFamily:context.locale.languageCode=="ar"? "qaloon":"roboto", fontSize:context.locale.languageCode=="ar"? 22.sp:17.sp),
+                                  fontFamily:context.locale.languageCode=="ar"? "qaloon":"roboto", fontSize:context.locale.languageCode=="ar"? 22.sp:17.sp,
+                                 color:  getValue("darkMode")?Colors.white.withOpacity(.9):Colors.black87
+                                  ),
                             ),
                           ],
                         )),

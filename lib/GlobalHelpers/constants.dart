@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nabd/GlobalHelpers/hive_helper.dart';
 import 'package:nabd/models/TranslationInfo.dart';
 import 'package:quran/quran.dart';
 
@@ -12,8 +13,15 @@ const Color headingColor = Color(0xFF555555);
 const Color buttonColor = Color(0xFF5D9566);
 const Color borderColor = Color(0xFFDDDDDD);
 const Color homeBackgroundColor = Color.fromARGB(255, 87, 154, 98);
-const Color quranPagesColor = Color(0xff6470B4);
+const Color goldColor = Color.fromARGB(255, 150, 97, 0);
+Color quranPagesColorLight =
+    const Color(0xffF1EEE5);Color quranPagesColorDark =
+  const Color(0xff292C31);
+const Color  darkModeSecondaryColor =Color(0xff443F42);
 const Color darkPrimaryColor = Color.fromARGB(255, 17, 18, 27);
+Color orangeColor = const Color(0xffF8672F);
+Color blueColor =
+const Color(0xff00a2b5);
 List colorsOfBookmarks = [
   Colors.greenAccent.withOpacity(.1),
   Colors.redAccent.withOpacity(.1),
@@ -27,7 +35,9 @@ List colorsOfBookmarks2 = [
 List zikrNotfications = [
   "(ﷺ  صلي علي محمد)",
   "(لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ، وَالنِّعْمَةَ، لَكَ وَالْمُلْكَ، لاَ شَرِيكَ لَكَ)",
-  "(ربِّ اغفِرْ لي خطيئتي يومَ الدِّينَ)","(أَحَبُّ الْكَلاَمِ إِلَى اللَّهِ أَرْبَعٌ: سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلاَ إِلَهَ إِلاَّ اللَّهُ، وَاللَّهُ أَكْبَرُ، لاَ يَضُرُّكَ بِأَيِّهِنَّ بَدَأتَ)","(اللَّهُمَّ اغْفِرِ لِي، وَارْحَمْنِي، وَاهْدِنِي، وَعَافِنِي وَارْزُقْنِي)",
+  "(ربِّ اغفِرْ لي خطيئتي يومَ الدِّينَ)",
+  "(أَحَبُّ الْكَلاَمِ إِلَى اللَّهِ أَرْبَعٌ: سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلاَ إِلَهَ إِلاَّ اللَّهُ، وَاللَّهُ أَكْبَرُ، لاَ يَضُرُّكَ بِأَيِّهِنَّ بَدَأتَ)",
+  "(اللَّهُمَّ اغْفِرِ لِي، وَارْحَمْنِي، وَاهْدِنِي، وَعَافِنِي وَارْزُقْنِي)",
   "(اللَّهُمَّ إنِّي أَسْأَلُكَ الهُدَى وَالتُّقَى، وَالْعَفَافَ وَالْغِنَى)",
   "(اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي)",
   "(اللَّهُمَّ آتِنَا في الدُّنْيَا حَسَنَةً وفي الآخِرَةِ حَسَنَةً، وَقِنَا عَذَابَ النَّارِ)",
@@ -209,10 +219,27 @@ const List backgroundColors = [
   Color(0xffD2F4CF),
   Color(0xffFEFADF),
   Color(0xffEAF0FE)
+];const List secondaryColors = [
+  Color.fromARGB(255, 107, 87, 0),
+  Color.fromARGB(255, 88, 47, 0),
+  Color.fromARGB(255, 43, 43, 43),
+  Color.fromARGB(255, 0, 95, 184),
+  Color.fromARGB(255, 23, 147, 255),
+  Color.fromARGB(255, 102, 95, 0),
+  Color.fromARGB(255, 255, 204, 129),
+  Color.fromARGB(255, 255, 180, 82),
+  Color.fromARGB(255, 22, 21, 20),
+  Color.fromARGB(255, 38, 38, 38),
+  Color.fromARGB(255, 18, 28, 32),
+  Color.fromARGB(255, 28, 29, 23),
+  Color.fromARGB(255, 58, 45, 23),
+  Color.fromARGB(255, 31, 46, 29),
+  Color.fromARGB(255, 36, 34, 22),
+  Color.fromARGB(255, 24, 29, 43)
 ];
 const List highlightColors = [
   Color.fromARGB(255, 255, 244, 157),
-  Color.fromARGB(255, 120, 192, 255),
+  Color.fromARGB(172, 255, 201, 54),
   Color.fromARGB(255, 89, 216, 255),
   Color.fromARGB(255, 89, 216, 255),
   Color.fromARGB(255, 120, 192, 255),

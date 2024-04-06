@@ -4,6 +4,7 @@ import 'package:fluttericon/mfg_labs_icons.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabd/GlobalHelpers/hive_helper.dart';
 import 'package:nabd/core/qibla/qibla_compass.dart';
 import 'package:nabd/core/qibla/qibla_maps.dart';
 class QiblaPage extends StatefulWidget {
@@ -32,7 +33,7 @@ class _QiblaPageState extends State<QiblaPage> {
           //       ),
           //       onPressed: () {}),
           // ),
-          backgroundColor: quranPagesColor,automaticallyImplyLeading: true,
+          backgroundColor:  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,automaticallyImplyLeading: true,
           iconTheme: const IconThemeData(
             color: Colors.white
           ),

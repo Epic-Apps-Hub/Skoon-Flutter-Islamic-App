@@ -10,6 +10,7 @@ import 'package:fluttericon/entypo_icons.dart';
 import 'package:fluttericon/mfg_labs_icons.dart';
 import 'package:fluttericon/typicons_icons.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
+import 'package:nabd/GlobalHelpers/hive_helper.dart';
 import 'package:nabd/core/hadith/models/category.dart';
 import 'package:nabd/core/hadith/views/booklistpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,23 +69,25 @@ class _HadithBooksPageState extends State<HadithBooksPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor:             getValue("darkMode") ?quranPagesColorDark: quranPagesColorLight,
+
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor:getValue("darkMode") ?darkModeSecondaryColor:quranPagesColorLight,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme:  IconThemeData(            color:getValue("darkMode") ?Colors.white.withOpacity(.87): Colors.black87,
+),
         title: Text(
           "Hadith".tr(),
-          style: const TextStyle(
-            color: Colors.black87,
+          style:  TextStyle(
+            color:getValue("darkMode") ?Colors.white.withOpacity(.87): Colors.black87,
             fontFamily: "cairo",
           ),
         ),
       ),
       body: isLoading
-          ? const Center(
+          ?  Center(
               child: CircularProgressIndicator(
-                color: quranPagesColor,
+                color:  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
               ),
             )
           : ListView.builder(
@@ -109,13 +112,13 @@ class _HadithBooksPageState extends State<HadithBooksPage> {
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
-                              color: const Color(0xffF5EFE8).withOpacity(.9),
+                              color: getValue("darkMode")?darkModeSecondaryColor: const Color(0xffF5EFE8).withOpacity(.9),
                             ),
                             child:  Padding(
                               padding: const EdgeInsets.all(22),
                               child: Icon(
                                 MfgLabs.folder_empty,size: 30.sp,
-                                color: Colors.black87,
+                                color: getValue("darkMode")?Colors.white.withOpacity(.87): Colors.black87,
                               ),
                             ),
                           ),
@@ -128,14 +131,14 @@ class _HadithBooksPageState extends State<HadithBooksPage> {
                               Text(
                                 categories[index].title,
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: getValue("darkMode")?Colors.white: Colors.black,
                                   fontSize: 14.sp,
                                 ),
                               ),
                               Text(
                                 "Hadith Count: ${categories[index].hadeethsCount}",
                                 style: TextStyle(
-                                    color: const Color(0xffA28858)
+                                    color: getValue("darkMode")?orangeColor.withOpacity(.9): const Color(0xffA28858)
                                         .withOpacity(.9)),
                               )
                             ],
@@ -148,7 +151,7 @@ class _HadithBooksPageState extends State<HadithBooksPage> {
                                   context.locale.languageCode == "ar"
                                       ? Entypo.left_open
                                       : Entypo.right_open,
-                                  color: Colors.black87,
+                                  color: getValue("darkMode")?orangeColor.withOpacity(.87): Colors.black87,
                                   size: 26.sp,
                                 ),
                               ],

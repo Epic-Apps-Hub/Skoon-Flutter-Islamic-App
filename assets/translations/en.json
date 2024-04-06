@@ -81,6 +81,20 @@
 
     "explanation": "Add Explanation",
     "meanings": "Add Meanings",
-    "Hadith": "Hadith Library"
 
+    "Hadith": "Hadith Library",
+
+
+
+    "calender": "Hijri Calender",
+    "normalCalender": "Normal Calender",
+    "SearchDua": "Search For Duaa/Zikr",
+    "Add To Sibha": "Add New Zikr",
+    "Add": "Add New Zikr",
+    "Enter Custom Zikr": "Enter Custom Zikr",
+
+    "newBookmark": "Add New Bookmark",
+    "nameOfBookmark": "Give it a unique name",
+    "color": "Color of Bookmark",
+    "saveBookmark": "Save Bookmark"
 }

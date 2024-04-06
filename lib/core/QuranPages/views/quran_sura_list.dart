@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:easy_container/easy_container.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +59,9 @@ class _SurahListPageState extends State<SurahListPage> {
       itemBuilder: (context, index) {
         return Shimmer.fromColors(
           baseColor: Colors.grey.shade300.withOpacity(.5),
-          highlightColor: quranPagesColor,
+          highlightColor: getValue("darkMode")
+              ? darkModeSecondaryColor
+              : quranPagesColorLight,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 8.h),
             child: ListTile(
@@ -89,12 +92,18 @@ class _SurahListPageState extends State<SurahListPage> {
         height: 33.sp,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: quranPagesColor.withOpacity(.1), // Replace with your logic
+          color: getValue("darkMode")
+              ? quranPagesColorDark
+              : quranPagesColorLight.withOpacity(.1), // Replace with your logic
         ),
         child: Center(
           child: Text(
             hizbNumber.toString(),
-            style: TextStyle(fontSize: 14.sp),
+            style: TextStyle(
+                fontSize: 14.sp,
+                color: getValue("darkMode")
+                    ? orangeColor
+                    : const Color.fromARGB(228, 0, 0, 0)),
           ),
         ),
       );
@@ -104,27 +113,48 @@ class _SurahListPageState extends State<SurahListPage> {
           height: 20.sp,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: quranPagesColor.withOpacity(.1), // Replace with your logic
+            color: getValue("darkMode")
+                ? quranPagesColorDark
+                : quranPagesColorLight
+                    .withOpacity(.1), // Replace with your logic
           ),
-          child: QuarterCircle(color: quranPagesColor, size: 20.sp));
+          child: QuarterCircle(
+              color: getValue("darkMode")
+                  ? orangeColor
+                  : const Color.fromARGB(228, 0, 0, 0),
+              size: 20.sp));
     } else if (index == 2) {
       return Container(
           width: 20.sp,
           height: 20.sp,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: quranPagesColor.withOpacity(.1), // Replace with your logic
+            color: getValue("darkMode")
+                ? quranPagesColorDark
+                : quranPagesColorLight
+                    .withOpacity(.1), // Replace with your logic
           ),
-          child: HalfCircle(color: quranPagesColor, size: 20.sp));
+          child: HalfCircle(
+              color: getValue("darkMode")
+                  ? orangeColor
+                  : const Color.fromARGB(228, 0, 0, 0),
+              size: 20.sp));
     } else if (index == 3) {
       return Container(
           width: 20.sp,
           height: 20.sp,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: quranPagesColor.withOpacity(.1), // Replace with your logic
+            color: getValue("darkMode")
+                ? quranPagesColorDark
+                : quranPagesColorLight
+                    .withOpacity(.1), // Replace with your logic
           ),
-          child: ThreeQuartersCircle(color: quranPagesColor, size: 20.sp));
+          child: ThreeQuartersCircle(
+              color: getValue("darkMode")
+                  ? orangeColor
+                  : const Color.fromARGB(228, 0, 0, 0),
+              size: 20.sp));
     }
   }
 
@@ -135,6 +165,7 @@ class _SurahListPageState extends State<SurahListPage> {
     getStarredVerse();
     getValue("lastRead") != "non" ?? getJuzNumber();
     // getJuzNumber();
+    fetchBookmarks();
     addFilteredData(); // TODO: implement initState
     super.initState();
   }
@@ -144,27 +175,18 @@ class _SurahListPageState extends State<SurahListPage> {
     juzNumberLastRead = quran.getJuzNumber(
         quran.getPageData(getValue("lastRead"))[0]["surah"],
         quran.getPageData(getValue("lastRead"))[0]["start"]);
-    print(juzNumberLastRead);
+    // print(juzNumberLastRead);
     setState(() {});
     // await Future.delayed(const Duration(milliseconds: 300));
     // _juzScrollController.scrollTo(
     //     index: juzNumberLastRead-1, duration: const Duration(milliseconds: 500));
   }
 
-  List bookmarks = [
-    getValue("greenBookmark"),
-    getValue("redBookmark"),
-    getValue("blueBookmark"),
-  ];
-
-  reloadBookmarks() {
-    setState(() {
-      bookmarks = [
-        getValue("greenBookmark"),
-        getValue("redBookmark"),
-        getValue("blueBookmark"),
-      ];
-    });
+  List bookmarks = [];
+  fetchBookmarks() {
+    bookmarks = json.decode(getValue("bookmarks"));
+    setState(() {});
+    // print(bookmarks);
   }
 
   int quarterNumberLastRead = 0;
@@ -172,7 +194,7 @@ class _SurahListPageState extends State<SurahListPage> {
     juzNumberLastRead = quran.getJuzNumber(
         quran.getPageData(getValue("lastRead"))[0]["surah"],
         quran.getPageData(getValue("lastRead"))[0]["start"]);
-    print(juzNumberLastRead);
+    // print(juzNumberLastRead);
     setState(() {});
     // await Future.delayed(const Duration(milliseconds: 300));
     // _juzScrollController.scrollTo(
@@ -214,6 +236,26 @@ class _SurahListPageState extends State<SurahListPage> {
     }
     setState(() {});
   }
+// removeStarredVerse(String verseToRemove) async {
+//   // Check if the set is not null
+//   // Check if the verseToRemove is in the set
+//   if (starredVerses.contains(verseToRemove)) {
+//     // Remove the verse
+//     starredVerses.remove(verseToRemove);
+
+//     // Save the updated set to SharedPreferences
+//     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    
+//     // Check if the set is empty before encoding
+//     final encodedSet = starredVerses.isNotEmpty ? json.encode(starredVerses) :json.encode( {});
+    
+//     prefs.setString("starredVerses", encodedSet);
+
+//     // Trigger a UI update
+//     setState(() {});
+//   }
+// }
+
 
   @override
   Widget build(BuildContext context) {
@@ -222,20 +264,26 @@ class _SurahListPageState extends State<SurahListPage> {
       child: KeyboardDismissOnTap(
         dismissOnCapturedTaps: true,
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
               // image: DecorationImage(
               //     image: AssetImage("assets/images/homebackground.png"),
               //     alignment: Alignment.topCenter,
               //     opacity: .256),
-              color: quranPagesColor),
+              color: getValue("darkMode")
+                  ? quranPagesColorDark
+                  : quranPagesColorLight),
           child: Scaffold(
               resizeToAvoidBottomInset: false,
-              backgroundColor: Colors.white,
+              backgroundColor: getValue("darkMode")
+                  ? quranPagesColorDark
+                  : quranPagesColorLight,
               endDrawer: SafeArea(
                 child: Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width * .7,
-                  color: const Color.fromARGB(255, 255, 251, 248),
+                  color: getValue("darkMode")
+                      ? quranPagesColorDark
+                      : quranPagesColorLight,
                   child: ListView(
                       shrinkWrap: true,
                       // mainAxisAlignment: MainAxisAlignment.center,
@@ -244,314 +292,265 @@ class _SurahListPageState extends State<SurahListPage> {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           children: [
-                            EasyContainer(
-                              color: primaryColors[0].withOpacity(.05),
-                              onTap: () async {
-                                if (getValue("greenBookmark") != null) {
-                                  await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (builder) => BlocProvider(
-                                                create: (context) =>
-                                                    QuranPagePlayerBloc(),
-                                                child: QuranDetailsPage(
-                                                    shouldHighlightSura: false,
-                                                    pageNumber: quran.getPageNumber(
-                                                        int.parse(
-                                                            getValue("greenBookmark")
-                                                                .split("-")[0]),
-                                                        int.parse(getValue(
-                                                                "greenBookmark")
-                                                            .split("-")[1])),
-                                                    jsonData: widget.jsonData,
-                                                    shouldHighlightText: true,
-                                                    highlightVerse: quran.getVerse(
-                                                        int.parse(
-                                                            getValue("greenBookmark")
-                                                                .split("-")[0]),
-                                                        int.parse(getValue("greenBookmark").split("-")[1])),
-                                                    quarterJsonData: widget.quarterjsonData),
-                                              )));
-                                }
-                              },
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Icon(
-                                          Icons.bookmark,
-                                          color: Colors.greenAccent,
-                                        ),
-                                        SizedBox(
-                                          width: 20.w,
-                                        ),
-                                        Text("greenbookmark".tr(),
-                                            style: TextStyle(
-                                                fontFamily: "cairo",
-                                                fontSize: 14.sp,
-                                                color: primaryColors[0])),
-                                      ],
-                                    ),
-                                    const Divider(),
-                                    if (getValue("greenBookmark") != null)
-                                      SizedBox(
-                                        // width: MediaQuery.of(context).size.width * .4,
-                                        child: Text(
-                                            quran.getVerse(
-                                              int.parse(
-                                                  getValue("greenBookmark")
-                                                      .toString()
-                                                      .split('-')[0]),
-                                              int.parse(
-                                                  getValue("greenBookmark")
-                                                      .toString()
-                                                      .split('-')[1]),
-                                            ),
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily: fontFamilies[0],
-                                              fontSize: 18.sp,
-                                              color: primaryColors[0],
-                                            )),
-                                      ),
-                                    if (getValue("greenBookmark") != null)
+                            if (bookmarks.isNotEmpty)
+                              ListView.separated(
+                                  separatorBuilder: (context, index) =>
                                       const Divider(),
-                                    if (getValue("greenBookmark") != null)
-                                      Text(
-                                        context.locale.languageCode == "ar"
-                                            ? quran.getSurahNameArabic(
-                                                int.parse(
-                                                    getValue("greenBookmark")
-                                                        .toString()
-                                                        .split('-')[0]))
-                                            : quran.getSurahNameEnglish(
-                                                int.parse(
-                                                    getValue("greenBookmark")
-                                                        .toString()
-                                                        .split('-')[0])),
-                                        style: const TextStyle(),
-                                      ),
-                                    if (getValue("greenBookmark") != null)
-                                      Text(
-                                          "${convertToArabicNumber((int.parse(getValue("greenBookmark").split("-")[1]).toString()))} " //               quran.getVerseEndSymbol()
-                                          ,
-                                          style: TextStyle(
-                                              fontSize: 24.sp,
-                                              color: Colors.blueAccent,
-                                              fontFamily:
-                                                  "KFGQPC Uthmanic Script HAFS Regular"))
-                                  ],
-                                ),
-                              ),
-                            ),
-                            EasyContainer(
-                              color: primaryColors[0].withOpacity(.05),
-                              onTap: () async {
-                                if (getValue("redBookmark") != null) {
-                                  await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (builder) => BlocProvider(
-                                                create: (context) =>
-                                                    QuranPagePlayerBloc(),
-                                                child: QuranDetailsPage(
-                                                    shouldHighlightSura: false,
-                                                    pageNumber: quran.getPageNumber(
-                                                        int.parse(
-                                                            getValue("redBookmark")
-                                                                .split("-")[0]),
-                                                        int.parse(getValue(
-                                                                "redBookmark")
-                                                            .split("-")[1])),
-                                                    jsonData: widget.jsonData,
-                                                    shouldHighlightText: true,
-                                                    highlightVerse: quran.getVerse(
-                                                        int.parse(
-                                                            getValue("redBookmark")
-                                                                .split("-")[0]),
-                                                        int.parse(getValue("redBookmark").split("-")[1])),
-                                                    quarterJsonData: widget.quarterjsonData),
-                                              )));
-                                }
-                              },
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Icon(
-                                          Icons.bookmark,
-                                          color: Colors.redAccent,
-                                        ),
-                                        SizedBox(
-                                          width: 20.w,
-                                        ),
-                                        Text("redbookamrk".tr(),
-                                            style: TextStyle(
-                                                fontFamily: "cairo",
-                                                fontSize: 14.sp,
-                                                color: primaryColors[0])),
-                                      ],
-                                    ),
-                                    const Divider(),
-                                    if (getValue("redBookmark") != null)
-                                      SizedBox(
-                                        // width: MediaQuery.of(context).size.width * .4,
-                                        child: Text(
-                                            quran.getVerse(
-                                              int.parse(getValue("redBookmark")
-                                                  .toString()
-                                                  .split('-')[0]),
-                                              int.parse(getValue("redBookmark")
-                                                  .toString()
-                                                  .split('-')[1]),
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: bookmarks.length,
+                                  itemBuilder: (c, i) {
+                                    return EasyContainer(
+                                      borderRadius: 18,
+                                      color: primaryColors[0].withOpacity(.05),
+                                      onTap: () async {
+                                        {
+                                          await Navigator.push(
+                                              context,
+                                              CupertinoPageRoute(
+                                                  builder:
+                                                      (builder) => BlocProvider(
+                                                            create: (context) =>
+                                                                QuranPagePlayerBloc(),
+                                                            child:
+                                                                QuranDetailsPage(
+                                                                    shouldHighlightSura:
+                                                                        false,
+                                                                    pageNumber:
+                                                                        quran
+                                                                            .getPageNumber(
+                                                                      int.parse(bookmarks[i]
+                                                                              [
+                                                                              "suraNumber"]
+                                                                          .toString()),
+                                                                      int.parse(bookmarks[i]
+                                                                              [
+                                                                              "verseNumber"]
+                                                                          .toString()),
+                                                                    ),
+                                                                    jsonData: widget
+                                                                        .jsonData,
+                                                                    shouldHighlightText:
+                                                                        true,
+                                                                    highlightVerse:
+                                                                        quran
+                                                                            .getVerse(
+                                                                      int.parse(bookmarks[i]
+                                                                              [
+                                                                              "suraNumber"]
+                                                                          .toString()),
+                                                                      int.parse(bookmarks[i]
+                                                                              [
+                                                                              "verseNumber"]
+                                                                          .toString()),
+                                                                    ),
+                                                                    quarterJsonData:
+                                                                        widget
+                                                                            .quarterjsonData),
+                                                          )));
+                                        }
+                                      },
+                                      child: SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.bookmark,
+                                                  color: Color(int.parse(
+                                                      "0x${bookmarks[i]["color"]}")),
+                                                ),
+                                                SizedBox(
+                                                  width: 20.w,
+                                                ),
+                                                Text(bookmarks[i]["name"],
+                                                    style: TextStyle(
+                                                        fontFamily: "cairo",
+                                                        fontSize: 14.sp,
+                                                        color: getValue(
+                                                                "darkMode")
+                                                            ? Colors.white
+                                                                .withOpacity(
+                                                                    .87)
+                                                            : primaryColors[
+                                                                0])),
+                                              ],
                                             ),
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily: fontFamilies[0],
-                                              fontSize: 18.sp,
-                                              color: primaryColors[0],
-                                            )),
-                                      ),
-                                    if (getValue("redBookmark") != null)
-                                      const Divider(),
-                                    if (getValue("redBookmark") != null)
-                                      Text(
-                                        context.locale.languageCode == "ar"
-                                            ? quran.getSurahNameArabic(
-                                                int.parse(
-                                                    getValue("redBookmark")
-                                                        .toString()
-                                                        .split('-')[0]))
-                                            : quran.getSurahNameEnglish(
-                                                int.parse(
-                                                    getValue("redBookmark")
-                                                        .toString()
-                                                        .split('-')[0])),
-                                        style: const TextStyle(),
-                                      ),
-                                    if (getValue("redBookmark") != null)
-                                      Text(
-                                          "${convertToArabicNumber((int.parse(getValue("redBookmark").split("-")[1]).toString()))} " //               quran.getVerseEndSymbol()
-                                          ,
-                                          style: TextStyle(
-                                              fontSize: 24.sp,
-                                              color: Colors.blueAccent,
-                                              fontFamily:
-                                                  "KFGQPC Uthmanic Script HAFS Regular"))
-                                  ],
-                                ),
-                              ),
-                            ),
-                            EasyContainer(
-                              color: primaryColors[0].withOpacity(.05),
-                              onTap: () async {
-                                if (getValue("blueBookmark") != null) {
-                                  await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (builder) => BlocProvider(
-                                                create: (context) =>
-                                                    QuranPagePlayerBloc(),
-                                                child: QuranDetailsPage(
-                                                    shouldHighlightSura: false,
-                                                    pageNumber: quran.getPageNumber(
-                                                        int.parse(
-                                                            getValue("blueBookmark")
-                                                                .split("-")[0]),
-                                                        int.parse(getValue(
-                                                                "blueBookmark")
-                                                            .split("-")[1])),
-                                                    jsonData: widget.jsonData,
-                                                    shouldHighlightText: true,
-                                                    highlightVerse: quran.getVerse(
-                                                        int.parse(
-                                                            getValue("blueBookmark")
-                                                                .split("-")[0]),
-                                                        int.parse(getValue("blueBookmark").split("-")[1])),
-                                                    quarterJsonData: widget.quarterjsonData),
-                                              )));
-                                }
-                              },
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Icon(
-                                          Icons.bookmark,
-                                          color: Colors.blueAccent,
-                                        ),
-                                        SizedBox(
-                                          width: 20.w,
-                                        ),
-                                        Text("bluebookamrk".tr(),
-                                            style: TextStyle(
-                                                fontFamily: "cairo",
-                                                fontSize: 14.sp,
-                                                color: primaryColors[0])),
-                                      ],
-                                    ),
-                                    const Divider(),
-                                    if (getValue("blueBookmark") != null)
-                                      SizedBox(
-                                        // width: MediaQuery.of(context).size.width * .4,
-                                        child: Text(
-                                            quran.getVerse(
-                                              int.parse(getValue("blueBookmark")
-                                                  .toString()
-                                                  .split('-')[0]),
-                                              int.parse(getValue("blueBookmark")
-                                                  .toString()
-                                                  .split('-')[1]),
+                                            const Divider(),
+
+                                            SizedBox(
+                                              // width: MediaQuery.of(context).size.width * .4,
+                                              child: Text(
+                                                  quran.getVerse(
+                                                    int.parse(bookmarks[i]
+                                                            ["suraNumber"]
+                                                        .toString()),
+                                                    int.parse(bookmarks[i]
+                                                            ["verseNumber"]
+                                                        .toString()),
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontFamily: fontFamilies[0],
+                                                    fontSize: 18.sp,
+                                                    color: getValue("darkMode")
+                                                        ? Colors.white
+                                                            .withOpacity(.87)
+                                                        : primaryColors[0],
+                                                  )),
                                             ),
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily: fontFamilies[0],
-                                              fontSize: 18.sp,
-                                              color: primaryColors[0],
-                                            )),
+                                            const Divider(),
+                                            Text(
+                                              context.locale.languageCode ==
+                                                      "ar"
+                                                  ? quran.getSurahNameArabic(
+                                                      int.parse(bookmarks[i]
+                                                              ["suraNumber"]
+                                                          .toString()))
+                                                  : quran.getSurahNameEnglish(
+                                                      int.parse(bookmarks[i]
+                                                              ["suraNumber"]
+                                                          .toString())),
+                                              style: TextStyle(
+                                                  color: getValue("darkMode")
+                                                      ? Colors.white
+                                                          .withOpacity(.87)
+                                                      : Colors.black87),
+                                            ),
+                                            //
+                                            Text(
+                                                "${convertToArabicNumber(int.parse(bookmarks[i]["verseNumber"].toString()).toString())} " //               quran.getVerseEndSymbol()
+                                                ,
+                                                style: TextStyle(
+                                                    fontSize: 24.sp,
+                                                    color: Colors.blueAccent,
+                                                    fontFamily:
+                                                        "KFGQPC Uthmanic Script HAFS Regular"))
+                                          ],
+                                        ),
                                       ),
-                                    if (getValue("blueBookmark") != null)
-                                      const Divider(),
-                                    if (getValue("blueBookmark") != null)
-                                      Text(
-                                        context.locale.languageCode == "ar"
-                                            ? quran.getSurahNameArabic(
-                                                int.parse(
-                                                    getValue("blueBookmark")
-                                                        .toString()
-                                                        .split('-')[0]))
-                                            : quran.getSurahNameEnglish(
-                                                int.parse(
-                                                    getValue("blueBookmark")
-                                                        .toString()
-                                                        .split('-')[0])),
-                                        style: const TextStyle(),
-                                      ),
-                                    if (getValue("blueBookmark") != null)
-                                      Text(
-                                          "${convertToArabicNumber((int.parse(getValue("blueBookmark").split("-")[1]).toString()))} " //               quran.getVerseEndSymbol()
-                                          ,
-                                          style: TextStyle(
-                                              fontSize: 24.sp,
-                                              color: Colors.blueAccent,
-                                              fontFamily:
-                                                  "KFGQPC Uthmanic Script HAFS Regular"))
-                                  ],
-                                ),
-                              ),
-                            ),
+                                    );
+                                    // GestureDetector(
+                                    //                   // color: Colors.transparent,
+                                    //                   onTap: () async {
+                                    //                     List bookmarks = json.decode(
+                                    //                         getValue("bookmarks"));
+
+                                    //                     // bookmarks[i]["verseNumber"] =
+                                    //                     //     verseNumber;
+
+                                    //                     // bookmarks[i]["suraNumber"] =
+                                    //                     //     surahNumber;
+
+                                    //                     updateValue("bookmarks",
+                                    //                         json.encode(bookmarks));
+                                    //                     // print(getValue("bookmarks"));
+                                    //                     setState(() {});
+                                    //                     fetchBookmarks();
+                                    //                     Navigator.of(context)
+                                    //                         .pop(); // Close the dialog
+                                    //                   },
+                                    //                   child: SizedBox(
+                                    //                     width: MediaQuery.of(context)
+                                    //                         .size
+                                    //                         .width,
+                                    //                     child: Row(
+                                    //                       children: [
+                                    //                         SizedBox(
+                                    //                           width: 20.w,
+                                    //                         ),
+                                    //                         Icon(
+                                    //                           Icons.bookmark,
+                                    //                           color:,
+                                    //                         ),
+                                    //                         SizedBox(
+                                    //                           width: 20.w,
+                                    //                         ),
+                                    //                         Text(,
+                                    //                             style: TextStyle(
+                                    //                                 fontFamily: "cairo",
+                                    //                                 fontSize: 14.sp,
+                                    //                                 color: primaryColors[
+                                    //                                     getValue(
+                                    //                                         "quranPageolorsIndex")])),
+                                    //                         SizedBox(
+                                    //                           width: 30.w,
+                                    //                         ),
+                                    //                         // if (getValue("redBookmark") != null)
+                                    //                         Expanded(
+                                    //                           child: Align(
+                                    //                             alignment:
+                                    //                                 Alignment.centerRight,
+                                    //                             child: Text(
+                                    //                                 quran.getVerse(
+                                    //                                   int.parse(bookmarks[
+                                    //                                               i][
+                                    //                                           "suraNumber"]
+                                    //                                       .toString()),
+                                    //                                   int.parse(bookmarks[
+                                    //                                               i][
+                                    //                                           "verseNumber"]
+                                    //                                       .toString()),
+                                    //                                 ),
+                                    //                                 textDirection: m
+                                    //                                     .TextDirection
+                                    //                                     .rtl,
+                                    //                                 style: TextStyle(
+                                    //                                     fontFamily:
+                                    //                                         fontFamilies[
+                                    //                                             0],
+                                    //                                     fontSize: 13.sp,
+                                    //                                     color: primaryColors[
+                                    //                                         getValue(
+                                    //                                             "quranPageolorsIndex")],
+                                    //                                     overflow:
+                                    //                                         TextOverflow
+                                    //                                             .ellipsis)),
+                                    //                           ),
+                                    //                         ),
+
+                                    //                         IconButton(
+                                    //                             onPressed: () {
+                                    //                               //  String bookmarkName = _nameController.text;
+                                    //                               // TODO: Perform actions with bookmarkName and _selectedColor
+                                    //                               List bookmarks = json
+                                    //                                   .decode(getValue(
+                                    //                                       "bookmarks"));
+                                    //                               // String hexCode =
+                                    //                               //     _selectedColor.value.toRadixString(16).padLeft(8, '0');
+                                    //                               Fluttertoast.showToast(
+                                    //                                   msg:
+                                    //                                       "${bookmarks[i]["name"]} removed");
+
+                                    //                               bookmarks.removeWhere(
+                                    //                                   (e) =>
+                                    //                                       e["color"] ==
+                                    //                                       bookmarks[i]
+                                    //                                           ["color"]);
+                                    //                               updateValue(
+                                    //                                   "bookmarks",
+                                    //                                   json.encode(
+                                    //                                       bookmarks));
+                                    //                               // print(getValue("bookmarks"));
+                                    //                               setState(() {});
+                                    //                               fetchBookmarks();
+                                    //                               Navigator.of(context)
+                                    //                                   .pop(); // Close the dialog
+                                    //                             },
+                                    //                             icon: Icon(
+                                    //                               Icons.delete,
+                                    //                               color: Color(int.parse(
+                                    //                                   "0x${bookmarks[i]["color"]}")),
+                                    //                             ))
+                                    //                       ],
+                                    //                     ),
+                                    //                   ),
+                                    //                 );
+                                  }),
                           ],
                         ),
                         Center(
@@ -560,7 +559,9 @@ class _SurahListPageState extends State<SurahListPage> {
                           child: Text(
                             "starredverses".tr(),
                             style: TextStyle(
-                              color: Colors.black,
+                              color: getValue("darkMode")
+                                  ? Colors.white.withOpacity(.87)
+                                  : Colors.black,
                               fontSize: 18.sp,
                             ),
                           ),
@@ -577,7 +578,7 @@ class _SurahListPageState extends State<SurahListPage> {
                                   onTap: () async {
                                     await Navigator.push(
                                         context,
-                                        MaterialPageRoute(
+                                        CupertinoPageRoute(
                                             builder: (builder) => BlocProvider(
                                                   create: (context) =>
                                                       QuranPagePlayerBloc(),
@@ -611,7 +612,9 @@ class _SurahListPageState extends State<SurahListPage> {
                                           style: TextStyle(
                                             fontFamily: fontFamilies[0],
                                             fontSize: 18.sp,
-                                            color: primaryColors[0],
+                                            color: getValue("darkMode")
+                                                ? Colors.white.withOpacity(.87)
+                                                : primaryColors[0],
                                           )),
                                       Text(
                                         context.locale.languageCode == "ar"
@@ -629,6 +632,14 @@ class _SurahListPageState extends State<SurahListPage> {
                                               color: Colors.blueAccent,
                                               fontFamily:
                                                   "KFGQPC Uthmanic Script HAFS Regular"))
+//                               ,    IconButton(onPressed: (){
+// // removeStarredVerse(e);
+// getStarredVerse();
+// setState(() {
+  
+// });
+
+//                               }, icon: const Icon(Icons.remove,color:Colors.redAccent))
                                     ],
                                   )))
                               .toList(),
@@ -704,7 +715,8 @@ class _SurahListPageState extends State<SurahListPage> {
                           bottomRight: Radius.circular(16.r))),
                   elevation: 0,
                   centerTitle: true,
-                  backgroundColor: quranPagesColor,
+                  backgroundColor:
+                      getValue("darkMode") ? darkModeSecondaryColor : blueColor,
                   title: Text(
                     "alQuran".tr(),
                     style: TextStyle(
@@ -718,14 +730,16 @@ class _SurahListPageState extends State<SurahListPage> {
                 children: [
                   SafeArea(
                     child: Container(
-                      color: backgroundColor,
+                      color: getValue("darkMode")
+                          ? quranPagesColorDark
+                          : quranPagesColorLight,
                       child: Column(
                         children: [
                           if (getValue("lastRead") != "non")
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: EasyContainer(
-                                  color: quranPagesColor,
+                                  color: orangeColor,
                                   height: 60.h,
                                   padding: 0,
                                   margin: 0,
@@ -757,7 +771,7 @@ class _SurahListPageState extends State<SurahListPage> {
                                   onTap: () async {
                                     await Navigator.push(
                                         context,
-                                        MaterialPageRoute(
+                                        CupertinoPageRoute(
                                             builder: (builder) => BlocProvider(
                                                   create: (context) =>
                                                       QuranPagePlayerBloc(),
@@ -786,9 +800,9 @@ class _SurahListPageState extends State<SurahListPage> {
                                         EdgeInsets.symmetric(horizontal: 8.0.w),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: const Color(0xffF6F6F6),
+                                          color: goldColor.withOpacity(.05),
                                           borderRadius:
-                                              BorderRadius.circular(5.r)),
+                                              BorderRadius.circular(12.r)),
                                       child: Row(
                                         children: [
                                           Expanded(
@@ -796,6 +810,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 12.0.w),
                                               child: TextField(
+                                                textDirection:
+                                                    m.TextDirection.rtl,
                                                 controller:
                                                     textEditingController,
                                                 onChanged: (value) {
@@ -843,13 +859,27 @@ class _SurahListPageState extends State<SurahListPage> {
                                                     });
                                                   }
                                                 },
-                                                cursorColor: quranPagesColor,
+                                                style: TextStyle(
+                                                    fontFamily: "aldahabi",
+                                                    color: getValue("darkMode")
+                                                        ? const Color.fromARGB(
+                                                            228, 255, 255, 255)
+                                                        : const Color.fromARGB(
+                                                            190, 0, 0, 0)),
+                                                cursorColor:
+                                                    getValue("darkMode")
+                                                        ? quranPagesColorDark
+                                                        : quranPagesColorLight,
                                                 decoration: InputDecoration(
                                                   hintText: 'searchQuran'.tr(),
-                                                  hintStyle: const TextStyle(
+                                                  hintStyle: TextStyle(
                                                       fontFamily: "aldahabi",
-                                                      color: Color.fromARGB(
-                                                          73, 0, 0, 0)),
+                                                      color:
+                                                          getValue("darkMode")
+                                                              ? Colors.white70
+                                                              : const Color
+                                                                  .fromARGB(
+                                                                  73, 0, 0, 0)),
                                                   border: InputBorder.none,
                                                 ),
                                               ),
@@ -869,17 +899,25 @@ class _SurahListPageState extends State<SurahListPage> {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: searchQuery.isNotEmpty
-                                                  ? const Padding(
+                                                  ? Padding(
                                                       padding:
-                                                          EdgeInsets.all(8.0),
+                                                          const EdgeInsets.all(
+                                                              8.0),
                                                       child: Icon(Icons.close,
-                                                          color: Color.fromARGB(
-                                                              73, 0, 0, 0)),
+                                                          color: getValue(
+                                                                  "darkMode")
+                                                              ? Colors.white70
+                                                              : const Color
+                                                                  .fromARGB(
+                                                                  73, 0, 0, 0)),
                                                     )
-                                                  : const Icon(
-                                                      FontAwesome.search,
-                                                      color: Color.fromARGB(
-                                                          73, 0, 0, 0)),
+                                                  : Icon(FontAwesome.search,
+                                                      color:
+                                                          getValue("darkMode")
+                                                              ? Colors.white70
+                                                              : const Color
+                                                                  .fromARGB(
+                                                                  73, 0, 0, 0)),
                                             ),
                                           ),
                                         ],
@@ -927,111 +965,124 @@ class _SurahListPageState extends State<SurahListPage> {
 
                                           return Padding(
                                             padding: const EdgeInsets.all(0.0),
-                                            child: ListTile(
-                                              leading: Container(
-                                                width: 45,
-                                                height: 45,
-                                                decoration: const BoxDecoration(
-                                                    image: DecorationImage(
-                                                  image: AssetImage(
-                                                    "assets/images/sura_frame.png",
-                                                  ),
-                                                )),
-                                                child: Center(
-                                                  child: Text(
-                                                    suraNumberInQuran
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color: quranPagesColor,
-                                                        fontSize: 14.sp),
-                                                  ),
-                                                ),
-                                              ) //  Material(
-
-                                              ,
-                                              minVerticalPadding: 0,
-                                              title: SizedBox(
-                                                width: 90.w,
-                                                child: Row(
-                                                  children: [
-                                                    Text(
-                                                      suraName,
-                                                      style: TextStyle(
-                                                          // fontWeight: FontWeight.bold,
-                                                          color:
-                                                              quranPagesColor,
-                                                          fontSize: 14.sp,
-                                                          fontWeight: FontWeight
-                                                              .w700, // Text color
-                                                          fontFamily:
-                                                              "uthmanic"),
+                                            child: Container(
+                                              child: ListTile(
+                                                leading: Container(
+                                                  width: 45,
+                                                  height: 45,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                          image:
+                                                              DecorationImage(
+                                                    image: AssetImage(
+                                                      "assets/images/sura_frame.png",
                                                     ),
-                                                    if (bookmarks.any((a) {
-                                                      return a
-                                                          .toString()
-                                                          .startsWith(
-                                                              "$suraNumberInQuran");
-                                                    }))
-                                                      Icon(Icons.bookmark,
-                                                          size: 16.sp,
-                                                          color: colorsOfBookmarks2[
-                                                                  bookmarks
-                                                                      .indexWhere(
-                                                                          (a) {
+                                                  )),
+                                                  child: Center(
+                                                    child: Text(
+                                                      suraNumberInQuran
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                          color: orangeColor,
+                                                          fontSize: 14.sp),
+                                                    ),
+                                                  ),
+                                                ) //  Material(
+
+                                                ,
+                                                minVerticalPadding: 0,
+                                                title: SizedBox(
+                                                  width: 90.w,
+                                                  child: Row(
+                                                    children: [
+                                                      Text(
+                                                        suraName,
+                                                        style: TextStyle(
+                                                            // fontWeight: FontWeight.bold,
+                                                            color: getValue(
+                                                                    "darkMode")
+                                                                ? Colors.white70
+                                                                : blueColor,
+                                                            fontSize: 14.sp,
+                                                            fontWeight: FontWeight
+                                                                .w700, // Text color
+                                                            fontFamily:
+                                                                "uthmanic"),
+                                                      ),
+                                                      if (bookmarks
+                                                              .indexWhere((a) {
                                                             return a
-                                                                .toString()
-                                                                .startsWith(
-                                                                    "$suraNumberInQuran");
-                                                          })]
-                                                              .withOpacity(.7))
-                                                  ],
+                                                                    .toString()
+                                                                    .split(
+                                                                        "-")[0] ==
+                                                                "$suraNumberInQuran";
+                                                          }) !=
+                                                          -1)
+                                                        Icon(Icons.bookmark,
+                                                            size: 16.sp,
+                                                            color: colorsOfBookmarks2[
+                                                                    bookmarks
+                                                                        .indexWhere(
+                                                                            (a) {
+                                                              return a
+                                                                  .toString()
+                                                                  .startsWith(
+                                                                      "$suraNumberInQuran");
+                                                            })]
+                                                                .withOpacity(
+                                                                    .7))
+                                                    ],
+                                                  ),
                                                 ),
+                                                subtitle: Text(
+                                                  "$suraNameEnglishTranslated ($ayahCount)",
+                                                  style: TextStyle(
+                                                      fontFamily: "uthmanic",
+                                                      fontSize: 14.sp,
+                                                      color: Colors.grey
+                                                          .withOpacity(.8)),
+                                                ),
+                                                trailing: Text(
+                                                  suraNameTranslated,
+                                                  style: TextStyle(
+                                                      // fontWeight: FontWeight.bold,
+                                                      color:
+                                                          getValue("darkMode")
+                                                              ? Colors.white70
+                                                              : Colors.black54,
+                                                      fontSize:
+                                                          18.sp, // Text color
+                                                      fontFamily: "me"),
+                                                ),
+                                                onTap: () async {
+                                                  await Navigator.push(
+                                                      context,
+                                                      CupertinoPageRoute(
+                                                          builder: (builder) =>
+                                                              BlocProvider(
+                                                                create: (context) =>
+                                                                    QuranPagePlayerBloc(),
+                                                                child: QuranDetailsPage(
+                                                                    shouldHighlightSura:
+                                                                        true,
+                                                                    shouldHighlightText:
+                                                                        false,
+                                                                    highlightVerse:
+                                                                        "",
+                                                                    jsonData: widget
+                                                                        .jsonData,
+                                                                    quarterJsonData:
+                                                                        widget
+                                                                            .quarterjsonData,
+                                                                    pageNumber:
+                                                                        quran.getPageNumber(
+                                                                            suraNumberInQuran,
+                                                                            1)),
+                                                              )));
+                                                  // Handle tapping on a sura item here
+                                                  // You can navigate to the sura details page or perform any other action.
+                                                },
                                               ),
-                                              subtitle: Text(
-                                                "$suraNameEnglishTranslated ($ayahCount)",
-                                                style: TextStyle(
-                                                    fontFamily: "uthmanic",
-                                                    fontSize: 14.sp,
-                                                    color: Colors.grey
-                                                        .withOpacity(.8)),
-                                              ),
-                                              trailing: Text(
-                                                suraNameTranslated,
-                                                style: TextStyle(
-                                                    // fontWeight: FontWeight.bold,
-                                                    color: Colors.black54,
-                                                    fontSize:
-                                                        18.sp, // Text color
-                                                    fontFamily: "me"),
-                                              ),
-                                              onTap: () async {
-                                                await Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (builder) =>
-                                                            BlocProvider(
-                                                              create: (context) =>
-                                                                  QuranPagePlayerBloc(),
-                                                              child: QuranDetailsPage(
-                                                                  shouldHighlightSura:
-                                                                      true,
-                                                                  shouldHighlightText:
-                                                                      false,
-                                                                  highlightVerse:
-                                                                      "",
-                                                                  jsonData: widget
-                                                                      .jsonData,
-                                                                  quarterJsonData:
-                                                                      widget
-                                                                          .quarterjsonData,
-                                                                  pageNumber: quran
-                                                                      .getPageNumber(
-                                                                          suraNumberInQuran,
-                                                                          1)),
-                                                            )));
-                                                // Handle tapping on a sura item here
-                                                // You can navigate to the sura details page or perform any other action.
-                                              },
                                             ),
                                           );
                                         },
@@ -1042,7 +1093,6 @@ class _SurahListPageState extends State<SurahListPage> {
                                           physics:
                                               const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
-                                    
                                           itemCount:
                                               ayatFiltered["occurences"] > 10
                                                   ? 10
@@ -1051,12 +1101,15 @@ class _SurahListPageState extends State<SurahListPage> {
                                             return Padding(
                                               padding:
                                                   const EdgeInsets.all(6.0),
-                                              child: EasyContainer( borderRadius: 14,
-
+                                              child: EasyContainer(
+                                                color: getValue("darkMode")
+                                                    ? darkModeSecondaryColor
+                                                    : Colors.white70,
+                                                borderRadius: 14,
                                                 onTap: () async {
                                                   await Navigator.push(
                                                       context,
-                                                      MaterialPageRoute(
+                                                      CupertinoPageRoute(
                                                           builder:
                                                               (builder) =>
                                                                   BlocProvider(
@@ -1081,13 +1134,17 @@ class _SurahListPageState extends State<SurahListPage> {
                                                                         quarterJsonData: widget.quarterjsonData),
                                                                   )));
                                                 },
-                                                child:  Text(
-                                                    "سورة ${quran.getSurahNameArabic(ayatFiltered["result"][index]["surah"])} - ${quran.getVerse(ayatFiltered["result"][index]["surah"], ayatFiltered["result"][index]["verse"], verseEndSymbol: true)}",
-                                                 textDirection: m.TextDirection.rtl,   style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontFamily: "uthmanic",
-                                                        fontSize: 17.sp),
-                                                  
+                                                child: Text(
+                                                  "سورة ${quran.getSurahNameArabic(ayatFiltered["result"][index]["surah"])} - ${quran.getVerse(ayatFiltered["result"][index]["surah"], ayatFiltered["result"][index]["verse"], verseEndSymbol: true)}",
+                                                  textDirection:
+                                                      m.TextDirection.rtl,
+                                                  style: TextStyle(
+                                                      color:
+                                                          getValue("darkMode")
+                                                              ? Colors.white
+                                                              : Colors.black,
+                                                      fontFamily: "uthmanic",
+                                                      fontSize: 17.sp),
                                                 ),
                                               ),
                                             );
@@ -1106,14 +1163,23 @@ class _SurahListPageState extends State<SurahListPage> {
                     itemScrollController: _juzScrollController,
                     itemBuilder: (BuildContext context, index) {
                       return Card(
-                        color: backgroundColor,
+                        color: getValue("darkMode")
+                            ? darkModeSecondaryColor.withOpacity(.8)
+                            : quranPagesColorLight,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
-                              title: Text(quran.getSurahNameArabic(quran
-                                  .getSurahAndVersesFromJuz(index + 1)
-                                  .keys
-                                  .first)),
+                              title: Text(
+                                quran.getSurahNameArabic(quran
+                                    .getSurahAndVersesFromJuz(index + 1)
+                                    .keys
+                                    .first),
+                                style: TextStyle(
+                                    color: getValue("darkMode")
+                                        ? const Color.fromARGB(
+                                            234, 255, 255, 255)
+                                        : const Color.fromARGB(228, 0, 0, 0)),
+                              ),
                               subtitle: Text(
                                 quran.getVerse(
                                     quran
@@ -1125,15 +1191,19 @@ class _SurahListPageState extends State<SurahListPage> {
                                         .values
                                         .first[0]),
                                 style: TextStyle(
-                                  fontFamily: "UthmanicHafs13",
-                                  fontSize: 18.sp,
-                                  // fontWeight: FontWeight.w600
-                                ),
+                                    fontFamily: "UthmanicHafs13",
+                                    fontSize: 18.sp,
+                                    color: getValue("darkMode")
+                                        ? const Color.fromARGB(
+                                            234, 255, 255, 255)
+                                        : const Color.fromARGB(228, 0, 0, 0)
+                                    // fontWeight: FontWeight.w600
+                                    ),
                               ),
                               onTap: () async {
                                 await Navigator.push(
                                     context,
-                                    MaterialPageRoute(
+                                    CupertinoPageRoute(
                                         builder: (builder) => BlocProvider(
                                               create: (context) =>
                                                   QuranPagePlayerBloc(),
@@ -1175,14 +1245,23 @@ class _SurahListPageState extends State<SurahListPage> {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: juzNumberLastRead == index + 1
-                                      ? quranPagesColor
-                                      : quranPagesColor.withOpacity(
-                                          .1), // Replace with your logic
+                                      ? getValue("darkMode")
+                                          ? quranPagesColorDark
+                                          : quranPagesColorLight
+                                      : getValue("darkMode")
+                                          ? quranPagesColorDark
+                                          : quranPagesColorLight.withOpacity(
+                                              .1), // Replace with your logic
                                 ),
                                 child: Center(
                                   child: Text(
                                     (index + 1).toString(),
-                                    style: TextStyle(fontSize: 14.sp),
+                                    style: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: getValue("darkMode")
+                                            ? orangeColor
+                                            : const Color.fromARGB(
+                                                228, 0, 0, 0)),
                                   ),
                                 ),
                               )),
@@ -1198,14 +1277,21 @@ class _SurahListPageState extends State<SurahListPage> {
                     },
                     itemBuilder: (BuildContext context, IndexPath index) {
                       return Card(
-                        color: backgroundColor,
+                        color: getValue("darkMode")
+                            ? darkModeSecondaryColor.withOpacity(.8)
+                            : quranPagesColorLight,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
-                            title: Text(quran.getSurahNameArabic(
-                                widget.quarterjsonData[
-                                        indexes[index.section][index.index] - 1]
-                                    ["surah"])),
+                            title: Text(
+                              quran.getSurahNameArabic(widget.quarterjsonData[
+                                      indexes[index.section][index.index] - 1]
+                                  ["surah"]),
+                              style: TextStyle(
+                                  color: getValue("darkMode")
+                                      ? const Color.fromARGB(234, 255, 255, 255)
+                                      : const Color.fromARGB(228, 0, 0, 0)),
+                            ),
                             subtitle: Text(
                               quran.getVerse(
                                   widget.quarterjsonData[indexes[index.section]
@@ -1215,15 +1301,18 @@ class _SurahListPageState extends State<SurahListPage> {
                                           [index.index] -
                                       1]["ayah"]),
                               style: TextStyle(
-                                fontFamily: "UthmanicHafs13",
-                                fontSize: 18.sp,
-                                // fontWeight: FontWeight.w600
-                              ),
+                                  fontFamily: "UthmanicHafs13",
+                                  fontSize: 18.sp,
+                                  color: getValue("darkMode")
+                                      ? const Color.fromARGB(234, 255, 255, 255)
+                                      : const Color.fromARGB(228, 0, 0, 0)
+                                  // fontWeight: FontWeight.w600
+                                  ),
                             ),
                             onTap: () async {
                               await Navigator.push(
                                   context,
-                                  MaterialPageRoute(
+                                  CupertinoPageRoute(
                                       builder: (builder) => BlocProvider(
                                             create: (context) =>
                                                 QuranPagePlayerBloc(),
@@ -1261,8 +1350,12 @@ class _SurahListPageState extends State<SurahListPage> {
                             horizontal: 15, vertical: 8),
                         child: Text(
                           "${"hizb".tr()} ${section + 1}",
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w600),
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: getValue("darkMode")
+                                  ? const Color.fromARGB(234, 255, 255, 255)
+                                  : const Color.fromARGB(228, 0, 0, 0)),
                         ),
                       );
                     },

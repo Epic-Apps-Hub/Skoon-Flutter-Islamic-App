@@ -37,7 +37,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: quranPagesColor,
+        backgroundColor:getValue("darkMode")
+              ? darkModeSecondaryColor
+              : blueColor,
         centerTitle: true,
         title: Text(
           "notifications".tr(),
@@ -47,14 +49,17 @@ class _NotificationsPageState extends State<NotificationsPage> {
         ),
       ),
       body: Container(
-        color: const Color.fromARGB(255, 255, 248, 244),
+        color:getValue("darkMode")
+              ? quranPagesColorDark: quranPagesColorLight,
         child: ListView(
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
               child: Card(
                 elevation: .8,
-                color: Colors.white,
+                color:getValue("darkMode")
+              ? darkModeSecondaryColor
+              : Colors.white,
                 margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 child: Padding(
                   padding: const EdgeInsets.all(0.0),
@@ -73,7 +78,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             // ),
                             CupertinoSwitch(
                                 // overrides the default green color of the track
-                                activeColor: quranPagesColor,
+                                activeColor: blueColor,
                                 // color of the round icon, which moves from right to left
                                 thumbColor: Colors.white,
                                 // when the switch is off
@@ -103,7 +108,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                 Text(
                                   "${"Muhammed Notification".tr()} ﷺ",
                                   style: TextStyle(
-                                      fontSize: 18.sp,
+                                      fontSize: 18.sp,color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'cairo'),
                                 ),
@@ -127,7 +133,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         padding: EdgeInsets.only(left: 8.0.w),
                         child: Text(
                           "sallahNotificationDetails".tr(),
-                          softWrap: true,
+                          softWrap: true,style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,),
                         ),
                       )
               ,
@@ -146,7 +153,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
               child: Card(
                 elevation: .8,
-                color: Colors.white,
+                color:getValue("darkMode")
+              ? darkModeSecondaryColor
+              : Colors.white,
                 margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 child: Padding(
                   padding: const EdgeInsets.all(0.0),
@@ -164,7 +173,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                           
                             CupertinoSwitch(
                                 // overrides the default green color of the track
-                                activeColor: quranPagesColor,
+                                activeColor: blueColor,
                                 // color of the round icon, which moves from right to left
                                 thumbColor: Colors.white,
                                 // when the switch is off
@@ -221,15 +230,17 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                 },
                                 child: Text(
                                   "test".tr(),
-                                  style: TextStyle(
-                                      fontSize: 14.sp, fontFamily: 'cairo'),
+                                  style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
+                                      fontSize: 14.sp, fontFamily: 'cairo',),
                                 )),
                             Row(
                               children: [
                                 Text(
                                   "ayahnotification".tr(),
                                   style: TextStyle(
-                                      fontSize: 18.sp,
+                                      fontSize: 18.sp,color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'cairo'),
                                 ),
@@ -253,7 +264,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         padding: EdgeInsets.only(left: 8.0.w),
                         child: Text(
                           "ayahnotificationdetails".tr(),
-                          softWrap: true,
+                          softWrap: true,style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,),
                         ),
                       ),
                       // Text(
@@ -287,7 +299,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                     Text(
                                       "shownotificationevery".tr(),
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                           fontSize: 16.sp, fontFamily: 'cairo'),
                                     ),
                                     DropdownButton(
@@ -298,7 +311,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                                 value: e["index"],
                                                 child: Text(
                                                   e["name"],
-                                                  style: TextStyle(
+                                                  style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                                       fontSize: 16.sp,
                                                       fontFamily: 'cairo'),
                                                 )))
@@ -312,7 +326,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                     Text(
                                       "daily".tr(),
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                           fontSize: 16.sp, fontFamily: 'cairo'),
                                     ),
                                   ],
@@ -336,7 +351,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
               child: Card(
                 elevation: .8,
-                color: Colors.white,
+                color:getValue("darkMode")
+              ? darkModeSecondaryColor
+              : Colors.white,
                 margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 child: Padding(
                   padding: const EdgeInsets.all(0.0),
@@ -354,7 +371,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                           
                             CupertinoSwitch(
                                 // overrides the default green color of the track
-                                activeColor: quranPagesColor,
+                                activeColor: blueColor,
                                 // color of the round icon, which moves from right to left
                                 thumbColor: Colors.white,
                                 // when the switch is off
@@ -411,14 +428,16 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                 },
                                 child: Text(
                                   "test".tr(),
-                                  style: TextStyle(
+                                  style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                       fontSize: 14.sp, fontFamily: 'cairo'),
                                 )),
                             Row(
                               children: [
                                 Text(
                                   "hadithnotification".tr(),
-                                  style: TextStyle(
+                                  style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'cairo'),
@@ -443,7 +462,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         padding: EdgeInsets.only(left: 8.0.w),
                         child: Text(
                           "hadithNotificationDetails".tr(),
-                          softWrap: true,
+                          softWrap: true,style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,),
                         ),
                       ),
                       // Text(
@@ -477,7 +497,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                     Text(
                                       "shownotificationevery".tr(),
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                           fontSize: 16.sp, fontFamily: 'cairo'),
                                     ),
                                     DropdownButton(
@@ -488,7 +509,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                                 value: e["index"],
                                                 child: Text(
                                                   e["name"],
-                                                  style: TextStyle(
+                                                  style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                                       fontSize: 16.sp,
                                                       fontFamily: 'cairo'),
                                                 )))
@@ -502,7 +524,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                     Text(
                                       "daily".tr(),
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                           fontSize: 16.sp, fontFamily: 'cairo'),
                                     ),
                                   ],
@@ -527,7 +550,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
               child: Card(
                 elevation: .8,
-                color: Colors.white,
+                color:getValue("darkMode")
+              ? darkModeSecondaryColor
+              : Colors.white,
                 margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 child: Padding(
                   padding: const EdgeInsets.all(0.0),
@@ -546,7 +571,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             // ),
                             CupertinoSwitch(
                                 // overrides the default green color of the track
-                                activeColor: quranPagesColor,
+                                activeColor: blueColor,
                                 // color of the round icon, which moves from right to left
                                 thumbColor: Colors.white,
                                 // when the switch is off
@@ -591,14 +616,16 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                 },
                                 child: Text(
                                   "test".tr(),
-                                  style: TextStyle(
+                                  style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                       fontSize: 14.sp, fontFamily: 'cairo'),
                                 )),
                             Row(
                               children: [
                                 Text(
                                   "zikrNotification".tr(),
-                                  style: TextStyle(
+                                  style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'cairo'),
@@ -623,7 +650,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         padding: EdgeInsets.only(left: 8.0.w),
                         child: Text(
                           "zikrNotificationDetails2".tr(),
-                          softWrap: true,
+                          softWrap: true,style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,),
                         ),
                       )
                       // Text(
@@ -657,7 +685,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                     Text(
                                       "shownotificationevery".tr(),
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                           fontSize: 16.sp, fontFamily: 'cairo'),
                                     ),
                                     DropdownButton(
@@ -668,7 +697,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                                 value: e["index"],
                                                 child: Text(
                                                   e["name"],
-                                                  style: TextStyle(
+                                                  style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                                       fontSize: 16.sp,
                                                       fontFamily: 'cairo'),
                                                 )))
@@ -682,7 +712,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                     Text(
                                       "daily".tr(),
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                           fontSize: 16.sp, fontFamily: 'cairo'),
                                     ),
                                   ],
@@ -707,7 +738,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
               child: Card(
                 elevation: .8,
-                color: Colors.white,
+                color:getValue("darkMode")
+              ? darkModeSecondaryColor
+              : Colors.white,
                 margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 child: Padding(
                   padding: const EdgeInsets.all(0.0),
@@ -726,7 +759,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             // ),
                             CupertinoSwitch(
                                 // overrides the default green color of the track
-                                activeColor: quranPagesColor,
+                                activeColor: blueColor,
                                 // color of the round icon, which moves from right to left
                                 thumbColor: Colors.white,
                                 // when the switch is off
@@ -789,7 +822,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                 },
                                 child: Text(
                                   "test".tr(),
-                                  style: TextStyle(
+                                  style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                       fontSize: 14.sp, fontFamily: 'cairo'),
                                 )),
                             Row(
@@ -797,7 +831,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                 Text(
                                   "${"zikrNotification".tr()} (Beta)",
                                   style: TextStyle(
-                                      fontSize: 17.sp,
+                                      fontSize: 17.sp,color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'cairo'),
                                 ),
@@ -821,7 +856,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         padding: EdgeInsets.only(left: 8.0.w),
                         child: Text(
                           "zikrNotificationDetails".tr(),
-                          softWrap: true,
+                          softWrap: true,style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,),
                         ),
                       )
                       // Text(
@@ -838,7 +874,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                       Padding(
                         padding: const EdgeInsets.all(8),
                         child:
-                            Image.asset("assets/images/zikrnotification.jpg"),
+                            Image.asset("assets/images/zikrnotif.jpg"),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(3.0),
@@ -855,7 +891,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                     Text(
                                       "shownotificationevery".tr(),
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                           fontSize: 16.sp, fontFamily: 'cairo'),
                                     ),
                                     DropdownButton(
@@ -866,7 +903,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                                 value: e["index"],
                                                 child: Text(
                                                   e["name"],
-                                                  style: TextStyle(
+                                                  style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                                       fontSize: 16.sp,
                                                       fontFamily: 'cairo'),
                                                 )))
@@ -880,7 +918,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                     Text(
                                       "daily".tr(),
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: TextStyle(color: getValue("darkMode")
+              ? Colors.white:Colors.black,
                                           fontSize: 16.sp, fontFamily: 'cairo'),
                                     ),
                                   ],

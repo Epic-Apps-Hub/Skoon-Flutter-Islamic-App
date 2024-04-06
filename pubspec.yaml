@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.2+8
+version: 1.0.3+11
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -34,7 +34,7 @@ dependencies:
 
   intl: 
   image_gallery_saver: 
-  image: 
+  # image: 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -51,8 +51,10 @@ dependencies:
   auto_size_text: ^3.0.0
   animations:
   dio: 
+  firebase_core:
+  firebase_analytics: 
   cached_network_image: 
-  visibility_detector: ^0.2.0
+  visibility_detector: 
   azlistview: ^2.0.0
   shared_preferences: 
   auto_animated_list: ^1.0.4
@@ -79,7 +81,7 @@ dependencies:
   flutter_bloc:
   after_layout: ^1.2.0
   snapx_scroll_physics: ^1.0.1
-  scrollable_positioned_list: 
+  scrollable_positioned_list:   
   audioplayers: 
   permission_handler:
   flutter_ffmpeg: ^0.4.2
@@ -105,25 +107,33 @@ dependencies:
   geocoding:
   periodic_alarm: 
     path: ./periodic_alarm
-  
+  jhijri_picker: ^1.0.1
+  hijri: ^3.0.0
+  tiktoklikescroller: ^0.2.6
+  another_flushbar: ^1.12.30
+  in_app_update: ^4.2.2
+  # in_app_review: ^2.0.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  icons_launcher: ^1.1.8
   flutter_native_splash:
   flutter_automation: ^2.0.0
-flutter_icons:
-  image_path: 'assets/images/iconlauncher1.png'
-  ios: true
+
+  flutter_launcher_icons:
+  flutter_lints: ^2.0.0
+
+flutter_launcher_icons:
+  image_path_android: 'assets/images/iconlauncher2.png'
+  # ios: true
   android: true
-  adaptive_icon_background: "assets/images/beckgroundimage1.png"
-  adaptive_icon_foreground: "assets/images/foregroundimage1.png"
+  adaptive_icon_background: "assets/images/beckgroundimage.png"
+  adaptive_icon_foreground: "assets/images/foregroundimage3.png"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

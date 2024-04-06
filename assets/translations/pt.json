@@ -81,5 +81,15 @@
     "allHadith": "Todos os Hadithes",
     "explanation": "Adicionar Explicação",
     "meanings": "Adicionar Significados",
-    "Hadith": "Biblioteca de Hadith"
+    "Hadith": "Biblioteca de Hadith",
+    "calender": "Calendário Hijri",
+    "normalCalender": "Calendário Normal",
+    "SearchDua": "Buscar Duaa / Zikr",
+    "Add To Sibha": "Adicionar à Sibha",
+    "Add": "Adicionar Novo Zikr",
+    "Enter Custom Zikr": "Digite Zikr Personalizado",
+    "newBookmark": "Adicionar Novo Marcador",
+    "nameOfBookmark": "Dê a ele um nome único",
+    "color": "Cor do Marcador",
+    "saveBookmark": "Salvar Marcador"
 }

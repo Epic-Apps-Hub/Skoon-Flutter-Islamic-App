@@ -66,7 +66,7 @@ class _ScreenShotPreviewPageState extends State<HadithScreenShotPreviewPage> {
     return Scaffold(
       appBar: AppBar(
         actions: const [],
-        backgroundColor: quranPagesColor,
+        backgroundColor: quranPagesColorDark,
         elevation: 0,
         title: Text("preview".tr()),
       ),
@@ -152,7 +152,7 @@ class _ScreenShotPreviewPageState extends State<HadithScreenShotPreviewPage> {
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
                                     color: const Color(0xff555555),
-                                    fontFamily: 'Amiri',
+                                    fontFamily: 'Taha',
                                     fontSize: textSize.sp,
                                   ),
                                 ),
@@ -175,7 +175,7 @@ class _ScreenShotPreviewPageState extends State<HadithScreenShotPreviewPage> {
                                           color: const Color(
                                               0xffAE8422), //fontFamily: 'Amiri',
                                           fontSize: textSize.sp,
-                                          fontFamily: 'Amiri',
+                                          fontFamily: 'Taha',
                                         ),
                                       ),
                                     ],
@@ -303,7 +303,7 @@ class _ScreenShotPreviewPageState extends State<HadithScreenShotPreviewPage> {
                                   children: [
                                     Image(
                                       image: const AssetImage(
-                                          "assets/images/iconlauncher1.png"),
+                                          "assets/images/iconlauncher2.png"),
                                       height: 25.h,
                                     ),
                                     SizedBox(
@@ -363,7 +363,7 @@ class _ScreenShotPreviewPageState extends State<HadithScreenShotPreviewPage> {
                       //   isShooting = false;
                       // });
                     },
-                    color: quranPagesColor,
+                    color: quranPagesColorDark,
                     child: Text(
                       "shareexternal".tr(),
                       style: const TextStyle(color: Colors.white),
@@ -386,7 +386,7 @@ class _ScreenShotPreviewPageState extends State<HadithScreenShotPreviewPage> {
                       //   isShooting = false;
                       // });
                     },
-                    color: quranPagesColor,
+                    color:  quranPagesColorDark,
                     child: Text(
                       "savetogallery".tr(),
                       style: TextStyle(

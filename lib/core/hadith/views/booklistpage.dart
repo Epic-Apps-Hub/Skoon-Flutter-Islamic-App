@@ -6,6 +6,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/entypo_icons.dart';
+import 'package:nabd/GlobalHelpers/constants.dart';
+import 'package:nabd/GlobalHelpers/hive_helper.dart';
 import 'package:nabd/core/hadith/models/hadith_min.dart';
 import 'package:nabd/core/hadith/views/hadithdetailspage.dart';
 import 'package:quran/quran.dart';
@@ -105,7 +107,7 @@ class _HadithListState extends State<HadithList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor:  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
         body: isLoading
             ? const Center(
                 child: CircularProgressIndicator(),
@@ -115,12 +117,12 @@ class _HadithListState extends State<HadithList> {
                   SliverAppBar(
                     floating: true,
                     pinned: true,
-                    iconTheme: const IconThemeData(color: Colors.black87),
-                    backgroundColor: Colors.white,
+                    iconTheme:  IconThemeData(color: getValue("darkMode")?Colors.white.withOpacity(.87): Colors.black87),
+                    backgroundColor: getValue("darkMode")?darkModeSecondaryColor: quranPagesColorLight,
                     elevation: 0, // No shadow
                     title: Text(
                       "${widget.title}- ${widget.count}",
-                      style: TextStyle(color: Colors.black87, fontSize: 16.sp),
+                      style: TextStyle(color: getValue("darkMode")?Colors.white.withOpacity(.87): Colors.black87, fontSize: 16.sp),
                     ),
                     expandedHeight: 100.h,
                     collapsedHeight: kToolbarHeight,
@@ -129,21 +131,25 @@ class _HadithListState extends State<HadithList> {
                         alignment: Alignment.bottomCenter,
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         decoration: BoxDecoration(
-                          color: const Color(0xffF5EFE8).withOpacity(.3),
+                          color: getValue("darkMode")?darkModeSecondaryColor: const Color(0xffF5EFE8).withOpacity(.3),
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: Row(
                           children: [
-                            const Icon(Icons.search, color: Colors.black54),
+                             Icon(Icons.search, color: getValue("darkMode")?Colors.white60: Colors.black54),
                             const SizedBox(width: 10),
                             Expanded(
-                              child: TextField(
+                              child: TextField(style: TextStyle(
+                              color:   getValue("darkMode")?Colors.white:Colors.black
+                              ),
                                 onChanged: (val) {
                                   searchFunction(val);
                                 },
                                 decoration:  InputDecoration(
                                   hintText: 'SearchHadith'.tr(),
-                                  border: InputBorder.none,
+                                  border: InputBorder.none,hintStyle:  TextStyle(
+                              color:   getValue("darkMode")?Colors.white:Colors.black
+                              ),
                                 ),
                               ),
                             ),
@@ -158,7 +164,9 @@ class _HadithListState extends State<HadithList> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: OpenContainer(
-                          closedElevation: 0,
+                          closedElevation: 0,closedColor: Colors.transparent,middleColor: getValue("darkMode")
+              ? darkModeSecondaryColor
+              :Colors.white,
                           transitionType: ContainerTransitionType.fadeThrough,
                           transitionDuration: const Duration(milliseconds: 500),
                           openBuilder: (context, action) => HadithDetailsPage(
@@ -168,7 +176,7 @@ class _HadithListState extends State<HadithList> {
                           closedBuilder: (context, action) => Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
-                                color: const Color(0xffF5EFE8).withOpacity(.4),
+                                color:getValue("darkMode")?darkModeSecondaryColor: const Color(0xffF5EFE8).withOpacity(.4),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -177,9 +185,9 @@ class _HadithListState extends State<HadithList> {
                                     Text(
                                       hadithes[index].title,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 16.sp,fontFamily: "Taha"),
+                                      style: TextStyle(fontSize: 16.sp,fontFamily: "Taha",color: getValue("darkMode")?Colors.white.withOpacity(.87):Colors.black87),
                                     ),
-                                    const Icon(Entypo.down_open_mini)
+                                     Icon(Entypo.down_open_mini,color: getValue("darkMode")?Colors.white.withOpacity(.87):Colors.black87)
                                   ],
                                 ),
                               )),

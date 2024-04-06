@@ -37,7 +37,7 @@ void initMessaging() async {
   // );
 flutterLocalNotificationsPlugin.initialize(const InitializationSettings(
   android: AndroidInitializationSettings(
-     'icon1'
+     'icon'
   )
 ));
 

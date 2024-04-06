@@ -1,122 +1,129 @@
-import 'dart:async';
 import 'dart:developer';
-import 'dart:isolate';
-import 'dart:ui';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
-import 'package:animate_do/animate_do.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class ZikrNotificationPopub extends StatefulWidget {
-  const ZikrNotificationPopub({Key? key}) : super(key: key);
+class TrueCallerOverlay extends StatefulWidget {
+  const TrueCallerOverlay({Key? key}) : super(key: key);
 
   @override
-  State<ZikrNotificationPopub> createState() => _ZikrNotificationPopubState();
+  State<TrueCallerOverlay> createState() => _TrueCallerOverlayState();
 }
 
-class _ZikrNotificationPopubState extends State<ZikrNotificationPopub> {
-  Color color = const Color(0xFFFFFFFF);
-  final BoxShape _currentShape = BoxShape.circle;
-  static const String _kPortNameOverlay = 'OVERLAY';
-  static const String _kPortNameHome = 'UI';
-  final _receivePort = ReceivePort();
-  SendPort? homePort;
-  String messageFromOverlay = "استغفر الله";
-  int index = 0;
+class _TrueCallerOverlayState extends State<TrueCallerOverlay> {
+  bool isGold = true;
 
-  late Timer timer;
+  final _goldColors = const [
+    Color(0xFFa2790d),
+    Color(0xFFebd197),
+    Color(0xFFa2790d),
+  ];
+
+  final _silverColors = const [
+    Color(0xFFAEB2B8),
+    Color(0xFFC7C9CB),
+    Color(0xFFD7D7D8),
+    Color(0xFFAEB2B8),
+  ];
+
   @override
   void initState() {
-    // timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-    //   print(":timer:${timer.tick}");
-    //   Fluttertoast.showToast(msg: ":timer:${timer.tick}");
-    // });
     super.initState();
-    if (homePort != null) return;
-    final res = IsolateNameServer.registerPortWithName(
-      _receivePort.sendPort,
-      _kPortNameOverlay,
-    );
-    log("$res : HOME");
-    _receivePort.listen((message) {
-      log("message from UI: $message");
+    FlutterOverlayWindow.overlayListener.listen((event) {
+      // log("$event");
       setState(() {
-        messageFromOverlay = '$message';
+        isGold = !isGold;
       });
     });
-    perfss();
   }
 
-  perfss() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      index = prefs.getInt("zikrNotificationindex")??0;
-    });
-  }
-
-  // late SharedPreferences prefs;
-  late SharedPreferences prefs;
+  List<String> azkarList = [
+    "سُبْحَانَ اللَّهِ",
+    "الْحَمْدُ لِلَّهِ",
+    "اللَّهُ أَكْبَرُ",
+    "لَا إِلَٰهَ إِلَّا اللَّهُ",
+    "أَسْتَغْفِرُ اللَّهَ",
+    "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
+    "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+    "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ",
+    "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+    "لَا إِلَٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",
+    "صلي علي النبي",
+    "رسول الله ﷺ قال: من صلى علي واحدة صلى الله عليه عشرا",
+    "صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا",
+    "اللَّهُمَّ مُصَرِّفَ القُلُوبِ صَرِّفْ قُلُوبَنَا علَى طَاعَتِكَ",
+    "رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ",
+    "اللَّهُمَّ اغْفِرْ لي وَارْحَمْنِي وَاهْدِنِي وَارْزُقْنِي"
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      elevation: 0.0,
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 18.0, right: 10),
-          child: GestureDetector(
-            onTap: () async {
-              await FlutterOverlayWindow.closeOverlay();
-
-              setState(() {
-                prefs.setInt("zikrNotificationindex", index + 1);
-                index = prefs.getInt("zikrNotificationindex")!;
-                // prefs.setInt("zikrNotificationindex", index);
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Material(
+        color: Colors.transparent,
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    color: goldColor.withOpacity(.2),
+                    blurRadius: 2,
+                    spreadRadius: 2)
+              ],
+              color:  quranPagesColorLight,
+              image: const DecorationImage(
+                  image: AssetImage("assets/images/zikrback.png"),
+                  fit: BoxFit.cover,
+                  opacity: .2),
+              borderRadius: BorderRadius.circular(26.0),
+            ),
+            child: GestureDetector(
+              onTap: ()async {setState(() {
+                
               });
-              if (index == zikrNotfications.length) {
-                setState(() {
-                  prefs.setInt("zikrNotificationindex", 0);
-                  index = prefs.getInt("zikrNotificationindex")!;
-                });
-              }
-            },
-            child: FadeInRight(
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                    // height: 30,
-                    // width: 69,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0xffE8DCB2)),
-                        color: const Color(0xff293647),
-                        borderRadius: BorderRadius.circular(25),
-                        image: const DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              "assets/images/try6.png",
-                            ),
-                            alignment: Alignment.center,
-                            opacity: 1)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Center(
-                        child: Text(
-                          zikrNotfications[index],
-                          textDirection: TextDirection.rtl,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontFamily: 'cairo'),
+                                       await FlutterOverlayWindow.closeOverlay();
+
+              },
+              child: Stack(
+                children: [
+                  Center(
+                      child: Text(
+                    azkarList[Random().nextInt(azkarList.length)],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: goldColor, fontSize: 26, fontFamily: "Taha"),
+                  )),
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: Container(
+                      height: 50.0,
+                      width: 50.0,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black54),
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        onPressed: () async {setState(() {
+                          
+                        });
+                          await FlutterOverlayWindow.closeOverlay();
+                        },
+                        icon: const Icon(
+                          Icons.close,
+                          color: Colors.black,
                         ),
                       ),
-                    )),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

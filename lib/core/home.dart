@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'dart:math';
+import 'package:in_app_review/in_app_review.dart';
+import 'package:intl/intl.dart';
 // import 'package:alert_system/alert_overlay_plugin.dart';
-// import 'package:alert_system/systems/initializer.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:animations/animations.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_container/easy_container.dart';
@@ -13,10 +15,10 @@ import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_sliding_box/flutter_sliding_box.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:hijri/hijri_calendar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
 import 'package:nabd/blocs/bloc/bloc/player_bar_bloc.dart';
@@ -25,23 +27,30 @@ import 'package:nabd/blocs/bloc/player_bloc_bloc.dart';
 import 'package:nabd/blocs/bloc/quran_page_player_bloc.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/initializeData.dart';
+import 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart';
 import 'package:nabd/core/QuranPages/views/quran_sura_list.dart';
+import 'package:nabd/core/QuranPages/views/screenshot_preview.dart';
 import 'package:nabd/core/allah_names/allah_names_page.dart';
 import 'package:nabd/core/audiopage/views/audio_home_page.dart';
 import 'package:nabd/core/azkar/views/azkar_homepage.dart';
+import 'package:nabd/core/calender/calender.dart';
 
 import 'package:nabd/core/hadith/views/hadithbookspage.dart';
 import 'package:nabd/core/live_tv/live_tv_page.dart';
+import 'package:nabd/core/notifications/data/40hadith.dart';
 import 'package:nabd/core/notifications/views/all_notification_page.dart';
 import 'package:nabd/core/qibla/q_compass.dart';
 import 'package:nabd/core/qibla/qibla_page.dart';
 import 'package:nabd/core/radio_page/radio_page.dart';
+import 'package:nabd/core/shortvideos/shortvideos.dart';
 import 'package:nabd/core/sibha/sibha_page.dart';
 import 'package:nabd/core/support/support_page.dart';
 import 'package:periodic_alarm/model/alarms_model.dart';
 import 'package:periodic_alarm/periodic_alarm.dart';
 import 'package:periodic_alarm/services/alarm_notification.dart';
 import 'package:periodic_alarm/services/alarm_storage.dart';
+import 'package:quran/quran.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geocoding/geocoding.dart';
 
@@ -101,7 +110,9 @@ class _HomeState extends State<Home>
   bool alarm = false;
   bool alarm1 = false;
   int? id;
-
+  late int suranumber = Random().nextInt(114) + 1;
+  late int indexOfHadith = Random().nextInt(hadithes.length);
+  late int verseNumber = Random().nextInt(getVerseCount(suranumber)) + 1;
   Future<void> loadJsonAsset() async {
     final String jsonString =
         await rootBundle.loadString('assets/json/surahs.json');
@@ -156,6 +167,7 @@ class _HomeState extends State<Home>
     });
   }
 
+  var _today = HijriCalendar.now();
   Future<void> setAlarm(int id, DateTime dt, String azan, String locale) async {
     AlarmModel alarmModel = AlarmModel(
         id: id,
@@ -209,12 +221,32 @@ class _HomeState extends State<Home>
     setState(() {});
   }
 
+  showDialogForRate() async {
+    if (getValue("timesOfAppOpen") > 2 && getValue("showedDialog") == false) {
+      if (await InAppReview.instance.isAvailable()) {
+        await InAppReview.instance.requestReview();
+        updateValue("showedDialog", true);
+      }
+    }
+  }
+checkInAppUpdate()async{
+  AppUpdateInfo appUpdateInfo=
+await InAppUpdate.checkForUpdate();
+appUpdateInfo.updateAvailability ==
+            UpdateAvailability.updateAvailable
+        ? () async{
+        await    InAppUpdate.performImmediateUpdate()
+                .catchError((e) => print(e));
+          }
+        : null;
+}
   @override
-  void initState() {
+  void initState() {showDialogForRate();checkInAppUpdate();
     //checkAzanRinging() ;
     checkSalahNotification();
     downloadAndStoreHadithData();
     getAndStoreRecitersData();
+    updateDateData();
     getAndStoreRadioData();
     //boxController.hideBox();
     initHiveValues(); // TODO: implement initState
@@ -222,6 +254,8 @@ class _HomeState extends State<Home>
     // boxController.hideBox();
     // AlertWindowHelper.requestPermission();
     loadJsonAsset();
+    updateValue("timesOfAppOpen", getValue("timesOfAppOpen") + 1);
+
     // subscription = Alarm.ringStream.stream.listen((event) {
     //   print(event.notificationBody);
     // });
@@ -558,6 +592,13 @@ class _HomeState extends State<Home>
     print(alarms.length);
   }
 
+  updateDateData() async {
+    await Future.delayed(const Duration(milliseconds: 300));
+    HijriCalendar.setLocal(context.locale.languageCode == "ar" ? "ar" : "en");
+    _today = HijriCalendar.now();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -568,12 +609,17 @@ class _HomeState extends State<Home>
         body: Container(
             height: screenSize.height,
             decoration: BoxDecoration(
-                color: index == 1 ? quranPagesColor : darkPrimaryColor,
+                color: index == 1
+                    ? getValue("darkMode")
+                        ? quranPagesColorDark
+                        : quranPagesColorLight
+                    : darkPrimaryColor,
                 image: index == 1
-                    ? const DecorationImage(
-                        image: AssetImage("assets/images/homebackground.png"),
+                    ? DecorationImage(
+                        image: const AssetImage("assets/images/bckg.png"),
+                        // fit: BoxFit.fitHeight,
                         alignment: Alignment.topCenter,
-                        opacity: .2)
+                        opacity: getValue("darkMode") ? .1 : .5)
                     : DecorationImage(
                         image: AssetImage((DateTime.now().hour < 17 &&
                                 DateTime.now().hour > 6)
@@ -586,610 +632,980 @@ class _HomeState extends State<Home>
                             : BoxFit.scaleDown,
                         opacity: .2)),
             child: Container(
-              width: screenSize.width,
-              // height: screenSize.height,
-              decoration: BoxDecoration(
+              height: screenSize.height,
+              decoration: const BoxDecoration(
+                  color: Colors.transparent,
                   image: DecorationImage(
-                      image: const AssetImage("assets/images/try2.png"),
+                      image: AssetImage("assets/images/back2.png"),
+                      // fit: BoxFit.fitHeight,
                       alignment: Alignment.bottomCenter,
-                      opacity: index == 1 ? .2 : 0)),
-              child: PageTransitionSwitcher(
-                transitionBuilder: (
-                  Widget child,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                ) {
-                  return FadeThroughTransition(
-                    fillColor: Colors.transparent,
-                    animation: animation,
-                    secondaryAnimation: secondaryAnimation,
-                    child: child,
-                  );
-                },
-                child: [
-                  Container(),
-                  // SingleChildScrollView(
-                  //   child: Column(
-                  //     children: [
-                  //       SizedBox(
-                  //         height: 45.h,
-                  //       ),
-                  //       SizedBox(
-                  //         height: 40.h,
-                  //         child: Padding(
-                  //           padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-                  //           child: Row(
-                  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //             children: [
-                  //               EasyContainer(
-                  //                   padding: 0,
-                  //                   customPadding:
-                  //                       EdgeInsets.symmetric(horizontal: 3.w),
-                  //                   borderRadius: 99.r,
-                  //                   color: Colors.redAccent,
-                  //                   onTap: () {
-                  //                     setState(() {
-                  //                       index = 1;
-                  //                     });
-                  //                   },
-                  //                   child: Padding(
-                  //                     padding: EdgeInsets.symmetric(
-                  //                         horizontal: 14.0.w),
-                  //                     child: Center(
-                  //                         child: Row(
-                  //                       children: [
-                  //                         Icon(
-                  //                           Icons.arrow_back_ios,
-                  //                           size: 24.sp,
-                  //                           color: Colors.white,
-                  //                         ),
-                  //                         Icon(
-                  //                           Icons.home_filled,
-                  //                           size: 24.sp,
-                  //                           color: Colors.white,
-                  //                         ),
-                  //                       ],
-                  //                     )),
-                  //                   )),
-                  //               Row(
-                  //                 children: [
-                  //                   EasyContainer(
-                  //                       padding: 0,
-                  //                       customPadding: EdgeInsets.symmetric(
-                  //                           horizontal: 3.w),
-                  //                       borderRadius: 99,
-                  //                       color: Colors.redAccent,
-                  //                       onTap: () {
-                  //                         setState(() {
-                  //                           index = 1;
-                  //                         });
-                  //                       },
-                  //                       child: Padding(
-                  //                         padding: EdgeInsets.symmetric(
-                  //                             horizontal: 8.0.w),
-                  //                         child: Center(
-                  //                             child: Row(
-                  //                           children: [
-                  //                             Switch(
-                  //                                 value: getValue(
-                  //                                     "shouldUsePrayerTimes"),
-                  //                                 onChanged: (value) {
-                  //                                   updateValue(
-                  //                                       "shouldUsePrayerTimes",
-                  //                                       value);
-                  //                                   setState(() {});
-                  //                                 }),
-                  //                             const Icon(
-                  //                               Icons.alarm,
-                  //                               color: Colors.white,
-                  //                             ),
-                  //                           ],
-                  //                         )),
-                  //                       )),
-                  //                 ],
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       SizedBox(
-                  //         height: 25.h,
-                  //       ),
-                  //       Container(
-                  //         width: screenSize.width * .6,
-                  //         decoration: BoxDecoration(
-                  //             borderRadius: BorderRadius.circular(22),
-                  //             color: (DateTime.now().hour < 17 &&
-                  //                     DateTime.now().hour > 6)
-                  //                 ? darkPrimaryColor.withOpacity(.4)
-                  //                 : Colors.grey.withOpacity(.4)),
-                  //         child: Padding(
-                  //           padding: EdgeInsets.symmetric(horizontal: 3.0.w),
-                  //           child: Row(
-                  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //             children: [
-                  //               if (getValue("currentCity") != null &&
-                  //                   getValue("currentCountry") != null)
-                  //                 Padding(
-                  //                   padding:
-                  //                       EdgeInsets.symmetric(horizontal: 8.0.w),
-                  //                   child: SizedBox(
-                  //                     width: screenSize.width * .4,
-                  //                     child: Text(
-                  //                       "${getValue("currentCity")}, ${getValue("currentCountry")}",
-                  //                       overflow: TextOverflow.ellipsis,
-                  //                       style: TextStyle(
-                  //                         color: Colors.white,
-                  //                         fontSize: 14.sp,
-                  //                       ),
-                  //                     ),
-                  //                   ),
-                  //                 ),
-                  //               EasyContainer(
-                  //                 onTap: () {
-                  //                   setState(() {
-                  //                     reload = true;
-                  //                   });
-                  //                   getPrayerTimesData();
-                  //                 },
-                  //                 height: 43.h,
-                  //                 borderRadius: 99.r,
-                  //                 padding: 0,
-                  //                 customPadding:
-                  //                     EdgeInsets.symmetric(horizontal: 15.w),
-                  //                 color: Colors.redAccent,
-                  //                 child: Icon(
-                  //                   Entypo.arrows_ccw,
-                  //                   size: 12.sp,
-                  //                   color: Colors.white,
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  // if(prayerTimes!=null)      Center(
-                  //         child: Text(
-                  //           prayerTimes["data"][dateTime.day - 1]["date"]
-                  //               ["hijri"]["weekday"]["ar"],
-                  //           style: TextStyle(
-                  //               color: Colors.white,
-                  //               fontSize: 22.sp,
-                  //               fontWeight: FontWeight.bold),
-                  //         ),
-                  //       ),
-                  //       if(prayerTimes!=null)      Center(
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.center,
-                  //           children: [
-                  //             Text(
-                  //               prayerTimes["data"][dateTime.day - 1]["date"]
-                  //                   ["hijri"]["day"],
-                  //               style: TextStyle(
-                  //                   color: Colors.white,
-                  //                   fontSize: 18.sp,
-                  //                   fontWeight: FontWeight.bold),
-                  //             ),
-                  //             const Text(" "),
-                  //             Text(
-                  //               prayerTimes["data"][dateTime.day - 1]["date"]
-                  //                   ["hijri"]["month"]["ar"],
-                  //               style: TextStyle(
-                  //                   color: Colors.white,
-                  //                   fontSize: 18.sp,
-                  //                   fontWeight: FontWeight.bold),
-                  //             ),
-                  //             const Text(" "),
-                  //             Text(
-                  //               prayerTimes["data"][dateTime.day - 1]["date"]
-                  //                   ["hijri"]["year"],
-                  //               style: TextStyle(
-                  //                   color: Colors.white,
-                  //                   fontSize: 18.sp,
-                  //                   fontWeight: FontWeight.bold),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //        if(prayerTimes!=null)     Text(
-                  //         prayerTimes["data"][dateTime.day - 1]["date"]
-                  //             ["readable"],
-                  //         style: TextStyle(
-                  //             color: Colors.white,
-                  //             fontSize: 16.sp,
-                  //             fontWeight: FontWeight.bold),
-                  //       ),
-                  //       SizedBox(
-                  //         height: 10.h,
-                  //       ),
-                  //       GestureDetector(
-                  //         onTap: () {},
-                  //         child: CircleAvatar(
-                  //           backgroundColor: Colors.redAccent,
-                  //           radius: 75,
-                  //           child: Column(
-                  //             mainAxisAlignment: MainAxisAlignment.center,
-                  //             mainAxisSize: MainAxisSize.min,
-                  //             children: [
-                  //               Text(
-                  //                 "بقي علي",
-                  //                 style: TextStyle(
-                  //                     color: Colors.white.withOpacity(.5),
-                  //                     fontSize: 12.sp,
-                  //                     fontWeight: FontWeight.bold),
-                  //               ),
-                  //              if(  prayers
-                  //                         .where((element) =>
-                  //                             element[0] == nextPrayer).isNotEmpty) Text(
-                  //                 prayers
-                  //                         .where((element) =>
-                  //                             element[0] == nextPrayer)
-                  //                         .first[0] +
-                  //                     " - " +
-                  //                     prayers
-                  //                         .where((element) =>
-                  //                             element[0] == nextPrayer)
-                  //                         .first[1],
-                  //                 style: TextStyle(
-                  //                   color: Colors.white,
-                  //                   fontSize: 16.sp,
-                  //                 ),
-                  //               ),
-                  //               StreamBuilder<Duration>(
-                  //                 stream: _timeLeftStream,
-                  //                 builder: (context, snapshot) {
-                  //                   if (snapshot.hasData) {
-                  //                     print(snapshot.data!.inHours);
-                  //                     final hoursLeft = snapshot.data!
-                  //                         .inHours; //final formattedHours = hoursLeft == 0 ? '00' : hoursLeft.toString();
-
-                  //                     final minutesLeft = snapshot
-                  //                         .data!.inMinutes
-                  //                         .remainder(60);
-                  //                     // Format hours and minutes as "00" if less than 10
-                  //                     final formattedHours =
-                  //                         hoursLeft.toString().padLeft(2, '0');
-                  //                     final formattedMinutes = minutesLeft
-                  //                         .toString()
-                  //                         .padLeft(2, '0');
-
-                  //                     return Text(
-                  //                       '$formattedHours :$formattedMinutes',
-                  //                       textDirection: m.TextDirection.ltr,
-                  //                       style: TextStyle(
-                  //                           fontSize: 20.sp,
-                  //                           color: Colors.white),
-                  //                     );
-                  //                   } else {
-                  //                     return const Text(
-                  //                       '...',
-                  //                       // style: TextStyle(fontSize: 20),
-                  //                     );
-                  //                   }
-                  //                 },
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       SizedBox(
-                  //         height: 30.h,
-                  //       ),
-                  //       isLoading
-                  //           ? const CircularProgressIndicator()
-                  //           : Container(
-                  //               child: Column(
-                  //                   children: prayers
-                  //                       .map((e) => Column(
-                  //                             children: [
-                  //                               Row(
-                  //                                 mainAxisAlignment:
-                  //                                     MainAxisAlignment
-                  //                                         .spaceAround,
-                  //                                 children: [
-                  //                                   Column(
-                  //                                     children: [
-                  //                                       Text(
-                  //                                         e[1],
-                  //                                         style: TextStyle(
-                  //                                             color: e[0] ==
-                  //                                                     nextPrayer
-                  //                                                 ? Colors
-                  //                                                     .redAccent
-                  //                                                 : Colors
-                  //                                                     .white,
-                  //                                             fontSize: 16.sp),
-                  //                                       ),
-                  //                                       Text(
-                  //                                         e[0],
-                  //                                         style: TextStyle(
-                  //                                             color: e[0] ==
-                  //                                                     nextPrayer
-                  //                                                 ? Colors
-                  //                                                     .redAccent
-                  //                                                     .withOpacity(
-                  //                                                         .8)
-                  //                                                 : Colors.white
-                  //                                                     .withOpacity(
-                  //                                                         .8),
-                  //                                             fontSize: 12.sp),
-                  //                                       ),
-                  //                                     ],
-                  //                                   ),
-                  //                                   Text(
-                  //                                     prayerTimes["data"]
-                  //                                                 [dateTime.day]
-                  //                                             ["timings"][e[0]]
-                  //                                         .split(" ")[0],
-                  //                                     style: TextStyle(
-                  //                                         color: e[0] ==
-                  //                                                 nextPrayer
-                  //                                             ? Colors.redAccent
-                  //                                             : Colors.white,
-                  //                                         fontSize: 16.sp),
-                  //                                   ),
-                  //                                 ],
-                  //                               ),
-                  //                               SizedBox(
-                  //                                 height: 12.h,
-                  //                               ),
-                  //                               Padding(
-                  //                                 padding: const EdgeInsets
-                  //                                     .symmetric(
-                  //                                     horizontal: 60.0),
-                  //                                 child: Divider(
-                  //                                   color: Colors.white
-                  //                                       .withOpacity(.6),
-                  //                                 ),
-                  //                               ),
-                  //                             ],
-                  //                           ))
-                  //                       .toList()),
-                  //             ),
-                  //       // StreamBuilder<AlarmSettings>(
-                  //       //   stream: alarmStream.stream,
-                  //       //   builder: (BuildContext context, snapshot) {
-                  //       //     if (snapshot.hasData) {
-                  //       //       return EasyContainer(
-                  //       //           onTap: () async {
-                  //       //             await Alarm.stop(snapshot.data!.id);
-                  //       //           },
-                  //       //           child: Text(
-                  //       //             snapshot.data!.notificationBody,
-                  //       //             style: const TextStyle(color: Colors.red),
-                  //       //           ));
-                  //       //     }
-                  //       //     return Container();
-                  //       //   },
-                  //       // ),
-                  //     ],
-                  //   ),
-                  // ),
-
-                  SizedBox(
-                    width: screenSize.width,
-                    height: screenSize.height,
-                    child: ListView(shrinkWrap: true,//physics: const NeverScrollableScrollPhysics(),
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width.w,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 14.0.w),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              // mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'main'.tr(),
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: "cairo",
-                                      fontSize: 32.sp),
-                                ),
-                                Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: DropdownButton<Locale>(
-                                      value: context.locale,
-                                      onChanged: (Locale? newValue) {
-                                        context.setLocale(newValue!);
-                                        getAndStoreRecitersData();
-                                        getAndStoreRadioData();
-                                        downloadAndStoreHadithData();
-                                      },
-                                      items: [
-                                        const Locale("ar"),
-                                        const Locale('en'),
-                                        const Locale('de'),
-                                        const Locale("am"),
-                                        // const Locale("jp"),
-                                        const Locale("ms"),
-                                        const Locale("pt"),
-                                        const Locale("tr"),
-                                        const Locale("ru")
-                                      ].map<DropdownMenuItem<Locale>>(
-                                          (Locale locale) {
-                                        return DropdownMenuItem<Locale>(
-                                          value: locale,
-                                          child: Text(getNativeLanguageName(
-                                              locale.languageCode)),
-                                        );
-                                      }).toList(),
-                                    )),
-                                // GestureDetector(
-                                //     onTap: () {
-                                //       setState(() {
-                                //         index = 0;
-                                //       });
-                                //     },
-                                //     child: const CircleAvatar(
-                                //       backgroundImage:
-                                //           AssetImage("assets/images/azan.jpg"),
-                                //     ))
-                              ],
-                            ),
+                      opacity: .3)),
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: getValue("darkMode")
+                      ? quranPagesColorDark
+                      : quranPagesColorLight.withOpacity(.75),
+                  elevation: 0,
+                  bottomOpacity: 0,
+                  title: Text(
+                    'main'.tr(),
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                        color: orangeColor,
+                        fontFamily: "cairo",
+                        fontSize: 32.sp),
+                  ),
+                  actions: [
+                    DropdownButton<Locale>(
+                      value: context.locale,
+                      onChanged: (Locale? newValue) {
+                        context.setLocale(newValue!);
+                        getAndStoreRecitersData();
+                        getAndStoreRadioData();
+                        downloadAndStoreHadithData();
+                        updateDateData();
+                      },
+                      items: [
+                        const Locale("ar"),
+                        const Locale('en'),
+                        const Locale('de'),
+                        const Locale("am"),
+                        // const Locale("jp"),
+                        const Locale("ms"),
+                        const Locale("pt"),
+                        const Locale("tr"),
+                        const Locale("ru")
+                      ].map<DropdownMenuItem<Locale>>((Locale locale) {
+                        return DropdownMenuItem<Locale>(
+                          value: locale,
+                          child: Text(
+                            getNativeLanguageName(locale.languageCode),
+                            style: TextStyle(
+                                color: getValue("darkMode")
+                                    ? orangeColor
+                                    : blueColor),
                           ),
-                        ),
-                        SizedBox(height: 55.h),
-                        // Image.asset(
-                        //   "assets/images/iconlauncher.png",
-                        //   height: 120.h,
-                        //   // color: Colors.white,
-                        // ),
-                        // Center(
-                        //     child: Text(
-                        //   "skoon".tr(),
-                        //   style: TextStyle(
-                        //       color: Colors.white,
-                        //       fontFamily: "cairo",
-                        //       fontSize: 14.sp),
-                        // )),
-                        SizedBox(height: 10.h),
-                        // Image.asset(
-                        //   'assets/quranverse-logo.png', // Make sure to place your logo image in the 'assets' folder
-                        //   width: 150,
-                        //   height: 150,
-                        // ),
-                        SizedBox(height: 20.h),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 18.0.w),
-                          child: SizedBox(
-                            // height: screenSize.height * .5,
-                            child: ListView(shrinkWrap: true,physics: const NeverScrollableScrollPhysics(),
-                              children: [   SuperellipseButton(
-                                    text: "quran".tr(),
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          CupertinoPageRoute(
-                                              builder: (builder) =>
-                                                  SurahListPage(
-                                                    jsonData: widgejsonData,
-                                                    quarterjsonData:
-                                                        quarterjsonData,
-                                                  )));
-                                    },
-                                    imagePath: "assets/images/qlogo.png"),
-                               
-                                GridView.count(
+                        );
+                      }).toList(),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          updateValue("darkMode", !getValue("darkMode"));
+                          setState(() {});
+                        },
+                        icon: Icon(
+                          Icons.dark_mode_outlined,
+                          color:
+                              getValue("darkMode") ? Colors.white70 : goldColor,
+                        ))
+                  ],
+                ),
+                extendBodyBehindAppBar: true,
+                backgroundColor: Colors.transparent,
+                body: Container(
+                  width: screenSize.width,
+                  // height: screenSize.height,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: const AssetImage("assets/images/try2.png"),
+                          alignment: Alignment.bottomCenter,
+                          opacity: index == 1 ? .2 : 0)),
+                  child: PageTransitionSwitcher(
+                    transitionBuilder: (
+                      Widget child,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation,
+                    ) {
+                      return FadeThroughTransition(
+                        fillColor: Colors.transparent,
+                        animation: animation,
+                        secondaryAnimation: secondaryAnimation,
+                        child: child,
+                      );
+                    },
+                    child: [
+                      Container(),
+                      // SingleChildScrollView(
+                      //   child: Column(
+                      //     children: [
+                      //       SizedBox(
+                      //         height: 45.h,
+                      //       ),
+                      //       SizedBox(
+                      //         height: 40.h,
+                      //         child: Padding(
+                      //           padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                      //           child: Row(
+                      //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //             children: [
+                      //               EasyContainer(
+                      //                   padding: 0,
+                      //                   customPadding:
+                      //                       EdgeInsets.symmetric(horizontal: 3.w),
+                      //                   borderRadius: 99.r,
+                      //                   color: Colors.redAccent,
+                      //                   onTap: () {
+                      //                     setState(() {
+                      //                       index = 1;
+                      //                     });
+                      //                   },
+                      //                   child: Padding(
+                      //                     padding: EdgeInsets.symmetric(
+                      //                         horizontal: 14.0.w),
+                      //                     child: Center(
+                      //                         child: Row(
+                      //                       children: [
+                      //                         Icon(
+                      //                           Icons.arrow_back_ios,
+                      //                           size: 24.sp,
+                      //                           color: Colors.white,
+                      //                         ),
+                      //                         Icon(
+                      //                           Icons.home_filled,
+                      //                           size: 24.sp,
+                      //                           color: Colors.white,
+                      //                         ),
+                      //                       ],
+                      //                     )),
+                      //                   )),
+                      //               Row(
+                      //                 children: [
+                      //                   EasyContainer(
+                      //                       padding: 0,
+                      //                       customPadding: EdgeInsets.symmetric(
+                      //                           horizontal: 3.w),
+                      //                       borderRadius: 99,
+                      //                       color: Colors.redAccent,
+                      //                       onTap: () {
+                      //                         setState(() {
+                      //                           index = 1;
+                      //                         });
+                      //                       },
+                      //                       child: Padding(
+                      //                         padding: EdgeInsets.symmetric(
+                      //                             horizontal: 8.0.w),
+                      //                         child: Center(
+                      //                             child: Row(
+                      //                           children: [
+                      //                             Switch(
+                      //                                 value: getValue(
+                      //                                     "shouldUsePrayerTimes"),
+                      //                                 onChanged: (value) {
+                      //                                   updateValue(
+                      //                                       "shouldUsePrayerTimes",
+                      //                                       value);
+                      //                                   setState(() {});
+                      //                                 }),
+                      //                             const Icon(
+                      //                               Icons.alarm,
+                      //                               color: Colors.white,
+                      //                             ),
+                      //                           ],
+                      //                         )),
+                      //                       )),
+                      //                 ],
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       ),
+                      //       SizedBox(
+                      //         height: 25.h,
+                      //       ),
+                      //       Container(
+                      //         width: screenSize.width * .6,
+                      //         decoration: BoxDecoration(
+                      //             borderRadius: BorderRadius.circular(22),
+                      //             color: (DateTime.now().hour < 17 &&
+                      //                     DateTime.now().hour > 6)
+                      //                 ? darkPrimaryColor.withOpacity(.4)
+                      //                 : Colors.grey.withOpacity(.4)),
+                      //         child: Padding(
+                      //           padding: EdgeInsets.symmetric(horizontal: 3.0.w),
+                      //           child: Row(
+                      //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //             children: [
+                      //               if (getValue("currentCity") != null &&
+                      //                   getValue("currentCountry") != null)
+                      //                 Padding(
+                      //                   padding:
+                      //                       EdgeInsets.symmetric(horizontal: 8.0.w),
+                      //                   child: SizedBox(
+                      //                     width: screenSize.width * .4,
+                      //                     child: Text(
+                      //                       "${getValue("currentCity")}, ${getValue("currentCountry")}",
+                      //                       overflow: TextOverflow.ellipsis,
+                      //                       style: TextStyle(
+                      //                         color: Colors.white,
+                      //                         fontSize: 14.sp,
+                      //                       ),
+                      //                     ),
+                      //                   ),
+                      //                 ),
+                      //               EasyContainer(
+                      //                 onTap: () {
+                      //                   setState(() {
+                      //                     reload = true;
+                      //                   });
+                      //                   getPrayerTimesData();
+                      //                 },
+                      //                 height: 43.h,
+                      //                 borderRadius: 99.r,
+                      //                 padding: 0,
+                      //                 customPadding:
+                      //                     EdgeInsets.symmetric(horizontal: 15.w),
+                      //                 color: Colors.redAccent,
+                      //                 child: Icon(
+                      //                   Entypo.arrows_ccw,
+                      //                   size: 12.sp,
+                      //                   color: Colors.white,
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       ),
+                      // if(prayerTimes!=null)      Center(
+                      //         child: Text(
+                      //           prayerTimes["data"][dateTime.day - 1]["date"]
+                      //               ["hijri"]["weekday"]["ar"],
+                      //           style: TextStyle(
+                      //               color: Colors.white,
+                      //               fontSize: 22.sp,
+                      //               fontWeight: FontWeight.bold),
+                      //         ),
+                      //       ),
+                      //       if(prayerTimes!=null)      Center(
+                      //         child: Row(
+                      //           mainAxisAlignment: MainAxisAlignment.center,
+                      //           children: [
+                      //             Text(
+                      //               prayerTimes["data"][dateTime.day - 1]["date"]
+                      //                   ["hijri"]["day"],
+                      //               style: TextStyle(
+                      //                   color: Colors.white,
+                      //                   fontSize: 18.sp,
+                      //                   fontWeight: FontWeight.bold),
+                      //             ),
+                      //             const Text(" "),
+                      //             Text(
+                      //               prayerTimes["data"][dateTime.day - 1]["date"]
+                      //                   ["hijri"]["month"]["ar"],
+                      //               style: TextStyle(
+                      //                   color: Colors.white,
+                      //                   fontSize: 18.sp,
+                      //                   fontWeight: FontWeight.bold),
+                      //             ),
+                      //             const Text(" "),
+                      //             Text(
+                      //               prayerTimes["data"][dateTime.day - 1]["date"]
+                      //                   ["hijri"]["year"],
+                      //               style: TextStyle(
+                      //                   color: Colors.white,
+                      //                   fontSize: 18.sp,
+                      //                   fontWeight: FontWeight.bold),
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       ),
+                      //        if(prayerTimes!=null)     Text(
+                      //         prayerTimes["data"][dateTime.day - 1]["date"]
+                      //             ["readable"],
+                      //         style: TextStyle(
+                      //             color: Colors.white,
+                      //             fontSize: 16.sp,
+                      //             fontWeight: FontWeight.bold),
+                      //       ),
+                      //       SizedBox(
+                      //         height: 10.h,
+                      //       ),
+                      //       GestureDetector(
+                      //         onTap: () {},
+                      //         child: CircleAvatar(
+                      //           backgroundColor: Colors.redAccent,
+                      //           radius: 75,
+                      //           child: Column(
+                      //             mainAxisAlignment: MainAxisAlignment.center,
+                      //             mainAxisSize: MainAxisSize.min,
+                      //             children: [
+                      //               Text(
+                      //                 "بقي علي",
+                      //                 style: TextStyle(
+                      //                     color: Colors.white.withOpacity(.5),
+                      //                     fontSize: 12.sp,
+                      //                     fontWeight: FontWeight.bold),
+                      //               ),
+                      //              if(  prayers
+                      //                         .where((element) =>
+                      //                             element[0] == nextPrayer).isNotEmpty) Text(
+                      //                 prayers
+                      //                         .where((element) =>
+                      //                             element[0] == nextPrayer)
+                      //                         .first[0] +
+                      //                     " - " +
+                      //                     prayers
+                      //                         .where((element) =>
+                      //                             element[0] == nextPrayer)
+                      //                         .first[1],
+                      //                 style: TextStyle(
+                      //                   color: Colors.white,
+                      //                   fontSize: 16.sp,
+                      //                 ),
+                      //               ),
+                      //               StreamBuilder<Duration>(
+                      //                 stream: _timeLeftStream,
+                      //                 builder: (context, snapshot) {
+                      //                   if (snapshot.hasData) {
+                      //                     print(snapshot.data!.inHours);
+                      //                     final hoursLeft = snapshot.data!
+                      //                         .inHours; //final formattedHours = hoursLeft == 0 ? '00' : hoursLeft.toString();
+
+                      //                     final minutesLeft = snapshot
+                      //                         .data!.inMinutes
+                      //                         .remainder(60);
+                      //                     // Format hours and minutes as "00" if less than 10
+                      //                     final formattedHours =
+                      //                         hoursLeft.toString().padLeft(2, '0');
+                      //                     final formattedMinutes = minutesLeft
+                      //                         .toString()
+                      //                         .padLeft(2, '0');
+
+                      //                     return Text(
+                      //                       '$formattedHours :$formattedMinutes',
+                      //                       textDirection: m.TextDirection.ltr,
+                      //                       style: TextStyle(
+                      //                           fontSize: 20.sp,
+                      //                           color: Colors.white),
+                      //                     );
+                      //                   } else {
+                      //                     return const Text(
+                      //                       '...',
+                      //                       // style: TextStyle(fontSize: 20),
+                      //                     );
+                      //                   }
+                      //                 },
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       ),
+                      //       SizedBox(
+                      //         height: 30.h,
+                      //       ),
+                      //       isLoading
+                      //           ? const CircularProgressIndicator()
+                      //           : Container(
+                      //               child: Column(
+                      //                   children: prayers
+                      //                       .map((e) => Column(
+                      //                             children: [
+                      //                               Row(
+                      //                                 mainAxisAlignment:
+                      //                                     MainAxisAlignment
+                      //                                         .spaceAround,
+                      //                                 children: [
+                      //                                   Column(
+                      //                                     children: [
+                      //                                       Text(
+                      //                                         e[1],
+                      //                                         style: TextStyle(
+                      //                                             color: e[0] ==
+                      //                                                     nextPrayer
+                      //                                                 ? Colors
+                      //                                                     .redAccent
+                      //                                                 : Colors
+                      //                                                     .white,
+                      //                                             fontSize: 16.sp),
+                      //                                       ),
+                      //                                       Text(
+                      //                                         e[0],
+                      //                                         style: TextStyle(
+                      //                                             color: e[0] ==
+                      //                                                     nextPrayer
+                      //                                                 ? Colors
+                      //                                                     .redAccent
+                      //                                                     .withOpacity(
+                      //                                                         .8)
+                      //                                                 : Colors.white
+                      //                                                     .withOpacity(
+                      //                                                         .8),
+                      //                                             fontSize: 12.sp),
+                      //                                       ),
+                      //                                     ],
+                      //                                   ),
+                      //                                   Text(
+                      //                                     prayerTimes["data"]
+                      //                                                 [dateTime.day]
+                      //                                             ["timings"][e[0]]
+                      //                                         .split(" ")[0],
+                      //                                     style: TextStyle(
+                      //                                         color: e[0] ==
+                      //                                                 nextPrayer
+                      //                                             ? Colors.redAccent
+                      //                                             : Colors.white,
+                      //                                         fontSize: 16.sp),
+                      //                                   ),
+                      //                                 ],
+                      //                               ),
+                      //                               SizedBox(
+                      //                                 height: 12.h,
+                      //                               ),
+                      //                               Padding(
+                      //                                 padding: const EdgeInsets
+                      //                                     .symmetric(
+                      //                                     horizontal: 60.0),
+                      //                                 child: Divider(
+                      //                                   color: Colors.white
+                      //                                       .withOpacity(.6),
+                      //                                 ),
+                      //                               ),
+                      //                             ],
+                      //                           ))
+                      //                       .toList()),
+                      //             ),
+                      //       // StreamBuilder<AlarmSettings>(
+                      //       //   stream: alarmStream.stream,
+                      //       //   builder: (BuildContext context, snapshot) {
+                      //       //     if (snapshot.hasData) {
+                      //       //       return EasyContainer(
+                      //       //           onTap: () async {
+                      //       //             await Alarm.stop(snapshot.data!.id);
+                      //       //           },
+                      //       //           child: Text(
+                      //       //             snapshot.data!.notificationBody,
+                      //       //             style: const TextStyle(color: Colors.red),
+                      //       //           ));
+                      //       //     }
+                      //       //     return Container();
+                      //       //   },
+                      //       // ),
+                      //     ],
+                      //   ),
+                      // ),
+
+                      SizedBox(
+                        width: screenSize.width,
+                        height: screenSize.height,
+                        child: ListView(
+                          shrinkWrap:
+                              true, //physics: const NeverScrollableScrollPhysics(),
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          // crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // SizedBox(
+                            //   width: MediaQuery.of(context).size.width.w,
+                            //   child: Padding(
+                            //     padding: EdgeInsets.symmetric(horizontal: 14.0.w),
+                            //     child: Row(
+                            //       mainAxisAlignment:
+                            //           MainAxisAlignment.spaceBetween,
+                            //       // mainAxisAlignment: MainAxisAlignment.end,
+                            //       children: [
+                            //         Text(
+                            //           'main'.tr(),
+                            //           textAlign: TextAlign.end,
+                            //           style: TextStyle(
+                            //               color: goldColor,
+                            //               fontFamily: "cairo",
+                            //               fontSize: 32.sp),
+                            //         ),
+                            //         Padding(
+                            //             padding: const EdgeInsets.all(4.0),
+                            //             child: DropdownButton<Locale>(
+                            //               value: context.locale,
+                            //               onChanged: (Locale? newValue) {
+                            //                 context.setLocale(newValue!);
+                            //                 getAndStoreRecitersData();
+                            //                 getAndStoreRadioData();
+                            //                 downloadAndStoreHadithData();
+                            //               },
+                            //               items: [
+                            //                 const Locale("ar"),
+                            //                 const Locale('en'),
+                            //                 const Locale('de'),
+                            //                 const Locale("am"),
+                            //                 // const Locale("jp"),
+                            //                 const Locale("ms"),
+                            //                 const Locale("pt"),
+                            //                 const Locale("tr"),
+                            //                 const Locale("ru")
+                            //               ].map<DropdownMenuItem<Locale>>(
+                            //                   (Locale locale) {
+                            //                 return DropdownMenuItem<Locale>(
+                            //                   value: locale,
+                            //                   child: Text(
+                            //                     getNativeLanguageName(
+                            //                         locale.languageCode),
+                            //                     style: const TextStyle(
+                            //                         color: goldColor),
+                            //                   ),
+                            //                 );
+                            //               }).toList(),
+                            //             )),
+                            //         // GestureDetector(
+                            //         //     onTap: () {
+                            //         //       setState(() {
+                            //         //         index = 0;
+                            //         //       });
+                            //         //     },
+                            //         //     child: const CircleAvatar(
+                            //         //       backgroundImage:
+                            //         //           AssetImage("assets/images/azan.jpg"),
+                            //         //     ))
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                            // ignore: unnecessary_null_comparison
+                            if (_today != null)
+                              SizedBox(
+                                // height: 55.h,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    SizedBox(
+                                      height: 20.h,
+                                    ),
+                                    Text(
+                                      _today.toFormat(
+                                        "dd - MMMM - yyyy",
+                                      ),
+                                      style: TextStyle(
+                                          color: getValue("darkMode")
+                                              ? Colors.white70
+                                              : goldColor,
+                                          fontSize: 18.sp),
+                                    ),
+                                    Text(
+                                      DateFormat.yMMMEd(
+                                              context.locale.languageCode)
+                                          .format(DateTime.now()),
+                                      style: TextStyle(
+                                          color: getValue("darkMode")
+                                              ? Colors.white70
+                                              : goldColor,
+                                          fontSize: 18.sp),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            // Image.asset(
+                            //   "assets/images/iconlauncher.png",
+                            //   height: 120.h,
+                            //   // color: Colors.white,
+                            // ),
+                            // Center(
+                            //     child: Text(
+                            //   "skoon".tr(),
+                            //   style: TextStyle(
+                            //       color: Colors.white,
+                            //       fontFamily: "cairo",
+                            //       fontSize: 14.sp),
+                            // )),
+                            // SizedBox(height: 10.h),
+                            // Image.asset(
+                            //   'assets/quranverse-logo.png', // Make sure to place your logo image in the 'assets' folder
+                            //   width: 150,
+                            //   height: 150,
+                            // ),
+                            SizedBox(height: 10.h),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 18.0.w),
+                              child: SizedBox(
+                                // height: screenSize.height * .5,
+                                child: ListView(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
-                                  crossAxisSpacing: 0,
-                                  mainAxisSpacing: 1,
-                                  crossAxisCount: 2,
-                                  children: <Widget>[
-                                  SuperellipseButton(
-                                        text: "audios".tr(),
+                                  children: [
+                                    SuperellipseButton(
+                                        text: "quran".tr(),
                                         onPressed: () {
-                                          // SystemChrome.setEnabledSystemUIMode(
-                                          //     SystemUiMode.immersiveSticky);
                                           Navigator.push(
                                               context,
                                               CupertinoPageRoute(
                                                   builder: (builder) =>
-                                                      BlocProvider(
-                                                        create: (create) =>
-                                                            playerPageBloc,
-                                                        child: RecitersPage(
-                                                          jsonData: widgejsonData,
+                                                      SurahListPage(
+                                                        jsonData: widgejsonData,
+                                                        quarterjsonData:
+                                                            quarterjsonData,
+                                                      )));
+                                        },
+                                        imagePath: "assets/images/qlogo.png"),
+                                    GridView.count(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      crossAxisSpacing: 0,
+                                      mainAxisSpacing: 1,
+                                      crossAxisCount: 3,
+                                      children: <Widget>[
+                                        SuperellipseButton(
+                                            text: "audios".tr(),
+                                            onPressed: () {
+                                              // SystemChrome.setEnabledSystemUIMode(
+                                              //     SystemUiMode.immersiveSticky);
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                      builder: (builder) =>
+                                                          BlocProvider(
+                                                            create: (create) =>
+                                                                playerPageBloc,
+                                                            child: RecitersPage(
+                                                              jsonData:
+                                                                  widgejsonData,
+                                                            ),
+                                                          )));
+                                            },
+                                            imagePath:
+                                                "assets/images/quranlogo.png"),
+                                        SuperellipseButton(
+                                            text: "Hadith".tr(),
+                                            onPressed: () {
+                                              // SystemChrome.setEnabledSystemUIMode(
+                                              //     SystemUiMode.immersiveSticky);
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                      builder: (builder) =>
+                                                          BlocProvider(
+                                                            create: (context) =>
+                                                                hadithPageBloc,
+                                                            child: HadithBooksPage(
+                                                                locale: context
+                                                                    .locale
+                                                                    .languageCode),
+                                                          )));
+                                            },
+                                            imagePath:
+                                                "assets/images/muhammed.png"),
+                                        // SuperellipseButton(
+                                        //     text: "livetv".tr(),
+                                        //     onPressed: () async {
+                                        //       Navigator.push(
+                                        //           context,
+                                        //           CupertinoPageRoute(
+                                        //               builder: (builder) =>
+                                        //                   const LiveTvPage()));
+                                        //     },
+                                        //     imagePath: "assets/images/tv.png"),
+                                        SuperellipseButton(
+                                            text: "radios".tr(),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                      builder: (builder) =>
+                                                          const RadioPage()));
+                                            },
+                                            imagePath:
+                                                "assets/images/radio.png"),
+                                        //          SuperellipseButton(
+                                        // text: "Short Videos".tr(),
+                                        // onPressed: () {
+                                        //   Navigator.push(
+                                        //       context,
+                                        //       CupertinoPageRoute(
+                                        //           builder: (builder) =>
+                                        //               const ContentScreen()));
+                                        // },
+                                        // imagePath: "assets/images/play.png"),
+                                        SuperellipseButton(
+                                            text: "qibla".tr(),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                      builder: (builder) =>
+                                                          const CompassWithQibla()));
+                                            },
+                                            imagePath:
+                                                "assets/images/kabaa.png"),
+                                        SuperellipseButton(
+                                            text: "asmaa".tr(),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                      builder: (c) =>
+                                                          const AllahNamesPage()));
+                                            },
+                                            imagePath:
+                                                "assets/images/names.svg"),
+                                        SuperellipseButton(
+                                            text: "azkar".tr(),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                      builder: ((context) =>
+                                                          const AzkarHomePage())));
+                                              //boxController.openBox();
+                                            },
+                                            imagePath:
+                                                "assets/images/azkar.png"),
+                                        SuperellipseButton(
+                                            text: "notifications".tr(),
+                                            onPressed: () async {
+                                              // await FlutterOverlayWindow.requestPermission();
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                      builder: (builder) =>
+                                                          const NotificationsPage()));
+                                            },
+                                            imagePath:
+                                                "assets/images/notifications.png"),
+                                        SuperellipseButton(
+                                            text: "sibha".tr(),
+                                            onPressed: () async {
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                      builder: (builder) =>
+                                                          const SibhaPage()));
+                                            },
+                                            imagePath:
+                                                "assets/images/sibha.png"),
+                                        SuperellipseButton(
+                                            text: "calender".tr(),
+                                            onPressed: () async {
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                      builder: (builder) =>
+                                                          const CalenderPage()));
+                                            },
+                                            imagePath:
+                                                "assets/images/calender1.png"), // Add more buttons for other features
+                                        // Add more buttons for other features
+                                      ],
+                                    ),
+                                    Directionality(
+                                      textDirection: m.TextDirection.rtl,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 6.0.w, vertical: 6.h),
+                                        child: Material(
+                                          color: getValue("darkMode")
+                                              ? const Color(0xff443F42)
+                                                  .withOpacity(.9)
+                                              : const Color(0xffFEFEFE),
+                                          shape: SuperellipseShape(
+                                            borderRadius:
+                                                BorderRadius.circular(40.0.r),
+                                          ),
+                                          child:
+                                              // AnimatedOpacity(
+                                              // duration: const Duration(milliseconds: 500),
+                                              // opacity: dominantColor != null ? 1.0 : 0,
+                                              // child:
+                                              suranumber != null
+                                                  ? Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              16.0),
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: getValue(
+                                                                    "darkMode")
+                                                                ? quranPagesColorDark
+                                                                : quranPagesColorLight
+                                                                    .withOpacity(
+                                                                        .6),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.r)),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              SizedBox(
+                                                                height: 10.h,
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  Container(
+                                                                    decoration: BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        color:
+                                                                            orangeColor),
+                                                                    child: IconButton(
+                                                                        onPressed: () {
+                                                                          setState(
+                                                                              () {
+                                                                            suranumber =
+                                                                                Random().nextInt(114) + 1;
+                                                                            verseNumber =
+                                                                                Random().nextInt(getVerseCount(suranumber)) + 1;
+                                                                          });
+                                                                        },
+                                                                        icon: Icon(
+                                                                          Iconsax
+                                                                              .refresh,
+                                                                          color:
+                                                                              Colors.white,
+                                                                          size:
+                                                                              18.sp,
+                                                                        )),
+                                                                  ),
+                                                                  Container(
+                                                                      decoration: BoxDecoration(
+                                                                          shape: BoxShape
+                                                                              .circle,
+                                                                          color: getValue("darkMode")
+                                                                              ? orangeColor
+                                                                              : blueColor),
+                                                                      child: IconButton(
+                                                                          onPressed: () {
+                                                                            showModalBottomSheet(
+                                                                                backgroundColor: Colors.transparent,
+                                                                                elevation: 0,
+                                                                                context: context,
+                                                                                builder: (ctx) => Container(
+                                                                                      decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12))),
+                                                                                      child: Column(
+                                                                                        mainAxisSize: MainAxisSize.min,
+                                                                                        children: [
+                                                                                          SizedBox(
+                                                                                            height: 15.h,
+                                                                                          ),
+                                                                                          Row(
+                                                                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                                            children: [
+                                                                                              Container(
+                                                                                                decoration: BoxDecoration(color: quranPagesColorDark, borderRadius: BorderRadius.circular(12)),
+                                                                                                child: Padding(
+                                                                                                  padding: const EdgeInsets.all(0.0),
+                                                                                                  child: TextButton(
+                                                                                                      onPressed: () {
+                                                                                                        Navigator.push(context, CupertinoPageRoute(builder: (builder) => ScreenShotPreviewPage(index: 5, surahNumber: suranumber, jsonData: widgejsonData, firstVerse: verseNumber, lastVerse: verseNumber)));
+                                                                                                      },
+                                                                                                      child: Text(
+                                                                                                        "asimage".tr(),
+                                                                                                        style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                                                                                                      )),
+                                                                                                ),
+                                                                                              ),
+                                                                                              Container(
+                                                                                                decoration: BoxDecoration(color: quranPagesColorDark, borderRadius: BorderRadius.circular(12)),
+                                                                                                child: Padding(
+                                                                                                  padding: const EdgeInsets.all(0.0),
+                                                                                                  child: TextButton(
+                                                                                                      onPressed: () {
+                                                                                                        var verse = getVerse(suranumber, verseNumber, verseEndSymbol: true);
+                                                                                                        var suraName = getSurahNameArabic(suranumber);
+                                                                                                        Share.share("$verse \nسورة $suraName");
+                                                                                                      },
+                                                                                                      child: Text(
+                                                                                                        "astext".tr(),
+                                                                                                        style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                                                                                                      )),
+                                                                                                ),
+                                                                                              ),
+                                                                                            ],
+                                                                                          ),
+                                                                                          SizedBox(
+                                                                                            height: 30.h,
+                                                                                          )
+                                                                                        ],
+                                                                                      ),
+                                                                                    ));
+                                                                          },
+                                                                          icon: Icon(Iconsax.share, color: Colors.white, size: 18.sp)))
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                height: 20.h,
+                                                              ),
+                                                              SizedBox(
+                                                                width: screenSize
+                                                                        .width *
+                                                                    .8,
+                                                                child: Text(
+                                                                  getVerse(
+                                                                    suranumber,
+                                                                    verseNumber,
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .right,
+                                                                  style: TextStyle(
+                                                                      color: getValue("darkMode") ? Colors.white70 : goldColor,
+                                                                      fontSize: 22.sp, //fontWeight: FontWeight.w500,
+                                                                      fontFamily: "UthmanicHafs13"),
+                                                                ),
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    convertToArabicNumber(
+                                                                            verseNumber.toString())
+                                                                        .toString(),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .right,
+                                                                    style: TextStyle(
+                                                                        color:
+                                                                            orangeColor,
+                                                                        fontSize: 26
+                                                                            .sp,
+                                                                        fontFamily:
+                                                                            "KFGQPC Uthmanic Script HAFS Regular"),
+                                                                  ),
+                                                                  const Text(
+                                                                      " - "),
+                                                                  if (widgejsonData !=
+                                                                      null)
+                                                                    Text(
+                                                                      widgejsonData[suranumber -
+                                                                              1]
+                                                                          [
+                                                                          "name"]
+                                                                      // getSurahNameArabic(
+                                                                      // ),
+                                                                      ,
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .right,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            fontFamilies[0],
+                                                                        color: getValue("darkMode")
+                                                                            ? Colors.white70
+                                                                            : blueColor,
+                                                                        fontSize:
+                                                                            18.sp,
+                                                                      ),
+                                                                    ),
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                height: 10.h,
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
-                                                      )));
-                                        },
-                                        imagePath: "assets/images/quranlogo.png"),
-                                    SuperellipseButton(
-                                        text: "Hadith".tr(),
-                                        onPressed: () {
-                                          // SystemChrome.setEnabledSystemUIMode(
-                                          //     SystemUiMode.immersiveSticky);
-                                          Navigator.push(
-                                              context,
-                                              CupertinoPageRoute(
-                                                  builder: (builder) =>
-                                                      BlocProvider(
-                                                        create: (context) =>
-                                                            hadithPageBloc,
-                                                        child: HadithBooksPage(
-                                                            locale: context.locale
-                                                                .languageCode),
-                                                      )));
-                                        },
-                                        imagePath: "assets/images/muhammed.png"),
-                                    SuperellipseButton(
-                                        text: "livetv".tr(),
-                                        onPressed: () async {
-                                          Navigator.push(
-                                              context,
-                                              CupertinoPageRoute(
-                                                  builder: (builder) =>
-                                                      const LiveTvPage()));
-                                        },
-                                        imagePath: "assets/images/tv.png"),
-                                    SuperellipseButton(
-                                        text: "radios".tr(),
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              CupertinoPageRoute(
-                                                  builder: (builder) =>
-                                                      const RadioPage()));
-                                        },
-                                        imagePath: "assets/images/radio.png"),
-                                    SuperellipseButton(
-                                        text: "qibla".tr(),
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              CupertinoPageRoute(
-                                                  builder: (builder) =>
-                                                      const CompassWithQibla()));
-                                        },
-                                        imagePath: "assets/images/qaaba.png"),
-                                    SuperellipseButton(
-                                        text: "asmaa".tr(),
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              CupertinoPageRoute(
-                                                  builder: (c) =>
-                                                      const AllahNamesPage()));
-                                        },
-                                        imagePath: "assets/images/names.svg"),
-                                    SuperellipseButton(
-                                        text: "azkar".tr(),
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              CupertinoPageRoute(
-                                                  builder: ((context) =>
-                                                      const AzkarHomePage())));
-                                          //boxController.openBox();
-                                        },
-                                        imagePath: "assets/images/azkar.png"),
-                                    SuperellipseButton(
-                                        text: "notifications".tr(),
-                                        onPressed: () async {
-                                          // await FlutterOverlayWindow.requestPermission();
-                                          Navigator.push(
-                                              context,
-                                              CupertinoPageRoute(
-                                                  builder: (builder) =>
-                                                      const NotificationsPage()));
-                                        },
-                                        imagePath:
-                                            "assets/images/notifications.png"),
-                                    SuperellipseButton(
-                                        text: "sibha".tr(),
-                                        onPressed: () async {
-                                          Navigator.push(
-                                              context,
-                                              CupertinoPageRoute(
-                                                  builder: (builder) =>
-                                                      const SibhaPage()));
-                                        },
-                                        imagePath:
-                                            "assets/images/sibha.png"), // Add more buttons for other features
+                                                      ),
+                                                    )
+                                                  : Container(),
+                                        ),
+                                      ),
+                                    ),
                                     SuperellipseButton(
                                         text: "support".tr(),
                                         onPressed: () async {
@@ -1199,19 +1615,141 @@ class _HomeState extends State<Home>
                                                   builder: (builder) =>
                                                       const SupportPage()));
                                         },
-                                        imagePath:
-                                            "assets/images/support.png"), // Add more buttons for other features
+                                        imagePath: "assets/images/support.png"),
+                                    Directionality(
+                                      textDirection: m.TextDirection.rtl,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 6.0.w, vertical: 6.h),
+                                        child: Material(
+                                          color: getValue("darkMode")
+                                              ? const Color(0xff443F42)
+                                                  .withOpacity(.9)
+                                              : const Color(0xffFEFEFE),
+                                          shape: SuperellipseShape(
+                                            borderRadius:
+                                                BorderRadius.circular(40.0.r),
+                                          ),
+                                          child:
+                                              // AnimatedOpacity(
+                                              // duration: const Duration(milliseconds: 500),
+                                              // opacity: dominantColor != null ? 1.0 : 0,
+                                              // child:
+                                              suranumber != null
+                                                  ? Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              16.0),
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: getValue(
+                                                                    "darkMode")
+                                                                ? quranPagesColorDark
+                                                                : quranPagesColorLight
+                                                                    .withOpacity(
+                                                                        .6),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.r)),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              SizedBox(
+                                                                height: 10.h,
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  Container(
+                                                                    decoration: BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        color:
+                                                                            orangeColor),
+                                                                    child: IconButton(
+                                                                        onPressed: () {
+                                                                          setState(
+                                                                              () {
+                                                                            indexOfHadith =
+                                                                                Random().nextInt(hadithes.length);
+                                                                          });
+                                                                        },
+                                                                        icon: Icon(
+                                                                          Iconsax
+                                                                              .refresh,
+                                                                          color:
+                                                                              Colors.white,
+                                                                          size:
+                                                                              18.sp,
+                                                                        )),
+                                                                  ),
+                                                                  Container(
+                                                                      decoration: BoxDecoration(
+                                                                          shape: BoxShape
+                                                                              .circle,
+                                                                          color: getValue("darkMode")
+                                                                              ? orangeColor
+                                                                              : blueColor),
+                                                                      child: IconButton(
+                                                                          onPressed: () {
+                                                                            Share.share(hadithes[indexOfHadith]["hadith"]);
+                                                                          },
+                                                                          icon: Icon(Iconsax.clipboard, color: Colors.white, size: 18.sp)))
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                height: 10.h,
+                                                              ),
+                                                              SizedBox(
+                                                                width: screenSize
+                                                                        .width *
+                                                                    .8,
+                                                                child: Text(
+                                                                  hadithes[
+                                                                          indexOfHadith]
+                                                                      [
+                                                                      "hadith"],
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .right,
+                                                                  style: TextStyle(
+                                                                      color: getValue("darkMode") ? Colors.white70 : goldColor, //fontWeight: FontWeight.bold,
+                                                                      fontSize: 17.sp,
+                                                                      fontFamily: "Taha"),
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 10.h,
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : Container(),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
+                            SizedBox(height: 85.h),
+                          ],
                         ),
-                        SizedBox(height: 85.h),
-                      ],
-                    ),
+                      ),
+                    ][index],
                   ),
-                ][index],
+                ),
               ),
             )));
   }
@@ -1242,9 +1780,11 @@ class SuperellipseButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 6.0.w, vertical: 6.h),
       child: Material(
-        color: const Color.fromARGB(255, 255, 255, 255).withOpacity(.2),
+        color: getValue("darkMode")
+            ? darkModeSecondaryColor.withOpacity(.9)
+            : const Color(0xffFEFEFE), //elevation: 1,
         shape: SuperellipseShape(
-          borderRadius: BorderRadius.circular(34.0.r),
+          borderRadius: BorderRadius.circular(40.0.r),
         ),
         child:
             // AnimatedOpacity(
@@ -1253,42 +1793,90 @@ class SuperellipseButton extends StatelessWidget {
             // child:
             InkWell(
           onTap: onPressed,
-          splashColor: quranPagesColor,
+          splashColor:
+              getValue("darkMode") ? quranPagesColorDark : quranPagesColorLight,
           borderRadius: BorderRadius.circular(17.0.r),
           child: Padding(
             padding: EdgeInsets.symmetric(
                 vertical: text == "الأذكار والأدعية" ? 12.h : 0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if(text=="quran".tr())
-                SizedBox(height: 24.h,),
-                if (imagePath.contains("svg"))
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                    child: SvgPicture.asset(
-                      color: Colors.white,
-                      imagePath,
-                      height: (MediaQuery.of(context).size.height * .075),
+            child: text == "quran".tr() || text == "support".tr()
+                ? Padding(
+                    padding: EdgeInsets.symmetric(vertical: 26.0.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // SizedBox(height: 24.h,),
+                        if (imagePath.contains("svg"))
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                            child: SvgPicture.asset(
+                              // color: const Color(0xffD28A00),
+                              imagePath,
+                              height:
+                                  (MediaQuery.of(context).size.height * .045),
+                            ),
+                          ),
+                        if (imagePath.contains("svg") == false)
+                          Image.asset(
+                            imagePath,
+                            height: (MediaQuery.of(context).size.height * .085),
+                            // color: const Color(0xffD28A00)
+                          ),
+                        SizedBox(
+                          width: 20.w,
+                        ),
+                        Text(
+                          text,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: getValue("darkMode")
+                                  ? Colors.white70
+                                  : orangeColor,
+                              fontSize: 22.sp,
+                              fontFamily: "cairo"),
+                        ),
+                        if (text == "quran".tr())
+                          SizedBox(
+                            height: 40.h,
+                          ),
+                      ],
                     ),
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // SizedBox(height: 24.h,),
+                      if (imagePath.contains("svg"))
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                          child: SvgPicture.asset(
+                            // color: const Color(0xffD28A00),
+                            imagePath,
+                            height: (MediaQuery.of(context).size.height * .045),
+                          ),
+                        ),
+                      if (imagePath.contains("svg") == false)
+                        Image.asset(
+                          imagePath,
+                          height: (MediaQuery.of(context).size.height * .045),
+                          // color: const Color(0xffD28A00)
+                        ),
+                      Text(
+                        text,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: getValue("darkMode")
+                                ? Colors.white70
+                                : orangeColor,
+                            fontSize: 14.sp,
+                            fontFamily: "cairo"),
+                      ),
+                      if (text == "quran".tr())
+                        SizedBox(
+                          height: 24.h,
+                        ),
+                    ],
                   ),
-                if (imagePath.contains("svg") == false)
-                  Image.asset(
-                    imagePath,
-                    height: (MediaQuery.of(context).size.height * .075),
-                    color: Colors.white,
-                  ),
-                Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.sp,
-                      fontFamily: "cairo"),
-                ), if(text=="quran".tr())
-                SizedBox(height: 24.h,),
-              ],
-            ),
           ),
         ),
       ),

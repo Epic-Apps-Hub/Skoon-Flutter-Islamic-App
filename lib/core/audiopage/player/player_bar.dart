@@ -102,14 +102,14 @@ class _PlayerBarState extends State<PlayerBar> {
                                             child: Container(
                                               height: 45.h,
                                               width: 45.w,
-                                              decoration: const BoxDecoration(
+                                              decoration:  BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                color: quranPagesColor,
+                                                color:  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
                                               ),
                                               child: Center(
                                                 child: CircleAvatar(
                                                   backgroundColor:
-                                                      quranPagesColor,
+                                                       getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
                                                   backgroundImage: const AssetImage(
                                                       "assets/images/quran.png"),
                                                   foregroundImage:
@@ -838,7 +838,7 @@ class _PlayerBarState extends State<PlayerBar> {
                                                     ? 240.0.h
                                                     : 50.h,
                                                 child: MaterialApp(
-                                                  //color: quranPagesColor,
+                                                  //color:  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
                                                   home: StreamBuilder<
                                                       SequenceState?>(
                                                     stream: state.audioPlayer

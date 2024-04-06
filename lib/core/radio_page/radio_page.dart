@@ -96,7 +96,8 @@ class _RadioPageState extends State<RadioPage> {
     super.initState();
   }
 
-  filterData(keyword)async {await fetchRadios();
+  filterData(keyword) async {
+    await fetchRadios();
     radiosData = radiosData.where((element) {
       final elementName = element["name"].toString().toLowerCase();
       final searchValue = keyword.toString().toLowerCase();
@@ -114,6 +115,8 @@ class _RadioPageState extends State<RadioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:
+          getValue("darkMode") ? quranPagesColorDark : quranPagesColorLight,
       appBar: AppBar(
         elevation: 0,
         actions: [
@@ -152,11 +155,22 @@ class _RadioPageState extends State<RadioPage> {
         centerTitle: true,
         // leading: Padding(
 
-        backgroundColor: quranPagesColor, automaticallyImplyLeading: true,
+        backgroundColor:
+            getValue("darkMode") ? darkModeSecondaryColor : blueColor,
+        automaticallyImplyLeading: true,
         iconTheme: const IconThemeData(color: Colors.white),
         title: isSearching
             ? TextField(
-                decoration: const InputDecoration(hintText: "Search radios"),
+                style: TextStyle(
+                    color: getValue("darkMode")
+                        ? Colors.white.withOpacity(.87)
+                        : Colors.black87),
+                decoration: InputDecoration(
+                    hintText: "Search radios",
+                    hintStyle: TextStyle(
+                        color: getValue("darkMode")
+                            ? Colors.white.withOpacity(.87)
+                            : Colors.black87)),
                 onChanged: ((value) {
                   filterData(
                     value,
@@ -166,8 +180,8 @@ class _RadioPageState extends State<RadioPage> {
             : Text(
                 "radios".tr(),
                 style: const TextStyle(
-                             fontFamily: "cairo",
-),
+                  fontFamily: "cairo",
+                ),
               ),
       ),
       body: isLoading
@@ -205,14 +219,19 @@ class _RadioPageState extends State<RadioPage> {
                     // print(metadata);
                   },
                   borderRadius: 16.r,
-                  color: quranPagesColor,
+                  color: getValue("darkMode")
+                      ? darkModeSecondaryColor
+                      : quranPagesColorLight,
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(radiosData[i]["name"],
-                            style: const TextStyle(color: backgroundColor)),
+                            style: TextStyle(
+                                color: getValue("darkMode")
+                                    ? Colors.white.withOpacity(.87)
+                                    : Colors.black.withOpacity(.87))),
                         SizedBox(
                           width: 20.w,
                         ),
@@ -220,9 +239,11 @@ class _RadioPageState extends State<RadioPage> {
                           LottieBuilder.asset("assets/images/playing.json",
                               width: 50.w),
                         if (indexPlaying == i)
-                          const Icon(
+                          Icon(
                             Icons.pause,
-                            color: Colors.white,
+                            color: getValue("darkMode")
+                                ? Colors.white.withOpacity(.87)
+                                : Colors.black.withOpacity(.87),
                           ),
                         IconButton(
                             onPressed: () {
@@ -241,7 +262,9 @@ class _RadioPageState extends State<RadioPage> {
                               starredRadios.contains(radiosData[i]["id"])
                                   ? Icons.star
                                   : Icons.star_border,
-                              color: Colors.white,
+                              color: getValue("darkMode")
+                                  ? Colors.white.withOpacity(.87)
+                                  : Colors.black.withOpacity(.87),
                             ))
                       ],
                     ),

@@ -88,7 +88,7 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
     return Scaffold(
       appBar: AppBar(
         actions: const [],
-        backgroundColor: quranPagesColor,
+        backgroundColor:getValue("darkMode") ?darkModeSecondaryColor: blueColor,
         elevation: 0,
         title: Text("preview".tr()),
       ),
@@ -205,7 +205,7 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                               animationCurve: Curves.easeInOutQuart,
                               elevation: 0,
                               bounce: true,
-                              duration: const Duration(milliseconds: 400),
+                              duration: const Duration(milliseconds: 200),
                               backgroundColor: backgroundColor,
                               context: context,
                               builder: (builder) {
@@ -346,15 +346,13 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                                                                               .done
                                                                           : Icons
                                                                               .cloud_download,
-                                                                  color: Colors
-                                                                      .blueAccent,
+                                                                  color: secondaryColors[indexOfTheme],
                                                                   size: 18.sp,
                                                                 )
-                                                              : const CircularProgressIndicator(
+                                                              :  CircularProgressIndicator(
                                                                   strokeWidth:
                                                                       2,
-                                                                  color: Colors
-                                                                      .blueAccent,
+                                                                  color: secondaryColors[indexOfTheme],
                                                                 )
                                                         ],
                                                       ),
@@ -397,7 +395,7 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                                 Icon(
                                   FontAwesome.ellipsis,
                                   size: 24.sp,
-                                  color: Colors.blueAccent,
+                                  color: secondaryColors[indexOfTheme],
                                 )
                               ],
                             ),
@@ -512,168 +510,164 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                   child: Screenshot(
                     controller: screenshotController,
                     child: Container(
-                          decoration: BoxDecoration(
-                            // color: const Color(0xffFFFCE7),
-                            color: backgroundColors[indexOfTheme],
-                            //  gradient: const RadialGradient(
-                            //       center: Alignment.center,
-                            //       radius: 0.5, // Adjust this value to control the circle size
-                            //       colors: [
-                            //         Color.fromARGB(255, 13, 43, 85), // Dark blue color
-                            //         Color.fromARGB(255, 10, 31, 55), // Slightly lighter blue color
-                            //         Color.fromARGB(255, 6, 20, 35), // Even lighter blue color
-                            //       ],
-                            //       stops: [0.0, 0.7, 1.0], // Stops for each color in the gradient
-                            //     ),
-                          ),
-                          // padding: const EdgeInsets.all(30.0),
+                        decoration: BoxDecoration(
+                          // color: const Color(0xffFFFCE7),
+                          color: backgroundColors[indexOfTheme],
+                          //  gradient: const RadialGradient(
+                          //       center: Alignment.center,
+                          //       radius: 0.5, // Adjust this value to control the circle size
+                          //       colors: [
+                          //         Color.fromARGB(255, 13, 43, 85), // Dark blue color
+                          //         Color.fromARGB(255, 10, 31, 55), // Slightly lighter blue color
+                          //         Color.fromARGB(255, 6, 20, 35), // Even lighter blue color
+                          //       ],
+                          //       stops: [0.0, 0.7, 1.0], // Stops for each color in the gradient
+                          //     ),
+                        ),
+                        // padding: const EdgeInsets.all(30.0),
 
-                          child: Column(
-                            // mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                height: 10.h,
+                        child: Column(
+                          // mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            if (getValue("showSuraHeader") == true)
+                              HeaderWidget(
+                                e: {"surah": widget.surahNumber},
+                                jsonData: widget.jsonData,
+                                indexOfTheme: indexOfTheme,
                               ),
-                              if (getValue("showSuraHeader") == true)
-                                HeaderWidget(
-                                  e: {"surah": widget.surahNumber},
-                                  jsonData: widget.jsonData,
-                                  indexOfTheme: indexOfTheme,
-                                ),
-                              SizedBox(
-                                height: widget.firstVerse == 1 ? 5.h : 10.h,
-                              ),
-                              if ((widget.firstVerse == 1 &&
-                                  widget.index != 1 &&
-                                  widget.index != 187))
-                                Basmallah(index: indexOfTheme),
-                              Padding(
-                                padding:
-                                    EdgeInsets.symmetric(horizontal: 12.0.w),
-                                child: SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: RichText(
-                                    textAlign: //getValue("textAlignIndex")==0?
-                                        alignment //:TextAlign.justify
+                            SizedBox(
+                              height: widget.firstVerse == 1 ? 5.h : 10.h,
+                            ),
+                            if ((widget.firstVerse == 1 &&
+                                widget.index != 1 &&
+                                widget.index != 187))
+                              Basmallah(index: indexOfTheme),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 12.0.w),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: RichText(
+                                  textAlign: //getValue("textAlignIndex")==0?
+                                      alignment //:TextAlign.justify
 
-                                    ,
-                                    textWidthBasis: TextWidthBasis.longestLine,
-                                    locale: const Locale("ar"),
-                                    textDirection: m.TextDirection.rtl,
-                                    text: TextSpan(
-                                      text:
-                                          '', // Initialize with an empty string
-                                      style: TextStyle(
-                                        color: primaryColors[indexOfTheme],
-                                        fontSize: (20).sp,
-                                        fontFamily:
-                                            getValue("selectedFontFamily"),
-                                      ),
-                                      children: buildVerseSpans(
-                                          widget.surahNumber,
-                                          widget.firstVerse,
-                                          widget.lastVerse),
+                                  ,
+                                  textWidthBasis: TextWidthBasis.longestLine,
+                                  locale: const Locale("ar"),
+                                  textDirection: m.TextDirection.rtl,
+                                  text: TextSpan(
+                                    text: '', // Initialize with an empty string
+                                    style: TextStyle(
+                                      color: primaryColors[indexOfTheme],
+                                      fontSize: (20).sp,
+                                      fontFamily:
+                                          getValue("selectedFontFamily"),
                                     ),
+                                    children: buildVerseSpans(
+                                        widget.surahNumber,
+                                        widget.firstVerse,
+                                        widget.lastVerse),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 5.h,
+                            ),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            if (getValue("addTafseer") == true) const Divider(),
+                            if (getValue("addTafseer") == true)
+                              FutureBuilder(
+                                future: buildTafseerSpans(
+                                    widget.surahNumber,
+                                    widget.firstVerse,
+                                    widget.lastVerse,
+                                    translationDataList[
+                                        getValue("addTafseerValue")]),
+                                initialData: const [],
+                                builder: (BuildContext context,
+                                    AsyncSnapshot snapshot) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(6.0),
+                                    child: RichText(
+                                        textDirection: translationDataList[
+                                                        getValue(
+                                                            "addTafseerValue")]
+                                                    .typeInNativeLanguage
+                                                    .toString() ==
+                                                "العربية"
+                                            ? m.TextDirection.rtl
+                                            : m.TextDirection.ltr,
+                                        text: TextSpan(
+                                            children: snapshot.hasData
+                                                ? snapshot.data
+                                                : null)),
+                                  );
+                                },
                               ),
-                              if (getValue("addTafseer") == true)
-                                const Divider(),
-                              if (getValue("addTafseer") == true)
-                                FutureBuilder(
-                                  future: buildTafseerSpans(
-                                      widget.surahNumber,
-                                      widget.firstVerse,
-                                      widget.lastVerse,
-                                      translationDataList[
-                                          getValue("addTafseerValue")]),
-                                  initialData: const [],
-                                  builder: (BuildContext context,
-                                      AsyncSnapshot snapshot) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(6.0),
-                                      child: RichText(
-                                          textDirection: translationDataList[
-                                                          getValue(
-                                                              "addTafseerValue")]
-                                                      .typeInNativeLanguage
-                                                      .toString() ==
-                                                  "العربية"
-                                              ? m.TextDirection.rtl
-                                              : m.TextDirection.ltr,
-                                          text: TextSpan(
-                                              children: snapshot.hasData
-                                                  ? snapshot.data
-                                                  : null)),
-                                    );
-                                  },
-                                ),
-                              if (getValue("addAppSlogan") == true)
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                              if (getValue("addAppSlogan") == true)
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image(
-                                      image: const AssetImage(
-                                          "assets/images/iconlauncher1.png"),
-                                      height: 25.h,
-                                    ),
-                                    SizedBox(
-                                      width: 6.w,
-                                    ),
-                                    Text(
-                                      "Shared with skoon",
-                                      style: TextStyle(
-                                          fontSize: 10.sp,
-                                          color: primaryColors[indexOfTheme]),
-                                    ),
-                                  ],
-                                ),
+                            if (getValue("addAppSlogan") == true)
                               SizedBox(
                                 height: 15.h,
                               ),
-                              if (getValue("showBottomBar") == true)
-                                Container(
-                                  color: Colors.blueAccent.withOpacity(.45),
-                                  width: double.infinity,
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 77.0.w),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "[${widget.firstVerse} - ${widget.lastVerse}]",
-                                          style: TextStyle(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.bold,
-                                              color:
-                                                  Colors.black.withOpacity(.6)),
-                                        ),
-                                        Text(
-                                          widget.jsonData[
-                                              widget.surahNumber - 1]["name"],
-                                          style: TextStyle(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: fontFamilies[0],
-                                              color:
-                                                  Colors.black.withOpacity(.6)),
-                                        )
-                                      ],
-                                    ),
+                            if (getValue("addAppSlogan") == true)
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image(
+                                    image: const AssetImage(
+                                        "assets/images/iconlauncher2.png"),
+                                    height: 25.h,
                                   ),
-                                )
-                            ],
-                          )),
-                    
+                                  SizedBox(
+                                    width: 6.w,
+                                  ),
+                                  Text(
+                                    "Shared with skoon",
+                                    style: TextStyle(
+                                        fontSize: 10.sp,
+                                        color: primaryColors[indexOfTheme]),
+                                  ),
+                                ],
+                              ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            if (getValue("showBottomBar") == true)
+                              Container(
+                                color:secondaryColors[indexOfTheme].withOpacity(.45),
+                                width: double.infinity,
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 77.0.w),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "[${widget.firstVerse} - ${widget.lastVerse}]",
+                                        style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.bold,
+                                            color:
+                                                backgroundColors[indexOfTheme].withOpacity(.6)),
+                                      ),
+                                      Text(
+                                        widget.jsonData[widget.surahNumber - 1]
+                                            ["name"],
+                                        style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: fontFamilies[0],
+                                            color:
+                                  backgroundColors[indexOfTheme].withOpacity(.6)),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                          ],
+                        )),
                   )),
             ),
           ],
@@ -681,18 +675,11 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
       ),
       backgroundColor: Colors.white,
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(color: Colors.white, boxShadow: [
-          BoxShadow(
-            color:
-                primaryColors[getValue("quranPageolorsIndex")].withOpacity(.4),
-            blurRadius: 1,
-            spreadRadius: 1,
-            offset: const Offset(1, 0),
-          )
-        ]),
+        decoration:  BoxDecoration(
+          color:getValue("darkMode") ?darkModeSecondaryColor: Colors.transparent,
+        ),
         child: Padding(
-          padding:
-              const EdgeInsets.only(left: 25.0, right: 25, bottom: 10, top: 10),
+          padding: const EdgeInsets.only(left: 0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -713,7 +700,7 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                       //   isShooting = false;
                       // });
                     },
-                    color: quranPagesColor,
+                    color: orangeColor,
                     child: Text(
                       "shareexternal".tr(),
                       style: const TextStyle(color: Colors.white),
@@ -736,7 +723,7 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                       //   isShooting = false;
                       // });
                     },
-                    color: quranPagesColor,
+                    color: orangeColor,
                     child: Text(
                       "savetogallery".tr(),
                       style: TextStyle(
@@ -781,7 +768,7 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                 " ${convertToArabicNumber((verseNumber).toString())} " //               quran.getVerseEndSymbol()
             ,
             style: TextStyle(
-                color: Colors.blueAccent,
+                color: secondaryColors[indexOfTheme],
                 fontSize: textSize.sp,
                 fontFamily: "KFGQPC Uthmanic Script HAFS Regular")),
       );
@@ -833,7 +820,7 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
       //           " ${convertToArabicNumber((verseNumber).toString())} " //               quran.getVerseEndSymbol()
       //       ,
       //       style: const TextStyle(
-      //         color: Colors.blueAccent,
+      //         color: secondaryColors[indexOfTheme],
       //       )),
       // );
     }

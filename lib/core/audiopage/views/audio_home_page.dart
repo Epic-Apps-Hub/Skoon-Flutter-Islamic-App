@@ -120,18 +120,26 @@ class _RecitersPageState extends State<RecitersPage> {
       if (prefs.getString(
               "reciters-${context.locale.languageCode == "en" ? "eng" : context.locale.languageCode}") ==
           null) {
+            
         await getAndStoreRecitersData();
       }
+
+      // print(prefs.getString(
+      //         "reciters-${context.locale.languageCode == "en" ? "eng" : context.locale.languageCode}"));
+
       final jsonData = prefs.getString(
           "reciters-${context.locale.languageCode == "en" ? "eng" : context.locale.languageCode}");
       final jsonData2 = prefs.getString(
           "moshaf-${context.locale.languageCode == "en" ? "eng" : context.locale.languageCode}");
       final jsonData3 = prefs.getString(
           "suwar-${context.locale.languageCode == "en" ? "eng" : context.locale.languageCode}");
+// print(jsonData);
+print(jsonData2);
+// print(jsonData3);
 
       if (jsonData != null) {
         final data = json.decode(jsonData) as List<dynamic>;
-        final data2 = json.decode(jsonData2!) as List<dynamic>;
+        final data2 = json.decode(jsonData2!)["riwayat"] as List<dynamic>;
 
         final data3 = json.decode(jsonData3!) as List<dynamic>;
         print(json.decode(jsonData3));
@@ -204,12 +212,11 @@ class _RecitersPageState extends State<RecitersPage> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    return Stack(
-      children: [
+    return 
         Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor:  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
           appBar: AppBar(
-            backgroundColor: quranPagesColor,
+            backgroundColor:getValue("darkMode")?darkModeSecondaryColor.withOpacity(.9): blueColor,
             elevation: 0,
             title: Text(
               "allReciters".tr(),
@@ -349,7 +356,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                                           .all_inclusive_rounded,
                                                       color:
                                                           selectedMode == "all"
-                                                              ? quranPagesColor
+                                                              ?  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight
                                                               : Colors.grey,
                                                     ),
                                                     SizedBox(
@@ -371,7 +378,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                                                     .circle_empty,
                                                             color: selectedMode ==
                                                                     "all"
-                                                                ? quranPagesColor
+                                                                ?  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight
                                                                 : Colors.grey,
                                                             size: 20.sp,
                                                           ),
@@ -424,7 +431,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                                       Icons.favorite,
                                                       color: selectedMode ==
                                                               "favorite"
-                                                          ? quranPagesColor
+                                                          ?  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight
                                                           : Colors.grey,
                                                     ),
                                                     SizedBox(
@@ -446,7 +453,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                                                     .circle_empty,
                                                             color: selectedMode ==
                                                                     "favorite"
-                                                                ? quranPagesColor
+                                                                ?  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight
                                                                 : Colors.grey,
                                                             size: 20.sp,
                                                           ),
@@ -534,7 +541,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                                                           30.w,
                                                                     ),
                                                                     Image(
-                                                                        height: 20
+                                                                        height: 25
                                                                             .h,
                                                                         color: selectedMode == e.moshafType
                                                                             ? null
@@ -559,7 +566,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                                                                 ? FontAwesome.dot_circled
                                                                                 : FontAwesome.circle_empty,
                                                                             color: selectedMode == e.moshafType.toString()
-                                                                                ? quranPagesColor
+                                                                                ?  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight
                                                                                 : Colors.grey,
                                                                             size:
                                                                                 20.sp,
@@ -629,7 +636,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                 padding: EdgeInsets.only(right: 15.0.w),
                                 child: Card(
                                   elevation: .8,
-                                  color: Colors.white,
+                                  color:getValue("darkMode")?darkModeSecondaryColor.withOpacity(.9): Colors.white,
                                   margin: EdgeInsets.symmetric(
                                       horizontal: 16.w, vertical: 8.h),
                                   child: Padding(
@@ -653,7 +660,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                               Text(
                                                 reciter.name.toString(),
                                                 style: TextStyle(
-                                                    fontSize: 14.sp,
+                                                    fontSize: 14.sp,color: getValue("darkMode")?Colors.white:Colors.black,
                                                     fontWeight: FontWeight.bold,
                                                     fontFamily: 'cairo'),
                                               ),
@@ -688,7 +695,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                                         ? FontAwesome.heart
                                                         : FontAwesome
                                                             .heart_empty,
-                                                    color: quranPagesColor
+                                                    color: Colors.redAccent
                                                         .withOpacity(.6),
                                                   )),
                                             ],
@@ -767,7 +774,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                                                         e.name,
                                                                         overflow:
                                                                             TextOverflow.ellipsis,
-                                                                        style: TextStyle(
+                                                                        style: TextStyle(color: getValue("darkMode")?Colors.white.withOpacity(.87):Colors.black87,
                                                                             fontSize:
                                                                                 12.sp,
                                                                             fontFamily: 'cairo'),
@@ -820,7 +827,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                                                                 20.sp,
                                                                             Icons.play_circle_outline,
                                                                             color:
-                                                                                quranPagesColor.withOpacity(.6),
+                                                                         orangeColor,
                                                                           )),
                                                                       IconButton(
                                                                           onPressed:
@@ -835,7 +842,7 @@ class _RecitersPageState extends State<RecitersPage> {
                                                                                 20.sp,
                                                                             Icons.download,
                                                                             color:
-                                                                                quranPagesColor.withOpacity(.6),
+                                                                               blueColor,
                                                                           )),
                                                                       //  SizedBox(
                                                                       //   width:
@@ -869,8 +876,7 @@ class _RecitersPageState extends State<RecitersPage> {
                     },
                   ),
                 ),
-        ),
-      ],
-    );
+        )
+    ;
   }
 }

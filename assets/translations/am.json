@@ -82,5 +82,15 @@
     "allHadith": "ሁሉም ሐዘንዎች",
     "explanation": "አስተካክለህ ጨምር",
     "meanings": "አስተያይለህ ጨምር",
-    "Hadith": "ሐዘን ቤተመጻሕፍት"
+    "Hadith": "ሐዘን ቤተመጻሕፍት",
+    "calender": "ሕጂሪ ዓውደ ቀደም",
+    "normalCalender": "የምዝገባ ዓውደ ቀደም",
+    "SearchDua": "ዱዓ / ዚክር ፍረድ",
+    "Add To Sibha": "አውግ ወለድ",
+    "Add": "አውግ ዙክር ፍረድ",
+    "Enter Custom Zikr": "አማራጭ ዙክር ያስገቡ",
+    "newBookmark": "አዲስ መገልገያ መጨመር",
+    "nameOfBookmark": "የተለያዩ ስም ይምረጡ",
+    "color": "የመገልገያ ቀለም",
+    "saveBookmark": "መገልገያ አስቀምጥ"
 }

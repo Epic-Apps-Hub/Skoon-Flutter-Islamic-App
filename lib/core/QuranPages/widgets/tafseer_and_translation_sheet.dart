@@ -75,8 +75,8 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
   String isDownloading = "";
   @override
   Widget build(BuildContext context) {
-    print(widget.surahNumber);
-    print(widget.verseNumber);
+    // print(widget.surahNumber);
+    // print(widget.verseNumber);
     final screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: SizedBox(
@@ -99,7 +99,7 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                       Icons.arrow_back_ios,
                       size: 16.sp,
                       color: (widget.verseNumber + verseNumber > 1)
-                          ? quranPagesColor
+                          ? getValue("darkMode")?quranPagesColorDark:quranPagesColorLight
                           : Colors.grey.withOpacity(.4),
                     )),
                 SizedBox(
@@ -132,7 +132,7 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                       size: 16.sp,
                       color: (widget.verseNumber + verseNumber !=
                               quran.getVerseCount(widget.surahNumber))
-                          ? quranPagesColor
+                          ? getValue("darkMode")?quranPagesColorDark:quranPagesColorLight
                           : Colors.grey.withOpacity(.4),
                     ))
               ],
@@ -228,11 +228,11 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                                                         await Permission
                                                             .manageExternalStorage
                                                             .request();
-                                                    print(
-                                                        'status $status   -> $status2');
+                                                    // print(
+                                                    //     'status $status   -> $status2');
                                                     if (status.isGranted &&
                                                         status2.isGranted) {
-                                                      print(true);
+                                                      // print(true);
                                                     } else if (status
                                                             .isPermanentlyDenied ||
                                                         status2
@@ -240,8 +240,8 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                                                       await openAppSettings();
                                                     } else if (status
                                                         .isDenied) {
-                                                      print(
-                                                          'Permission Denied');
+                                                      // print(
+                                                      //     'Permission Denied');
                                                     }
                                                     setState(() {
                                                       isDownloading =

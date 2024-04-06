@@ -81,5 +81,15 @@
     "allHadith": "Tüm Hadisler",
     "explanation": "Açıklama Ekle",
     "meanings": "Anlamlar Ekle",
-    "Hadith": "Hadis Kütüphanesi"
+    "Hadith": "Hadis Kütüphanesi",
+    "calender": "Hicri Takvim",
+    "normalCalender": "Normal Takvim",
+    "SearchDua": "Duaa / Zikr Ara",
+    "Add To Sibha": "Sibha'ya Ekle",
+    "Add": "Yeni Zikr Ekle",
+    "newBookmark": "Yeni Yer İşareti Ekle",
+    "nameOfBookmark": "Ona benzersiz bir ad ver",
+    "color": "Yer İşareti Rengi",
+    "saveBookmark": "Yer İşaretini Kaydet",
+    "Enter Custom Zikr": "Özel Zikr Girin"
 }

@@ -82,5 +82,15 @@
     "allHadith": "كل الأحاديث",
     "explanation": "أضف الشرح",
     "meanings": "أضف معاني",
-    "Hadith": "مكتبة الحديث"
+    "Hadith": "مكتبة الحديث",
+    "calender": "التقويم الهجري",
+    "normalCalender": "التقويم العادي",
+    "SearchDua": "البحث عن الدعاء / الذكر",
+    "Add To Sibha": "أضف إلى السبحة",
+    "Add": "إضافة",
+    "Enter Custom Zikr": "أدخل ذكر مخصص",
+    "newBookmark": "إضافة علامة مرجعية جديدة",
+    "nameOfBookmark": "أعطه اسمًا فريدًا",
+    "color": "لون العلامة المرجعية",
+    "saveBookmark": "حفظ العلامة المرجعية"
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "413862576475",
+    "project_id": "skoon-a436d",
+    "storage_bucket": "skoon-a436d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413862576475:android:5fff78d5962dafc6091a7e",
+        "android_client_info": {
+          "package_name": "com.skoon.muslim.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkbyWWa9XzULt6bSXGlliFyon1rb8sjlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

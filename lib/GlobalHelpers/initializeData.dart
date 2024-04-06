@@ -43,5 +43,11 @@ initHiveValues() async {
   nullValidator("zikrNotificationindex2", 0);
   nullValidator("indexOfTranslation", 0);
   nullValidator("indexOfTranslationInVerseByVerse", 1);
+    nullValidator("darkMode", false);
+
   nullValidator("starredRadios", "[]");
+  nullValidator("bookmarks", "[]");
+
+  nullValidator("timesOfAppOpen", 0);
+  nullValidator("showedDialog", false);
 }
