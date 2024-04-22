@@ -210,7 +210,22 @@ String getVerse(int surahNumber, int verseNumber,
 
   return verse + (verseEndSymbol ? getVerseEndSymbol(verseNumber) : "");
 }
+String getVerseQCF(int surahNumber, int verseNumber,
+    {bool verseEndSymbol = false}) {
+  String verse = "";
+  for (var i in quranText) {
+    if (i['surah_number'] == surahNumber && i['verse_number'] == verseNumber) {
+      verse = i['qcfData'].toString();print(verse);
+      break;
+    }
+  }
 
+  if (verse == "") {
+    throw "No verse found with given surahNumber and verseNumber.\n\n";
+  }
+
+  return verse + (verseEndSymbol ? getVerseEndSymbol(verseNumber) : "");
+}
 ///Takes [juzNumber] and returns Juz URL (from Quran.com)
 String getJuzURL(int juzNumber) {
   return "https://quran.com/juz/$juzNumber";

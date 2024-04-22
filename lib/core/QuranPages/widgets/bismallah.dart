@@ -17,8 +17,8 @@ class _BasmallahState extends State<Basmallah> {
     final screenSize = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.only(
-          left: (screenSize.width * .15).w,
-          right: (screenSize.width * .15).w,
+          left: (screenSize.width * .2).w,
+          right: (screenSize.width * .2).w,
           bottom: 8.h),
       child: Image.asset(
         "assets/images/Basmala.png",

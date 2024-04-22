@@ -88,7 +88,8 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
     return Scaffold(
       appBar: AppBar(
         actions: const [],
-        backgroundColor:getValue("darkMode") ?darkModeSecondaryColor: blueColor,
+        backgroundColor:
+            getValue("darkMode") ? darkModeSecondaryColor : blueColor,
         elevation: 0,
         title: Text("preview".tr()),
       ),
@@ -346,13 +347,15 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                                                                               .done
                                                                           : Icons
                                                                               .cloud_download,
-                                                                  color: secondaryColors[indexOfTheme],
+                                                                  color: secondaryColors[
+                                                                      indexOfTheme],
                                                                   size: 18.sp,
                                                                 )
-                                                              :  CircularProgressIndicator(
+                                                              : CircularProgressIndicator(
                                                                   strokeWidth:
                                                                       2,
-                                                                  color: secondaryColors[indexOfTheme],
+                                                                  color: secondaryColors[
+                                                                      indexOfTheme],
                                                                 )
                                                         ],
                                                       ),
@@ -635,7 +638,8 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                             ),
                             if (getValue("showBottomBar") == true)
                               Container(
-                                color:secondaryColors[indexOfTheme].withOpacity(.45),
+                                color: secondaryColors[indexOfTheme]
+                                    .withOpacity(.45),
                                 width: double.infinity,
                                 child: Padding(
                                   padding:
@@ -650,7 +654,8 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.bold,
                                             color:
-                                                backgroundColors[indexOfTheme].withOpacity(.6)),
+                                                backgroundColors[indexOfTheme]
+                                                    .withOpacity(.6)),
                                       ),
                                       Text(
                                         widget.jsonData[widget.surahNumber - 1]
@@ -660,7 +665,8 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                                             fontWeight: FontWeight.bold,
                                             fontFamily: fontFamilies[0],
                                             color:
-                                  backgroundColors[indexOfTheme].withOpacity(.6)),
+                                                backgroundColors[indexOfTheme]
+                                                    .withOpacity(.6)),
                                       )
                                     ],
                                   ),
@@ -675,8 +681,10 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
       ),
       backgroundColor: Colors.white,
       bottomNavigationBar: Container(
-        decoration:  BoxDecoration(
-          color:getValue("darkMode") ?darkModeSecondaryColor: Colors.transparent,
+        decoration: BoxDecoration(
+          color: getValue("darkMode")
+              ? darkModeSecondaryColor
+              : Colors.transparent,
         ),
         child: Padding(
           padding: const EdgeInsets.only(left: 0),
@@ -747,31 +755,41 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
     for (int verseNumber = firstVerseNumber;
         verseNumber <= lastVerseNumber;
         verseNumber++) {
-      String verseText = getVerse(surahNumber, verseNumber);
+          
+      String verseText = getVerseQCF(surahNumber, verseNumber);
+if(verseNumber==firstVerseNumber){
+  print("true");
+  verseText.replaceFirst(" ", "\n");
+  verseText="${verseText.substring(0,2)}\n${verseText.substring(2,verseText.length)}";
+
+}
+
+      int pageNumber = getPageNumber(surahNumber, verseNumber);
+      // print("QCF_P${pageNumber.toString().padLeft(3, "0")}");
       TextSpan verseSpan = TextSpan(
-        text: verseText,
+        text: verseText.replaceAll(' ', ''),
         // recognizer: LongPressGestureRecognizer()..onLongPress = () {},
         style: TextStyle(
           color: primaryColors[indexOfTheme],
           fontSize: textSize.sp,
-          wordSpacing: .2,
-          letterSpacing: .2,
-          fontFamily: getValue("selectedFontFamily"),
+          wordSpacing: 0,height: 2,
+          letterSpacing: 0,
+          fontFamily: "QCF_P${pageNumber.toString().padLeft(3, "0")}",
         ),
       );
 
       verseSpans.add(verseSpan);
-      verseSpans.add(
-        TextSpan(
-            locale: const Locale("ar"),
-            text:
-                " ${convertToArabicNumber((verseNumber).toString())} " //               quran.getVerseEndSymbol()
-            ,
-            style: TextStyle(
-                color: secondaryColors[indexOfTheme],
-                fontSize: textSize.sp,
-                fontFamily: "KFGQPC Uthmanic Script HAFS Regular")),
-      );
+      // verseSpans.add(
+      //   TextSpan(
+      //       locale: const Locale("ar"),
+      //       text:
+      //           " ${convertToArabicNumber((verseNumber).toString())} " //               quran.getVerseEndSymbol()
+      //       ,
+      //       style: TextStyle(
+      //           color: secondaryColors[indexOfTheme],
+      //           fontSize: textSize.sp,
+      //           fontFamily: "KFGQPC Uthmanic Script HAFS Regular")),
+      // );
     }
 
     return verseSpans;

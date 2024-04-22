@@ -1156,6 +1156,11 @@ appUpdateInfo.updateAvailability ==
                             //     ),
                             //   ),
                             // ),
+                                // const Text("ﭫ ﭬ ﭭ ﭮ ﭯ ﭰ ﭱ ﭲ ﭳ"
+                                // ,style: TextStyle(
+                                //   fontFamily: "QCF_P001",fontSize: 60
+
+                                // ),),
                             // ignore: unnecessary_null_comparison
                             if (_today != null)
                               SizedBox(

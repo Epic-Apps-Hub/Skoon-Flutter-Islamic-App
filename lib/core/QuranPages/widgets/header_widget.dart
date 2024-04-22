@@ -14,7 +14,7 @@ class HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 65.h,
+      height: 50.h,
       child: Stack(
         children: [
           if (indexOfTheme != null)
@@ -22,7 +22,7 @@ class HeaderWidget extends StatelessWidget {
               child: Image.asset(
                 headerPaths[indexOfTheme],
                 width: MediaQuery.of(context).size.width.w,
-                height: 60.h,
+                height: 50.h,
                 color: indexOfTheme == 4 ? primaryColors[indexOfTheme] : null,
               ),
             ),
@@ -31,20 +31,13 @@ class HeaderWidget extends StatelessWidget {
               child: Image.asset(
                 headerPaths[getValue("quranPageolorsIndex")],
                 width: MediaQuery.of(context).size.width.w,
-                height: 60.h,
+                height: 50.h,
                 color: getValue("quranPageolorsIndex") == 4
                     ? primaryColors[getValue("quranPageolorsIndex")]
                     : null,
               ),
             ), //888-02-Recovered.png
-
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // SizedBox(
-              //   height: 2.h,
-              // ),
-              Padding(
+ Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: headerPaths[getValue("quranPageolorsIndex")] ==
                             "assets/images/888-02-Recovered.png"
@@ -94,8 +87,6 @@ class HeaderWidget extends StatelessWidget {
                   ],
                 ),
               ),
-            ],
-          )
         ],
       ),
     );

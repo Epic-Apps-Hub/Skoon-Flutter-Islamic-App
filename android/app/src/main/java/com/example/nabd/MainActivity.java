@@ -18,24 +18,5 @@ public class MainActivity extends AudioServiceActivity  {
  GeneratedPluginRegistrant.registerWith(flutterEngine);
 
 
-//        new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), "toast")
-//        .setMethodCallHandler(
-//                (call, result) -> {
-
-//                    if (call.method.equals("show")) {
-
-//                        String text = call.argument("text");
-                       
-//                     Toast toast=   Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
-// toast.setGravity(Gravity.TOP|Gravity.RIGHT,0,0);
-// toast.show();	
-// // View view=toast.getView();
-// // view.setBackgroundResource(android.R.drawable.)
-//                                     result.success("initialized");
-//                    } else {
-//                        result.notImplemented();
-//                    }
-            //    });
-
  }
 }
