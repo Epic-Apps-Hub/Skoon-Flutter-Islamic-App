@@ -14,7 +14,7 @@ initHiveValues() async {
   // nullValidator("currentWordSpacing", 0.0);
   nullValidator("currentLetterSpacing", 0.0);
   nullValidator("lastRead", "non");
-  nullValidator("alignmentType", "verticalview");
+  nullValidator("alignmentType", "pageview");
   nullValidator("addAppSlogan", true);
   nullValidator("showSuraHeader", true);
   nullValidator("textWithoutDiacritics", false);

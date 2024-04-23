@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.3+11
+version: 1.0.3+12
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -169,10 +169,7 @@ flutter:
     - family: AmiriQuran
       fonts:
         - asset: assets/fonts/AmiriQuran-Regular.ttf
-    - family: Amiri
-      fonts:
-        - asset: assets/fonts/Amiri-Regular.ttf
-      
+
     - family: Taha
       fonts:
         - asset: assets/fonts/taha.ttf
@@ -231,6 +228,10 @@ flutter:
     - family: "shorooq-full-org"
       fonts:
         - asset: assets/fonts/shorooq-full-org.ttf
+
+    - family: "arsura"
+      fonts:
+        - asset: assets/fonts/arsura.ttf
 
     - family: "KFGQPC Uthmanic Script HAFS Regular"
       fonts:

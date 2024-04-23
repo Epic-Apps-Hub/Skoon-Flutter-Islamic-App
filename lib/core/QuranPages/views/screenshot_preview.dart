@@ -29,31 +29,53 @@ import '../helpers/translation/get_translation_data.dart'
     as get_translation_data;
 
 class ScreenShotPreviewPage extends StatefulWidget {
-  var index;
-  var jsonData;
-  var firstVerse;
-  var surahNumber;
-
-  var lastVerse;
   ScreenShotPreviewPage(
       {super.key,
       required this.index,
       required this.surahNumber,
       required this.jsonData,
       required this.firstVerse,
-      required this.lastVerse});
+      required this.lastVerse,
+      required this.isQCF
+      });
 
+  var firstVerse;
+  var index;
+  var jsonData;
+  var lastVerse;
+  var surahNumber;
+bool isQCF;
   @override
   State<ScreenShotPreviewPage> createState() => _ScreenShotPreviewPageState();
 }
 
 class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
   TextAlign alignment = TextAlign.center;
-  ScreenshotController screenshotController = ScreenshotController();
-  var dataOfCurrentTranslation;
   Directory? appDir;
+  var dataOfCurrentTranslation;
+  int indexOfTheme = getValue("quranPageolorsIndex");
   var isDownloading = "";
+  bool isShooting = false;
+  ScreenshotController screenshotController = ScreenshotController();
+  double textSize = 22;late
+bool isQCF;
+  @override
+  void initState() {updateData();
+    initialize();
+    getTranslationData();
+    
+    // TODO: implement initState
+    super.initState();
+  }
+updateData(){
+  setState(() {
+    isQCF=widget.isQCF;
+    textSize=widget.isQCF?19:22;
+
+  });
+}
   initialize() async {
+
     appDir = await getTemporaryDirectory();
     getTranslationData();
     if (mounted) {
@@ -61,7 +83,6 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
     }
   }
 
-  double textSize = 22;
   getTranslationData() async {
     if (getValue("addTafseerValue") > 1) {
       File file = File(
@@ -73,16 +94,134 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
     setState(() {});
   }
 
-  @override
-  void initState() {
-    initialize();
-    getTranslationData();
-    // TODO: implement initState
-    super.initState();
+  List<InlineSpan> buildVerseSpans(
+      int surahNumber, int firstVerseNumber, int lastVerseNumber) {
+    List<InlineSpan> verseSpans = [];
+
+    for (int verseNumber = firstVerseNumber;
+        verseNumber <= lastVerseNumber;
+        verseNumber++) {
+      String centeredSubstringFromV1 = "";
+      String verseText =isQCF? getVerseQCF(surahNumber, verseNumber):getVerse(surahNumber, verseNumber);
+      if (verseNumber == firstVerseNumber) {
+        // print("true");
+        // verseText.replaceFirst(" ", "\n");
+        if (verseText.length > 15 ||
+            firstVerseNumber != lastVerseNumber && verseText.length > 4) {
+          centeredSubstringFromV1 = isQCF? "${verseText.substring(0, 4)}\n":"";
+          verseText =isQCF? verseText.substring(3, verseText.length):alignment==TextAlign.justify?verseText:  verseText.replaceFirst(" ", "\n");
+          print(verseText);
+          print(centeredSubstringFromV1);
+        }
+      }
+
+      int pageNumber = getPageNumber(surahNumber, verseNumber);
+      // print("QCF_P${pageNumber.toString().padLeft(3, "0")}");
+      if (verseText.length > 15 || firstVerseNumber != lastVerseNumber ) {
+        TextSpan centeredSubstringFromV1Span = TextSpan(
+            text: centeredSubstringFromV1,
+            style: TextStyle(
+              color: primaryColors[indexOfTheme],
+              fontSize: textSize.sp,
+              wordSpacing: 0,
+              height: 2,
+              letterSpacing:isQCF? -1:0,
+              fontFamily:isQCF? "QCF_P${pageNumber.toString().padLeft(3, "0")}":getValue("selectedFontFamily"),
+            ),
+            children: const [
+              WidgetSpan(
+                  child: Text(
+                "",
+                textAlign: TextAlign.center,
+              ))
+            ]);
+        verseSpans.add(centeredSubstringFromV1Span);
+      }
+      TextSpan verseSpan = TextSpan(
+        text: verseText+ (isQCF?" ":"") //.replaceAll(' ', ''),
+        // recognizer: LongPressGestureRecognizer()..onLongPress = () {},
+        ,
+        style: TextStyle(
+          color: primaryColors[indexOfTheme],
+          fontSize: textSize.sp,
+          wordSpacing: 0,
+          height: 2,
+          letterSpacing:isQCF? -1:0,
+              fontFamily:isQCF? "QCF_P${pageNumber.toString().padLeft(3, "0")}":getValue("selectedFontFamily"),
+        ),
+      );
+
+      verseSpans.add(verseSpan);
+
+if(isQCF==false) {
+  verseSpans.add(
+        TextSpan(
+            locale: const Locale("ar"),
+            text:
+                " ${convertToArabicNumber((verseNumber).toString())} " //               quran.getVerseEndSymbol()
+            ,
+            style: TextStyle(
+                color: secondaryColors[indexOfTheme],
+                fontSize: textSize.sp,
+                fontFamily: "KFGQPC Uthmanic Script HAFS Regular")),
+      );
+}
+    }
+
+    return verseSpans;
   }
 
-  bool isShooting = false;
-  int indexOfTheme = getValue("quranPageolorsIndex");
+  Future<List<InlineSpan>> buildTafseerSpans(int surahNumber,
+      int firstVerseNumber, int lastVerseNumber, translatee) async {
+    List<InlineSpan> tafseerSpans = [];
+    tafseerSpans.add(TextSpan(
+      text: translatee.typeTextInRelatedLanguage + ": ",
+      // recognizer: LongPressGestureRecognizer()..onLongPress = () {},
+      style: TextStyle(
+          color: primaryColors[indexOfTheme],
+          fontSize: ((textSize + 6.5) / 2).sp,
+          wordSpacing: .2,
+          letterSpacing: .2,
+          fontFamily: "cairo"
+          // fontFamily: getValue("selectedFontFamily"),
+          ),
+    ));
+    for (int verseNumber = firstVerseNumber;
+        verseNumber <= lastVerseNumber;
+        verseNumber++) {
+      String verseText = getVerse(surahNumber, verseNumber);
+      String text = await get_translation_data.getVerseTranslation(
+          surahNumber, verseNumber, translatee);
+      text = text.replaceAll("<p>", "\n").replaceAll("</p>", "");
+      TextSpan translateSpan = TextSpan(
+        text: "$text (${convertToArabicNumber(verseNumber.toString())}) ",
+        // recognizer: LongPressGestureRecognizer()..onLongPress = () {},
+        style: TextStyle(
+            color: primaryColors[indexOfTheme],
+            fontSize: ((textSize + 6) / 2).sp,
+            wordSpacing: .2,
+            letterSpacing: .2,
+            fontFamily: "cairo"
+            // fontFamily: getValue("selectedFontFamily"),
+            ),
+      );
+
+      tafseerSpans.add(translateSpan);
+      // tafseerSpans.add(
+      //   TextSpan(
+      //       locale: const Locale("ar"),
+      //       text:
+      //           " ${convertToArabicNumber((verseNumber).toString())} " //               quran.getVerseEndSymbol()
+      //       ,
+      //       style: const TextStyle(
+      //         color: secondaryColors[indexOfTheme],
+      //       )),
+      // );
+    }
+
+    return tafseerSpans;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,6 +270,26 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                 ),
                 Text(
                   'showbottombar'.tr(),
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.0,
+                  ),
+                ),
+              ],
+            ),    Row(
+              children: [
+                Checkbox(
+                  fillColor: MaterialStatePropertyAll(
+                      primaryColors[getValue("quranPageolorsIndex")]),
+                  checkColor: backgroundColors[getValue("quranPageolorsIndex")],
+                  value: isQCF,
+                  onChanged: (newValue) {
+                    isQCF=newValue!;
+                    setState(() {});
+                  },
+                ),
+                Text(
+                  'IsQCF Font'.tr(),
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,
@@ -549,7 +708,7 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
                                 widget.index != 187))
                               Basmallah(index: indexOfTheme),
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 12.0.w),
+                              padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width,
                                 child: RichText(
@@ -746,103 +905,5 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
         ),
       ),
     );
-  }
-
-  List<InlineSpan> buildVerseSpans(
-      int surahNumber, int firstVerseNumber, int lastVerseNumber) {
-    List<InlineSpan> verseSpans = [];
-
-    for (int verseNumber = firstVerseNumber;
-        verseNumber <= lastVerseNumber;
-        verseNumber++) {
-          
-      String verseText = getVerseQCF(surahNumber, verseNumber);
-if(verseNumber==firstVerseNumber){
-  print("true");
-  verseText.replaceFirst(" ", "\n");
-  verseText="${verseText.substring(0,2)}\n${verseText.substring(2,verseText.length)}";
-
-}
-
-      int pageNumber = getPageNumber(surahNumber, verseNumber);
-      // print("QCF_P${pageNumber.toString().padLeft(3, "0")}");
-      TextSpan verseSpan = TextSpan(
-        text: verseText.replaceAll(' ', ''),
-        // recognizer: LongPressGestureRecognizer()..onLongPress = () {},
-        style: TextStyle(
-          color: primaryColors[indexOfTheme],
-          fontSize: textSize.sp,
-          wordSpacing: 0,height: 2,
-          letterSpacing: 0,
-          fontFamily: "QCF_P${pageNumber.toString().padLeft(3, "0")}",
-        ),
-      );
-
-      verseSpans.add(verseSpan);
-      // verseSpans.add(
-      //   TextSpan(
-      //       locale: const Locale("ar"),
-      //       text:
-      //           " ${convertToArabicNumber((verseNumber).toString())} " //               quran.getVerseEndSymbol()
-      //       ,
-      //       style: TextStyle(
-      //           color: secondaryColors[indexOfTheme],
-      //           fontSize: textSize.sp,
-      //           fontFamily: "KFGQPC Uthmanic Script HAFS Regular")),
-      // );
-    }
-
-    return verseSpans;
-  }
-
-  Future<List<InlineSpan>> buildTafseerSpans(int surahNumber,
-      int firstVerseNumber, int lastVerseNumber, translatee) async {
-    List<InlineSpan> tafseerSpans = [];
-    tafseerSpans.add(TextSpan(
-      text: translatee.typeTextInRelatedLanguage + ": ",
-      // recognizer: LongPressGestureRecognizer()..onLongPress = () {},
-      style: TextStyle(
-          color: primaryColors[indexOfTheme],
-          fontSize: ((textSize + 6.5) / 2).sp,
-          wordSpacing: .2,
-          letterSpacing: .2,
-          fontFamily: "cairo"
-          // fontFamily: getValue("selectedFontFamily"),
-          ),
-    ));
-    for (int verseNumber = firstVerseNumber;
-        verseNumber <= lastVerseNumber;
-        verseNumber++) {
-      String verseText = getVerse(surahNumber, verseNumber);
-      String text = await get_translation_data.getVerseTranslation(
-          surahNumber, verseNumber, translatee);
-      text = text.replaceAll("<p>", "\n").replaceAll("</p>", "");
-      TextSpan translateSpan = TextSpan(
-        text: text,
-        // recognizer: LongPressGestureRecognizer()..onLongPress = () {},
-        style: TextStyle(
-            color: primaryColors[indexOfTheme],
-            fontSize: ((textSize + 6) / 2).sp,
-            wordSpacing: .2,
-            letterSpacing: .2,
-            fontFamily: "cairo"
-            // fontFamily: getValue("selectedFontFamily"),
-            ),
-      );
-
-      tafseerSpans.add(translateSpan);
-      // tafseerSpans.add(
-      //   TextSpan(
-      //       locale: const Locale("ar"),
-      //       text:
-      //           " ${convertToArabicNumber((verseNumber).toString())} " //               quran.getVerseEndSymbol()
-      //       ,
-      //       style: const TextStyle(
-      //         color: secondaryColors[indexOfTheme],
-      //       )),
-      // );
-    }
-
-    return tafseerSpans;
   }
 }

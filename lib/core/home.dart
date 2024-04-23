@@ -1494,7 +1494,9 @@ appUpdateInfo.updateAvailability ==
                                                                                                   padding: const EdgeInsets.all(0.0),
                                                                                                   child: TextButton(
                                                                                                       onPressed: () {
-                                                                                                        Navigator.push(context, CupertinoPageRoute(builder: (builder) => ScreenShotPreviewPage(index: 5, surahNumber: suranumber, jsonData: widgejsonData, firstVerse: verseNumber, lastVerse: verseNumber)));
+                                                                                                        Navigator.push(context, CupertinoPageRoute(builder: (builder) => ScreenShotPreviewPage(
+                                                                                                          isQCF: true,
+                                                                                                          index: 5, surahNumber: suranumber, jsonData: widgejsonData, firstVerse: verseNumber, lastVerse: verseNumber)));
                                                                                                       },
                                                                                                       child: Text(
                                                                                                         "asimage".tr(),

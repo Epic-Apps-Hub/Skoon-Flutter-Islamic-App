@@ -62,10 +62,10 @@ class HeaderWidget extends StatelessWidget {
                     Center(
                         child: Text(
                       textAlign: TextAlign.center,
-                      "سُورة ${jsonData[e["surah"] - 1]["name"]}",
+                      "${e["surah"]}",
                       style: TextStyle(
-                        fontFamily: "UthmanicHafs13",
-                        fontSize: 16.sp,
+                        fontFamily: "arsura",
+                        fontSize: 29.sp,
                         color: indexOfTheme == null
                             ? primaryColors[getValue("quranPageolorsIndex")]
                                 .withOpacity(.9)

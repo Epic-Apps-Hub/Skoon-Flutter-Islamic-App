@@ -79,7 +79,7 @@ class PlayerBlocBloc extends Bloc<PlayerBlocEvent, PlayerBlocState> {
         }).toList();
 
         var playList = reciterLinks.map((e) {
-          print( e["suraNumber"]);
+          // print( e["suraNumber"]);
           return AudioSource.uri(
             e["link"],
             tag: MediaItem(
@@ -113,7 +113,7 @@ class PlayerBlocBloc extends Bloc<PlayerBlocEvent, PlayerBlocState> {
           //     "${event.moshaf.server}/${currentSuraNumber.toString().padLeft(3, "0")}.mp3");
           // var newUri = originalUri.replace(scheme: 'http');
 
-          print(surahNumbers.length);
+          // print(surahNumbers.length);
 
           await audioPlayer!.setAudioSource(
               initialIndex: event.initialIndex,
@@ -122,10 +122,10 @@ class PlayerBlocBloc extends Bloc<PlayerBlocEvent, PlayerBlocState> {
               // initialPosition: Duration.zero,
 
               ConcatenatingAudioSource(children: playList));
-        } catch (e, stackTrace) {
+        } catch (e) {
           // Catch load errors: 404, invalid url ...
           print("Error loading playlist: $e");
-          print(stackTrace);
+          // print(stackTrace);
         }
         audioPlayer!.play();
 
