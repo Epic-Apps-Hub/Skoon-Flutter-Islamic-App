@@ -1,9 +1,10 @@
 # Skoon - Flutter Islamic App
 
+<img src="assets/screenshot2.jpg" alt="Screenshot 2" width="300">
+<img src="assets/screenshot1.jpg" alt="Screenshot 1" width="300">
+<img src="assets/screenshot3.jpg" alt="Screenshot 3" width="300">
+
 ![Demo](assets/demo.gif)
-![Demo](assets/screenshot2.jpg)
-![Demo](assets/screenshot1.jpg)
-![Demo](assets/screenshot3.jpg)
 
 ## Overview
 
