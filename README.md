@@ -1,9 +1,10 @@
 # Skoon - Flutter Islamic App
 
-<img src="assets/screenshot2.jpg" alt="Screenshot 2" width="300">
-<img src="assets/screenshot1.jpg" alt="Screenshot 1" width="300">
-<img src="assets/screenshot3.jpg" alt="Screenshot 3" width="300">
-
+<div style="display: flex; justify-content: space-around;">
+  <img src="assets/screenshot2.jpg" alt="Screenshot 2" width="300">
+  <img src="assets/screenshot1.jpg" alt="Screenshot 1" width="300">
+  <img src="assets/screenshot3.jpg" alt="Screenshot 3" width="300">
+</div>
 ![Demo](assets/demo.gif)
 
 ## Overview
