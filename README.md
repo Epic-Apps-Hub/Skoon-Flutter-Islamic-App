@@ -1,6 +1,9 @@
 # Skoon - Flutter Islamic App
 
 ![Demo](assets/demo.gif)
+![Demo](assets/screenshot2.jpg)
+![Demo](assets/screenshot1.jpg)
+![Demo](assets/screenshot3.jpg)
 
 ## Overview
 
