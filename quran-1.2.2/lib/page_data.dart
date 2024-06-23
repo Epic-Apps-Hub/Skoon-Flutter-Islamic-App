@@ -358,16 +358,16 @@ const List pageData = [
     {"surah": 5, "start": 65, "end": 70}
   ],
   [
-    {"surah": 5, "start": 71, "end": 76}
+    {"surah": 5, "start": 71, "end": 77}
   ],
   [
-    {"surah": 5, "start": 77, "end": 82}
+    {"surah": 5, "start": 78, "end": 83}
   ],
   [
-    {"surah": 5, "start": 83, "end": 89}
+    {"surah": 5, "start": 84, "end": 90}
   ],
   [
-    {"surah": 5, "start": 90, "end": 95}
+    {"surah": 5, "start": 91, "end": 95}
   ],
   [
     {"surah": 5, "start": 96, "end": 103}
@@ -430,10 +430,10 @@ const List pageData = [
     {"surah": 6, "start": 119, "end": 124}
   ],
   [
-    {"surah": 6, "start": 125, "end": 131}
+    {"surah": 6, "start": 125, "end": 130}
   ],
   [
-    {"surah": 6, "start": 132, "end": 137}
+    {"surah": 6, "start": 131, "end": 137}
   ],
   [
     {"surah": 6, "start": 138, "end": 142}
@@ -1612,16 +1612,16 @@ const List pageData = [
   ],
   [
     {"surah": 54, "start": 50, "end": 55},
-    {"surah": 55, "start": 1, "end": 16}
+    {"surah": 55, "start": 1, "end": 18}
   ],
   [
-    {"surah": 55, "start": 17, "end": 40}
+    {"surah": 55, "start": 19, "end": 41}
   ],
   [
-    {"surah": 55, "start": 41, "end": 67}
+    {"surah": 55, "start": 42, "end": 69}
   ],
   [
-    {"surah": 55, "start": 68, "end": 78},
+    {"surah": 55, "start": 70, "end": 78},
     {"surah": 56, "start": 1, "end": 16}
   ],
   [
@@ -1717,27 +1717,27 @@ const List pageData = [
   ],
   [
     {"surah": 67, "start": 27, "end": 30},
-    {"surah": 68, "start": 1, "end": 15}
+    {"surah": 68, "start": 1, "end": 16}
   ],
   [
-    {"surah": 68, "start": 16, "end": 42}
+    {"surah": 68, "start": 17, "end": 42}
   ],
   [
     {"surah": 68, "start": 43, "end": 52},
     {"surah": 69, "start": 1, "end": 8}
   ],
   [
-    {"surah": 69, "start": 9, "end": 34}
+    {"surah": 69, "start": 9, "end": 35}
   ],
   [
-    {"surah": 69, "start": 35, "end": 52},
+    {"surah": 69, "start": 36, "end": 52},
     {"surah": 70, "start": 1, "end": 10}
   ],
   [
-    {"surah": 70, "start": 11, "end": 39}
+    {"surah": 70, "start": 11, "end": 40}
   ],
   [
-    {"surah": 70, "start": 40, "end": 44},
+    {"surah": 70, "start": 41, "end": 44},
     {"surah": 71, "start": 1, "end": 10}
   ],
   [
@@ -1754,10 +1754,10 @@ const List pageData = [
   ],
   [
     {"surah": 73, "start": 20, "end": 20},
-    {"surah": 74, "start": 1, "end": 17}
+    {"surah": 74, "start": 1, "end": 18}
   ],
   [
-    {"surah": 74, "start": 18, "end": 47}
+    {"surah": 74, "start": 19, "end": 47}
   ],
   [
     {"surah": 74, "start": 48, "end": 56},
@@ -1782,70 +1782,76 @@ const List pageData = [
   ],
   [
     {"surah": 78, "start": 31, "end": 40},
-    {"surah": 79, "start": 1, "end": 15}
+    {"surah": 79, "start": 1, "end": 16}
   ],
   [
-    {"surah": 79, "start": 16, "end": 46}
+    {"surah": 79, "start": 17, "end": 46}
   ],
   [
-    {"surah": 80, "start": 1, "end": 42}
+    {"surah": 80, "start": 1, "end": 40}
   ],
-  [
+  [    {"surah": 80, "start": 41, "end": 42}
+,
     {"surah": 81, "start": 1, "end": 29}
   ],
   [
     {"surah": 82, "start": 1, "end": 19},
-    {"surah": 83, "start": 1, "end": 6}
+    {"surah": 83, "start": 1, "end": 4}
   ],
   [
-    {"surah": 83, "start": 7, "end": 34}
+    {"surah": 83, "start": 5, "end": 33}
   ],
   [
-    {"surah": 83, "start": 35, "end": 36},
-    {"surah": 84, "start": 1, "end": 25}
+    {"surah": 83, "start": 34, "end": 36},
+    {"surah": 84, "start": 1, "end": 24}
   ],
-  [
+  [    {"surah": 84, "start": 25, "end": 25}
+,
     {"surah": 85, "start": 1, "end": 22}
   ],
   [
     {"surah": 86, "start": 1, "end": 17},
-    {"surah": 87, "start": 1, "end": 15}
+    {"surah": 87, "start": 1, "end": 10}
   ],
   [
-    {"surah": 87, "start": 16, "end": 19},
-    {"surah": 88, "start": 1, "end": 26}
+    {"surah": 87, "start": 11, "end": 19},
+    {"surah": 88, "start": 1, "end": 22}
+  ],
+  [    {"surah": 88, "start": 23, "end": 26}
+,
+    {"surah": 89, "start": 1, "end": 22}
   ],
   [
-    {"surah": 89, "start": 1, "end": 23}
+    {"surah": 89, "start": 23, "end": 30},
+    {"surah": 90, "start": 1, "end": 18}
   ],
-  [
-    {"surah": 89, "start": 24, "end": 30},
-    {"surah": 90, "start": 1, "end": 20}
-  ],
-  [
+  [    {"surah": 90, "start": 19, "end": 20}
+,
     {"surah": 91, "start": 1, "end": 15},
-    {"surah": 92, "start": 1, "end": 14}
+    {"surah": 92, "start": 1, "end": 9}
   ],
   [
-    {"surah": 92, "start": 15, "end": 21},
+    {"surah": 92, "start": 10, "end": 21},
     {"surah": 93, "start": 1, "end": 11},
-    {"surah": 94, "start": 1, "end": 8}
+    {"surah": 94, "start": 1, "end": 2}
   ],
-  [
+  [    {"surah": 94, "start": 3, "end": 8}
+,
     {"surah": 95, "start": 1, "end": 8},
-    {"surah": 96, "start": 1, "end": 19}
+    {"surah": 96, "start": 1, "end": 12}
   ],
-  [
+  [    {"surah": 96, "start": 13, "end": 19},
+
     {"surah": 97, "start": 1, "end": 5},
-    {"surah": 98, "start": 1, "end": 7}
+    {"surah": 98, "start": 1, "end": 5}
   ],
-  [
-    {"surah": 98, "start": 8, "end": 8},
+  [    {"surah": 98, "start": 6, "end": 8},
+
     {"surah": 99, "start": 1, "end": 8},
-    {"surah": 100, "start": 1, "end": 9}
+    {"surah": 100, "start": 1, "end": 5}
   ],
-  [
-    {"surah": 100, "start": 10, "end": 11},
+  [    {"surah": 100, "start": 6, "end": 11}
+,
     {"surah": 101, "start": 1, "end": 11},
     {"surah": 102, "start": 1, "end": 8}
   ],
@@ -1861,7 +1867,7 @@ const List pageData = [
   ],
   [
     {"surah": 109, "start": 1, "end": 6},
-    {"surah": 110, "start": 1, "end": 3},
+    {"surah": 110, "start": 1, "end": 3}, 
     {"surah": 111, "start": 1, "end": 5}
   ],
   [

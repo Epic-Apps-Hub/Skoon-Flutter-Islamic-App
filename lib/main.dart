@@ -32,7 +32,6 @@ import 'package:nabd/core/notifications/views/small_notification_popup.dart';
 import 'package:nabd/core/splash/splash_screen.dart';
 // import 'package:nabd/views/notifications/alert_window_notifcations.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:periodic_alarm/periodic_alarm.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:quran/quran.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,7 +48,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ez.EasyLocalization.ensureInitialized();
 await Firebase.initializeApp(
-);   await PeriodicAlarm.init();
+);  
+// await PeriodicAlarm.init();
 
 
   // we are not checking the status as it is an example app. You should (must) check it in a production app

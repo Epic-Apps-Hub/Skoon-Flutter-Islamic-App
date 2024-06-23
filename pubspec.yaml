@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.3+12
+version: 1.0.4+13
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -101,18 +101,19 @@ dependencies:
   arabic_roman_conv: ^0.1.0-dev.2
   chewie:
   smooth_compass: 2.0.17
-  radio_player: ^1.5.0
+  radio_player:
   in_app_review:
   circular_progress_bar: ^0.0.4
   geocoding:
-  periodic_alarm: 
-    path: ./periodic_alarm
-  jhijri_picker: ^1.0.1
+  # periodic_alarm: 
+  #   path: ./periodic_alarm
+  jhijri_picker: 
   hijri: ^3.0.0
   tiktoklikescroller: ^0.2.6
   another_flushbar: ^1.12.30
   in_app_update: ^4.2.2
   # in_app_review: ^2.0.8
+  string_validator: 
 
 dev_dependencies:
   flutter_test:

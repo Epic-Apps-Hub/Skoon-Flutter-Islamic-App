@@ -147,24 +147,7 @@ const List indexes = [
   [237, 238, 239, 240]
 ];
 
-const List headerPaths = [
-  "assets/images/888-02-Recovered.png",
-  "assets/images/888-02-Recovered.png",
-  "assets/images/888-05.png",
-  "assets/images/888-05.png",
-  "assets/images/888-05.png",
-  "assets/images/888-02-Recovered.png",
-  "assets/images/888-02-Recovered.png",
-  "assets/images/888-02-Recovered.png",
-  "assets/images/888-05.png",
-  "assets/images/888-05.png",
-  "assets/images/888-02-Recovered.png",
-  "assets/images/888-02-Recovered.png",
-  "assets/images/888-02-Recovered.png",
-  "assets/images/888-02-Recovered.png",
-  "assets/images/888-02-Recovered.png",
-  "assets/images/888-05.png",
-];
+
 
 const List<String> fontFamilies = [
   "UthmanicHafs13",
@@ -184,9 +167,9 @@ const List<String> fontFamilies = [
   "qur-std",
   "shorooq-full-org",
 ];
-const List primaryColors = [
+const List primaryColors = [  Colors.black,
+Color(0xff283618),
   accentColor,
-  Colors.black,
   Colors.black,
   Color(0XFf4C76BA),
   Colors.white,
@@ -202,9 +185,9 @@ const List primaryColors = [
   Colors.black,
   Colors.black,
 ];
-const List backgroundColors = [
+const List backgroundColors = [  Color.fromARGB(255, 255, 248, 240),
+Color(0xfffefae0),
   Color(0xffFFFCE7),
-  Color.fromARGB(255, 255, 248, 240),
   Colors.white,
   Colors.white,
   Color(0xff22303C),
@@ -219,9 +202,10 @@ const List backgroundColors = [
   Color(0xffD2F4CF),
   Color(0xffFEFADF),
   Color(0xffEAF0FE)
-];const List secondaryColors = [
-  Color.fromARGB(255, 107, 87, 0),
-  Color.fromARGB(255, 88, 47, 0),
+];const List secondaryColors = [  Color(0xff946735),
+  Color(0xff606c38),
+
+  Color.fromARGB(255, 189, 139, 2),
   Color.fromARGB(255, 43, 43, 43),
   Color.fromARGB(255, 0, 95, 184),
   Color.fromARGB(255, 23, 147, 255),
@@ -229,7 +213,7 @@ const List backgroundColors = [
   Color.fromARGB(255, 255, 204, 129),
   Color.fromARGB(255, 255, 180, 82),
   Color.fromARGB(255, 22, 21, 20),
-  Color.fromARGB(255, 38, 38, 38),
+  Color.fromARGB(255, 216, 216, 216),
   Color.fromARGB(255, 18, 28, 32),
   Color.fromARGB(255, 28, 29, 23),
   Color.fromARGB(255, 58, 45, 23),
@@ -237,9 +221,10 @@ const List backgroundColors = [
   Color.fromARGB(255, 36, 34, 22),
   Color.fromARGB(255, 24, 29, 43)
 ];
-const List highlightColors = [
+const List highlightColors = [  Color.fromARGB(172, 255, 201, 54),
+  Color.fromARGB(96, 188, 107, 37),
+
   Color.fromARGB(255, 255, 244, 157),
-  Color.fromARGB(172, 255, 201, 54),
   Color.fromARGB(255, 89, 216, 255),
   Color.fromARGB(255, 89, 216, 255),
   Color.fromARGB(255, 120, 192, 255),

@@ -31,6 +31,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:group_list_view/group_list_view.dart';
 import 'package:flutter/material.dart' as m;
 import '../helpers/convertNumberToAr.dart';
+import 'package:string_validator/string_validator.dart';
 
 class SurahListPage extends StatefulWidget {
   var jsonData;
@@ -52,6 +53,7 @@ class _SurahListPageState extends State<SurahListPage> {
     super.dispose();
   }
 
+  List pageNumbers = [];
   TextEditingController textEditingController = TextEditingController();
   Widget _buildShimmerLoading() {
     return ListView.builder(
@@ -245,17 +247,16 @@ class _SurahListPageState extends State<SurahListPage> {
 
 //     // Save the updated set to SharedPreferences
 //     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    
+
 //     // Check if the set is empty before encoding
 //     final encodedSet = starredVerses.isNotEmpty ? json.encode(starredVerses) :json.encode( {});
-    
+
 //     prefs.setString("starredVerses", encodedSet);
 
 //     // Trigger a UI update
 //     setState(() {});
 //   }
 // }
-
 
   @override
   Widget build(BuildContext context) {
@@ -636,7 +637,7 @@ class _SurahListPageState extends State<SurahListPage> {
 // // removeStarredVerse(e);
 // getStarredVerse();
 // setState(() {
-  
+
 // });
 
 //                               }, icon: const Icon(Icons.remove,color:Colors.redAccent))
@@ -821,8 +822,16 @@ class _SurahListPageState extends State<SurahListPage> {
                                                   if (value == "") {
                                                     filteredData =
                                                         widget.jsonData;
+                                                    pageNumbers = [];
                                                     setState(() {});
-                                                  } /*https://api.alquran.cloud/v1/search/%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85/all/ar*/
+                                                  } 
+                                                  
+                                                  /*https://api.alquran.cloud/v1/search/%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85/all/ar*/
+                                                  if (searchQuery.isNotEmpty &&
+                                                      isInt(searchQuery)) {
+                                                    pageNumbers.add(
+                                                        toInt(searchQuery));
+                                                  }
                                                   if (searchQuery.length > 3 ||
                                                       searchQuery
                                                           .toString()
@@ -890,6 +899,7 @@ class _SurahListPageState extends State<SurahListPage> {
                                               if (searchQuery.isNotEmpty) {
                                                 filteredData = widget.jsonData;
                                                 textEditingController.clear();
+                                                pageNumbers.clear();
                                                 setState(() {
                                                   searchQuery = "";
                                                 });
@@ -903,21 +913,40 @@ class _SurahListPageState extends State<SurahListPage> {
                                                       padding:
                                                           const EdgeInsets.all(
                                                               8.0),
-                                                      child: Icon(Icons.close,
-                                                          color: getValue(
-                                                                  "darkMode")
-                                                              ? Colors.white70
-                                                              : const Color
-                                                                  .fromARGB(
-                                                                  73, 0, 0, 0)),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Icon(Icons.close,
+                                                            color: getValue(
+                                                                    "darkMode")
+                                                                ? Colors.white70
+                                                                : const Color
+                                                                    .fromARGB(
+                                                                    73,
+                                                                    0,
+                                                                    0,
+                                                                    0)),
+                                                      ),
                                                     )
-                                                  : Icon(FontAwesome.search,
-                                                      color:
-                                                          getValue("darkMode")
-                                                              ? Colors.white70
-                                                              : const Color
-                                                                  .fromARGB(
-                                                                  73, 0, 0, 0)),
+                                                  : Container(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Icon(
+                                                            FontAwesome.search,
+                                                            color: getValue(
+                                                                    "darkMode")
+                                                                ? Colors.white70
+                                                                : const Color
+                                                                    .fromARGB(
+                                                                    73,
+                                                                    0,
+                                                                    0,
+                                                                    0)),
+                                                      ),
+                                                    ),
                                             ),
                                           ),
                                         ],
@@ -935,6 +964,82 @@ class _SurahListPageState extends State<SurahListPage> {
                                     shrinkWrap: true,
                                     physics: const ClampingScrollPhysics(),
                                     children: [
+                                      if (pageNumbers.isNotEmpty)
+                                        Container(
+                                          child:  Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text("page".tr()),
+                                          ),
+                                        ),
+                                      ListView.separated(
+                                          reverse: true,
+                                          itemBuilder: (ctx, index) {
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.all(5.0),
+                                              child: EasyContainer(
+                                                color:
+                                                    goldColor.withOpacity(.05),
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      CupertinoPageRoute(
+                                                          builder:
+                                                              (builder) =>
+                                                                  BlocProvider(
+                                                                    create: (context) =>
+                                                                        QuranPagePlayerBloc(),
+                                                                    child: QuranDetailsPage(
+                                                                        shouldHighlightSura:
+                                                                            true,
+                                                                        shouldHighlightText:
+                                                                            false,
+                                                                        highlightVerse:
+                                                                            "",
+                                                                        jsonData:
+                                                                            widget
+                                                                                .jsonData,
+                                                                        quarterJsonData:
+                                                                            widget
+                                                                                .quarterjsonData,
+                                                                        pageNumber:
+                                                                            pageNumbers[index]),
+                                                                  )));
+                                                },
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(pageNumbers[index]
+                                                          .toString()),
+                                                      Text(quran.getSurahName(
+                                                          quran.getPageData(
+                                                                  pageNumbers[
+                                                                      index])[0]
+                                                              ["surah"]))
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          separatorBuilder: (context, index) =>
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 8.0.w),
+                                                child: Divider(
+                                                  color: Colors.grey
+                                                      .withOpacity(.5),
+                                                ),
+                                              ),
+                                          itemCount: pageNumbers.length),
                                       ListView.separated(
                                         shrinkWrap: true,
                                         physics:
@@ -1043,16 +1148,17 @@ class _SurahListPageState extends State<SurahListPage> {
                                                           .withOpacity(.8)),
                                                 ),
                                                 trailing: Text(
-                                                  suraNameTranslated,
+                                                  "$suraNumber",
                                                   style: TextStyle(
                                                       // fontWeight: FontWeight.bold,
-                                                      color:
-                                                          getValue("darkMode")
-                                                              ? Colors.white70
-                                                              : Colors.black54,
+                                                      color: getValue(
+                                                              "darkMode")
+                                                          ? Colors.white70
+                                                          : Colors
+                                                              .black, //fontWeight: FontWeight.bold,
                                                       fontSize:
-                                                          18.sp, // Text color
-                                                      fontFamily: "me"),
+                                                          28.sp, // Text color
+                                                      fontFamily: "arsura"),
                                                 ),
                                                 onTap: () async {
                                                   await Navigator.push(

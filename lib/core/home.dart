@@ -45,10 +45,10 @@ import 'package:nabd/core/radio_page/radio_page.dart';
 import 'package:nabd/core/shortvideos/shortvideos.dart';
 import 'package:nabd/core/sibha/sibha_page.dart';
 import 'package:nabd/core/support/support_page.dart';
-import 'package:periodic_alarm/model/alarms_model.dart';
-import 'package:periodic_alarm/periodic_alarm.dart';
-import 'package:periodic_alarm/services/alarm_notification.dart';
-import 'package:periodic_alarm/services/alarm_storage.dart';
+// import 'package:periodic_alarm/model/alarms_model.dart';
+// import 'package:periodic_alarm/periodic_alarm.dart';
+// import 'package:periodic_alarm/services/alarm_notification.dart';
+// import 'package:periodic_alarm/services/alarm_storage.dart';
 import 'package:quran/quran.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,7 +58,7 @@ import 'package:superellipse_shape/superellipse_shape.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:after_layout/after_layout.dart';
 import 'package:workmanager/workmanager.dart';
-import 'package:periodic_alarm/src/android_alarm.dart';
+// import 'package:periodic_alarm/src/android_alarm.dart';
 import 'package:flutter/material.dart';
 
 final qurapPagePlayerBloc = QuranPagePlayerBloc();
@@ -140,86 +140,86 @@ class _HomeState extends State<Home>
 
   late Timer _timer;
   // static StreamSubscription<AlarmSettings>? subscription;
-  configureSelectNotificationSubject() {
-    _subscription2 ??= AlarmNotification.selectNotificationStream.stream
-        .listen((String? payload) async {
-      print("payload");
-      print(payload);
-      List<String> payloads = [];
-      AlarmModel? alarmModel;
-      payloads.add(payload!);
-      for (var element in payloads) {
-        if (int.tryParse(element) != null) {
-          id = int.tryParse(element);
-          alarmModel = PeriodicAlarm.getAlarmWithId(id!);
-          print(id);
+  // configureSelectNotificationSubject() {
+  //   _subscription2 ??= AlarmNotification.selectNotificationStream.stream
+  //       .listen((String? payload) async {
+  //     print("payload");
+  //     print(payload);
+  //     List<String> payloads = [];
+  //     AlarmModel? alarmModel;
+  //     payloads.add(payload!);
+  //     for (var element in payloads) {
+  //       if (int.tryParse(element) != null) {
+  //         id = int.tryParse(element);
+  //         alarmModel = PeriodicAlarm.getAlarmWithId(id!);
+  //         print(id);
 
-          setState(() {});
-        } else if (element == 'Stop') {
-          print(id);
+  //         setState(() {});
+  //       } else if (element == 'Stop') {
+  //         print(id);
 
-          PeriodicAlarm.stop(id!);
-        } else if (element == "") {
-          print("------------------ ERROR");
-          openAlarmScreen();
-        }
-      }
-    });
-  }
+  //         PeriodicAlarm.stop(id!);
+  //       } else if (element == "") {
+  //         print("------------------ ERROR");
+  //         openAlarmScreen();
+  //       }
+  //     }
+  //   });
+  // }
 
   var _today = HijriCalendar.now();
-  Future<void> setAlarm(int id, DateTime dt, String azan, String locale) async {
-    AlarmModel alarmModel = AlarmModel(
-        id: id,
-        dateTime: dt,
-        assetAudioPath: 'assets/audio/azan.mp3',
-        notificationTitle: locale == "ar" ? "المؤزن" : "Prayer Alarm",
-        notificationBody: locale == "ar"
-            ? "حان الأن موعد أذان ${prayers.where((element) => element[0] == azan).first[1]}"
-            : 'Now is $azan time',
-        // monday: true,
-        // tuesday: true,
-        // wednesday: true,
-        // thursday: true,
-        // friday: true,
-        active: false,
-        musicTime: 0,
-        loopAudio: false,
-        incMusicTime: 0,
-        musicVolume: .5,
-        incMusicVolume: .5);
+  // Future<void> setAlarm(int id, DateTime dt, String azan, String locale) async {
+  //   AlarmModel alarmModel = AlarmModel(
+  //       id: id,
+  //       dateTime: dt,
+  //       assetAudioPath: 'assets/audio/azan.mp3',
+  //       notificationTitle: locale == "ar" ? "المؤزن" : "Prayer Alarm",
+  //       notificationBody: locale == "ar"
+  //           ? "حان الأن موعد أذان ${prayers.where((element) => element[0] == azan).first[1]}"
+  //           : 'Now is $azan time',
+  //       // monday: true,
+  //       // tuesday: true,
+  //       // wednesday: true,
+  //       // thursday: true,
+  //       // friday: true,
+  //       active: false,
+  //       musicTime: 0,
+  //       loopAudio: false,
+  //       incMusicTime: 0,
+  //       musicVolume: .5,
+  //       incMusicVolume: .5);
 
-    if (alarmModel.days.contains(true)) {
-      PeriodicAlarm.setPeriodicAlarm(alarmModel: alarmModel);
-    } else {
-      PeriodicAlarm.setOneAlarm(alarmModel: alarmModel);
-    }
-  }
+  //   if (alarmModel.days.contains(true)) {
+  //     PeriodicAlarm.setPeriodicAlarm(alarmModel: alarmModel);
+  //   } else {
+  //     PeriodicAlarm.setOneAlarm(alarmModel: alarmModel);
+  //   }
+  // }
 
-  openAlarmScreen() async {
-    Future.delayed(const Duration(seconds: 1), () async {
-      var alarms = await AlarmStorage.getAlarmRinging();
-      if (alarms.isNotEmpty) {
-        Navigator.of(context).push(
-            CupertinoPageRoute(builder: (builder) => const AlarmScreen()));
-      }
-    });
-  }
+  // openAlarmScreen() async {
+  //   Future.delayed(const Duration(seconds: 1), () async {
+  //     var alarms = await AlarmStorage.getAlarmRinging();
+  //     if (alarms.isNotEmpty) {
+  //       Navigator.of(context).push(
+  //           CupertinoPageRoute(builder: (builder) => const AlarmScreen()));
+  //     }
+  //   });
+  // }
 
-  onRingingControl() {
-    _subscription = PeriodicAlarm.ringStream.stream.listen(
-      (alarmModel) async {
-        print("start listening for");
-        openAlarmScreen();
-        // if (alarmModel.days.contains(true)) {
-        //   alarmModel.setDateTime = alarmModel.dateTime.add(Duration(days: 1));
-        //   PeriodicAlarm.setPeriodicAlarm(alarmModel: alarmModel);
-        // }
-      },
-    );
+  // onRingingControl() {
+  //   _subscription = PeriodicAlarm.ringStream.stream.listen(
+  //     (alarmModel) async {
+  //       print("start listening for");
+  //       openAlarmScreen();
+  //       // if (alarmModel.days.contains(true)) {
+  //       //   alarmModel.setDateTime = alarmModel.dateTime.add(Duration(days: 1));
+  //       //   PeriodicAlarm.setPeriodicAlarm(alarmModel: alarmModel);
+  //       // }
+  //     },
+  //   );
 
-    setState(() {});
-  }
+  //   setState(() {});
+  // }
 
   showDialogForRate() async {
     if (getValue("timesOfAppOpen") > 2 && getValue("showedDialog") == false) {
@@ -506,14 +506,14 @@ appUpdateInfo.updateAvailability ==
         if (prayerDateTime.isBefore(DateTime.now())) {
         } else {
           // setAlarm(dateTime.month * 100 + dateTime.day+prayers.indexOf((element) => element[0]==prayer), prayerDateTime,prayer, context.locale.languageCode);
-          setAlarm(
-              (prayerDateTime.month * prayerDateTime.month) * 10 +
-                  (prayerDateTime.day * prayerDateTime.day) * 10 +
-                  (prayers.indexWhere((element) => element[0] == prayer) + 1) *
-                      10,
-              prayerDateTime,
-              prayer,
-              context.locale.languageCode);
+          // setAlarm(
+          //     (prayerDateTime.month * prayerDateTime.month) * 10 +
+          //         (prayerDateTime.day * prayerDateTime.day) * 10 +
+          //         (prayers.indexWhere((element) => element[0] == prayer) + 1) *
+          //             10,
+          //     prayerDateTime,
+          //     prayer,
+          //     context.locale.languageCode);
         }
 
         // var alarmSettings = AlarmSettings(
@@ -587,9 +587,9 @@ appUpdateInfo.updateAvailability ==
 
   String currentCountry = "";
   getAlarms() async {
-    List<AlarmModel> alarms = AlarmStorage.getSavedAlarms();
-    print("alarms.length");
-    print(alarms.length);
+    // List<AlarmModel> alarms = AlarmStorage.getSavedAlarms();
+    // print("alarms.length");
+    // print(alarms.length);
   }
 
   updateDateData() async {
@@ -1900,7 +1900,7 @@ class AlarmScreen extends StatefulWidget {
 
 class _AlarmScreenState extends State<AlarmScreen> {
   StreamSubscription? _subscription2;
-  AlarmModel? alarmModel;
+  // AlarmModel? alarmModel;
   bool isLoading = true;
   @override
   void initState() {
@@ -1914,10 +1914,10 @@ class _AlarmScreenState extends State<AlarmScreen> {
   }
 
   getAlarm() async {
-    List<String> alarms = await AlarmStorage.getAlarmRinging();
-    AlarmModel? alarm = AlarmStorage.getAlarm(int.parse(alarms.last));
+    // List<String> alarms = await AlarmStorage.getAlarmRinging();
+    // AlarmModel? alarm = AlarmStorage.getAlarm(int.parse(alarms.last));
 
-    alarmModel = alarm;
+    // alarmModel = alarm;
 
     setState(() {
       isLoading = false;
@@ -1946,8 +1946,8 @@ class _AlarmScreenState extends State<AlarmScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Center(
                             child: Text(
-                              alarmModel!.notificationTitle!,
-                              style: TextStyle(
+                              // alarmModel!.notificationTitle!,
+"",                              style: TextStyle(
                                   color: Colors.white, fontSize: 22.sp),
                             ),
                           ),
@@ -1956,7 +1956,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Center(
                             child: Text(
-                              alarmModel!.notificationBody!,
+                              "armModel!.notificationBody!",
                               style: TextStyle(
                                   color: Colors.white, fontSize: 22.sp),
                             ),
@@ -1970,7 +1970,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                 customPadding: const EdgeInsets.symmetric(
                                     horizontal: 30, vertical: 15),
                                 onTap: () {
-                                  PeriodicAlarm.stop(alarmModel!.id);
+                                  // PeriodicAlarm.stop(alarmModel!.id);
                                   Navigator.of(context)
                                       .popUntil(ModalRoute.withName('/'));
                                 },
