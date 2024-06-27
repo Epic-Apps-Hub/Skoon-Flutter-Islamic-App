@@ -359,176 +359,176 @@ if(isQCF==false) {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
-                        onTap: () {
-                          showMaterialModalBottomSheet(
-                              enableDrag: true,
-                              animationCurve: Curves.easeInOutQuart,
-                              elevation: 0,
-                              bounce: true,
-                              duration: const Duration(milliseconds: 200),
-                              backgroundColor: backgroundColor,
-                              context: context,
-                              builder: (builder) {
-                                return Directionality(
-                                  textDirection: m.TextDirection.rtl,
-                                  child: SizedBox(
-                                    height:
-                                        MediaQuery.of(context).size.height * .8,
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "choosetranslation".tr(),
-                                            style: TextStyle(
-                                                color: primaryColor,
-                                                fontSize: 22.sp,
-                                                fontFamily: context.locale
-                                                            .languageCode ==
-                                                        "ar"
-                                                    ? "cairo"
-                                                    : "roboto"),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: ListView.separated(
-                                              separatorBuilder:
-                                                  ((context, index) {
-                                                return const Divider();
-                                              }),
-                                              itemCount:
-                                                  translationDataList.length,
-                                              itemBuilder: (c, i) {
-                                                return Container(
-                                                  color: i ==
-                                                          getValue(
-                                                              "addTafseerValue")
-                                                      ? Colors.blueGrey
-                                                          .withOpacity(.1)
-                                                      : Colors.transparent,
-                                                  child: InkWell(
-                                                    onTap: () async {
-                                                      if (isDownloading !=
-                                                          translationDataList[i]
-                                                              .url) {
-                                                        if (File("${appDir!.path}/${translationDataList[i].typeText}.json")
-                                                                .existsSync() ||
-                                                            i == 0 ||
-                                                            i == 1) {
-                                                          updateValue(
-                                                              "addTafseerValue",
-                                                              i);
-                                                          setState(() {});
-                                                        } else {
-                                                          PermissionStatus
-                                                              status =
-                                                              await Permission
-                                                                  .storage
-                                                                  .request();
-                                                          //PermissionStatus status1 = await Permission.accessMediaLocation.request();
-                                                          PermissionStatus
-                                                              status2 =
-                                                              await Permission
-                                                                  .manageExternalStorage
-                                                                  .request();
-                                                          print(
-                                                              'status $status   -> $status2');
-                                                          if (status
-                                                                  .isGranted &&
-                                                              status2
-                                                                  .isGranted) {
-                                                            print(true);
-                                                          } else if (status
-                                                                  .isPermanentlyDenied ||
-                                                              status2
-                                                                  .isPermanentlyDenied) {
-                                                            await openAppSettings();
-                                                          } else if (status
-                                                              .isDenied) {
-                                                            print(
-                                                                'Permission Denied');
-                                                          }
-
-                                                          await Dio().download(
-                                                              translationDataList[
-                                                                      i]
-                                                                  .url,
-                                                              "${appDir!.path}/${translationDataList[i].typeText}.json");
-                                                          updateValue(
-                                                              "addTafseerValue",
-                                                              i);
-                                                        }
-                                                        setState(() {});
-                                                      }
-                                                      getTranslationData();
-
-                                                      setState(() {});
-
-                                                      // setStatee(() {});
-                                                      if (mounted) {
-                                                        Navigator.pop(context);
-                                                      }
-                                                    },
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal:
-                                                                  18.0.w,
-                                                              vertical: 2.h),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            translationDataList[
-                                                                    i]
-                                                                .typeTextInRelatedLanguage,
-                                                            style: TextStyle(
-                                                                color: primaryColor
-                                                                    .withOpacity(
-                                                                        .9),
-                                                                fontSize:
-                                                                    14.sp),
-                                                          ),
-                                                          isDownloading !=
-                                                                  translationDataList[
-                                                                          i]
-                                                                      .url
-                                                              ? Icon(
-                                                                  i == 0 ||
-                                                                          i == 1
-                                                                      ? MfgLabs
-                                                                          .hdd
-                                                                      : File("${appDir!.path}/${translationDataList[i].typeText}.json")
-                                                                              .existsSync()
-                                                                          ? Icons
-                                                                              .done
-                                                                          : Icons
-                                                                              .cloud_download,
-                                                                  color: secondaryColors[
-                                                                      indexOfTheme],
-                                                                  size: 18.sp,
-                                                                )
-                                                              : CircularProgressIndicator(
-                                                                  strokeWidth:
-                                                                      2,
-                                                                  color: secondaryColors[
-                                                                      indexOfTheme],
-                                                                )
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              }),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              });
-                        },
+                        // onTap: () {
+                        //   showMaterialModalBottomSheet(
+                        //       enableDrag: true,
+                        //       animationCurve: Curves.easeInOutQuart,
+                        //       elevation: 0,
+                        //       bounce: true,
+                        //       duration: const Duration(milliseconds: 200),
+                        //       backgroundColor: backgroundColor,
+                        //       context: context,
+                        //       builder: (builder) {
+                        //         return Directionality(
+                        //           textDirection: m.TextDirection.rtl,
+                        //           child: SizedBox(
+                        //             height:
+                        //                 MediaQuery.of(context).size.height * .8,
+                        //             child: Column(
+                        //               children: [
+                        //                 Padding(
+                        //                   padding: const EdgeInsets.all(8.0),
+                        //                   child: Text(
+                        //                     "choosetranslation".tr(),
+                        //                     style: TextStyle(
+                        //                         color: primaryColor,
+                        //                         fontSize: 22.sp,
+                        //                         fontFamily: context.locale
+                        //                                     .languageCode ==
+                        //                                 "ar"
+                        //                             ? "cairo"
+                        //                             : "roboto"),
+                        //                   ),
+                        //                 ),
+                        //                 Expanded(
+                        //                   child: ListView.separated(
+                        //                       separatorBuilder:
+                        //                           ((context, index) {
+                        //                         return const Divider();
+                        //                       }),
+                        //                       itemCount:
+                        //                           translationDataList.length,
+                        //                       itemBuilder: (c, i) {
+                        //                         return Container(
+                        //                           color: i ==
+                        //                                   getValue(
+                        //                                       "addTafseerValue")
+                        //                               ? Colors.blueGrey
+                        //                                   .withOpacity(.1)
+                        //                               : Colors.transparent,
+                        //                           child: InkWell(
+                        //                             onTap: () async {
+                        //                               if (isDownloading !=
+                        //                                   translationDataList[i]
+                        //                                       .url) {
+                        //                                 if (File("${appDir!.path}/${translationDataList[i].typeText}.json")
+                        //                                         .existsSync() ||
+                        //                                     i == 0 ||
+                        //                                     i == 1) {
+                        //                                   updateValue(
+                        //                                       "addTafseerValue",
+                        //                                       i);
+                        //                                   setState(() {});
+                        //                                 } else {
+                        //                                   PermissionStatus
+                        //                                       status =
+                        //                                       await Permission
+                        //                                           .storage
+                        //                                           .request();
+                        //                                   //PermissionStatus status1 = await Permission.accessMediaLocation.request();
+                        //                                   PermissionStatus
+                        //                                       status2 =
+                        //                                       await Permission
+                        //                                           .manageExternalStorage
+                        //                                           .request();
+                        //                                   print(
+                        //                                       'status $status   -> $status2');
+                        //                                   if (status
+                        //                                           .isGranted &&
+                        //                                       status2
+                        //                                           .isGranted) {
+                        //                                     print(true);
+                        //                                   } else if (status
+                        //                                           .isPermanentlyDenied ||
+                        //                                       status2
+                        //                                           .isPermanentlyDenied) {
+                        //                                     await openAppSettings();
+                        //                                   } else if (status
+                        //                                       .isDenied) {
+                        //                                     print(
+                        //                                         'Permission Denied');
+                        //                                   }
+                        //
+                        //                                   await Dio().download(
+                        //                                       translationDataList[
+                        //                                               i]
+                        //                                           .url,
+                        //                                       "${appDir!.path}/${translationDataList[i].typeText}.json");
+                        //                                   updateValue(
+                        //                                       "addTafseerValue",
+                        //                                       i);
+                        //                                 }
+                        //                                 setState(() {});
+                        //                               }
+                        //                               getTranslationData();
+                        //
+                        //                               setState(() {});
+                        //
+                        //                               // setStatee(() {});
+                        //                               if (mounted) {
+                        //                                 Navigator.pop(context);
+                        //                               }
+                        //                             },
+                        //                             child: Padding(
+                        //                               padding:
+                        //                                   EdgeInsets.symmetric(
+                        //                                       horizontal:
+                        //                                           18.0.w,
+                        //                                       vertical: 2.h),
+                        //                               child: Row(
+                        //                                 mainAxisAlignment:
+                        //                                     MainAxisAlignment
+                        //                                         .spaceBetween,
+                        //                                 children: [
+                        //                                   Text(
+                        //                                     translationDataList[
+                        //                                             i]
+                        //                                         .typeTextInRelatedLanguage,
+                        //                                     style: TextStyle(
+                        //                                         color: primaryColor
+                        //                                             .withOpacity(
+                        //                                                 .9),
+                        //                                         fontSize:
+                        //                                             14.sp),
+                        //                                   ),
+                        //                                   isDownloading !=
+                        //                                           translationDataList[
+                        //                                                   i]
+                        //                                               .url
+                        //                                       ? Icon(
+                        //                                           i == 0 ||
+                        //                                                   i == 1
+                        //                                               ? MfgLabs
+                        //                                                   .hdd
+                        //                                               : File("${appDir!.path}/${translationDataList[i].typeText}.json")
+                        //                                                       .existsSync()
+                        //                                                   ? Icons
+                        //                                                       .done
+                        //                                                   : Icons
+                        //                                                       .cloud_download,
+                        //                                           color: secondaryColors[
+                        //                                               indexOfTheme],
+                        //                                           size: 18.sp,
+                        //                                         )
+                        //                                       : CircularProgressIndicator(
+                        //                                           strokeWidth:
+                        //                                               2,
+                        //                                           color: secondaryColors[
+                        //                                               indexOfTheme],
+                        //                                         )
+                        //                                 ],
+                        //                               ),
+                        //                             ),
+                        //                           ),
+                        //                         );
+                        //                       }),
+                        //                 ),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         );
+                        //       });
+                        // },
                         child: Container(
                           width: MediaQuery.of(context).size.width * .9,
                           height: 40.h,

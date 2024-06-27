@@ -82,16 +82,16 @@ dependencies:
   after_layout: ^1.2.0
   snapx_scroll_physics: ^1.0.1
   scrollable_positioned_list:   
-  audioplayers: 
+
   permission_handler:
   flutter_ffmpeg: ^0.4.2
   flutter_local_notifications: ^14.1.1
-  lottie:     # ffmpeg_kit_flutter: 
+  lottie:     # ffmpeg_kit_flutter:
   flutter_media_metadata: ^1.0.0
   uri_to_file: ^0.2.0
   animate_do: 
   back_button_interceptor: 
-  modal_bottom_sheet: 
+  modal_bottom_sheet:
   media_store_plus: ^0.0.7
   syncfusion_flutter_sliders: 20.3.59
   adhan:
@@ -152,7 +152,7 @@ flutter:
     - assets/images/
     - assets/json/
     - assets/translations/
-    - assets/audio/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

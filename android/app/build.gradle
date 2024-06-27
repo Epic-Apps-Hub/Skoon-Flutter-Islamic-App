@@ -27,7 +27,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.google.gms.google-services'
 
   def keystoreProperties = new Properties()
-  def keystorePropertiesFile = rootProject.file('key.properties')
+  def keystorePropertiesFile = rootProject.file('keystore.properties')
   if (keystorePropertiesFile.exists()) {
       keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
   }
@@ -64,6 +64,7 @@ apply plugin: 'com.google.gms.google-services'
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
+
             keyPassword keystoreProperties['keyPassword']
             storeFile file(keystoreProperties['storeFile'])
             storePassword keystoreProperties['storePassword']

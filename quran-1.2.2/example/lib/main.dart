@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:quran/quran.dart' as quran;
 
 void main() {
-  runApp(const MaterialApp(home: QuranExample()));
+  runApp( MaterialApp(home: QuranExample()));
 }
 
 class QuranExample extends StatefulWidget {
-  const QuranExample({Key key}) : super(key: key);
+  const QuranExample({ Key? key}) : super(key: key);
 
   @override
   State<QuranExample> createState() => _QuranExampleState();

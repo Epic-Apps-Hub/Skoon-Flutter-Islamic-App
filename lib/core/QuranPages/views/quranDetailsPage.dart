@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/scheduler.dart';
@@ -651,15 +650,15 @@ class QuranDetailsPageState extends State<QuranDetailsPage> {
                     ..onLongPressCancel = () => setState(() {
                       selectedSpan = "";
                     }),
-                  text: 
+                  text:
                   i == e["start"]
                       ? "${quran.getVerseQCF(e["surah"], i).replaceAll(" ", "").substring(0, 1)}\u200A${quran.getVerseQCF(e["surah"], i).replaceAll(" ", "").substring(1)}"
-                      : 
+                      :
                       quran.getVerseQCF(e["surah"], i).replaceAll(' ', '')
-                      ,  
+                      ,
                       //  i == e["start"]
                       // ? "${quran.getVerseQCF(e["surah"], i).replaceAll(" ", "").substring(0, 1)}\u200A${quran.getVerseQCF(e["surah"], i).replaceAll(" ", "").substring(1).substring(0,  quran.getVerseQCF(e["surah"], i).replaceAll(" ", "").substring(1).length - 1)}"
-                      // : 
+                      // :
                       // quran.getVerseQCF(e["surah"], i).replaceAll(' ', '').substring(0,  quran.getVerseQCF(e["surah"], i).replaceAll(' ', '').length - 1),
                   style: TextStyle(
                     color: bookmarks
@@ -3172,6 +3171,7 @@ class QuranDetailsPageState extends State<QuranDetailsPage> {
     int index = 0;
 
     showMaterialModalBottomSheet(
+
       enableDrag: true,
       duration: const Duration(milliseconds: 600),
       backgroundColor: Colors.transparent,
@@ -3262,7 +3262,7 @@ class QuranDetailsPageState extends State<QuranDetailsPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                   
+
                     SizedBox(
                       height: 230.h,
                       width: MediaQuery.of(context).size.width,
@@ -4941,7 +4941,6 @@ childAspectRatio: 1.8/1                      ),
   bool isDownloading = false;
   Future<void> downloadAndCacheSuraAudio(
       String suraName, int totalVerses, suraNumber, reciterIdentifier) async {
-    final audioPlayer = AudioPlayer();
 
     setState(() {
       isDownloading = true;
