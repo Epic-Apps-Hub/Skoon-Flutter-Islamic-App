@@ -86,9 +86,7 @@ await Firebase.initializeApp(
       path:
           'assets/translations', // <-- change the path of the translation files
       fallbackLocale: const Locale('ar'),
-      child: MultiBlocProvider(providers: [
-        BlocProvider(create: (create) => PlayerBarBloc()),
-      ], child: const MyApp())));
+      child: const MyApp()));
 }
 
 @pragma("vm:entry-point")

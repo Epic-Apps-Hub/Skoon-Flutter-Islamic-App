@@ -129,7 +129,7 @@ class PlayerBlocBloc extends Bloc<PlayerBlocEvent, PlayerBlocState> {
         }
         audioPlayer!.play();
 
-        BlocProvider.of<PlayerBarBloc>(event.buildContext).add(ShowBarEvent());
+        // BlocProvider.of<PlayerBarBloc>(event.buildContext).add(ShowBarEvent());
         emit(PlayerBlocPlaying(
             moshaf: event.moshaf,
             reciter: event.reciter,

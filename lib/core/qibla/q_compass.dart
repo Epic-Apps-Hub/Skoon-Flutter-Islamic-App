@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/core/qibla/qibla_maps.dart';
-import 'package:smooth_compass/utils/src/compass_ui.dart';
+// import 'package:smooth_compass/utils/src/compass_ui.dart';
 
 class CompassWithQibla extends StatefulWidget {
   const CompassWithQibla({super.key});
@@ -51,53 +51,54 @@ class _CompassWithQiblaState extends State<CompassWithQibla> {
           ),
         ),
         body: Center(
-          child: Column(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const QiblahMaps(),
+              // const QiblahMaps(),
               SizedBox(
                 height: 30.h,
               ),
-              SmoothCompass(
-                isQiblahCompass: true,
-                compassBuilder: (context, compassData, compassAsset) {
-                  return AnimatedRotation(
-                    duration: const Duration(milliseconds: 400),
-                    turns: compassData?.data?.turns ?? 0 / 360,
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * .8,
-                      height: MediaQuery.of(context).size.width * .8,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            top: 0,
-                            right: 0,
-                            child: Image.asset(
-                              "assets/images/compassn.png",
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 20.h,
-                            left: 0,
-                            top: 20.h,
-                            right: 0,
-                            child: AnimatedRotation(
-                                duration: const Duration(milliseconds: 400),
-                                turns: (compassData?.data?.qiblahOffset ?? 0) /
-                                    360,
-                                child: SvgPicture.asset(
-                                  "assets/images/needle.svg",
-                                  fit: BoxFit.fitHeight,
-                                )),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
+              // SmoothCompass(
+              //   isQiblahCompass: true,
+              //   compassBuilder: (context, compassData, compassAsset) {
+              //     return AnimatedRotation(
+              //       duration: const Duration(milliseconds: 400),
+              //       turns: compassData?.data?.turns ?? 0 / 360,
+              //       child: SizedBox(
+              //         width: MediaQuery.of(context).size.width * .8,
+              //         height: MediaQuery.of(context).size.width * .8,
+              //         child: Stack(
+              //           children: [
+              //             Positioned(
+              //               bottom: 0,
+              //               left: 0,
+              //               top: 0,
+              //               right: 0,
+              //               child: Image.asset(
+              //                 "assets/images/compassn.png",
+              //                 fit: BoxFit.fill,
+              //               ),
+              //             ),
+              //             Positioned(
+              //               bottom: 20.h,
+              //               left: 0,
+              //               top: 20.h,
+              //               right: 0,
+              //               child: AnimatedRotation(
+              //                   duration: const Duration(milliseconds: 400),
+              //                   turns: (compassData?.data?.qiblahOffset ?? 0) /
+              //                       360,
+              //                   child: SvgPicture.asset(
+              //                     "assets/images/needle.svg",
+              //                     fit: BoxFit.fitHeight,
+              //                   )),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // ),
+   Text("Under Maintinance",style: TextStyle(color: Colors.amber),)
             ],
           ),
         ),

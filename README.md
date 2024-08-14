@@ -28,3 +28,5 @@ To get started with the Skoon app, follow these steps:
 1. **Clone the repository**
    ```sh
    git clone https://github.com/Epic-Apps-Hub/Skoon-Flutter-Islamic-App
+2. **Use The Right Version**
+   Make sure to begin using flutter version 3.19.5, will be updated perdiocally

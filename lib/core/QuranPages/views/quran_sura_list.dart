@@ -1147,9 +1147,9 @@ class _SurahListPageState extends State<SurahListPage> {
                                                       color: Colors.grey
                                                           .withOpacity(.8)),
                                                 ),
-                                                trailing: Text(
+                                                trailing: RichText(text: TextSpan(text: 
                                                   "$suraNumber",
-                                                  style: TextStyle(
+                                                      style: TextStyle(
                                                       // fontWeight: FontWeight.bold,
                                                       color: getValue(
                                                               "darkMode")
@@ -1159,6 +1159,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                                       fontSize:
                                                           28.sp, // Text color
                                                       fontFamily: "arsura"),
+                                                  ),
+                                              
                                                 ),
                                                 onTap: () async {
                                                   await Navigator.push(

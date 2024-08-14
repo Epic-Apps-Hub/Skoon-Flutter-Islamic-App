@@ -59,9 +59,9 @@ class HeaderWidget extends StatelessWidget {
                       fontFamily: "UthmanicHafs13"),
                 ),
                 Center(
-                    child: Text(
-                  textAlign: TextAlign.center,
-                  "${e["surah"]}",
+                    child: RichText(
+                      text: TextSpan(
+text:    "${e["surah"]}",
                   style: TextStyle(
                     fontFamily: "arsura",
                     fontSize: 25.sp,
@@ -70,6 +70,10 @@ class HeaderWidget extends StatelessWidget {
                             .withOpacity(.9)
                         : primaryColors[indexOfTheme].withOpacity(.9),
                   ),
+
+                      ),
+                  textAlign: TextAlign.center,
+               
                 )),
                 Text(
                   "ترتيبها\n${e["surah"]}",

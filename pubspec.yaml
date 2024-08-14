@@ -1,6 +1,10 @@
 name: nabd
 description: A new Flutter project.
 
+
+
+
+
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -46,7 +50,7 @@ dependencies:
   fluttericon: 
   google_maps_flutter:
   geolocator:
-  flutter_qiblah:
+  # flutter_qiblah:
   flutter_svg:
   auto_size_text: ^3.0.0
   animations:
@@ -91,7 +95,7 @@ dependencies:
   uri_to_file: ^0.2.0
   animate_do: 
   back_button_interceptor: 
-  modal_bottom_sheet:
+  modal_bottom_sheet: ^3.0.0
   media_store_plus: ^0.0.7
   syncfusion_flutter_sliders: 20.3.59
   adhan:
@@ -100,7 +104,7 @@ dependencies:
   flutter_colorpicker: ^1.0.3
   arabic_roman_conv: ^0.1.0-dev.2
   chewie:
-  smooth_compass: 2.0.17
+  # smooth_compass: 2.0.17
   radio_player:
   in_app_review:
   circular_progress_bar: ^0.0.4

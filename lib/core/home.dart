@@ -230,15 +230,15 @@ class _HomeState extends State<Home>
     }
   }
 checkInAppUpdate()async{
-  AppUpdateInfo appUpdateInfo=
-await InAppUpdate.checkForUpdate();
-appUpdateInfo.updateAvailability ==
-            UpdateAvailability.updateAvailable
-        ? () async{
-        await    InAppUpdate.performImmediateUpdate()
-                .catchError((e) => print(e));
-          }
-        : null;
+//   AppUpdateInfo appUpdateInfo=
+// await InAppUpdate.checkForUpdate();
+// appUpdateInfo.updateAvailability ==
+//             UpdateAvailability.updateAvailable
+//         ? () async{
+//         await    InAppUpdate.performImmediateUpdate()
+//                 .catchError((e) => print(e));
+//           }
+//         : null;
 }
   @override
   void initState() {showDialogForRate();checkInAppUpdate();
