@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nabd/Core/audiopage/models/reciter.dart';
-import 'package:nabd/Core/home.dart';
+// import 'package:nabd/Core/home.dart';r
+import 'package:nabd/core/home.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'package:bloc/bloc.dart';
@@ -129,7 +130,7 @@ class PlayerBlocBloc extends Bloc<PlayerBlocEvent, PlayerBlocState> {
         }
         audioPlayer!.play();
 
-        // BlocProvider.of<PlayerBarBloc>(event.buildContext).add(ShowBarEvent());
+        playerbarBloc.add(ShowBarEvent());
         emit(PlayerBlocPlaying(
             moshaf: event.moshaf,
             reciter: event.reciter,

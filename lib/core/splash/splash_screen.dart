@@ -50,25 +50,12 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushAndRemoveUntil(
         context,
         CupertinoPageRoute(
-            builder: (builder) => BlocProvider(
-                  create: (xc) => playerPageBloc,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      const Home(),
-                      MultiBlocProvider(
-                        providers: [
-                          BlocProvider(
-                              create: (create) =>
-                                  BlocProvider.of<PlayerBarBloc>(context)),
-                          BlocProvider(create: (create) => playerPageBloc),
-                        ],
-                        child: const PlayerBar(),
-                      )
+            builder: (builder) => const Home(),
+                      
                       // Container(height: 100,width: 100,color: Colors.amber,)
-                    ],
+                  
                   ),
-                )),
+              
         (route) => false);
   }
 

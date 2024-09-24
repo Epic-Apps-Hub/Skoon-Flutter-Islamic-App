@@ -362,7 +362,9 @@ class _MyAppState extends State<MyApp> {
     //print(context.locale.toLanguageTag());
     return ScreenUtilInit(
         designSize: const Size(392.72727272727275, 800.7272727272727),
-        builder: (context, child) =>   MaterialApp(
+        builder: (context, child) =>   BlocProvider(
+                            create: (context) => playerbarBloc,
+                            child:  MaterialApp(
                           debugShowCheckedModeBanner: false,
                           title: 'Skoon',
                           localizationsDelegates: context.localizationDelegates,
@@ -374,6 +376,7 @@ class _MyAppState extends State<MyApp> {
                                 : "roboto",
                             primarySwatch: Colors.blue,
                           ),
-                          home:const SplashScreen()));
+                          home:SplashScreen(),
+                          )));
   }
 }

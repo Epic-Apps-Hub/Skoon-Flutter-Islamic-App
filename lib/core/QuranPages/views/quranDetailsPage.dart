@@ -726,12 +726,14 @@ class QuranDetailsPageState extends State<QuranDetailsPage> {
                                                                   : primaryColors[
                                                                       getValue(
                                                                           "quranPageolorsIndex")],
-                                                              height: (index ==
+                                                              height:
+                                                               (index ==
                                                                           1 ||
                                                                       index ==
                                                                           2)
                                                                   ? 2.h
-                                                                  : 1.95.h,
+                                                                  : 1.95.h
+                                                                  ,
                                                               letterSpacing:
                                                                   0.w,
                                                               wordSpacing: 0,
@@ -1175,10 +1177,12 @@ class QuranDetailsPageState extends State<QuranDetailsPage> {
                                                                         color: primaryColors[
                                                                             getValue("quranPageolorsIndex")],
 // letterSpacing: .05,
-                                                                        height: (index == 1 ||
+                                                                        height:
+                                                                         (index == 1 ||
                                                                                 index == 2)
                                                                             ? 2.h
-                                                                            : 1.95.h,
+                                                                            : 1.95.h
+                                                                            ,
                                                                         letterSpacing:
                                                                             0.w,
                                                                         // fontSize: 22.sp,
