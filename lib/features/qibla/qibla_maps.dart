@@ -8,7 +8,7 @@
 // // import 'package:flutter_qiblah_example/location_error_widget.dart';
 // import 'package:geolocator/geolocator.dart';
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
-// import 'package:nabd/core/qibla/qibla_compass.dart';
+// import 'package:nabd/features/qibla/qibla_compass.dart';
 // import 'package:superellipse_shape/superellipse_shape.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'dart:ui' as ui;

@@ -1,7 +1,6 @@
 // import 'package:freeloot/consts.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:hive/hive.dart';
 // import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler( message) async {

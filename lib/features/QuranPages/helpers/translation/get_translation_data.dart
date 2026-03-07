@@ -1,28 +1,26 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/services.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/translations/muyassar.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/translations/sahih_english.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/translation_info.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart';
+import 'package:nabd/features/QuranPages/helpers/translation/translations/muyassar.dart';
+import 'package:nabd/features/QuranPages/helpers/translation/translations/sahih_english.dart';
+import 'package:nabd/features/QuranPages/helpers/translation/translation_info.dart';
+import 'package:nabd/features/QuranPages/helpers/translation/translationdata.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:quran/quran.dart' as q;
-String getVerseTranslationForVerseByVerse(var data,
-    int surahNumber, int verseNumber, TranslationData translation,
-    {bool verseEndSymbol = false})  {
+
+String getVerseTranslationForVerseByVerse(
+    var data, int surahNumber, int verseNumber, TranslationData translation,
+    {bool verseEndSymbol = false}) {
   List<dynamic> translationDataList = [];
   if (translation.typeAsEnumValue == Translation.ar_muyassar) {
     translationDataList = muyassar;
-  }else if(translation.typeAsEnumValue == Translation.en_sahih){
-        translationDataList = en_sahih;
-
+  } else if (translation.typeAsEnumValue == Translation.en_sahih) {
+    translationDataList = en_sahih;
   } else {
     // File file = File("${appDir.path}/${translation.typeText}.json");
 
     // String jsonData = await file.readAsString();
     // translationDataList = json.decode(jsonData);
-    translationDataList=data;
+    translationDataList = data;
   }
   String verse = "";
   for (var item in translationDataList) {
@@ -36,7 +34,7 @@ String getVerseTranslationForVerseByVerse(var data,
   if (verse == "") {
     return "";
   }
-print(verse);
+  print(verse);
   return verse.replaceAll("<br>", "\n") +
       (verseEndSymbol
           ? q.getVerseEndSymbol(verseNumber, arabicNumeral: false)
@@ -47,12 +45,11 @@ Future<String> getVerseTranslation(
     int surahNumber, int verseNumber, TranslationData translation,
     {bool verseEndSymbol = false}) async {
   List<dynamic> translationDataList = [];
-  Directory appDir=await getTemporaryDirectory();
+  Directory appDir = await getTemporaryDirectory();
   if (translation.typeAsEnumValue == Translation.ar_muyassar) {
     translationDataList = muyassar;
-  }else if(translation.typeAsEnumValue == Translation.en_sahih){
-        translationDataList = en_sahih;
-
+  } else if (translation.typeAsEnumValue == Translation.en_sahih) {
+    translationDataList = en_sahih;
   } else {
     File file = File("${appDir.path}/${translation.typeText}.json");
 

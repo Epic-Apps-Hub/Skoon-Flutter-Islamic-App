@@ -1,25 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:easy_container/easy_container.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:fluttericon/mfg_labs_icons.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart';
-import 'package:nabd/core/QuranPages/helpers/remove_html_tags.dart';
-import 'package:nabd/core/QuranPages/helpers/save_image.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/translation_info.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart';
-import 'package:nabd/core/QuranPages/widgets/bismallah.dart';
-import 'package:nabd/core/QuranPages/widgets/header_widget.dart';
-import 'package:nabd/models/TranslationInfo.dart';
+import 'package:nabd/features/QuranPages/helpers/convertNumberToAr.dart';
+import 'package:nabd/features/QuranPages/helpers/save_image.dart';
+import 'package:nabd/features/QuranPages/helpers/translation/translationdata.dart';
+import 'package:nabd/features/QuranPages/widgets/bismallah.dart';
+import 'package:nabd/features/QuranPages/widgets/header_widget.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import '../helpers/share_image.dart';
 import 'package:quran/quran.dart';
 import 'package:screenshot/screenshot.dart';
@@ -36,15 +29,14 @@ class ScreenShotPreviewPage extends StatefulWidget {
       required this.jsonData,
       required this.firstVerse,
       required this.lastVerse,
-      required this.isQCF
-      });
+      required this.isQCF});
 
   var firstVerse;
   var index;
   var jsonData;
   var lastVerse;
   var surahNumber;
-bool isQCF;
+  bool isQCF;
   @override
   State<ScreenShotPreviewPage> createState() => _ScreenShotPreviewPageState();
 }
@@ -57,25 +49,26 @@ class _ScreenShotPreviewPageState extends State<ScreenShotPreviewPage> {
   var isDownloading = "";
   bool isShooting = false;
   ScreenshotController screenshotController = ScreenshotController();
-  double textSize = 22;late
-bool isQCF;
+  double textSize = 22;
+  late bool isQCF;
   @override
-  void initState() {updateData();
+  void initState() {
+    updateData();
     initialize();
     getTranslationData();
-    
+
     // TODO: implement initState
     super.initState();
   }
-updateData(){
-  setState(() {
-    isQCF=widget.isQCF;
-    textSize=widget.isQCF?19:22;
 
-  });
-}
+  updateData() {
+    setState(() {
+      isQCF = widget.isQCF;
+      textSize = widget.isQCF ? 19 : 22;
+    });
+  }
+
   initialize() async {
-
     appDir = await getTemporaryDirectory();
     getTranslationData();
     if (mounted) {
@@ -102,14 +95,21 @@ updateData(){
         verseNumber <= lastVerseNumber;
         verseNumber++) {
       String centeredSubstringFromV1 = "";
-      String verseText =isQCF? getVerseQCF(surahNumber, verseNumber):getVerse(surahNumber, verseNumber);
+      String verseText = isQCF
+          ? getVerseQCF(surahNumber, verseNumber)
+          : getVerse(surahNumber, verseNumber);
       if (verseNumber == firstVerseNumber) {
         // print("true");
         // verseText.replaceFirst(" ", "\n");
         if (verseText.length > 15 ||
             firstVerseNumber != lastVerseNumber && verseText.length > 4) {
-          centeredSubstringFromV1 = isQCF? "${verseText.substring(0, 4)}\n":"";
-          verseText =isQCF? verseText.substring(3, verseText.length):alignment==TextAlign.justify?verseText:  verseText.replaceFirst(" ", "\n");
+          centeredSubstringFromV1 =
+              isQCF ? "${verseText.substring(0, 4)}\n" : "";
+          verseText = isQCF
+              ? verseText.substring(3, verseText.length)
+              : alignment == TextAlign.justify
+                  ? verseText
+                  : verseText.replaceFirst(" ", "\n");
           print(verseText);
           print(centeredSubstringFromV1);
         }
@@ -117,7 +117,7 @@ updateData(){
 
       int pageNumber = getPageNumber(surahNumber, verseNumber);
       // print("QCF_P${pageNumber.toString().padLeft(3, "0")}");
-      if (verseText.length > 15 || firstVerseNumber != lastVerseNumber ) {
+      if (verseText.length > 15 || firstVerseNumber != lastVerseNumber) {
         TextSpan centeredSubstringFromV1Span = TextSpan(
             text: centeredSubstringFromV1,
             style: TextStyle(
@@ -125,8 +125,10 @@ updateData(){
               fontSize: textSize.sp,
               wordSpacing: 0,
               height: 2,
-              letterSpacing:isQCF? -1:0,
-              fontFamily:isQCF? "QCF_P${pageNumber.toString().padLeft(3, "0")}":getValue("selectedFontFamily"),
+              letterSpacing: isQCF ? -1 : 0,
+              fontFamily: isQCF
+                  ? "QCF_P${pageNumber.toString().padLeft(3, "0")}"
+                  : getValue("selectedFontFamily"),
             ),
             children: const [
               WidgetSpan(
@@ -138,7 +140,7 @@ updateData(){
         verseSpans.add(centeredSubstringFromV1Span);
       }
       TextSpan verseSpan = TextSpan(
-        text: verseText+ (isQCF?" ":"") //.replaceAll(' ', ''),
+        text: verseText + (isQCF ? " " : "") //.replaceAll(' ', ''),
         // recognizer: LongPressGestureRecognizer()..onLongPress = () {},
         ,
         style: TextStyle(
@@ -146,26 +148,28 @@ updateData(){
           fontSize: textSize.sp,
           wordSpacing: 0,
           height: 2,
-          letterSpacing:isQCF? -1:0,
-              fontFamily:isQCF? "QCF_P${pageNumber.toString().padLeft(3, "0")}":getValue("selectedFontFamily"),
+          letterSpacing: isQCF ? -1 : 0,
+          fontFamily: isQCF
+              ? "QCF_P${pageNumber.toString().padLeft(3, "0")}"
+              : getValue("selectedFontFamily"),
         ),
       );
 
       verseSpans.add(verseSpan);
 
-if(isQCF==false) {
-  verseSpans.add(
-        TextSpan(
-            locale: const Locale("ar"),
-            text:
-                " ${convertToArabicNumber((verseNumber).toString())} " //               quran.getVerseEndSymbol()
-            ,
-            style: TextStyle(
-                color: secondaryColors[indexOfTheme],
-                fontSize: textSize.sp,
-                fontFamily: "KFGQPC Uthmanic Script HAFS Regular")),
-      );
-}
+      if (isQCF == false) {
+        verseSpans.add(
+          TextSpan(
+              locale: const Locale("ar"),
+              text:
+                  " ${convertToArabicNumber((verseNumber).toString())} " //               quran.getVerseEndSymbol()
+              ,
+              style: TextStyle(
+                  color: secondaryColors[indexOfTheme],
+                  fontSize: textSize.sp,
+                  fontFamily: "KFGQPC Uthmanic Script HAFS Regular")),
+        );
+      }
     }
 
     return verseSpans;
@@ -276,7 +280,8 @@ if(isQCF==false) {
                   ),
                 ),
               ],
-            ),    Row(
+            ),
+            Row(
               children: [
                 Checkbox(
                   fillColor: WidgetStatePropertyAll(
@@ -284,7 +289,7 @@ if(isQCF==false) {
                   checkColor: backgroundColors[getValue("quranPageolorsIndex")],
                   value: isQCF,
                   onChanged: (newValue) {
-                    isQCF=newValue!;
+                    isQCF = newValue!;
                     setState(() {});
                   },
                 ),
@@ -404,7 +409,7 @@ if(isQCF==false) {
                         //                                   getValue(
                         //                                       "addTafseerValue")
                         //                               ? Colors.blueGrey
-                        //                                   .withOpacity(.1)
+                        //                                   .withValues(alpha:.1)
                         //                               : Colors.transparent,
                         //                           child: InkWell(
                         //                             onTap: () async {
@@ -486,7 +491,7 @@ if(isQCF==false) {
                         //                                         .typeTextInRelatedLanguage,
                         //                                     style: TextStyle(
                         //                                         color: primaryColor
-                        //                                             .withOpacity(
+                        //                                             .withValues(alpha:
                         //                                                 .9),
                         //                                         fontSize:
                         //                                             14.sp),
@@ -533,7 +538,7 @@ if(isQCF==false) {
                           width: MediaQuery.of(context).size.width * .9,
                           height: 40.h,
                           decoration: BoxDecoration(
-                              color: Colors.blueGrey.withOpacity(.1),
+                              color: Colors.blueGrey.withValues(alpha: .1),
                               borderRadius: BorderRadius.circular(12)),
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 14.0.w),
@@ -629,7 +634,8 @@ if(isQCF==false) {
                                     boxShadow: [
                                       BoxShadow(
                                           blurRadius: 1,
-                                          color: Colors.grey.withOpacity(.5))
+                                          color:
+                                              Colors.grey.withValues(alpha: .5))
                                     ],
                                     shape: BoxShape.rectangle,
                                     borderRadius: BorderRadius.circular(10),
@@ -663,7 +669,7 @@ if(isQCF==false) {
               child: Container(
                   decoration: BoxDecoration(boxShadow: [
                     BoxShadow(
-                      color: primaryColors[indexOfTheme].withOpacity(.2),
+                      color: primaryColors[indexOfTheme].withValues(alpha: .2),
                       blurRadius: 4,
                       spreadRadius: 4,
                       offset: const Offset(0, 2),
@@ -798,7 +804,7 @@ if(isQCF==false) {
                             if (getValue("showBottomBar") == true)
                               Container(
                                 color: secondaryColors[indexOfTheme]
-                                    .withOpacity(.45),
+                                    .withValues(alpha: .45),
                                 width: double.infinity,
                                 child: Padding(
                                   padding:
@@ -814,7 +820,7 @@ if(isQCF==false) {
                                             fontWeight: FontWeight.bold,
                                             color:
                                                 backgroundColors[indexOfTheme]
-                                                    .withOpacity(.6)),
+                                                    .withValues(alpha: .6)),
                                       ),
                                       Text(
                                         widget.jsonData[widget.surahNumber - 1]
@@ -825,7 +831,7 @@ if(isQCF==false) {
                                             fontFamily: fontFamilies[0],
                                             color:
                                                 backgroundColors[indexOfTheme]
-                                                    .withOpacity(.6)),
+                                                    .withValues(alpha: .6)),
                                       )
                                     ],
                                   ),

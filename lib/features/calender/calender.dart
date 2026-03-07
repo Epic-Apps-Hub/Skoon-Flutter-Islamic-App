@@ -18,13 +18,14 @@ class CalenderPage extends StatefulWidget {
 class _CalenderPageState extends State<CalenderPage> {
   int index = 1;
   var _today = j.HijriCalendar.now().toFormat(
-                    "dd - MMMM - yyyy",
-                  );
+    "dd - MMMM - yyyy",
+  );
   var date = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
+      backgroundColor:
+          getValue("darkMode") ? quranPagesColorDark : quranPagesColorLight,
       appBar: AppBar(
         title: Text(
           "calender".tr(),
@@ -33,9 +34,8 @@ class _CalenderPageState extends State<CalenderPage> {
           ),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor:  getValue("darkMode")
-              ? darkModeSecondaryColor
-              :  blueColor,
+        backgroundColor:
+            getValue("darkMode") ? darkModeSecondaryColor : blueColor,
       ),
       body: ListView(
         children: [
@@ -53,9 +53,10 @@ class _CalenderPageState extends State<CalenderPage> {
               backgroundColor: Colors.white,
               borderRadius: const Radius.circular(10),
               headerTitle: Container(
-                decoration:  BoxDecoration(color:  getValue("darkMode")
-              ? darkModeSecondaryColor
-              : blueColor),
+                decoration: BoxDecoration(
+                    color: getValue("darkMode")
+                        ? darkModeSecondaryColor
+                        : blueColor),
                 child: Row(
                   children: [
                     Expanded(
@@ -71,13 +72,13 @@ class _CalenderPageState extends State<CalenderPage> {
                             child: Text(
                               "calender".tr(),
                               style: TextStyle(
-                                  color: index == 0 
+                                  color: index == 0
                                       ? getValue("darkMode")
-              ? Colors.white
-              :  Colors.black
+                                          ? Colors.white
+                                          : Colors.black
                                       : getValue("darkMode")
-              ? Colors.white24
-              :  Colors.black26,
+                                          ? Colors.white24
+                                          : Colors.black26,
                                   fontSize: 18.sp),
                             ),
                           ),
@@ -99,11 +100,11 @@ class _CalenderPageState extends State<CalenderPage> {
                               style: TextStyle(
                                   color: index == 1
                                       ? getValue("darkMode")
-              ? Colors.white
-              :  Colors.black
+                                          ? Colors.white
+                                          : Colors.black
                                       : getValue("darkMode")
-              ? Colors.white24
-              :  Colors.black26,
+                                          ? Colors.white24
+                                          : Colors.black26,
                                   fontSize: 18.sp),
                             ),
                           ),
@@ -123,9 +124,9 @@ class _CalenderPageState extends State<CalenderPage> {
               onChange: (val) {
                 date = val.date;
 
-                _today = j. HijriCalendar.fromDate(val.date).toFormat(
-                    "dd - MMMM - yyyy",
-                  );
+                _today = j.HijriCalendar.fromDate(val.date).toFormat(
+                  "dd - MMMM - yyyy",
+                );
                 setState(() {});
                 // return val;
               },
@@ -134,25 +135,17 @@ class _CalenderPageState extends State<CalenderPage> {
           SizedBox(
             height: 50.h,
           ),
-          Container(      decoration: BoxDecoration(
-                                                                color:
-                                                                   Colors.white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            20.r)),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(20.r)),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Container(
-                          decoration: BoxDecoration(
-                                                                color:
-                                                                     getValue("darkMode")?quranPagesColorDark:quranPagesColorLight
-                                                                        .withOpacity(
-                                                                            .6),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            20.r)),
+                decoration: BoxDecoration(
+                    color: getValue("darkMode")
+                        ? quranPagesColorDark
+                        : quranPagesColorLight.withValues(alpha: .6),
+                    borderRadius: BorderRadius.circular(20.r)),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -160,15 +153,20 @@ class _CalenderPageState extends State<CalenderPage> {
                     children: [
                       Text(
                         _today,
-                        style: TextStyle(color: getValue("darkMode")
-              ? Colors.white
-              :  Colors.black, fontSize: 20.sp),
+                        style: TextStyle(
+                            color: getValue("darkMode")
+                                ? Colors.white
+                                : Colors.black,
+                            fontSize: 20.sp),
                       ),
                       Text(
-                        DateFormat.yMMMEd(context.locale.languageCode).format(date),
-                        style: TextStyle(color:  getValue("darkMode")
-              ? Colors.white
-              :  Colors.black, fontSize: 20.sp),
+                        DateFormat.yMMMEd(context.locale.languageCode)
+                            .format(date),
+                        style: TextStyle(
+                            color: getValue("darkMode")
+                                ? Colors.white
+                                : Colors.black,
+                            fontSize: 20.sp),
                       ),
                     ],
                   ),

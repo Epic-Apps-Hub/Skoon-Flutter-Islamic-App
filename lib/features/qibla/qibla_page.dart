@@ -5,8 +5,8 @@
 
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:nabd/GlobalHelpers/hive_helper.dart';
-// import 'package:nabd/core/qibla/qibla_compass.dart';
-// import 'package:nabd/core/qibla/qibla_maps.dart';
+// import 'package:nabd/features/qibla/qibla_compass.dart';
+// import 'package:nabd/features/qibla/qibla_maps.dart';
 // class QiblaPage extends StatefulWidget {
 //   const QiblaPage({super.key});
 

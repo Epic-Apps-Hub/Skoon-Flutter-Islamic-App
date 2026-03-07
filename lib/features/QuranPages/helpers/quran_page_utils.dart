@@ -1,4 +1,4 @@
-import 'package:nabd/core/QuranPages/helpers/result.dart';
+import 'package:nabd/features/QuranPages/helpers/result.dart';
 
 class QuranPageUtils {
   static int getTotalCharacters(List<String> stringList) {

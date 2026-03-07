@@ -1,11 +1,8 @@
-import 'dart:developer';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
-import 'package:nabd/GlobalHelpers/hive_helper.dart';
 
 class TrueCallerOverlay extends StatefulWidget {
   const TrueCallerOverlay({Key? key}) : super(key: key);
@@ -73,11 +70,11 @@ class _TrueCallerOverlayState extends State<TrueCallerOverlay> {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                    color: goldColor.withOpacity(.2),
+                    color: goldColor.withValues(alpha: .2),
                     blurRadius: 2,
                     spreadRadius: 2)
               ],
-              color:  quranPagesColorLight,
+              color: quranPagesColorLight,
               image: const DecorationImage(
                   image: AssetImage("assets/images/zikrback.png"),
                   fit: BoxFit.cover,
@@ -85,11 +82,9 @@ class _TrueCallerOverlayState extends State<TrueCallerOverlay> {
               borderRadius: BorderRadius.circular(26.0),
             ),
             child: GestureDetector(
-              onTap: ()async {setState(() {
-                
-              });
-                                       await FlutterOverlayWindow.closeOverlay();
-
+              onTap: () async {
+                setState(() {});
+                await FlutterOverlayWindow.closeOverlay();
               },
               child: Stack(
                 children: [
@@ -111,9 +106,8 @@ class _TrueCallerOverlayState extends State<TrueCallerOverlay> {
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
-                        onPressed: () async {setState(() {
-                          
-                        });
+                        onPressed: () async {
+                          setState(() {});
                           await FlutterOverlayWindow.closeOverlay();
                         },
                         icon: const Icon(

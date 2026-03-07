@@ -1,28 +1,11 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:easy_container/easy_container.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:fluttericon/mfg_labs_icons.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart';
-import 'package:nabd/core/QuranPages/helpers/remove_html_tags.dart';
-import 'package:nabd/core/QuranPages/helpers/save_image.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/translation_info.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart';
-import 'package:nabd/core/QuranPages/widgets/bismallah.dart';
-import 'package:nabd/core/QuranPages/widgets/header_widget.dart';
-import 'package:nabd/core/hadith/models/hadith.dart';
-import 'package:nabd/models/TranslationInfo.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
-import "package:nabd/core/QuranPages/helpers/share_image.dart";
-import 'package:quran/quran.dart';
+import 'package:nabd/features/QuranPages/helpers/save_image.dart';
+import 'package:nabd/features/hadith/models/hadith.dart';
+import "package:nabd/features/QuranPages/helpers/share_image.dart";
 import 'package:screenshot/screenshot.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart' as m;
@@ -110,7 +93,7 @@ class _ScreenShotPreviewPageState extends State<HadithScreenShotPreviewPage> {
               child: Container(
                   decoration: BoxDecoration(boxShadow: [
                     BoxShadow(
-                      color: primaryColors[indexOfTheme].withOpacity(.2),
+                      color: primaryColors[indexOfTheme].withValues(alpha: .2),
                       blurRadius: 4,
                       spreadRadius: 4,
                       offset: const Offset(0, 2),
@@ -333,8 +316,8 @@ class _ScreenShotPreviewPageState extends State<HadithScreenShotPreviewPage> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(color: Colors.white, boxShadow: [
           BoxShadow(
-            color:
-                primaryColors[getValue("quranPageolorsIndex")].withOpacity(.4),
+            color: primaryColors[getValue("quranPageolorsIndex")]
+                .withValues(alpha: .4),
             blurRadius: 1,
             spreadRadius: 1,
             offset: const Offset(1, 0),
@@ -386,7 +369,7 @@ class _ScreenShotPreviewPageState extends State<HadithScreenShotPreviewPage> {
                       //   isShooting = false;
                       // });
                     },
-                    color:  quranPagesColorDark,
+                    color: quranPagesColorDark,
                     child: Text(
                       "savetogallery".tr(),
                       style: TextStyle(

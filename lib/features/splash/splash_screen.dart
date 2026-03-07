@@ -4,16 +4,12 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:just_audio_background/just_audio_background.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/initializeData.dart';
 import 'package:nabd/GlobalHelpers/messaging_helper.dart';
-import 'package:nabd/blocs/bloc/bloc/player_bar_bloc.dart';
-import 'package:nabd/core/audiopage/player/player_bar.dart';
-import 'package:nabd/core/home.dart';
+import 'package:nabd/features/home.dart';
 import 'package:nabd/main.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:media_store_plus/media_store_plus.dart';
@@ -50,12 +46,10 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushAndRemoveUntil(
         context,
         CupertinoPageRoute(
-            builder: (builder) => const Home(),
-                      
-                      // Container(height: 100,width: 100,color: Colors.amber,)
-                  
-                  ),
-              
+          builder: (builder) => const Home(),
+
+          // Container(height: 100,width: 100,color: Colors.amber,)
+        ),
         (route) => false);
   }
 
@@ -223,7 +217,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   Text(
                     zikrNotifs[Random().nextInt(zikrNotifs.length)],
                     style: TextStyle(
-                        color: Colors.black,fontSize: 22.sp, fontFamily: fontFamilies[Random().nextInt(fontFamilies.length)]),
+                        color: Colors.black,
+                        fontSize: 22.sp,
+                        fontFamily: fontFamilies[
+                            Random().nextInt(fontFamilies.length)]),
                   ),
                   Image.asset(
                     "assets/images/skoon.png",

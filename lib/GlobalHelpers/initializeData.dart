@@ -1,5 +1,4 @@
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:quran/quran.dart';
 
 initHiveValues() async {
   nullValidator("headerPhotoIndex", 0);

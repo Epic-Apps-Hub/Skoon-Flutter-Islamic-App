@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/models/TranslationInfo.dart';
-import 'package:quran/quran.dart';
 
 const Color primaryColor = Color(0xFF4A4039);
 const Color accentColor = Color.fromARGB(255, 141, 74, 29);
@@ -14,18 +11,16 @@ const Color buttonColor = Color(0xFF5D9566);
 const Color borderColor = Color(0xFFDDDDDD);
 const Color homeBackgroundColor = Color.fromARGB(255, 87, 154, 98);
 const Color goldColor = Color.fromARGB(255, 150, 97, 0);
-Color quranPagesColorLight =
-    const Color(0xffF1EEE5);Color quranPagesColorDark =
-  const Color(0xff292C31);
-const Color  darkModeSecondaryColor =Color(0xff443F42);
+Color quranPagesColorLight = const Color(0xffF1EEE5);
+Color quranPagesColorDark = const Color(0xff292C31);
+const Color darkModeSecondaryColor = Color(0xff443F42);
 const Color darkPrimaryColor = Color.fromARGB(255, 17, 18, 27);
 Color orangeColor = const Color(0xffF8672F);
-Color blueColor =
-const Color(0xff00a2b5);
+Color blueColor = const Color(0xff00a2b5);
 List colorsOfBookmarks = [
-  Colors.greenAccent.withOpacity(.1),
-  Colors.redAccent.withOpacity(.1),
-  Colors.blueAccent.withOpacity(.1)
+  Colors.greenAccent.withValues(alpha: .1),
+  Colors.redAccent.withValues(alpha: .1),
+  Colors.blueAccent.withValues(alpha: .1)
 ];
 List colorsOfBookmarks2 = [
   Colors.greenAccent,
@@ -147,8 +142,6 @@ const List indexes = [
   [237, 238, 239, 240]
 ];
 
-
-
 const List<String> fontFamilies = [
   "UthmanicHafs13",
   "AmiriQuran",
@@ -167,8 +160,9 @@ const List<String> fontFamilies = [
   "qur-std",
   "shorooq-full-org",
 ];
-const List primaryColors = [  Colors.black,
-Color(0xff283618),
+const List primaryColors = [
+  Colors.black,
+  Color(0xff283618),
   accentColor,
   Colors.black,
   Color(0XFf4C76BA),
@@ -185,8 +179,9 @@ Color(0xff283618),
   Colors.black,
   Colors.black,
 ];
-const List backgroundColors = [  Color.fromARGB(255, 255, 248, 240),
-Color(0xfffefae0),
+const List backgroundColors = [
+  Color.fromARGB(255, 255, 248, 240),
+  Color(0xfffefae0),
   Color(0xffFFFCE7),
   Colors.white,
   Colors.white,
@@ -202,9 +197,10 @@ Color(0xfffefae0),
   Color(0xffD2F4CF),
   Color(0xffFEFADF),
   Color(0xffEAF0FE)
-];const List secondaryColors = [  Color(0xff946735),
+];
+const List secondaryColors = [
+  Color(0xff946735),
   Color(0xff606c38),
-
   Color.fromARGB(255, 189, 139, 2),
   Color.fromARGB(255, 43, 43, 43),
   Color.fromARGB(255, 0, 95, 184),
@@ -221,9 +217,9 @@ Color(0xfffefae0),
   Color.fromARGB(255, 36, 34, 22),
   Color.fromARGB(255, 24, 29, 43)
 ];
-const List highlightColors = [  Color.fromARGB(172, 255, 201, 54),
+const List highlightColors = [
+  Color.fromARGB(172, 255, 201, 54),
   Color.fromARGB(96, 188, 107, 37),
-
   Color.fromARGB(255, 255, 244, 157),
   Color.fromARGB(255, 89, 216, 255),
   Color.fromARGB(255, 89, 216, 255),

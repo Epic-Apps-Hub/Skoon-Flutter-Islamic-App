@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/sibha/models/tasbeh.dart';
-import 'package:nabd/core/sibha/widgets/add_tasbeeh_dialog.dart';
+import 'package:nabd/features/sibha/models/tasbeh.dart';
+import 'package:nabd/features/sibha/widgets/add_tasbeeh_dialog.dart';
 
 class SibhaPage extends StatefulWidget {
   const SibhaPage({super.key});
@@ -134,7 +134,7 @@ class _SibhaPageState extends State<SibhaPage> {
     }
   }
 
-  addCustomTasbeeh(arabic) async{
+  addCustomTasbeeh(arabic) async {
     var customTasbeehs = getValue("customTasbeehs");
     if (customTasbeehs != null) {
       var tasbeehs = json.decode(customTasbeehs);
@@ -206,7 +206,7 @@ class _SibhaPageState extends State<SibhaPage> {
           actions: [
             IconButton(
                 onPressed: () {
-showDialog(
+                  showDialog(
                       // alignment: Alignment.center,
                       // animationType: DialogTransitionType.,
                       context: context,
@@ -240,7 +240,7 @@ showDialog(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: backgroundColor.withOpacity(.75),
+                        color: backgroundColor.withValues(alpha: .75),
                         borderRadius: BorderRadius.circular(18.r),
                       ),
                       child: Column(
@@ -259,7 +259,7 @@ showDialog(
                             Text(tasbeehList[i].pronunciation,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(.6),
+                                    color: Colors.black.withValues(alpha: .6),
                                     fontFamily: "roboto",
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.bold)),
@@ -268,7 +268,7 @@ showDialog(
                             Text(tasbeehList[i].translation,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(.5),
+                                    color: Colors.black.withValues(alpha: .5),
                                     fontFamily: "roboto",
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.bold))
@@ -311,7 +311,7 @@ showDialog(
                           padding: EdgeInsets.only(left: 40.w),
                           child: Icon(
                             Icons.arrow_back_ios,
-                            color: Colors.white.withOpacity(.8),
+                            color: Colors.white.withValues(alpha: .8),
                           ),
                         ),
                       ),
@@ -332,7 +332,7 @@ showDialog(
                           padding: EdgeInsets.only(left: 0.w),
                           child: Icon(
                             Icons.replay_outlined,
-                            color: Colors.white.withOpacity(.8),
+                            color: Colors.white.withValues(alpha: .8),
                           ),
                         ),
                       ),
@@ -358,7 +358,7 @@ showDialog(
                         padding: EdgeInsets.only(right: 40.w),
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          color: Colors.white.withOpacity(.8),
+                          color: Colors.white.withValues(alpha: .8),
                         ),
                       ),
                     ),
@@ -368,12 +368,12 @@ showDialog(
             ),
             Expanded(
               child: InkWell(
-                  overlayColor:
-                      WidgetStatePropertyAll(Colors.white.withOpacity(.2)),
-                  splashColor: Colors.white.withOpacity(.1),
-                  focusColor: Colors.white.withOpacity(.1),
-                  hoverColor: Colors.white.withOpacity(.1),
-                  highlightColor: Colors.white.withOpacity(.1),
+                  overlayColor: WidgetStatePropertyAll(
+                      Colors.white.withValues(alpha: .2)),
+                  splashColor: Colors.white.withValues(alpha: .1),
+                  focusColor: Colors.white.withValues(alpha: .1),
+                  hoverColor: Colors.white.withValues(alpha: .1),
+                  highlightColor: Colors.white.withValues(alpha: .1),
                   borderRadius: BorderRadius.circular(200),
                   onTap: () {
                     updateValue(

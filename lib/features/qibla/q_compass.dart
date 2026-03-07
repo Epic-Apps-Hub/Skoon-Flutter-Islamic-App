@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
-import 'package:nabd/core/qibla/qibla_maps.dart';
 // import 'package:smooth_compass/utils/src/compass_ui.dart';
 
 class CompassWithQibla extends StatefulWidget {
@@ -47,11 +45,12 @@ class _CompassWithQiblaState extends State<CompassWithQibla> {
             style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 18,
-                color: Colors.white.withOpacity(.9)),
+                color: Colors.white.withValues(alpha: .9)),
           ),
         ),
         body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // const QiblahMaps(),
               SizedBox(
@@ -98,7 +97,10 @@ class _CompassWithQiblaState extends State<CompassWithQibla> {
               //     );
               //   },
               // ),
-   Text("Under Maintinance",style: TextStyle(color: Colors.amber),)
+              const Text(
+                "Under Maintinance",
+                style: TextStyle(color: Colors.amber),
+              )
             ],
           ),
         ),

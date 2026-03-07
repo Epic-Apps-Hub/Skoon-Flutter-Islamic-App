@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as m;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nabd/core/home.dart';
+import 'package:nabd/features/home.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
 import 'package:nabd/blocs/bloc/quran_page_player_bloc.dart';
-import 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart';
-import 'package:nabd/core/QuranPages/helpers/quran_page_utils.dart';
-import 'package:nabd/core/QuranPages/widgets/bismallah.dart';
-import 'package:nabd/core/QuranPages/widgets/header_widget.dart';
+import 'package:nabd/features/QuranPages/helpers/convertNumberToAr.dart';
+import 'package:nabd/features/QuranPages/helpers/quran_page_utils.dart';
+import 'package:nabd/features/QuranPages/widgets/bismallah.dart';
+import 'package:nabd/features/QuranPages/widgets/header_widget.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:quran/quran.dart'; // For getJuzNumber
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -65,7 +65,7 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
               if (index == 0) return Container();
               return Container(
                 color: secondaryColors[getValue("quranPageolorsIndex")]
-                    .withOpacity(.45),
+                    .withValues(alpha: .45),
                 width: double.infinity,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 77.0.w),
@@ -89,8 +89,7 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                       ),
                       Text(
                         widget.jsonData[
-                                quran.getPageData(index)[0]["surah"] - 1]
-                            ["name"],
+                            quran.getPageData(index)[0]["surah"] - 1]["name"],
                         style: TextStyle(
                             fontSize: 12.sp,
                             fontFamily: "taha",
@@ -145,9 +144,8 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                     softWrap: true,
                                     text: TextSpan(
                                       locale: const Locale("ar"),
-                                      children: quran
-                                          .getPageData(index)
-                                          .expand((e) {
+                                      children:
+                                          quran.getPageData(index).expand((e) {
                                         List<InlineSpan> spans = [];
                                         for (var i = e["start"];
                                             i <= e["end"];
@@ -182,9 +180,7 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                                 LongPressGestureRecognizer()
                                                   ..onLongPress = () {
                                                     widget.onShowAyahOptions(
-                                                        index,
-                                                        e["surah"],
-                                                        i);
+                                                        index, e["surah"], i);
                                                   }
                                                   ..onLongPressDown =
                                                       (details) {
@@ -202,8 +198,7 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                                       () => setState(() {
                                                             selectedSpan = "";
                                                           }),
-                                            text: quran.getVerse(
-                                                e["surah"], i),
+                                            text: quran.getVerse(e["surah"], i),
                                             style: TextStyle(
                                               color: primaryColors[getValue(
                                                   "quranPageolorsIndex")],
@@ -214,18 +209,31 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                                   "selectedFontFamily"),
                                               backgroundColor: widget.bookmarks
                                                       .where((element) =>
-                                                          element["suraNumber"] == e["surah"] &&
-                                                          element["verseNumber"] == i)
+                                                          element["suraNumber"] ==
+                                                              e["surah"] &&
+                                                          element["verseNumber"] ==
+                                                              i)
                                                       .isNotEmpty
-                                                  ? Color(int.parse("0x${widget.bookmarks.where((element) => element["suraNumber"] == e["surah"] && element["verseNumber"] == i).first["color"]}")).withOpacity(.19)
+                                                  ? Color(int.parse("0x${widget.bookmarks.where((element) => element["suraNumber"] == e["surah"] && element["verseNumber"] == i).first["color"]}"))
+                                                      .withValues(alpha: .19)
                                                   : widget.shouldHighlightText
-                                                      ? quran.getVerse(e["surah"], i) == widget.highlightVerse
-                                                          ? highlightColors[getValue("quranPageolorsIndex")].withOpacity(.25)
-                                                          : selectedSpan == " ${e["surah"]}$i"
-                                                              ? highlightColors[getValue("quranPageolorsIndex")].withOpacity(.25)
-                                                              : Colors.transparent
-                                                      : selectedSpan == " ${e["surah"]}$i"
-                                                          ? highlightColors[getValue("quranPageolorsIndex")].withOpacity(.25)
+                                                      ? quran.getVerse(e["surah"], i) ==
+                                                              widget
+                                                                  .highlightVerse
+                                                          ? highlightColors[getValue("quranPageolorsIndex")]
+                                                              .withValues(
+                                                                  alpha: .25)
+                                                          : selectedSpan ==
+                                                                  " ${e["surah"]}$i"
+                                                              ? highlightColors[getValue("quranPageolorsIndex")].withValues(
+                                                                  alpha: .25)
+                                                              : Colors
+                                                                  .transparent
+                                                      : selectedSpan ==
+                                                              " ${e["surah"]}$i"
+                                                          ? highlightColors[getValue("quranPageolorsIndex")]
+                                                              .withValues(
+                                                                  alpha: .25)
                                                           : Colors.transparent,
                                             ),
                                             children: [
@@ -233,10 +241,9 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                                   text:
                                                       " ${convertToArabicNumber((i).toString())} ",
                                                   style: TextStyle(
-                                                      color:
-                                                          secondaryColors[
-                                                              getValue(
-                                                                  "quranPageolorsIndex")],
+                                                      color: secondaryColors[
+                                                          getValue(
+                                                              "quranPageolorsIndex")],
                                                       fontFamily:
                                                           "KFGQPC Uthmanic Script HAFS Regular")),
                                             ],
@@ -245,12 +252,11 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                               .where((element) =>
                                                   element["suraNumber"] ==
                                                       e["surah"] &&
-                                                  element["verseNumber"] ==
-                                                      i)
+                                                  element["verseNumber"] == i)
                                               .isNotEmpty) {
                                             spans.add(WidgetSpan(
-                                                alignment: PlaceholderAlignment
-                                                    .middle,
+                                                alignment:
+                                                    PlaceholderAlignment.middle,
                                                 child: Icon(
                                                   Icons.bookmark,
                                                   color: Color(int.parse(
@@ -278,11 +284,10 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                 final currentDuration =
                                     snapshot.data!.inMilliseconds;
                                 if (currentDuration !=
-                                    state.durations[
-                                            state.durations.length - 1]
+                                    state.durations[state.durations.length - 1]
                                         ["endDuration"]) {
-                                  currentVersePlaying = state.durations
-                                      .where((element) {
+                                  currentVersePlaying =
+                                      state.durations.where((element) {
                                     return (element["startDuration"] <=
                                             currentDuration &&
                                         currentDuration <=
@@ -307,8 +312,7 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                           width: double.infinity,
                                           child: RichText(
                                             key: richTextKeys[index - 1],
-                                            textDirection:
-                                                m.TextDirection.rtl,
+                                            textDirection: m.TextDirection.rtl,
                                             textAlign: TextAlign.center,
                                             softWrap: true,
                                             text: TextSpan(
@@ -316,8 +320,7 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                               children: quran
                                                   .getPageData(index)
                                                   .expand((e) {
-                                                List<InlineSpan> spans =
-                                                    [];
+                                                List<InlineSpan> spans = [];
                                                 for (var i = e["start"];
                                                     i <= e["end"];
                                                     i++) {
@@ -326,15 +329,14 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                                     spans.add(WidgetSpan(
                                                       child: HeaderWidget(
                                                           e: e,
-                                                          jsonData: widget
-                                                              .jsonData),
+                                                          jsonData:
+                                                              widget.jsonData),
                                                     ));
 
                                                     if (index != 187 &&
                                                         index != 1) {
                                                       spans.add(WidgetSpan(
-                                                          child:
-                                                              Basmallah(
+                                                          child: Basmallah(
                                                         index: getValue(
                                                             "quranPageolorsIndex"),
                                                       )));
@@ -342,8 +344,7 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                                     if (index == 187 ||
                                                         index == 1) {
                                                       spans.add(WidgetSpan(
-                                                          child:
-                                                              Container(
+                                                          child: Container(
                                                         height: 10.h,
                                                       )));
                                                     }
@@ -351,16 +352,15 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
 
                                                   // Verses
                                                   spans.add(TextSpan(
-                                                    locale:
-                                                        const Locale("ar"),
+                                                    locale: const Locale("ar"),
                                                     recognizer:
                                                         LongPressGestureRecognizer()
-                                                          ..onLongPress =
-                                                              () {
-                                                            widget.onShowAyahOptions(
-                                                                index,
-                                                                e["surah"],
-                                                                i);
+                                                          ..onLongPress = () {
+                                                            widget
+                                                                .onShowAyahOptions(
+                                                                    index,
+                                                                    e["surah"],
+                                                                    i);
                                                           }
                                                           ..onLongPressDown =
                                                               (details) {
@@ -369,45 +369,59 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                                                   " ${e["surah"]}$i";
                                                             });
                                                           }
-                                                          ..onLongPressUp =
-                                                              () {
+                                                          ..onLongPressUp = () {
                                                             setState(() {
-                                                              selectedSpan =
-                                                                  "";
+                                                              selectedSpan = "";
                                                             });
                                                           }
                                                           ..onLongPressCancel =
                                                               () =>
-                                                                  setState(
-                                                                      () {
+                                                                  setState(() {
                                                                     selectedSpan =
                                                                         "";
                                                                   }),
                                                     text: quran.getVerse(
                                                         e["surah"], i),
                                                     style: TextStyle(
-                                                      color: primaryColors[
-                                                          getValue(
-                                                              "quranPageolorsIndex")],
+                                                      color: primaryColors[getValue(
+                                                          "quranPageolorsIndex")],
                                                       fontSize: getValue(
                                                               "verticalViewFontSize")
                                                           .toDouble(),
                                                       fontFamily: getValue(
                                                           "selectedFontFamily"),
-                                                      backgroundColor: widget.bookmarks
-                                                              .where((element) => element["suraNumber"] == e["surah"] && element["verseNumber"] == i)
+                                                      backgroundColor: widget
+                                                              .bookmarks
+                                                              .where((element) =>
+                                                                  element["suraNumber"] == e["surah"] &&
+                                                                  element["verseNumber"] ==
+                                                                      i)
                                                               .isNotEmpty
-                                                          ? Color(int.parse("0x${widget.bookmarks.where((element) => element["suraNumber"] == e["surah"] && element["verseNumber"] == i).first["color"]}")).withOpacity(.19)
-                                                          : (currentVersePlaying != null && i == currentVersePlaying["verseNumber"] && (state is QuranPagePlayerPlaying && e["surah"] == state.suraNumber))
-                                                              ? highlightColors[getValue("quranPageolorsIndex")].withOpacity(.28)
+                                                          ? Color(int.parse("0x${widget.bookmarks.where((element) => element["suraNumber"] == e["surah"] && element["verseNumber"] == i).first["color"]}"))
+                                                              .withValues(
+                                                                  alpha: .19)
+                                                          : (currentVersePlaying !=
+                                                                      null &&
+                                                                  i ==
+                                                                      currentVersePlaying[
+                                                                          "verseNumber"] &&
+                                                                  (e["surah"] ==
+                                                                      state
+                                                                          .suraNumber))
+                                                              ? highlightColors[
+                                                                      getValue(
+                                                                          "quranPageolorsIndex")]
+                                                                  .withValues(
+                                                                      alpha:
+                                                                          .28)
                                                               : widget.shouldHighlightText
                                                                   ? quran.getVerse(e["surah"], i) == widget.highlightVerse
-                                                                      ? highlightColors[getValue("quranPageolorsIndex")].withOpacity(.25)
+                                                                      ? highlightColors[getValue("quranPageolorsIndex")].withValues(alpha: .25)
                                                                       : selectedSpan == " ${e["surah"]}$i"
-                                                                          ? highlightColors[getValue("quranPageolorsIndex")].withOpacity(.25)
+                                                                          ? highlightColors[getValue("quranPageolorsIndex")].withValues(alpha: .25)
                                                                           : Colors.transparent
                                                                   : selectedSpan == " ${e["surah"]}$i"
-                                                                      ? highlightColors[getValue("quranPageolorsIndex")].withOpacity(.25)
+                                                                      ? highlightColors[getValue("quranPageolorsIndex")].withValues(alpha: .25)
                                                                       : Colors.transparent,
                                                     ),
                                                     children: [
@@ -424,11 +438,9 @@ class _QuranVerticalViewState extends State<QuranVerticalView> {
                                                   ));
                                                   if (widget.bookmarks
                                                       .where((element) =>
-                                                          element[
-                                                              "suraNumber"] ==
+                                                          element["suraNumber"] ==
                                                               e["surah"] &&
-                                                          element[
-                                                              "verseNumber"] ==
+                                                          element["verseNumber"] ==
                                                               i)
                                                       .isNotEmpty) {
                                                     spans.add(WidgetSpan(

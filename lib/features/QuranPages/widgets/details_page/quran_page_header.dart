@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/QuranPages/helpers/quran_page_utils.dart';
+import 'package:nabd/features/QuranPages/helpers/quran_page_utils.dart';
 import 'package:quran/quran.dart';
 
 class QuranPageHeader extends StatelessWidget {
@@ -91,7 +91,8 @@ class QuranPageHeader extends StatelessWidget {
     if (result.includesQuarter) {
       return EasyContainer(
         borderRadius: 12.r,
-        color: secondaryColors[getValue("quranPageolorsIndex")].withOpacity(.5),
+        color: secondaryColors[getValue("quranPageolorsIndex")]
+            .withValues(alpha: .5),
         borderColor: primaryColors[getValue("quranPageolorsIndex")],
         showBorder: true,
         height: 20.h,
@@ -112,7 +113,8 @@ class QuranPageHeader extends StatelessWidget {
     } else {
       return EasyContainer(
         borderRadius: 12.r,
-        color: secondaryColors[getValue("quranPageolorsIndex")].withOpacity(.5),
+        color: secondaryColors[getValue("quranPageolorsIndex")]
+            .withValues(alpha: .5),
         borderColor: backgroundColors[getValue("quranPageolorsIndex")],
         showBorder: true,
         height: 20.h,

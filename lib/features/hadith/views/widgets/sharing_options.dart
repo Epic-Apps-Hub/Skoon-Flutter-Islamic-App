@@ -3,8 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nabd/core/hadith/models/hadith.dart';
-import 'package:nabd/core/hadith/views/widgets/screenshot_preview.dart';
+import 'package:nabd/features/hadith/models/hadith.dart';
+import 'package:nabd/features/hadith/views/widgets/screenshot_preview.dart';
 import 'package:share_plus/share_plus.dart';
 
 class SharingOptions extends StatefulWidget {
@@ -33,10 +33,11 @@ class _SharingOptionsState extends State<SharingOptions> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top:16.0),
-            child: Text(widget.isImage ? "asimage".tr() : "astext".tr(),style: TextStyle(
-              fontSize: 18.sp
-            ),),
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Text(
+              widget.isImage ? "asimage".tr() : "astext".tr(),
+              style: TextStyle(fontSize: 18.sp),
+            ),
           ),
           // if (context.locale.languageCode != "ar")
           //   SwitchListTile(
@@ -48,7 +49,7 @@ class _SharingOptionsState extends State<SharingOptions> {
           //         });
           //       }),
           SwitchListTile(
-              title:  Text("explanation".tr()),
+              title: Text("explanation".tr()),
               value: val1,
               onChanged: (v) {
                 setState(() {
@@ -56,7 +57,7 @@ class _SharingOptionsState extends State<SharingOptions> {
                 });
               }),
           SwitchListTile(
-              title:  Text("meanings".tr()),
+              title: Text("meanings".tr()),
               value: val2,
               onChanged: (v) {
                 setState(() {
@@ -97,14 +98,22 @@ class _SharingOptionsState extends State<SharingOptions> {
                     }
                   }
 
-                   widget.isImage? Navigator.push(context, CupertinoPageRoute(builder: (builder)=>HadithScreenShotPreviewPage(hadithAr: hadithAr
-                   ,addExplanation: val1,addMeanings: val2,hadithOtherLanguage: hadithOtherLanguage,
-                   ))):    Share.share("$textAr\n$textOtherLanguage");
+                  widget.isImage
+                      ? Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (builder) => HadithScreenShotPreviewPage(
+                                    hadithAr: hadithAr,
+                                    addExplanation: val1,
+                                    addMeanings: val2,
+                                    hadithOtherLanguage: hadithOtherLanguage,
+                                  )))
+                      : Share.share("$textAr\n$textOtherLanguage");
                 }),
                 borderRadius: 22,
                 color: Colors.blueAccent,
                 child: Text(
-                widget.isImage?"preview".tr():  "share".tr(),
+                  widget.isImage ? "preview".tr() : "share".tr(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.sp,

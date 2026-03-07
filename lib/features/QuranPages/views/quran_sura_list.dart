@@ -1,31 +1,24 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:easy_container/easy_container.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:fluttericon/mfg_labs_icons.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:nabd/blocs/bloc/quran_page_player_bloc.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/QuranPages/views/quranDetailsPage.dart';
-import 'package:nabd/core/widgets/hizb_quarter_circle.dart';
+import 'package:nabd/features/QuranPages/views/quranDetailsPage.dart';
+import 'package:nabd/features/widgets/hizb_quarter_circle.dart';
 import 'package:nabd/models/surah.dart';
 
-import 'package:path_provider/path_provider.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:superellipse_shape/superellipse_shape.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:group_list_view/group_list_view.dart';
@@ -60,7 +53,7 @@ class _SurahListPageState extends State<SurahListPage> {
       itemCount: 10, // Choose a suitable number of shimmering items
       itemBuilder: (context, index) {
         return Shimmer.fromColors(
-          baseColor: Colors.grey.shade300.withOpacity(.5),
+          baseColor: Colors.grey.shade300.withValues(alpha: .5),
           highlightColor: getValue("darkMode")
               ? darkModeSecondaryColor
               : quranPagesColorLight,
@@ -96,7 +89,8 @@ class _SurahListPageState extends State<SurahListPage> {
           shape: BoxShape.circle,
           color: getValue("darkMode")
               ? quranPagesColorDark
-              : quranPagesColorLight.withOpacity(.1), // Replace with your logic
+              : quranPagesColorLight.withValues(
+                  alpha: .1), // Replace with your logic
         ),
         child: Center(
           child: Text(
@@ -117,8 +111,8 @@ class _SurahListPageState extends State<SurahListPage> {
             shape: BoxShape.circle,
             color: getValue("darkMode")
                 ? quranPagesColorDark
-                : quranPagesColorLight
-                    .withOpacity(.1), // Replace with your logic
+                : quranPagesColorLight.withValues(
+                    alpha: .1), // Replace with your logic
           ),
           child: QuarterCircle(
               color: getValue("darkMode")
@@ -133,8 +127,8 @@ class _SurahListPageState extends State<SurahListPage> {
             shape: BoxShape.circle,
             color: getValue("darkMode")
                 ? quranPagesColorDark
-                : quranPagesColorLight
-                    .withOpacity(.1), // Replace with your logic
+                : quranPagesColorLight.withValues(
+                    alpha: .1), // Replace with your logic
           ),
           child: HalfCircle(
               color: getValue("darkMode")
@@ -149,8 +143,8 @@ class _SurahListPageState extends State<SurahListPage> {
             shape: BoxShape.circle,
             color: getValue("darkMode")
                 ? quranPagesColorDark
-                : quranPagesColorLight
-                    .withOpacity(.1), // Replace with your logic
+                : quranPagesColorLight.withValues(
+                    alpha: .1), // Replace with your logic
           ),
           child: ThreeQuartersCircle(
               color: getValue("darkMode")
@@ -303,7 +297,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                   itemBuilder: (c, i) {
                                     return EasyContainer(
                                       borderRadius: 18,
-                                      color: primaryColors[0].withOpacity(.05),
+                                      color: primaryColors[0]
+                                          .withValues(alpha: .05),
                                       onTap: () async {
                                         {
                                           await Navigator.push(
@@ -372,13 +367,14 @@ class _SurahListPageState extends State<SurahListPage> {
                                                     style: TextStyle(
                                                         fontFamily: "cairo",
                                                         fontSize: 14.sp,
-                                                        color: getValue(
-                                                                "darkMode")
-                                                            ? Colors.white
-                                                                .withOpacity(
-                                                                    .87)
-                                                            : primaryColors[
-                                                                0])),
+                                                        color:
+                                                            getValue("darkMode")
+                                                                ? Colors.white
+                                                                    .withValues(
+                                                                        alpha:
+                                                                            .87)
+                                                                : primaryColors[
+                                                                    0])),
                                               ],
                                             ),
                                             const Divider(),
@@ -400,7 +396,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                                     fontSize: 18.sp,
                                                     color: getValue("darkMode")
                                                         ? Colors.white
-                                                            .withOpacity(.87)
+                                                            .withValues(
+                                                                alpha: .87)
                                                         : primaryColors[0],
                                                   )),
                                             ),
@@ -418,8 +415,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                                           .toString())),
                                               style: TextStyle(
                                                   color: getValue("darkMode")
-                                                      ? Colors.white
-                                                          .withOpacity(.87)
+                                                      ? Colors.white.withValues(
+                                                          alpha: .87)
                                                       : Colors.black87),
                                             ),
                                             //
@@ -561,7 +558,7 @@ class _SurahListPageState extends State<SurahListPage> {
                             "starredverses".tr(),
                             style: TextStyle(
                               color: getValue("darkMode")
-                                  ? Colors.white.withOpacity(.87)
+                                  ? Colors.white.withValues(alpha: .87)
                                   : Colors.black,
                               fontSize: 18.sp,
                             ),
@@ -575,7 +572,8 @@ class _SurahListPageState extends State<SurahListPage> {
                           physics: const NeverScrollableScrollPhysics(),
                           children: starredVerses
                               .map((e) => EasyContainer(
-                                  color: primaryColors[0].withOpacity(.05),
+                                  color:
+                                      primaryColors[0].withValues(alpha: .05),
                                   onTap: () async {
                                     await Navigator.push(
                                         context,
@@ -614,7 +612,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                             fontFamily: fontFamilies[0],
                                             fontSize: 18.sp,
                                             color: getValue("darkMode")
-                                                ? Colors.white.withOpacity(.87)
+                                                ? Colors.white
+                                                    .withValues(alpha: .87)
                                                 : primaryColors[0],
                                           )),
                                       Text(
@@ -801,7 +800,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                         EdgeInsets.symmetric(horizontal: 8.0.w),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: goldColor.withOpacity(.05),
+                                          color:
+                                              goldColor.withValues(alpha: .05),
                                           borderRadius:
                                               BorderRadius.circular(12.r)),
                                       child: Row(
@@ -824,8 +824,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                                         widget.jsonData;
                                                     pageNumbers = [];
                                                     setState(() {});
-                                                  } 
-                                                  
+                                                  }
+
                                                   /*https://api.alquran.cloud/v1/search/%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85/all/ar*/
                                                   if (searchQuery.isNotEmpty &&
                                                       isInt(searchQuery)) {
@@ -966,7 +966,7 @@ class _SurahListPageState extends State<SurahListPage> {
                                     children: [
                                       if (pageNumbers.isNotEmpty)
                                         Container(
-                                          child:  Padding(
+                                          child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text("page".tr()),
                                           ),
@@ -978,8 +978,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                               padding:
                                                   const EdgeInsets.all(5.0),
                                               child: EasyContainer(
-                                                color:
-                                                    goldColor.withOpacity(.05),
+                                                color: goldColor.withValues(
+                                                    alpha: .05),
                                                 onTap: () {
                                                   Navigator.push(
                                                       context,
@@ -1036,7 +1036,7 @@ class _SurahListPageState extends State<SurahListPage> {
                                                     horizontal: 8.0.w),
                                                 child: Divider(
                                                   color: Colors.grey
-                                                      .withOpacity(.5),
+                                                      .withValues(alpha: .5),
                                                 ),
                                               ),
                                           itemCount: pageNumbers.length),
@@ -1049,7 +1049,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 8.0.w),
                                           child: Divider(
-                                            color: Colors.grey.withOpacity(.5),
+                                            color: Colors.grey
+                                                .withValues(alpha: .5),
                                           ),
                                         ),
                                         itemCount: filteredData.length,
@@ -1134,8 +1135,8 @@ class _SurahListPageState extends State<SurahListPage> {
                                                                   .startsWith(
                                                                       "$suraNumberInQuran");
                                                             })]
-                                                                .withOpacity(
-                                                                    .7))
+                                                                .withValues(
+                                                                    alpha: .7))
                                                     ],
                                                   ),
                                                 ),
@@ -1145,22 +1146,23 @@ class _SurahListPageState extends State<SurahListPage> {
                                                       fontFamily: "uthmanic",
                                                       fontSize: 14.sp,
                                                       color: Colors.grey
-                                                          .withOpacity(.8)),
+                                                          .withValues(
+                                                              alpha: .8)),
                                                 ),
-                                                trailing: RichText(text: TextSpan(text: 
-                                                  "$suraNumber",
-                                                      style: TextStyle(
-                                                      // fontWeight: FontWeight.bold,
-                                                      color: getValue(
-                                                              "darkMode")
-                                                          ? Colors.white70
-                                                          : Colors
-                                                              .black, //fontWeight: FontWeight.bold,
-                                                      fontSize:
-                                                          28.sp, // Text color
-                                                      fontFamily: "arsura"),
+                                                trailing: RichText(
+                                                  text: TextSpan(
+                                                    text: "$suraNumber",
+                                                    style: TextStyle(
+                                                        // fontWeight: FontWeight.bold,
+                                                        color: getValue(
+                                                                "darkMode")
+                                                            ? Colors.white70
+                                                            : Colors
+                                                                .black, //fontWeight: FontWeight.bold,
+                                                        fontSize:
+                                                            28.sp, // Text color
+                                                        fontFamily: "arsura"),
                                                   ),
-                                              
                                                 ),
                                                 onTap: () async {
                                                   await Navigator.push(
@@ -1272,7 +1274,7 @@ class _SurahListPageState extends State<SurahListPage> {
                     itemBuilder: (BuildContext context, index) {
                       return Card(
                         color: getValue("darkMode")
-                            ? darkModeSecondaryColor.withOpacity(.8)
+                            ? darkModeSecondaryColor.withValues(alpha: .8)
                             : quranPagesColorLight,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -1358,8 +1360,9 @@ class _SurahListPageState extends State<SurahListPage> {
                                           : quranPagesColorLight
                                       : getValue("darkMode")
                                           ? quranPagesColorDark
-                                          : quranPagesColorLight.withOpacity(
-                                              .1), // Replace with your logic
+                                          : quranPagesColorLight.withValues(
+                                              alpha:
+                                                  .1), // Replace with your logic
                                 ),
                                 child: Center(
                                   child: Text(
@@ -1386,7 +1389,7 @@ class _SurahListPageState extends State<SurahListPage> {
                     itemBuilder: (BuildContext context, IndexPath index) {
                       return Card(
                         color: getValue("darkMode")
-                            ? darkModeSecondaryColor.withOpacity(.8)
+                            ? darkModeSecondaryColor.withValues(alpha: .8)
                             : quranPagesColorLight,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
