@@ -1,22 +1,16 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:easy_container/easy_container.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
 import 'package:nabd/blocs/bloc/quran_page_player_bloc.dart';
-import 'package:nabd/core/QuranPages/helpers/quran_audio_helper.dart';
-import 'package:nabd/core/QuranPages/helpers/quran_data.dart';
-import 'package:nabd/core/QuranPages/widgets/details_page/share_ayah_dialog.dart';
-import 'package:nabd/core/home.dart';
+import 'package:nabd/features/QuranPages/helpers/quran_audio_helper.dart';
+import 'package:nabd/features/QuranPages/helpers/quran_data.dart';
+import 'package:nabd/features/QuranPages/widgets/details_page/share_ayah_dialog.dart';
+import 'package:nabd/features/home.dart';
 import 'package:quran/quran.dart' as quran;
 
 class AyahOptionsSheet extends StatefulWidget {
@@ -130,14 +124,16 @@ class _AyahOptionsSheetState extends State<AyahOptionsSheet> {
             SizedBox(height: 10.h),
             const Divider(),
             SizedBox(height: 10.h),
-            
+
             // Share Button
             EasyContainer(
               borderRadius: 8,
-              color: primaryColors[getValue("quranPageolorsIndex")].withOpacity(.05),
+              color: primaryColors[getValue("quranPageolorsIndex")]
+                  .withValues(alpha: .05),
               onTap: () {
                 Navigator.pop(context);
-                showShareAyahDialog(context, widget.surahNumber, widget.verseNumber, widget.index, widget.jsonData);
+                showShareAyahDialog(context, widget.surahNumber,
+                    widget.verseNumber, widget.index, widget.jsonData);
               },
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
@@ -155,7 +151,8 @@ class _AyahOptionsSheetState extends State<AyahOptionsSheet> {
                         style: TextStyle(
                             fontFamily: "cairo",
                             fontSize: 14.sp,
-                            color: primaryColors[getValue("quranPageolorsIndex")])),
+                            color: primaryColors[
+                                getValue("quranPageolorsIndex")])),
                     SizedBox(width: 30.w)
                   ],
                 ),
@@ -166,7 +163,8 @@ class _AyahOptionsSheetState extends State<AyahOptionsSheet> {
             // Bookmark Button
             EasyContainer(
               borderRadius: 8,
-              color: primaryColors[getValue("quranPageolorsIndex")].withOpacity(.05),
+              color: primaryColors[getValue("quranPageolorsIndex")]
+                  .withValues(alpha: .05),
               onTap: () async {
                 bool isBookmarked = false;
                 for (var element in widget.bookmarks) {
@@ -177,7 +175,8 @@ class _AyahOptionsSheetState extends State<AyahOptionsSheet> {
                 }
 
                 if (isBookmarked) {
-                  widget.onRemoveBookmark(widget.surahNumber, widget.verseNumber);
+                  widget.onRemoveBookmark(
+                      widget.surahNumber, widget.verseNumber);
                 } else {
                   widget.onAddBookmark(widget.surahNumber, widget.verseNumber);
                 }
@@ -199,18 +198,20 @@ class _AyahOptionsSheetState extends State<AyahOptionsSheet> {
                         style: TextStyle(
                             fontFamily: "cairo",
                             fontSize: 14.sp,
-                            color: primaryColors[getValue("quranPageolorsIndex")])),
+                            color: primaryColors[
+                                getValue("quranPageolorsIndex")])),
                     SizedBox(width: 30.w)
                   ],
                 ),
               ),
             ),
             SizedBox(height: 10.h),
-            
+
             // Favorite Button
             EasyContainer(
               borderRadius: 8,
-              color: primaryColors[getValue("quranPageolorsIndex")].withOpacity(.05),
+              color: primaryColors[getValue("quranPageolorsIndex")]
+                  .withValues(alpha: .05),
               onTap: () async {
                 widget.onToggleStar(widget.surahNumber, widget.verseNumber);
                 Navigator.pop(context);
@@ -221,7 +222,8 @@ class _AyahOptionsSheetState extends State<AyahOptionsSheet> {
                   children: [
                     SizedBox(width: 20.w),
                     Icon(
-                      widget.isVerseStarred(widget.surahNumber, widget.verseNumber)
+                      widget.isVerseStarred(
+                              widget.surahNumber, widget.verseNumber)
                           ? Icons.star
                           : Icons.star_border,
                       color: getValue("quranPageolorsIndex") == 0
@@ -230,43 +232,45 @@ class _AyahOptionsSheetState extends State<AyahOptionsSheet> {
                     ),
                     SizedBox(width: 20.w),
                     Text(
-                        widget.isVerseStarred(widget.surahNumber, widget.verseNumber)
+                        widget.isVerseStarred(
+                                widget.surahNumber, widget.verseNumber)
                             ? "removefav".tr()
                             : "addtofav".tr(),
                         style: TextStyle(
                             fontFamily: "cairo",
                             fontSize: 14.sp,
-                            color: primaryColors[getValue("quranPageolorsIndex")])),
+                            color: primaryColors[
+                                getValue("quranPageolorsIndex")])),
                     SizedBox(width: 30.w)
                   ],
                 ),
               ),
             ),
             SizedBox(height: 10.h),
-            
+
             // Play Audio Button
             EasyContainer(
               borderRadius: 8,
-              color: primaryColors[getValue("quranPageolorsIndex")].withOpacity(.05),
+              color: primaryColors[getValue("quranPageolorsIndex")]
+                  .withValues(alpha: .05),
               onTap: () async {
                 Navigator.pop(context);
                 final reciter = reciters[getValue("reciterIndex")];
-                
+
                 await QuranAudioHelper.downloadAndCacheSuraAudio(
                     suraName: quran.getSurahNameEnglish(widget.surahNumber),
                     totalVerses: quran.getVerseCount(widget.surahNumber),
                     surahNumber: widget.surahNumber,
                     reciterIdentifier: reciter.identifier,
                     onDownloadingStateChanged: (downloading) {
-                        setState(() {
-                           _isDownloading = downloading;
-                        });
-                    }
-                );
-                
+                      setState(() {
+                        _isDownloading = downloading;
+                      });
+                    });
+
                 // Logic to kill existing player if playing
                 if (qurapPagePlayerBloc.state is QuranPagePlayerPlaying) {
-                    qurapPagePlayerBloc.add(KillPlayerEvent());
+                  qurapPagePlayerBloc.add(KillPlayerEvent());
                 }
 
                 qurapPagePlayerBloc.add(PlayFromVerse(
@@ -274,13 +278,15 @@ class _AyahOptionsSheetState extends State<AyahOptionsSheet> {
                     reciter.identifier,
                     widget.surahNumber,
                     quran.getSurahNameEnglish(widget.surahNumber)));
-                
+
                 // Auto scroll logic (simplified)
-                if (getValue("alignmentType") == "verticalview" && 
-                    quran.getPageNumber(widget.surahNumber, widget.verseNumber) > 600) {
-                      // Note: passing itemScrollController would be needed for this.
-                      // Currently omitted or needs a callback for 'onPlayAndScroll'.
-                      // For now, simple play.
+                if (getValue("alignmentType") == "verticalview" &&
+                    quran.getPageNumber(
+                            widget.surahNumber, widget.verseNumber) >
+                        600) {
+                  // Note: passing itemScrollController would be needed for this.
+                  // Currently omitted or needs a callback for 'onPlayAndScroll'.
+                  // For now, simple play.
                 }
               },
               child: SizedBox(
@@ -299,11 +305,13 @@ class _AyahOptionsSheetState extends State<AyahOptionsSheet> {
                         style: TextStyle(
                             fontFamily: "cairo",
                             fontSize: 14.sp,
-                            color: primaryColors[getValue("quranPageolorsIndex")])),
+                            color: primaryColors[
+                                getValue("quranPageolorsIndex")])),
                     SizedBox(width: 30.w),
                     DropdownButton<int>(
                       value: getValue("reciterIndex"),
-                      dropdownColor: backgroundColors[getValue("quranPageolorsIndex")],
+                      dropdownColor:
+                          backgroundColors[getValue("quranPageolorsIndex")],
                       onChanged: (int? newIndex) {
                         updateValue("reciterIndex", newIndex);
                         setState(() {});
@@ -316,7 +324,8 @@ class _AyahOptionsSheetState extends State<AyahOptionsSheet> {
                                   ? reciter.name
                                   : reciter.englishName,
                               style: TextStyle(
-                                  color: primaryColors[getValue("quranPageolorsIndex")])),
+                                  color: primaryColors[
+                                      getValue("quranPageolorsIndex")])),
                         );
                       }).toList(),
                     ),

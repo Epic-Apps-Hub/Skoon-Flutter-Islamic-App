@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:audio_session/audio_session.dart';
@@ -85,13 +84,13 @@ class QuranPagePlayerBloc
         await session.configure(const AudioSessionConfiguration.speech());
 
         // Listen for playback errors
-        audioPlayer!.playbackEventStream.listen((event) {},
+        audioPlayer.playbackEventStream.listen((event) {},
             onError: (Object e, StackTrace stackTrace) {
           Fluttertoast.showToast(msg: "Playback error: $e");
         });
 
         try {
-          await audioPlayer!.setAudioSource(
+          await audioPlayer.setAudioSource(
             ConcatenatingAudioSource(
               children: [
                 AudioSource.file(
@@ -114,14 +113,14 @@ class QuranPagePlayerBloc
         }
 
         // Seek to the verse position
-        audioPlayer!.seek(Duration(milliseconds: duration.toInt()));
-        audioPlayer!.play();
+        audioPlayer.seek(Duration(milliseconds: duration.toInt()));
+        audioPlayer.play();
 
         Fluttertoast.showToast(msg: "Start Playing");
 
         emit(QuranPagePlayerPlaying(
-          player: audioPlayer!,
-          audioPlayerStream: audioPlayer!.positionStream,
+          player: audioPlayer,
+          audioPlayerStream: audioPlayer.positionStream,
           suraNumber: event.surahNumber,
           reciter: reciterMatch,
           durations: durations,
@@ -129,13 +128,13 @@ class QuranPagePlayerBloc
 
       } else if (event is StopPlaying) {
         if (audioPlayer != null) {
-          await audioPlayer!.stop();
+          await audioPlayer.stop();
         }
         emit(QuranPagePlayerInitial());
 
       } else if (event is KillPlayerEvent) {
         if (audioPlayer != null) {
-          await audioPlayer!.stop();
+          await audioPlayer.stop();
           // audioPlayer = null;
         }
         emit(QuranPagePlayerInitial());

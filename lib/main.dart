@@ -1,48 +1,33 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:math';
 
-import 'package:animate_do/animate_do.dart';
-import 'package:animations/animations.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as notificationPlugin;
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:just_audio/just_audio.dart';
 // import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:nabd/blocs/bloc/bloc/player_bar_bloc.dart';
 import 'package:nabd/blocs/bloc/observer.dart';
-import 'package:nabd/blocs/bloc/player_bloc_bloc.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart' as ez;
-import 'package:nabd/core/audiopage/player/player_bar.dart';
-import 'package:nabd/core/home.dart';
-import 'package:nabd/core/notifications/data/40hadith.dart';
-import 'package:nabd/core/notifications/views/small_notification_popup.dart';
-import 'package:nabd/core/splash/splash_screen.dart';
+import 'package:nabd/features/home.dart';
+import 'package:nabd/features/notifications/data/40hadith.dart';
+import 'package:nabd/features/notifications/views/small_notification_popup.dart';
+import 'package:nabd/features/splash/splash_screen.dart';
 // import 'package:nabd/views/notifications/alert_window_notifcations.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:quran/quran.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:flutter_sliding_box/flutter_sliding_box.dart';
-import 'package:superellipse_shape/superellipse_shape.dart';
 import 'package:workmanager/workmanager.dart';
 import 'GlobalHelpers/messaging_helper.dart';
+
 // import 'package:alarm/alarm.dart';
 final AudioPlayer audioPlayer = AudioPlayer();
-
 
 // import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 void main() async {
@@ -95,7 +80,7 @@ void main() async {
 
 @pragma("vm:entry-point")
 void overlayMain() {
-  WidgetsFlutterBinding.ensureInitialized();  
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const TrueCallerOverlay(),
   );
@@ -148,7 +133,7 @@ void callbackDispatcher() {
       // print(ayahNotfications[index].trim().length *3);
       // print(ayahNotfications[index].trim().length *3);
 
-       await FlutterOverlayWindow.showOverlay(
+      await FlutterOverlayWindow.showOverlay(
         enableDrag: true,
         overlayTitle: "Zikr Notification",
         alignment: OverlayAlignment.center,
@@ -351,14 +336,12 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  
+
     // checkNotificationPermission();
     // TODO: implement initState
     super.initState();
   }
 
-  
-  
   // BoxController boxController = BoxController();
   // This widget is the root of your application.
   @override
@@ -366,21 +349,20 @@ class _MyAppState extends State<MyApp> {
     //print(context.locale.toLanguageTag());
     return ScreenUtilInit(
         designSize: const Size(392.72727272727275, 800.7272727272727),
-        builder: (context, child) =>   BlocProvider(
-                            create: (context) => playerbarBloc,
-                            child:  MaterialApp(
-                          debugShowCheckedModeBanner: false,
-                          title: 'Skoon',
-                          localizationsDelegates: context.localizationDelegates,
-                          supportedLocales: context.supportedLocales,
-                          locale: context.locale,
-                          theme: ThemeData(
-                            fontFamily: context.locale.languageCode == "ar"
-                                ? "cairo"
-                                : "roboto",
-                            primarySwatch: Colors.blue,
-                          ),
-                          home:SplashScreen(),
-                          )));
+        builder: (context, child) => BlocProvider(
+            create: (context) => playerbarBloc,
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Skoon',
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              theme: ThemeData(
+                fontFamily:
+                    context.locale.languageCode == "ar" ? "cairo" : "roboto",
+                primarySwatch: Colors.blue,
+              ),
+              home: const SplashScreen(),
+            )));
   }
 }

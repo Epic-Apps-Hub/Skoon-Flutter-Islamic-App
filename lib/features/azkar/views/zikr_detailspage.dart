@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/azkar/model/dua_model.dart';
+import 'package:nabd/features/azkar/model/dua_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ZikrPage extends StatefulWidget {
@@ -111,7 +111,6 @@ class _ZikrPageState extends State<ZikrPage> {
                                     ),
                                   ),
                                 ),
-                          
                               ],
                             ),
                           ),
@@ -160,11 +159,11 @@ class _ZikrPageState extends State<ZikrPage> {
                     children: [
                       InkWell(
                           overlayColor: WidgetStatePropertyAll(
-                              Colors.white.withOpacity(.25)),
-                          splashColor: Colors.white.withOpacity(.25),
-                          focusColor: Colors.white.withOpacity(.25),
-                          hoverColor: Colors.white.withOpacity(.25),
-                          highlightColor: Colors.white.withOpacity(.15),
+                              Colors.white.withValues(alpha: .25)),
+                          splashColor: Colors.white.withValues(alpha: .25),
+                          focusColor: Colors.white.withValues(alpha: .25),
+                          hoverColor: Colors.white.withValues(alpha: .25),
+                          highlightColor: Colors.white.withValues(alpha: .15),
                           borderRadius: BorderRadius.circular(200),
                           onTap: () {
                             count++;
@@ -172,14 +171,14 @@ class _ZikrPageState extends State<ZikrPage> {
                             setState(() {});
                           },
                           child: Center(
-                            child:Container(decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(200),
-                                color: Colors.grey.withOpacity(.1),
-
-                            ),
-                                child: Padding(
-                              padding: const EdgeInsets.all(40.0),
-                              child:  Text("$count",
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(200),
+                                color: Colors.grey.withValues(alpha: .1),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(40.0),
+                                child: Text("$count",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 40.sp,
@@ -188,82 +187,73 @@ class _ZikrPageState extends State<ZikrPage> {
                               ),
                             ),
                           )),
-                  ],
+                    ],
                   ),
                 )),
-                Positioned(width: MediaQuery.of(context).size.width,
-                  top: MediaQuery.of(context).size.height*.45,
-                  child: 
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Positioned(
+                width: MediaQuery.of(context).size.width,
+                top: MediaQuery.of(context).size.height * .45,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                         GestureDetector(
-                        onTap: () {
-                          if (getValue("${widget.zikr.category}zikrIndex") !=
-                              0) {
-                            updateValue(
-                                "${widget.zikr.category}zikrIndex",
-                                getValue("${widget.zikr.category}zikrIndex") -
-                                    1);
-                          }
-                          setState(() {
-                            count = 1;
-                          });
-                        },
-                        child: Container(
-                          height: 40.h,
-                          width: 40.h,
-                          decoration: const BoxDecoration(
-                              color: Colors.transparent,
-                              shape: BoxShape.circle),
-                          child: Center(
-                            child: Icon(
-                              Icons.arrow_back_ios,
-                              color: getValue(
-                                          "${widget.zikr.category}zikrIndex") ==
-                                      0
-                                  ? Colors.grey
-                                  : Colors.white,
-                              size: 28.sp,
-                            ),
+                    GestureDetector(
+                      onTap: () {
+                        if (getValue("${widget.zikr.category}zikrIndex") != 0) {
+                          updateValue("${widget.zikr.category}zikrIndex",
+                              getValue("${widget.zikr.category}zikrIndex") - 1);
+                        }
+                        setState(() {
+                          count = 1;
+                        });
+                      },
+                      child: Container(
+                        height: 40.h,
+                        width: 40.h,
+                        decoration: const BoxDecoration(
+                            color: Colors.transparent, shape: BoxShape.circle),
+                        child: Center(
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color:
+                                getValue("${widget.zikr.category}zikrIndex") ==
+                                        0
+                                    ? Colors.grey
+                                    : Colors.white,
+                            size: 28.sp,
                           ),
                         ),
                       ),
-                    
-                      GestureDetector(
-                        onTap: () {
-                          if (getValue("${widget.zikr.category}zikrIndex") +
-                                  1 !=
-                              widget.zikr.array.length) {
-                            updateValue(
-                                "${widget.zikr.category}zikrIndex",
-                                getValue("${widget.zikr.category}zikrIndex") +
-                                    1);
-                            count = 1;
-                          }
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        if (getValue("${widget.zikr.category}zikrIndex") + 1 !=
+                            widget.zikr.array.length) {
+                          updateValue("${widget.zikr.category}zikrIndex",
+                              getValue("${widget.zikr.category}zikrIndex") + 1);
+                          count = 1;
+                        }
 
-                          setState(() {});
-                        },
-                        child: Container(
-                          height: 40.h,
-                          width: 40.h,
-                          decoration: const BoxDecoration(
-                              color:
-                                  Colors.transparent,
-                              shape: BoxShape.circle),
-                          child: Center(
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: getValue("${widget.zikr.category}zikrIndex") +
-                                              1 ==
-                                          widget.zikr.array.length
-                                      ? Colors.grey
-                                      : Colors.white,
-                              size: 28.sp,
-                            ),
+                        setState(() {});
+                      },
+                      child: Container(
+                        height: 40.h,
+                        width: 40.h,
+                        decoration: const BoxDecoration(
+                            color: Colors.transparent, shape: BoxShape.circle),
+                        child: Center(
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color:
+                                getValue("${widget.zikr.category}zikrIndex") +
+                                            1 ==
+                                        widget.zikr.array.length
+                                    ? Colors.grey
+                                    : Colors.white,
+                            size: 28.sp,
                           ),
                         ),
                       ),
-                   
+                    ),
                   ],
                 ))
           ],

@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:nabd/core/QuranPages/helpers/save_image.dart';
+import 'package:nabd/features/QuranPages/helpers/save_image.dart';
 import 'package:share_plus/share_plus.dart';
 
 void shareImage(Uint8List capturedImage) async {

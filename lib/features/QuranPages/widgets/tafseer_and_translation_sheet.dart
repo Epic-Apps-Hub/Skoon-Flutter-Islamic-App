@@ -4,16 +4,14 @@ import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as m;
-import 'package:fluttericon/entypo_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/mfg_labs_icons.dart';
-import 'package:fluttericon/octicons_icons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/get_translation_data.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart';
+import 'package:nabd/features/QuranPages/helpers/convertNumberToAr.dart';
+import 'package:nabd/features/QuranPages/helpers/translation/get_translation_data.dart';
+import 'package:nabd/features/QuranPages/helpers/translation/translationdata.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -25,11 +23,11 @@ class TafseerAndTranslateSheet extends StatefulWidget {
   int surahNumber;
   int verseNumber;
   bool isVerseByVerseSelection;
-  TafseerAndTranslateSheet({
-    super.key,
-    required this.surahNumber,
-    required this.verseNumber,required this.isVerseByVerseSelection
-  });
+  TafseerAndTranslateSheet(
+      {super.key,
+      required this.surahNumber,
+      required this.verseNumber,
+      required this.isVerseByVerseSelection});
 
   @override
   State<TafseerAndTranslateSheet> createState() =>
@@ -45,6 +43,7 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
 
     return hslDark.toColor();
   }
+
   String data = "";
 
   int verseNumber = 0;
@@ -93,14 +92,17 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                         setState(() {
                           verseNumber = verseNumber - 1;
                         });
-                      }getData();
+                      }
+                      getData();
                     },
                     icon: Icon(
                       Icons.arrow_back_ios,
                       size: 16.sp,
                       color: (widget.verseNumber + verseNumber > 1)
-                          ? getValue("darkMode")?quranPagesColorDark:quranPagesColorLight
-                          : Colors.grey.withOpacity(.4),
+                          ? getValue("darkMode")
+                              ? quranPagesColorDark
+                              : quranPagesColorLight
+                          : Colors.grey.withValues(alpha: .4),
                     )),
                 SizedBox(
                   width: 5.w,
@@ -124,7 +126,8 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                           quran.getVerseCount(widget.surahNumber)) {
                         setState(() {
                           verseNumber = verseNumber + 1;
-                        });getData();
+                        });
+                        getData();
                       }
                     },
                     icon: Icon(
@@ -132,8 +135,10 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                       size: 16.sp,
                       color: (widget.verseNumber + verseNumber !=
                               quran.getVerseCount(widget.surahNumber))
-                          ? getValue("darkMode")?quranPagesColorDark:quranPagesColorLight
-                          : Colors.grey.withOpacity(.4),
+                          ? getValue("darkMode")
+                              ? quranPagesColorDark
+                              : quranPagesColorLight
+                          : Colors.grey.withValues(alpha: .4),
                     ))
               ],
             ),
@@ -202,8 +207,12 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                                         itemCount: translationDataList.length,
                                         itemBuilder: (c, i) {
                                           return Container(
-                                            color:
-                                      i==getValue("indexOfTranslation")?          Colors.blueGrey.withOpacity(.1):Colors.transparent,
+                                            color: i ==
+                                                    getValue(
+                                                        "indexOfTranslation")
+                                                ? Colors.blueGrey
+                                                    .withValues(alpha: .1)
+                                                : Colors.transparent,
                                             child: InkWell(
                                               onTap: () async {
                                                 if (isDownloading !=
@@ -211,8 +220,8 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                                                         .url) {
                                                   if (File("${appDir!.path}/${translationDataList[i].typeText}.json")
                                                           .existsSync() ||
-                                                                                                               i == 0||i==1
-) {
+                                                      i == 0 ||
+                                                      i == 1) {
                                                     updateValue(
                                                         "indexOfTranslation",
                                                         i);
@@ -286,7 +295,8 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                                                           .typeTextInRelatedLanguage,
                                                       style: TextStyle(
                                                           color: primaryColor
-                                                              .withOpacity(.9),
+                                                              .withValues(
+                                                                  alpha: .9),
                                                           fontSize: 14.sp),
                                                     ),
                                                     isDownloading !=
@@ -294,7 +304,7 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                                                                     i]
                                                                 .url
                                                         ? Icon(
-                                                            i == 0||i==1
+                                                            i == 0 || i == 1
                                                                 ? MfgLabs.hdd
                                                                 : File("${appDir!.path}/${translationDataList[i].typeText}.json")
                                                                         .existsSync()
@@ -327,7 +337,7 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                     width: screenSize.width,
                     height: 40.h,
                     decoration: BoxDecoration(
-                        color: Colors.blueGrey.withOpacity(.1),
+                        color: Colors.blueGrey.withValues(alpha: .1),
                         borderRadius: BorderRadius.circular(12)),
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 14.0.w),
@@ -361,10 +371,7 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
               ),
             ),
             // Text(quran.getAudioURLByVerseNumber(1)),
-            Divider(
-                height: 30.h,
-                color: Colors.black
-                    .withOpacity(.2)),
+            Divider(height: 30.h, color: Colors.black.withValues(alpha: .2)),
 
             // if (verseNumber != 0 && surahNumber != 0)
             Directionality(
@@ -382,18 +389,17 @@ class _TafseerAndTranslateSheetState extends State<TafseerAndTranslateSheet> {
                           '*': Style(
                             fontFamily: 'cairo', // Set your custom font family
                             fontSize: FontSize(18.sp),
-                            lineHeight:LineHeight(1.7.sp) ,
-                            
+                            lineHeight: LineHeight(1.7.sp),
+
                             // color: primaryColors[getValue("quranPageolorsIndex")]
-                            //     .withOpacity(.9),
+                            //     .withValues(alpha:.9),
                           ),
                         },
                       )
                     : Text(
                         data,
                         style: TextStyle(
-                            color:
-                              Colors.black,
+                            color: Colors.black,
                             fontFamily: translationDataList[
                                             getValue("indexOfTranslation") ?? 0]
                                         .typeInNativeLanguage ==

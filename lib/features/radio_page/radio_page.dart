@@ -163,13 +163,13 @@
 //             ? TextField(
 //                 style: TextStyle(
 //                     color: getValue("darkMode")
-//                         ? Colors.white.withOpacity(.87)
+//                         ? Colors.white.withValues(alpha:.87)
 //                         : Colors.black87),
 //                 decoration: InputDecoration(
 //                     hintText: "Search radios",
 //                     hintStyle: TextStyle(
 //                         color: getValue("darkMode")
-//                             ? Colors.white.withOpacity(.87)
+//                             ? Colors.white.withValues(alpha:.87)
 //                             : Colors.black87)),
 //                 onChanged: ((value) {
 //                   filterData(
@@ -230,8 +230,8 @@
 //                         Text(radiosData[i]["name"],
 //                             style: TextStyle(
 //                                 color: getValue("darkMode")
-//                                     ? Colors.white.withOpacity(.87)
-//                                     : Colors.black.withOpacity(.87))),
+//                                     ? Colors.white.withValues(alpha:.87)
+//                                     : Colors.black.withValues(alpha:.87))),
 //                         SizedBox(
 //                           width: 20.w,
 //                         ),
@@ -242,8 +242,8 @@
 //                           Icon(
 //                             Icons.pause,
 //                             color: getValue("darkMode")
-//                                 ? Colors.white.withOpacity(.87)
-//                                 : Colors.black.withOpacity(.87),
+//                                 ? Colors.white.withValues(alpha:.87)
+//                                 : Colors.black.withValues(alpha:.87),
 //                           ),
 //                         IconButton(
 //                             onPressed: () {
@@ -263,8 +263,8 @@
 //                                   ? Icons.star
 //                                   : Icons.star_border,
 //                               color: getValue("darkMode")
-//                                   ? Colors.white.withOpacity(.87)
-//                                   : Colors.black.withOpacity(.87),
+//                                   ? Colors.white.withValues(alpha:.87)
+//                                   : Colors.black.withValues(alpha:.87),
 //                             ))
 //                       ],
 //                     ),

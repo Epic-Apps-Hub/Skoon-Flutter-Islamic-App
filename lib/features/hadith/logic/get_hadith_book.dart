@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart' as dio;
-import 'package:nabd/core/hadith/data/books.dart';
+import 'package:nabd/features/hadith/data/books.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:permission_handler/permission_handler.dart';
 

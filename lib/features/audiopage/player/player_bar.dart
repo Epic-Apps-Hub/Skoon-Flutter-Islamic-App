@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart' as m;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ import 'package:nabd/blocs/bloc/bloc/player_bar_bloc.dart';
 import 'package:nabd/blocs/bloc/player_bloc_bloc.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/home.dart';
+import 'package:nabd/features/home.dart';
 
 import 'package:quran/quran.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -102,14 +101,18 @@ class _PlayerBarState extends State<PlayerBar> {
                                             child: Container(
                                               height: 45.h,
                                               width: 45.w,
-                                              decoration:  BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                color:  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
+                                                color: getValue("darkMode")
+                                                    ? quranPagesColorDark
+                                                    : quranPagesColorLight,
                                               ),
                                               child: Center(
                                                 child: CircleAvatar(
-                                                  backgroundColor:
-                                                       getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
+                                                  backgroundColor: getValue(
+                                                          "darkMode")
+                                                      ? quranPagesColorDark
+                                                      : quranPagesColorLight,
                                                   backgroundImage: const AssetImage(
                                                       "assets/images/quran.png"),
                                                   foregroundImage:
@@ -124,7 +127,9 @@ class _PlayerBarState extends State<PlayerBar> {
                                       ),
                                     );
                                   } else {
-                                    return Container(height: 0,);
+                                    return Container(
+                                      height: 0,
+                                    );
                                   }
                                 }),
                           ),
@@ -480,7 +485,7 @@ class _PlayerBarState extends State<PlayerBar> {
                                                                 "القارئ", ""),
                                                         style: TextStyle(
                                                             color: Colors.white
-                                                                .withOpacity(
+                                                                .withValues(alpha:
                                                                     .9)),
                                                       ),
                                                       SizedBox(
@@ -908,7 +913,7 @@ class _PlayerBarState extends State<PlayerBar> {
                                                                         100,
                                                                         110)
                                                                     : darkPrimaryColor
-                                                                        .withOpacity(
+                                                                        .withValues(alpha:
                                                                             .9),
                                                                 child: ListTile(
                                                                   trailing:
@@ -968,7 +973,7 @@ class _PlayerBarState extends State<PlayerBar> {
                                                                 82,
                                                                 96,
                                                                 175)
-                                                            .withOpacity(.65)),
+                                                            .withValues(alpha:.65)),
                                                     child: Row(
                                                       children: [
                                                         SizedBox(
@@ -988,7 +993,7 @@ class _PlayerBarState extends State<PlayerBar> {
                                                                   .center,
                                                           children: [
                                                             Text(
-                                                              "${state.audioPlayer.currentIndex! + 1}/${state.audioPlayer.sequence!.length}",
+                                                              "${state.audioPlayer.currentIndex! + 1}/${state.audioPlayer.sequence.length}",
                                                               textDirection: m
                                                                   .TextDirection
                                                                   .rtl,
@@ -1004,7 +1009,7 @@ class _PlayerBarState extends State<PlayerBar> {
                                                           width: 200.w,
                                                         ),
                                                         Text(
-                                                          "${state.audioPlayer.sequence![state.audioPlayer.currentIndex!].tag.title}",
+                                                          "${state.audioPlayer.sequence[state.audioPlayer.currentIndex!].tag.title}",
                                                           textDirection: m
                                                               .TextDirection
                                                               .rtl,
@@ -1029,13 +1034,19 @@ class _PlayerBarState extends State<PlayerBar> {
                     );
                   } else if (statee is PlayerBarClosed) {
                     print("object2222222");
-                    return Container(height: 0,);
+                    return Container(
+                      height: 0,
+                    );
                   }
-                  return Container(height: 0,);
+                  return Container(
+                    height: 0,
+                  );
                 },
               );
             }
-            return Container(height: 0,);
+            return Container(
+              height: 0,
+            );
           },
         ),
       ),
@@ -1134,7 +1145,7 @@ class ControlButtons extends StatelessWidget {
                 iconSize: 32.sp,
                 color: Colors.white,
                 onPressed: () => player.seek(Duration.zero,
-                    index: player.effectiveIndices!.first),
+                    index: player.effectiveIndices.first),
               );
             }
           },

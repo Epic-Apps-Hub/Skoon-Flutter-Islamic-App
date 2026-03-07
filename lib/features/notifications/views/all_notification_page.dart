@@ -1,18 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/GlobalHelpers/messaging_helper.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:workmanager/workmanager.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart'
-    as notificationPlugin;
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
@@ -77,11 +71,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             // ),
                             CupertinoSwitch(
                                 // overrides the default green color of the track
-                                activeColor: blueColor,
+                                activeTrackColor: blueColor,
                                 // color of the round icon, which moves from right to left
                                 thumbColor: Colors.white,
                                 // when the switch is off
-                                trackColor: Colors.grey,
+                                inactiveTrackColor: Colors.grey,
                                 // boolean variable value
                                 value: getValue("shouldShowSallyNotification"),
                                 // changes the state of the switch
@@ -173,11 +167,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
                           children: [
                             CupertinoSwitch(
                                 // overrides the default green color of the track
-                                activeColor: blueColor,
+                                activeTrackColor: blueColor,
                                 // color of the round icon, which moves from right to left
                                 thumbColor: Colors.white,
                                 // when the switch is off
-                                trackColor: Colors.grey,
+                                inactiveTrackColor: Colors.grey,
                                 // boolean variable value
                                 value: getValue("shouldShowAyahNotification"),
                                 // changes the state of the switch
@@ -389,11 +383,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
                           children: [
                             CupertinoSwitch(
                                 // overrides the default green color of the track
-                                activeColor: blueColor,
+                                activeTrackColor: blueColor,
                                 // color of the round icon, which moves from right to left
                                 thumbColor: Colors.white,
                                 // when the switch is off
-                                trackColor: Colors.grey,
+                                inactiveTrackColor: Colors.grey,
                                 // boolean variable value
                                 value: getValue("shouldShowhadithNotification"),
                                 // changes the state of the switch
@@ -606,11 +600,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             // ),
                             CupertinoSwitch(
                                 // overrides the default green color of the track
-                                activeColor: blueColor,
+                                activeTrackColor: blueColor,
                                 // color of the round icon, which moves from right to left
                                 thumbColor: Colors.white,
                                 // when the switch is off
-                                trackColor: Colors.grey,
+                                inactiveTrackColor: Colors.grey,
                                 // boolean variable value
                                 value: getValue("shouldShowZikrNotification2"),
                                 // changes the state of the switch
@@ -639,7 +633,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             // icon: Icon(
                             //   size: 20,
                             //   FontAwesome.heart_empty,
-                            //   color: quranPagesColor.withOpacity(.6),
+                            //   color: quranPagesColor.withValues(alpha:.6),
                             // )),
                             TextButton(
                                 onPressed: () async {
@@ -812,11 +806,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             // ),
                             CupertinoSwitch(
                                 // overrides the default green color of the track
-                                activeColor: blueColor,
+                                activeTrackColor: blueColor,
                                 // color of the round icon, which moves from right to left
                                 thumbColor: Colors.white,
                                 // when the switch is off
-                                trackColor: Colors.grey,
+                                inactiveTrackColor: Colors.grey,
                                 // boolean variable value
                                 value: getValue("shouldShowZikrNotification"),
                                 // changes the state of the switch
@@ -854,7 +848,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             // icon: Icon(
                             //   size: 20,
                             //   FontAwesome.heart_empty,
-                            //   color: quranPagesColor.withOpacity(.6),
+                            //   color: quranPagesColor.withValues(alpha:.6),
                             // )),
                             TextButton(
                                 onPressed: () async {

@@ -1,13 +1,12 @@
-import 'package:easy_container/easy_container.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/azkar/data/azkar.dart';
+import 'package:nabd/features/azkar/data/azkar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nabd/core/azkar/model/dua_model.dart';
-import 'package:nabd/core/azkar/views/zikr_detailspage.dart';
+import 'package:nabd/features/azkar/model/dua_model.dart';
+import 'package:nabd/features/azkar/views/zikr_detailspage.dart';
 import 'package:quran/quran.dart';
 import 'package:superellipse_shape/superellipse_shape.dart';
 
@@ -49,18 +48,16 @@ class _AzkarHomePageState extends State<AzkarHomePage> {
               alignment: Alignment.center,
               opacity: .6)),
       child: Scaffold(
-        backgroundColor: getValue("darkMode")
-              ? quranPagesColorDark
-              :quranPagesColorLight,
+        backgroundColor:
+            getValue("darkMode") ? quranPagesColorDark : quranPagesColorLight,
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
               floating: true,
               pinned: true,
-              iconTheme: const IconThemeData(color:  Colors.white),
-              backgroundColor: getValue("darkMode")
-              ? darkModeSecondaryColor
-              : blueColor,
+              iconTheme: const IconThemeData(color: Colors.white),
+              backgroundColor:
+                  getValue("darkMode") ? darkModeSecondaryColor : blueColor,
               elevation: 0, // No shadow
               title: Text(
                 "azkar".tr(),
@@ -73,7 +70,7 @@ class _AzkarHomePageState extends State<AzkarHomePage> {
                   alignment: Alignment.bottomCenter,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
-                    color: const Color(0xffF5EFE8).withOpacity(.3),
+                    color: const Color(0xffF5EFE8).withValues(alpha: .3),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Row(
@@ -112,12 +109,13 @@ class _AzkarHomePageState extends State<AzkarHomePage> {
                 // physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (f, i) {
                   return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 4.0.w,vertical: 6.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 4.0.w, vertical: 6.h),
                     child: Material(
-                      color:getValue("darkMode")
-              ? darkModeSecondaryColor
-              .withOpacity(.8): const Color.fromARGB(255, 255, 255, 255)
-                          .withOpacity(.2),
+                      color: getValue("darkMode")
+                          ? darkModeSecondaryColor.withValues(alpha: .8)
+                          : const Color.fromARGB(255, 255, 255, 255)
+                              .withValues(alpha: .2),
                       shape: SuperellipseShape(
                         borderRadius: BorderRadius.circular(34.0.r),
                       ),
@@ -136,8 +134,8 @@ class _AzkarHomePageState extends State<AzkarHomePage> {
                                       )));
                         },
                         splashColor: getValue("darkMode")
-              ? darkModeSecondaryColor
-              .withOpacity(.5): blueColor.withOpacity(.2),
+                            ? darkModeSecondaryColor.withValues(alpha: .5)
+                            : blueColor.withValues(alpha: .2),
                         borderRadius: BorderRadius.circular(17.0.r),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -157,12 +155,13 @@ class _AzkarHomePageState extends State<AzkarHomePage> {
                                     Text(
                                       tempAzkar[i]["category"],
                                       style: TextStyle(
-                                        color:getValue("darkMode")
-              ? Colors.white.withOpacity(.9): blueColor,
+                                        color: getValue("darkMode")
+                                            ? Colors.white.withValues(alpha: .9)
+                                            : blueColor,
                                         fontSize: 18.sp,
                                       ),
                                     ),
-                                     Icon(
+                                    Icon(
                                       Icons.arrow_forward_ios,
                                       color: orangeColor,
                                     ),

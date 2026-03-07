@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:meta/meta.dart';
 
 part 'player_bar_event.dart';

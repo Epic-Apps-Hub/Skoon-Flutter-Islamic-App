@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quran/quran.dart' as quran;
 
 void main() {
-  runApp( MaterialApp(home: QuranExample()));
+  runApp( const MaterialApp(home: QuranExample()));
 }
 
 class QuranExample extends StatefulWidget {

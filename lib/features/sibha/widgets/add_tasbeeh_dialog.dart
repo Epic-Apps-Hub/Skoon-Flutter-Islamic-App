@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
@@ -18,7 +17,7 @@ class _AddTasbeehDialogState extends State<AddTasbeehDialog> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: backgroundColor.withOpacity(.9),
+      color: backgroundColor.withValues(alpha: .9),
       borderRadius: BorderRadius.circular(18.r),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -36,10 +35,8 @@ class _AddTasbeehDialogState extends State<AddTasbeehDialog> {
           ),
           TextField(
             controller: textEditingController,
-            onChanged: (ca){
-
-            },
-            decoration:  InputDecoration(hintText: "Enter Custom Zikr".tr()),
+            onChanged: (ca) {},
+            decoration: InputDecoration(hintText: "Enter Custom Zikr".tr()),
           ),
           SizedBox(
             height: 30.h,
@@ -52,15 +49,14 @@ class _AddTasbeehDialogState extends State<AddTasbeehDialog> {
                     if (textEditingController.text.isEmpty) {
                     } else {
                       widget.function(textEditingController.text);
-
                     }
                   },
-                  child:  Text("Add".tr())),
+                  child: Text("Add".tr())),
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child:  Text("cancel".tr())),
+                  child: Text("cancel".tr())),
             ],
           ),
           SizedBox(

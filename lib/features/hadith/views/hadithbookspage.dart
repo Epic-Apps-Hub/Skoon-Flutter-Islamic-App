@@ -1,18 +1,16 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:easy_container/easy_container.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:fluttericon/mfg_labs_icons.dart';
-import 'package:fluttericon/typicons_icons.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/hadith/models/category.dart';
-import 'package:nabd/core/hadith/views/booklistpage.dart';
+import 'package:nabd/features/hadith/models/category.dart';
+import 'package:nabd/features/hadith/views/booklistpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HadithBooksPage extends StatefulWidget {
@@ -28,7 +26,11 @@ class _HadithBooksPageState extends State<HadithBooksPage> {
   bool isLoading = true;
   getCategories() async {
     categories = [];
-       categories.add(Category(id: "100000", title: "allHadith".tr(), hadeethsCount: "2000+", parentId: "parentId"));
+    categories.add(Category(
+        id: "100000",
+        title: "allHadith".tr(),
+        hadeethsCount: "2000+",
+        parentId: "parentId"));
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString("categories-${widget.locale}") == null) {
       Response response = await Dio().get(
@@ -43,7 +45,6 @@ class _HadithBooksPageState extends State<HadithBooksPage> {
       final jsonData = prefs.getString("categories-${widget.locale}");
 
       if (jsonData != null) {
-        
         final data = json.decode(jsonData) as List<dynamic>;
         for (var cat in data) {
           categories.add(Category.fromJson(cat));
@@ -69,25 +70,34 @@ class _HadithBooksPageState extends State<HadithBooksPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:             getValue("darkMode") ?quranPagesColorDark: quranPagesColorLight,
-
+      backgroundColor:
+          getValue("darkMode") ? quranPagesColorDark : quranPagesColorLight,
       appBar: AppBar(
-        backgroundColor:getValue("darkMode") ?darkModeSecondaryColor:quranPagesColorLight,
+        backgroundColor: getValue("darkMode")
+            ? darkModeSecondaryColor
+            : quranPagesColorLight,
         elevation: 0,
-        iconTheme:  IconThemeData(            color:getValue("darkMode") ?Colors.white.withOpacity(.87): Colors.black87,
-),
+        iconTheme: IconThemeData(
+          color: getValue("darkMode")
+              ? Colors.white.withValues(alpha: .87)
+              : Colors.black87,
+        ),
         title: Text(
           "Hadith".tr(),
-          style:  TextStyle(
-            color:getValue("darkMode") ?Colors.white.withOpacity(.87): Colors.black87,
+          style: TextStyle(
+            color: getValue("darkMode")
+                ? Colors.white.withValues(alpha: .87)
+                : Colors.black87,
             fontFamily: "cairo",
           ),
         ),
       ),
       body: isLoading
-          ?  Center(
+          ? Center(
               child: CircularProgressIndicator(
-                color:  getValue("darkMode")?quranPagesColorDark:quranPagesColorLight,
+                color: getValue("darkMode")
+                    ? quranPagesColorDark
+                    : quranPagesColorLight,
               ),
             )
           : ListView.builder(
@@ -112,13 +122,19 @@ class _HadithBooksPageState extends State<HadithBooksPage> {
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
-                              color: getValue("darkMode")?darkModeSecondaryColor: const Color(0xffF5EFE8).withOpacity(.9),
+                              color: getValue("darkMode")
+                                  ? darkModeSecondaryColor
+                                  : const Color(0xffF5EFE8)
+                                      .withValues(alpha: .9),
                             ),
-                            child:  Padding(
+                            child: Padding(
                               padding: const EdgeInsets.all(22),
                               child: Icon(
-                                MfgLabs.folder_empty,size: 30.sp,
-                                color: getValue("darkMode")?Colors.white.withOpacity(.87): Colors.black87,
+                                MfgLabs.folder_empty,
+                                size: 30.sp,
+                                color: getValue("darkMode")
+                                    ? Colors.white.withValues(alpha: .87)
+                                    : Colors.black87,
                               ),
                             ),
                           ),
@@ -131,15 +147,19 @@ class _HadithBooksPageState extends State<HadithBooksPage> {
                               Text(
                                 categories[index].title,
                                 style: TextStyle(
-                                  color: getValue("darkMode")?Colors.white: Colors.black,
+                                  color: getValue("darkMode")
+                                      ? Colors.white
+                                      : Colors.black,
                                   fontSize: 14.sp,
                                 ),
                               ),
                               Text(
                                 "Hadith Count: ${categories[index].hadeethsCount}",
                                 style: TextStyle(
-                                    color: getValue("darkMode")?orangeColor.withOpacity(.9): const Color(0xffA28858)
-                                        .withOpacity(.9)),
+                                    color: getValue("darkMode")
+                                        ? orangeColor.withValues(alpha: .9)
+                                        : const Color(0xffA28858)
+                                            .withValues(alpha: .9)),
                               )
                             ],
                           ),
@@ -151,7 +171,9 @@ class _HadithBooksPageState extends State<HadithBooksPage> {
                                   context.locale.languageCode == "ar"
                                       ? Entypo.left_open
                                       : Entypo.right_open,
-                                  color: getValue("darkMode")?orangeColor.withOpacity(.87): Colors.black87,
+                                  color: getValue("darkMode")
+                                      ? orangeColor.withValues(alpha: .87)
+                                      : Colors.black87,
                                   size: 26.sp,
                                 ),
                               ],

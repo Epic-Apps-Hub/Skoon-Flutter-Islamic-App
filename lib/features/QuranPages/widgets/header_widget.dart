@@ -14,7 +14,6 @@ class HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- 
     return SizedBox(
       height: 50.h,
       child: Stack(
@@ -25,15 +24,17 @@ class HeaderWidget extends StatelessWidget {
               width: MediaQuery.of(context).size.width.w,
               height: 50.h,
               color: indexOfTheme != null
-                  ? indexOfTheme != 1 &&indexOfTheme != 2 &&
+                  ? indexOfTheme != 1 &&
+                          indexOfTheme != 2 &&
                           indexOfTheme != 0 &&
                           indexOfTheme != 6 &&
                           indexOfTheme != 13 &&
                           indexOfTheme != 15
                       ? secondaryColors[indexOfTheme]
                       : null
-                  : getValue("quranPageolorsIndex") != 1 &&getValue("quranPageolorsIndex") != 2 &&
-                          getValue("quranPageolorsIndex") != 0&&
+                  : getValue("quranPageolorsIndex") != 1 &&
+                          getValue("quranPageolorsIndex") != 2 &&
+                          getValue("quranPageolorsIndex") != 0 &&
                           getValue("quranPageolorsIndex") != 6 &&
                           getValue("quranPageolorsIndex") != 13 &&
                           getValue("quranPageolorsIndex") != 15
@@ -53,27 +54,25 @@ class HeaderWidget extends StatelessWidget {
                       // color: accentColor,
                       color: indexOfTheme == null
                           ? primaryColors[getValue("quranPageolorsIndex")]
-                              .withOpacity(.9)
-                          : primaryColors[indexOfTheme].withOpacity(.92),
+                              .withValues(alpha: .9)
+                          : primaryColors[indexOfTheme].withValues(alpha: .92),
                       fontSize: 5.sp,
                       fontFamily: "UthmanicHafs13"),
                 ),
                 Center(
                     child: RichText(
-                      text: TextSpan(
-text:    "${e["surah"]}",
-                  style: TextStyle(
-                    fontFamily: "arsura",
-                    fontSize: 25.sp,
-                    color: indexOfTheme == null
-                        ? primaryColors[getValue("quranPageolorsIndex")]
-                            .withOpacity(.9)
-                        : primaryColors[indexOfTheme].withOpacity(.9),
+                  text: TextSpan(
+                    text: "${e["surah"]}",
+                    style: TextStyle(
+                      fontFamily: "arsura",
+                      fontSize: 25.sp,
+                      color: indexOfTheme == null
+                          ? primaryColors[getValue("quranPageolorsIndex")]
+                              .withValues(alpha: .9)
+                          : primaryColors[indexOfTheme].withValues(alpha: .9),
+                    ),
                   ),
-
-                      ),
                   textAlign: TextAlign.center,
-               
                 )),
                 Text(
                   "ترتيبها\n${e["surah"]}",
@@ -82,8 +81,8 @@ text:    "${e["surah"]}",
                       //color: accentColor,//
                       color: indexOfTheme == null
                           ? primaryColors[getValue("quranPageolorsIndex")]
-                              .withOpacity(.9)
-                          : primaryColors[indexOfTheme].withOpacity(.9),
+                              .withValues(alpha: .9)
+                          : primaryColors[indexOfTheme].withValues(alpha: .9),
                       fontSize: 5.sp,
                       fontFamily: "UthmanicHafs13"),
                 ),

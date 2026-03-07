@@ -3,12 +3,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:fluttericon/modern_pictograms_icons.dart';
-import 'package:nabd/core/allah_names/data/allah_names.dart';
+import 'package:nabd/features/allah_names/data/allah_names.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter/material.dart' as m;
 
 class AllahNamesPage extends StatefulWidget {
   const AllahNamesPage({super.key});
@@ -143,7 +141,7 @@ class _AllahNamesPageState extends State<AllahNamesPage> {
                         height: 80.h,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: darkPrimaryColor.withOpacity(.5),
+                            color: darkPrimaryColor.withValues(alpha: .5),
                             image: const DecorationImage(
                                 image: AssetImage(
                                     "assets/images/nameborder.png"))),
@@ -178,7 +176,8 @@ class _AllahNamesPageState extends State<AllahNamesPage> {
                                     width: 200.w,
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: darkPrimaryColor.withOpacity(.5),
+                                        color: darkPrimaryColor.withValues(
+                                            alpha: .5),
                                         image: const DecorationImage(
                                             fit: BoxFit.contain,
                                             image: AssetImage(

@@ -2,9 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:intl/intl.dart';
 // import 'package:alert_system/alert_overlay_plugin.dart';
-import 'package:in_app_update/in_app_update.dart';
 import 'package:animations/animations.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_container/easy_container.dart';
@@ -16,7 +14,6 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttericon/entypo_icons.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:iconsax/iconsax.dart';
@@ -27,25 +24,21 @@ import 'package:nabd/blocs/bloc/player_bloc_bloc.dart';
 import 'package:nabd/blocs/bloc/quran_page_player_bloc.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/initializeData.dart';
-import 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart';
-import 'package:nabd/core/QuranPages/views/quran_sura_list.dart';
-import 'package:nabd/core/QuranPages/views/screenshot_preview.dart';
-import 'package:nabd/core/allah_names/allah_names_page.dart';
-import 'package:nabd/core/audiopage/player/player_bar.dart';
-import 'package:nabd/core/audiopage/views/audio_home_page.dart';
-import 'package:nabd/core/azkar/views/azkar_homepage.dart';
-import 'package:nabd/core/calender/calender.dart';
+import 'package:nabd/features/QuranPages/helpers/convertNumberToAr.dart';
+import 'package:nabd/features/QuranPages/views/quran_sura_list.dart';
+import 'package:nabd/features/QuranPages/views/screenshot_preview.dart';
+import 'package:nabd/features/allah_names/allah_names_page.dart';
+import 'package:nabd/features/audiopage/player/player_bar.dart';
+import 'package:nabd/features/audiopage/views/audio_home_page.dart';
+import 'package:nabd/features/azkar/views/azkar_homepage.dart';
+import 'package:nabd/features/calender/calender.dart';
 
-import 'package:nabd/core/hadith/views/hadithbookspage.dart';
-import 'package:nabd/core/live_tv/live_tv_page.dart';
-import 'package:nabd/core/notifications/data/40hadith.dart';
-import 'package:nabd/core/notifications/views/all_notification_page.dart';
-import 'package:nabd/core/qibla/q_compass.dart';
-import 'package:nabd/core/qibla/qibla_page.dart';
-import 'package:nabd/core/radio_page/radio_page.dart';
-import 'package:nabd/core/shortvideos/shortvideos.dart';
-import 'package:nabd/core/sibha/sibha_page.dart';
-import 'package:nabd/core/support/support_page.dart';
+import 'package:nabd/features/hadith/views/hadithbookspage.dart';
+import 'package:nabd/features/notifications/data/40hadith.dart';
+import 'package:nabd/features/notifications/views/all_notification_page.dart';
+import 'package:nabd/features/qibla/q_compass.dart';
+import 'package:nabd/features/sibha/sibha_page.dart';
+import 'package:nabd/features/support/support_page.dart';
 // import 'package:periodic_alarm/model/alarms_model.dart';
 // import 'package:periodic_alarm/periodic_alarm.dart';
 // import 'package:periodic_alarm/services/alarm_notification.dart';
@@ -54,7 +47,6 @@ import 'package:quran/quran.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:string_validator/string_validator.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -620,7 +612,7 @@ class _HomeState extends State<Home>
                   color: Colors.white,
                   height: 80,
                   width: 400,
-                  child: Center(
+                  child: const Center(
                     child: Text("hidden"),
                   ));
             } else if (state is PlayerBarInitial) {
@@ -628,17 +620,17 @@ class _HomeState extends State<Home>
                   color: Colors.white,
                   height: 80,
                   width: 400,
-                  child: Center(
+                  child: const Center(
                     child: Text("init"),
                   ));
             } else if (state is PlayerBarVisible) {
-              return PlayerBar();
+              return const PlayerBar();
             } else if (state is PlayerBarClosed) {
               return Container(
                   color: Colors.white,
                   height: 80,
                   width: 400,
-                  child: Center(
+                  child: const Center(
                     child: Text("closed"),
                   ));
             }
@@ -689,7 +681,7 @@ class _HomeState extends State<Home>
                         appBar: AppBar(
                           backgroundColor: getValue("darkMode")
                               ? quranPagesColorDark
-                              : quranPagesColorLight.withOpacity(.75),
+                              : quranPagesColorLight.withValues(alpha: .75),
                           elevation: 0,
                           bottomOpacity: 0,
                           title: Text(
@@ -866,8 +858,8 @@ class _HomeState extends State<Home>
                               //             borderRadius: BorderRadius.circular(22),
                               //             color: (DateTime.now().hour < 17 &&
                               //                     DateTime.now().hour > 6)
-                              //                 ? darkPrimaryColor.withOpacity(.4)
-                              //                 : Colors.grey.withOpacity(.4)),
+                              //                 ? darkPrimaryColor.withValues(alpha:.4)
+                              //                 : Colors.grey.withValues(alpha:.4)),
                               //         child: Padding(
                               //           padding: EdgeInsets.symmetric(horizontal: 3.0.w),
                               //           child: Row(
@@ -979,7 +971,7 @@ class _HomeState extends State<Home>
                               //               Text(
                               //                 "بقي علي",
                               //                 style: TextStyle(
-                              //                     color: Colors.white.withOpacity(.5),
+                              //                     color: Colors.white.withValues(alpha:.5),
                               //                     fontSize: 12.sp,
                               //                     fontWeight: FontWeight.bold),
                               //               ),
@@ -1072,10 +1064,10 @@ class _HomeState extends State<Home>
                               //                                                     nextPrayer
                               //                                                 ? Colors
                               //                                                     .redAccent
-                              //                                                     .withOpacity(
+                              //                                                     .withValues(alpha:
                               //                                                         .8)
                               //                                                 : Colors.white
-                              //                                                     .withOpacity(
+                              //                                                     .withValues(alpha:
                               //                                                         .8),
                               //                                             fontSize: 12.sp),
                               //                                       ),
@@ -1104,7 +1096,7 @@ class _HomeState extends State<Home>
                               //                                     horizontal: 60.0),
                               //                                 child: Divider(
                               //                                   color: Colors.white
-                              //                                       .withOpacity(.6),
+                              //                                       .withValues(alpha:.6),
                               //                                 ),
                               //                               ),
                               //                             ],
@@ -1450,7 +1442,7 @@ class _HomeState extends State<Home>
                                                 child: Material(
                                                   color: getValue("darkMode")
                                                       ? const Color(0xff443F42)
-                                                          .withOpacity(.9)
+                                                          .withValues(alpha: .9)
                                                       : const Color(0xffFEFEFE),
                                                   shape: SuperellipseShape(
                                                     borderRadius:
@@ -1462,179 +1454,215 @@ class _HomeState extends State<Home>
                                                       // duration: const Duration(milliseconds: 500),
                                                       // opacity: dominantColor != null ? 1.0 : 0,
                                                       // child:
-                                                      suranumber != null
-                                                          ? Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(
-                                                                      16.0),
-                                                              child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    color: getValue(
-                                                                            "darkMode")
-                                                                        ? quranPagesColorDark
-                                                                        : quranPagesColorLight.withOpacity(
-                                                                            .6),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            20.r)),
-                                                                child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(
-                                                                          8.0),
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      SizedBox(
-                                                                        height:
-                                                                            10.h,
-                                                                      ),
-                                                                      Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          Container(
-                                                                            decoration:
-                                                                                BoxDecoration(shape: BoxShape.circle, color: orangeColor),
-                                                                            child: IconButton(
-                                                                                onPressed: () {
-                                                                                  setState(() {
-                                                                                    suranumber = Random().nextInt(114) + 1;
-                                                                                    verseNumber = Random().nextInt(getVerseCount(suranumber)) + 1;
-                                                                                  });
-                                                                                },
-                                                                                icon: Icon(
-                                                                                  Iconsax.refresh,
-                                                                                  color: Colors.white,
-                                                                                  size: 18.sp,
-                                                                                )),
-                                                                          ),
-                                                                          Container(
-                                                                              decoration: BoxDecoration(shape: BoxShape.circle, color: getValue("darkMode") ? orangeColor : blueColor),
-                                                                              child: IconButton(
-                                                                                  onPressed: () {
-                                                                                    showModalBottomSheet(
-                                                                                        backgroundColor: Colors.transparent,
-                                                                                        elevation: 0,
-                                                                                        context: context,
-                                                                                        builder: (ctx) => Container(
-                                                                                              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12))),
-                                                                                              child: Column(
-                                                                                                mainAxisSize: MainAxisSize.min,
-                                                                                                children: [
-                                                                                                  SizedBox(
-                                                                                                    height: 15.h,
-                                                                                                  ),
-                                                                                                  Row(
-                                                                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                                                                    children: [
-                                                                                                      Container(
-                                                                                                        decoration: BoxDecoration(color: quranPagesColorDark, borderRadius: BorderRadius.circular(12)),
-                                                                                                        child: Padding(
-                                                                                                          padding: const EdgeInsets.all(0.0),
-                                                                                                          child: TextButton(
-                                                                                                              onPressed: () {
-                                                                                                                Navigator.push(context, CupertinoPageRoute(builder: (builder) => ScreenShotPreviewPage(isQCF: true, index: 5, surahNumber: suranumber, jsonData: widgejsonData, firstVerse: verseNumber, lastVerse: verseNumber)));
-                                                                                                              },
-                                                                                                              child: Text(
-                                                                                                                "asimage".tr(),
-                                                                                                                style: TextStyle(color: Colors.white, fontSize: 14.sp),
-                                                                                                              )),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                      Container(
-                                                                                                        decoration: BoxDecoration(color: quranPagesColorDark, borderRadius: BorderRadius.circular(12)),
-                                                                                                        child: Padding(
-                                                                                                          padding: const EdgeInsets.all(0.0),
-                                                                                                          child: TextButton(
-                                                                                                              onPressed: () {
-                                                                                                                var verse = getVerse(suranumber, verseNumber, verseEndSymbol: true);
-                                                                                                                var suraName = getSurahNameArabic(suranumber);
-                                                                                                                Share.share("$verse \nسورة $suraName");
-                                                                                                              },
-                                                                                                              child: Text(
-                                                                                                                "astext".tr(),
-                                                                                                                style: TextStyle(color: Colors.white, fontSize: 14.sp),
-                                                                                                              )),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                  SizedBox(
-                                                                                                    height: 30.h,
-                                                                                                  )
-                                                                                                ],
-                                                                                              ),
-                                                                                            ));
-                                                                                  },
-                                                                                  icon: Icon(Iconsax.share, color: Colors.white, size: 18.sp)))
-                                                                        ],
-                                                                      ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            20.h,
-                                                                      ),
-                                                                      SizedBox(
-                                                                        width: screenSize.width *
-                                                                            .8,
-                                                                        child:
-                                                                            Text(
-                                                                          getVerse(
-                                                                            suranumber,
-                                                                            verseNumber,
-                                                                          ),
-                                                                          textAlign:
-                                                                              TextAlign.right,
-                                                                          style: TextStyle(
-                                                                              color: getValue("darkMode") ? Colors.white70 : goldColor,
-                                                                              fontSize: 22.sp, //fontWeight: FontWeight.w500,
-                                                                              fontFamily: "UthmanicHafs13"),
-                                                                        ),
-                                                                      ),
-                                                                      Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.start,
-                                                                        children: [
-                                                                          Text(
-                                                                            convertToArabicNumber(verseNumber.toString()).toString(),
-                                                                            textAlign:
-                                                                                TextAlign.right,
-                                                                            style: TextStyle(
-                                                                                color: orangeColor,
-                                                                                fontSize: 26.sp,
-                                                                                fontFamily: "KFGQPC Uthmanic Script HAFS Regular"),
-                                                                          ),
-                                                                          const Text(
-                                                                              " - "),
-                                                                          if (widgejsonData !=
-                                                                              null)
-                                                                            Text(
-                                                                              widgejsonData[suranumber - 1]["name"]
-                                                                              // getSurahNameArabic(
-                                                                              // ),
-                                                                              ,
-                                                                              textAlign: TextAlign.right,
-                                                                              style: TextStyle(
-                                                                                fontFamily: fontFamilies[0],
-                                                                                color: getValue("darkMode") ? Colors.white70 : blueColor,
-                                                                                fontSize: 18.sp,
-                                                                              ),
-                                                                            ),
-                                                                        ],
-                                                                      ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            10.h,
-                                                                      ),
-                                                                    ],
-                                                                  ),
+                                                      Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            16.0),
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          color: getValue(
+                                                                  "darkMode")
+                                                              ? quranPagesColorDark
+                                                              : quranPagesColorLight
+                                                                  .withValues(
+                                                                      alpha:
+                                                                          .6),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.r)),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 10.h,
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Container(
+                                                                  decoration: BoxDecoration(
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                      color:
+                                                                          orangeColor),
+                                                                  child:
+                                                                      IconButton(
+                                                                          onPressed:
+                                                                              () {
+                                                                            setState(() {
+                                                                              suranumber = Random().nextInt(114) + 1;
+                                                                              verseNumber = Random().nextInt(getVerseCount(suranumber)) + 1;
+                                                                            });
+                                                                          },
+                                                                          icon:
+                                                                              Icon(
+                                                                            Iconsax.refresh,
+                                                                            color:
+                                                                                Colors.white,
+                                                                            size:
+                                                                                18.sp,
+                                                                          )),
                                                                 ),
+                                                                Container(
+                                                                    decoration: BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        color: getValue("darkMode")
+                                                                            ? orangeColor
+                                                                            : blueColor),
+                                                                    child: IconButton(
+                                                                        onPressed: () {
+                                                                          showModalBottomSheet(
+                                                                              backgroundColor: Colors.transparent,
+                                                                              elevation: 0,
+                                                                              context: context,
+                                                                              builder: (ctx) => Container(
+                                                                                    decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12))),
+                                                                                    child: Column(
+                                                                                      mainAxisSize: MainAxisSize.min,
+                                                                                      children: [
+                                                                                        SizedBox(
+                                                                                          height: 15.h,
+                                                                                        ),
+                                                                                        Row(
+                                                                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                                          children: [
+                                                                                            Container(
+                                                                                              decoration: BoxDecoration(color: quranPagesColorDark, borderRadius: BorderRadius.circular(12)),
+                                                                                              child: Padding(
+                                                                                                padding: const EdgeInsets.all(0.0),
+                                                                                                child: TextButton(
+                                                                                                    onPressed: () {
+                                                                                                      Navigator.push(context, CupertinoPageRoute(builder: (builder) => ScreenShotPreviewPage(isQCF: true, index: 5, surahNumber: suranumber, jsonData: widgejsonData, firstVerse: verseNumber, lastVerse: verseNumber)));
+                                                                                                    },
+                                                                                                    child: Text(
+                                                                                                      "asimage".tr(),
+                                                                                                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                                                                                                    )),
+                                                                                              ),
+                                                                                            ),
+                                                                                            Container(
+                                                                                              decoration: BoxDecoration(color: quranPagesColorDark, borderRadius: BorderRadius.circular(12)),
+                                                                                              child: Padding(
+                                                                                                padding: const EdgeInsets.all(0.0),
+                                                                                                child: TextButton(
+                                                                                                    onPressed: () {
+                                                                                                      var verse = getVerse(suranumber, verseNumber, verseEndSymbol: true);
+                                                                                                      var suraName = getSurahNameArabic(suranumber);
+                                                                                                      Share.share("$verse \nسورة $suraName");
+                                                                                                    },
+                                                                                                    child: Text(
+                                                                                                      "astext".tr(),
+                                                                                                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                                                                                                    )),
+                                                                                              ),
+                                                                                            ),
+                                                                                          ],
+                                                                                        ),
+                                                                                        SizedBox(
+                                                                                          height: 30.h,
+                                                                                        )
+                                                                                      ],
+                                                                                    ),
+                                                                                  ));
+                                                                        },
+                                                                        icon: Icon(Iconsax.share, color: Colors.white, size: 18.sp)))
+                                                              ],
+                                                            ),
+                                                            SizedBox(
+                                                              height: 20.h,
+                                                            ),
+                                                            SizedBox(
+                                                              width: screenSize
+                                                                      .width *
+                                                                  .8,
+                                                              child: Text(
+                                                                getVerse(
+                                                                  suranumber,
+                                                                  verseNumber,
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .right,
+                                                                style:
+                                                                    TextStyle(
+                                                                        color: getValue("darkMode")
+                                                                            ? Colors
+                                                                                .white70
+                                                                            : goldColor,
+                                                                        fontSize: 22
+                                                                            .sp, //fontWeight: FontWeight.w500,
+                                                                        fontFamily:
+                                                                            "UthmanicHafs13"),
                                                               ),
-                                                            )
-                                                          : Container(),
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  convertToArabicNumber(
+                                                                          verseNumber
+                                                                              .toString())
+                                                                      .toString(),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .right,
+                                                                  style: TextStyle(
+                                                                      color:
+                                                                          orangeColor,
+                                                                      fontSize:
+                                                                          26.sp,
+                                                                      fontFamily:
+                                                                          "KFGQPC Uthmanic Script HAFS Regular"),
+                                                                ),
+                                                                const Text(
+                                                                    " - "),
+                                                                if (widgejsonData !=
+                                                                    null)
+                                                                  Text(
+                                                                    widgejsonData[
+                                                                        suranumber -
+                                                                            1]["name"]
+                                                                    // getSurahNameArabic(
+                                                                    // ),
+                                                                    ,
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .right,
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontFamily:
+                                                                          fontFamilies[
+                                                                              0],
+                                                                      color: getValue(
+                                                                              "darkMode")
+                                                                          ? Colors
+                                                                              .white70
+                                                                          : blueColor,
+                                                                      fontSize:
+                                                                          18.sp,
+                                                                    ),
+                                                                  ),
+                                                              ],
+                                                            ),
+                                                            SizedBox(
+                                                              height: 10.h,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1659,7 +1687,7 @@ class _HomeState extends State<Home>
                                                 child: Material(
                                                   color: getValue("darkMode")
                                                       ? const Color(0xff443F42)
-                                                          .withOpacity(.9)
+                                                          .withValues(alpha: .9)
                                                       : const Color(0xffFEFEFE),
                                                   shape: SuperellipseShape(
                                                     borderRadius:
@@ -1671,94 +1699,112 @@ class _HomeState extends State<Home>
                                                       // duration: const Duration(milliseconds: 500),
                                                       // opacity: dominantColor != null ? 1.0 : 0,
                                                       // child:
-                                                      suranumber != null
-                                                          ? Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(
-                                                                      16.0),
-                                                              child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    color: getValue(
-                                                                            "darkMode")
-                                                                        ? quranPagesColorDark
-                                                                        : quranPagesColorLight.withOpacity(
-                                                                            .6),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            20.r)),
-                                                                child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(
-                                                                          8.0),
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      SizedBox(
-                                                                        height:
-                                                                            10.h,
-                                                                      ),
-                                                                      Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          Container(
-                                                                            decoration:
-                                                                                BoxDecoration(shape: BoxShape.circle, color: orangeColor),
-                                                                            child: IconButton(
-                                                                                onPressed: () {
-                                                                                  setState(() {
-                                                                                    indexOfHadith = Random().nextInt(hadithes.length);
-                                                                                  });
-                                                                                },
-                                                                                icon: Icon(
-                                                                                  Iconsax.refresh,
-                                                                                  color: Colors.white,
-                                                                                  size: 18.sp,
-                                                                                )),
-                                                                          ),
-                                                                          Container(
-                                                                              decoration: BoxDecoration(shape: BoxShape.circle, color: getValue("darkMode") ? orangeColor : blueColor),
-                                                                              child: IconButton(
-                                                                                  onPressed: () {
-                                                                                    Share.share(hadithes[indexOfHadith]["hadith"]);
-                                                                                  },
-                                                                                  icon: Icon(Iconsax.clipboard, color: Colors.white, size: 18.sp)))
-                                                                        ],
-                                                                      ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            10.h,
-                                                                      ),
-                                                                      SizedBox(
-                                                                        width: screenSize.width *
-                                                                            .8,
-                                                                        child:
-                                                                            Text(
-                                                                          hadithes[indexOfHadith]
-                                                                              [
-                                                                              "hadith"],
-                                                                          textAlign:
-                                                                              TextAlign.right,
-                                                                          style: TextStyle(
-                                                                              color: getValue("darkMode") ? Colors.white70 : goldColor, //fontWeight: FontWeight.bold,
-                                                                              fontSize: 17.sp,
-                                                                              fontFamily: "Taha"),
-                                                                        ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            10.h,
-                                                                      )
-                                                                    ],
-                                                                  ),
+                                                      Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            16.0),
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          color: getValue(
+                                                                  "darkMode")
+                                                              ? quranPagesColorDark
+                                                              : quranPagesColorLight
+                                                                  .withValues(
+                                                                      alpha:
+                                                                          .6),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.r)),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 10.h,
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Container(
+                                                                  decoration: BoxDecoration(
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                      color:
+                                                                          orangeColor),
+                                                                  child: IconButton(
+                                                                      onPressed: () {
+                                                                        setState(
+                                                                            () {
+                                                                          indexOfHadith =
+                                                                              Random().nextInt(hadithes.length);
+                                                                        });
+                                                                      },
+                                                                      icon: Icon(
+                                                                        Iconsax
+                                                                            .refresh,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        size: 18
+                                                                            .sp,
+                                                                      )),
                                                                 ),
+                                                                Container(
+                                                                    decoration: BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        color: getValue("darkMode")
+                                                                            ? orangeColor
+                                                                            : blueColor),
+                                                                    child: IconButton(
+                                                                        onPressed: () {
+                                                                          Share.share(hadithes[indexOfHadith]
+                                                                              [
+                                                                              "hadith"]);
+                                                                        },
+                                                                        icon: Icon(Iconsax.clipboard, color: Colors.white, size: 18.sp)))
+                                                              ],
+                                                            ),
+                                                            SizedBox(
+                                                              height: 10.h,
+                                                            ),
+                                                            SizedBox(
+                                                              width: screenSize
+                                                                      .width *
+                                                                  .8,
+                                                              child: Text(
+                                                                hadithes[
+                                                                        indexOfHadith]
+                                                                    ["hadith"],
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .right,
+                                                                style:
+                                                                    TextStyle(
+                                                                        color: getValue("darkMode")
+                                                                            ? Colors
+                                                                                .white70
+                                                                            : goldColor, //fontWeight: FontWeight.bold,
+                                                                        fontSize: 17
+                                                                            .sp,
+                                                                        fontFamily:
+                                                                            "Taha"),
                                                               ),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 10.h,
                                                             )
-                                                          : Container(),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1804,7 +1850,7 @@ class SuperellipseButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 6.0.w, vertical: 6.h),
       child: Material(
         color: getValue("darkMode")
-            ? darkModeSecondaryColor.withOpacity(.9)
+            ? darkModeSecondaryColor.withValues(alpha: .9)
             : const Color(0xffFEFEFE), //elevation: 1,
         shape: SuperellipseShape(
           borderRadius: BorderRadius.circular(40.0.r),

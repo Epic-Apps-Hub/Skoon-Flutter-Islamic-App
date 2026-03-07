@@ -7,8 +7,8 @@ import 'package:flutter/material.dart' as m;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
-import 'package:nabd/core/hadith/models/hadith.dart';
-import 'package:nabd/core/hadith/views/widgets/sharing_options.dart';
+import 'package:nabd/features/hadith/models/hadith.dart';
+import 'package:nabd/features/hadith/views/widgets/sharing_options.dart';
 
 class HadithDetailsPage extends StatefulWidget {
   String id;
@@ -56,7 +56,7 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
     return Container(
       decoration: BoxDecoration(
           color: getValue("darkMode")
-              ? Colors.black.withOpacity(.87)
+              ? Colors.black.withValues(alpha: .87)
               : Colors.white,
           image: const DecorationImage(
               image: AssetImage("assets/images/mosquepnggold.png"),
@@ -74,17 +74,19 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
 
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            iconTheme:  IconThemeData(color:getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              : Colors.black87),
+            iconTheme: IconThemeData(
+                color: getValue("darkMode")
+                    ? Colors.white.withValues(alpha: .87)
+                    : Colors.black87),
             elevation: 0,
             title: SizedBox(
               width: MediaQuery.of(context).size.width * .4,
               child: Text(widget.title,
                   overflow: TextOverflow.ellipsis,
-                  style:  TextStyle(color:getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              : const Color(0xffA28858))),
+                  style: TextStyle(
+                      color: getValue("darkMode")
+                          ? Colors.white.withValues(alpha: .87)
+                          : const Color(0xffA28858))),
             ),
           ),
           // backgroundColor: darkPrimaryColor,
@@ -105,9 +107,9 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                           locale: const Locale("ar"),
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            color:getValue("darkMode")
-              ? Colors.white
-              : Colors.black87,
+                            color: getValue("darkMode")
+                                ? Colors.white
+                                : Colors.black87,
                             fontFamily: 'Taha',
                             fontSize: 16.sp,
                           ),
@@ -122,9 +124,9 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             //fontFamily: 'roboto',
-                            color:getValue("darkMode")
-              ? Colors.white.withOpacity(.45)
-              : Colors.black45, //fontFamily: 'Taha',
+                            color: getValue("darkMode")
+                                ? Colors.white.withValues(alpha: .45)
+                                : Colors.black45, //fontFamily: 'Taha',
                             fontSize: 16.sp, fontFamily: 'Taha',
                           ),
                         ),
@@ -149,12 +151,12 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                               style: TextStyle(
                                 //fontFamily: 'roboto',
                                 color: isExpanded == false
-                                    ?getValue("darkMode")
-              ? orangeColor
-              : const Color(0xffA28858)
-                                    :getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              : Colors.black87, //fontFamily: 'Taha',
+                                    ? getValue("darkMode")
+                                        ? orangeColor
+                                        : const Color(0xffA28858)
+                                    : getValue("darkMode")
+                                        ? Colors.white.withValues(alpha: .87)
+                                        : Colors.black87, //fontFamily: 'Taha',
                                 fontSize: 16.sp, fontFamily: 'Taha',
                               ),
                             ),
@@ -184,12 +186,13 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                                       //fontFamily: 'roboto',
                                       color: isExpanded2 == false
                                           ? getValue("darkMode")
-              ? orangeColor
-              :const Color(0xffA28858)
+                                              ? orangeColor
+                                              : const Color(0xffA28858)
                                           : getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              :Colors
-                                              .black87, //fontFamily: 'Taha',
+                                              ? Colors.white
+                                                  .withValues(alpha: .87)
+                                              : Colors
+                                                  .black87, //fontFamily: 'Taha',
                                       fontSize: 16.sp, fontFamily: 'Taha',
                                     ),
                                   ),
@@ -215,12 +218,15 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                                                 //fontFamily: 'roboto',
                                                 color: isExpanded2 == false
                                                     ? getValue("darkMode")
-              ? orangeColor
-              :const Color(0xffA28858)
-                                                    :getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              : Colors
-                                                        .black87, //fontFamily: 'Taha',
+                                                        ? orangeColor
+                                                        : const Color(
+                                                            0xffA28858)
+                                                    : getValue("darkMode")
+                                                        ? Colors.white
+                                                            .withValues(
+                                                                alpha: .87)
+                                                        : Colors
+                                                            .black87, //fontFamily: 'Taha',
                                                 fontSize: 16.sp,
                                                 fontFamily: 'Taha',
                                               ),
@@ -246,13 +252,14 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                                             style: TextStyle(
                                               //fontFamily: 'roboto',
                                               color: isExpanded2 == false
-                                                  ?getValue("darkMode")
-              ? orangeColor
-              : const Color(0xffA28858)
-                                                  :getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              : Colors
-                                                      .black87, //fontFamily: 'Taha',
+                                                  ? getValue("darkMode")
+                                                      ? orangeColor
+                                                      : const Color(0xffA28858)
+                                                  : getValue("darkMode")
+                                                      ? Colors.white.withValues(
+                                                          alpha: .87)
+                                                      : Colors
+                                                          .black87, //fontFamily: 'Taha',
                                               fontSize: 16.sp,
                                               fontFamily: 'Taha',
                                             ),
@@ -284,13 +291,14 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                                     style: TextStyle(
                                       //fontFamily: 'roboto',
                                       color: isExpanded4 == false
-                                         ?getValue("darkMode")
-              ? orangeColor
-              : const Color(0xffA28858)
-                                                  :getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              : Colors
-                                                      .black87, //fontFamily: 'Taha',
+                                          ? getValue("darkMode")
+                                              ? orangeColor
+                                              : const Color(0xffA28858)
+                                          : getValue("darkMode")
+                                              ? Colors.white
+                                                  .withValues(alpha: .87)
+                                              : Colors
+                                                  .black87, //fontFamily: 'Taha',
                                       fontSize: 16.sp, fontFamily: 'Taha',
                                     ),
                                   ),
@@ -315,13 +323,16 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                                               style: TextStyle(
                                                 //fontFamily: 'roboto',
                                                 color: isExpanded4 == false
-                                                 ?getValue("darkMode")
-              ? orangeColor
-              : const Color(0xffA28858)
-                                                  :getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              : Colors
-                                                      .black87,//fontFamily: 'Taha',
+                                                    ? getValue("darkMode")
+                                                        ? orangeColor
+                                                        : const Color(
+                                                            0xffA28858)
+                                                    : getValue("darkMode")
+                                                        ? Colors.white
+                                                            .withValues(
+                                                                alpha: .87)
+                                                        : Colors
+                                                            .black87, //fontFamily: 'Taha',
                                                 fontSize: 16.sp,
                                                 fontFamily: 'Taha',
                                               ),
@@ -347,13 +358,14 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                                             style: TextStyle(
                                               //fontFamily: 'roboto',
                                               color: isExpanded4 == false
-                                               ?getValue("darkMode")
-              ? orangeColor
-              : const Color(0xffA28858)
-                                                  :getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              : Colors
-                                                      .black87, //fontFamily: 'Taha',
+                                                  ? getValue("darkMode")
+                                                      ? orangeColor
+                                                      : const Color(0xffA28858)
+                                                  : getValue("darkMode")
+                                                      ? Colors.white.withValues(
+                                                          alpha: .87)
+                                                      : Colors
+                                                          .black87, //fontFamily: 'Taha',
                                               fontSize: 16.sp,
                                               fontFamily: 'Taha',
                                             ),
@@ -385,13 +397,12 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                             style: TextStyle(
                               //fontFamily: 'roboto',
                               color: isExpanded3 == false
-                                ?getValue("darkMode")
-              ? orangeColor
-              : const Color(0xffA28858)
-                                                  :getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              : Colors
-                                                      .black87, //fontFamily: 'Taha',
+                                  ? getValue("darkMode")
+                                      ? orangeColor
+                                      : const Color(0xffA28858)
+                                  : getValue("darkMode")
+                                      ? Colors.white.withValues(alpha: .87)
+                                      : Colors.black87, //fontFamily: 'Taha',
                               fontSize: 16.sp, fontFamily: 'Taha',
                             ),
                           ),
@@ -425,7 +436,7 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                                   child: Container(
                                     decoration: BoxDecoration(
                                         color: const Color(0xffF5EFE8)
-                                            .withOpacity(.9),
+                                            .withValues(alpha: .9),
                                         borderRadius: BorderRadius.circular(8)),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
@@ -460,7 +471,7 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                                   child: Container(
                                     decoration: BoxDecoration(
                                         color: const Color(0xffF5EFE8)
-                                            .withOpacity(.9),
+                                            .withValues(alpha: .9),
                                         borderRadius: BorderRadius.circular(8)),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
@@ -488,9 +499,9 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                             hadithOtherLanguage["hadeeth"],
                             // textAlign: TextAlign.center,
                             style: TextStyle(
-                              color:getValue("darkMode")
-              ? Colors.white.withOpacity(.87)
-              : Colors.black87,
+                              color: getValue("darkMode")
+                                  ? Colors.white.withValues(alpha: .87)
+                                  : Colors.black87,
                               fontSize: 16.sp,
                               fontFamily: 'roboto',
                             ),
@@ -504,9 +515,9 @@ class _HadithDetailsPageState extends State<HadithDetailsPage> {
                             // textDirection: m.TextDirection.rtl,locale: const Locale("ar"),textAlign: TextAlign.right,
                             style: TextStyle(
                               //fontFamily: 'roboto',
-                              color:getValue("darkMode")
-              ? Colors.white.withOpacity(.45)
-              : Colors.black45, //fontFamily: 'Taha',
+                              color: getValue("darkMode")
+                                  ? Colors.white.withValues(alpha: .45)
+                                  : Colors.black45, //fontFamily: 'Taha',
                               fontSize: 16.sp, fontFamily: 'roboto',
                             ),
                           ),

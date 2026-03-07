@@ -1,78 +1,28 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:audio_meta/audio_meta.dart';
-import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ffmpeg_kit_flutter_new/ffmpeg_kit.dart';
-import 'package:ffmpeg_kit_flutter_new/ffmpeg_session.dart';
-import 'package:ffmpeg_kit_flutter_new/return_code.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:fluttericon/linearicons_free_icons.dart';
-import 'package:nabd/core/QuranPages/helpers/remove_html_tags.dart';
-import 'package:nabd/core/QuranPages/widgets/bookmark_dialog.dart';
 
-import '../helpers/translation/get_translation_data.dart'
-    as get_translation_data;
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:fluttericon/mfg_labs_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:nabd/blocs/bloc/player_bloc_bloc.dart';
-import 'package:nabd/blocs/bloc/quran_page_player_bloc.dart';
-import 'package:nabd/GlobalHelpers/printYellow.dart';
-import 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart';
-import 'package:nabd/models/TranslationInfo.dart';
-import 'package:nabd/models/reciter.dart';
-import 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart';
-import 'package:nabd/core/QuranPages/views/screenshot_preview.dart';
-import 'package:nabd/core/QuranPages/widgets/bismallah.dart';
-import 'package:nabd/core/QuranPages/widgets/header_widget.dart';
-import 'package:nabd/core/QuranPages/widgets/tafseer_and_translation_sheet.dart';
-import 'package:nabd/core/QuranPages/helpers/custom_page_view_scroll_physics.dart';
-import 'package:nabd/core/QuranPages/helpers/quran_page_utils.dart';
-import 'package:nabd/core/QuranPages/helpers/result.dart';
-import 'package:nabd/core/QuranPages/helpers/scroll_listener.dart';
-import 'package:nabd/core/QuranPages/widgets/widget_span_wrapper.dart';
-import 'package:nabd/core/QuranPages/widgets/details_page/quran_page_header.dart';
-import 'package:nabd/core/QuranPages/widgets/details_page/quran_page_view.dart';
-import 'package:nabd/core/QuranPages/widgets/details_page/quran_vertical_view.dart';
-import 'package:nabd/core/QuranPages/widgets/details_page/quran_verse_by_verse_view.dart';
-import 'package:nabd/core/QuranPages/helpers/quran_data.dart';
-import 'package:nabd/core/home.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:quran/quran.dart';
+import 'package:nabd/features/QuranPages/helpers/translation/translationdata.dart';
+import 'package:nabd/features/QuranPages/helpers/quran_page_utils.dart';
+import 'package:nabd/features/QuranPages/widgets/details_page/quran_page_view.dart';
+import 'package:nabd/features/QuranPages/widgets/details_page/quran_vertical_view.dart';
+import 'package:nabd/features/QuranPages/widgets/details_page/quran_verse_by_verse_view.dart';
+import 'package:nabd/features/QuranPages/helpers/quran_data.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:share_plus/share_plus.dart';
 import 'dart:io';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-import 'package:easy_container/easy_container.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
-import 'package:fluttericon/elusive_icons.dart';
-import 'package:nabd/GlobalHelpers/constants.dart';
 import 'package:nabd/GlobalHelpers/hive_helper.dart';
 import 'package:quran/quran.dart' as quran;
 
-import 'package:nabd/core/QuranPages/widgets/details_page/ayah_options_sheet.dart';
-import 'package:nabd/core/QuranPages/helpers/quran_audio_helper.dart';
+import 'package:nabd/features/QuranPages/widgets/details_page/ayah_options_sheet.dart';
 
 import 'package:screenshot/screenshot.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 import 'package:wakelock/wakelock.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:intl/intl.dart';
-import 'package:arabic_roman_conv/arabic_roman_conv.dart';
-import '../helpers/translation/get_translation_data.dart' as translate;
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class QuranReadingPage extends StatefulWidget {
   const QuranReadingPage({super.key});
@@ -327,60 +277,65 @@ class QuranDetailsPageState extends State<QuranDetailsPage> {
       backgroundColor: Colors.transparent,
       body: Builder(builder: (context) {
         if (getValue("alignmentType") == "pageview") {
-            return QuranPageView(
-                pageController: _pageController,
-                onPageChanged: (index) {
-                    setState(() { selectedSpan = ""; });
-                    this.index = index;
-                    updateValue("lastRead", index);
-                },
-                onBack: () => Navigator.pop(context),
-                onSettings: () { scaffoldKey.currentState?.openEndDrawer(); },
-                onShowAyahOptions: (p, s, v) => showAyahOptionsSheet(p, s, v),
-                bookmarks: bookmarks,
-                jsonData: widget.jsonData,
-                quarterJsonData: widget.quarterJsonData,
-                shouldHighlightText: widget.shouldHighlightText,
-                highlightVerse: widget.highlightVerse,
-                index: index,
-            );
+          return QuranPageView(
+            pageController: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                selectedSpan = "";
+              });
+              this.index = index;
+              updateValue("lastRead", index);
+            },
+            onBack: () => Navigator.pop(context),
+            onSettings: () {
+              scaffoldKey.currentState?.openEndDrawer();
+            },
+            onShowAyahOptions: (p, s, v) => showAyahOptionsSheet(p, s, v),
+            bookmarks: bookmarks,
+            jsonData: widget.jsonData,
+            quarterJsonData: widget.quarterJsonData,
+            shouldHighlightText: widget.shouldHighlightText,
+            highlightVerse: widget.highlightVerse,
+            index: index,
+          );
         } else if (getValue("alignmentType") == "verticalview") {
-            return QuranVerticalView(
-                itemScrollController: itemScrollController,
-                itemPositionsListener: itemPositionsListener,
-                onPageChanged: (i) {
-                     this.index = i;
-                     updateValue("lastRead", i);
-                },
-                bookmarks: bookmarks,
-                jsonData: widget.jsonData,
-                quarterJsonData: widget.quarterJsonData,
-                shouldHighlightText: widget.shouldHighlightText,
-                highlightVerse: widget.highlightVerse,
-                onShowAyahOptions: (p, s, v) => showAyahOptionsSheet(p, s, v),
-            );
+          return QuranVerticalView(
+            itemScrollController: itemScrollController,
+            itemPositionsListener: itemPositionsListener,
+            onPageChanged: (i) {
+              index = i;
+              updateValue("lastRead", i);
+            },
+            bookmarks: bookmarks,
+            jsonData: widget.jsonData,
+            quarterJsonData: widget.quarterJsonData,
+            shouldHighlightText: widget.shouldHighlightText,
+            highlightVerse: widget.highlightVerse,
+            onShowAyahOptions: (p, s, v) => showAyahOptionsSheet(p, s, v),
+          );
         } else {
-             return QuranVerseByVerseView(
-                itemScrollController: itemScrollController,
-                itemPositionsListener: itemPositionsListener,
-                onPageChanged: (i) {
-                     this.index = i;
-                     updateValue("lastRead", i);
-                },
-                bookmarks: bookmarks,
-                jsonData: widget.jsonData,
-                shouldHighlightText: widget.shouldHighlightText,
-                highlightVerse: widget.highlightVerse,
-                onShowAyahOptions: (p, s, v) => showAyahOptionsSheet(p, s, v),
-                translationDataList: translationDataList,
-                dataOfCurrentTranslation: dataOfCurrentTranslation,
-                isVerseStarred: isVerseStarred,
-                onBack: () => Navigator.pop(context),
-             );
+          return QuranVerseByVerseView(
+            itemScrollController: itemScrollController,
+            itemPositionsListener: itemPositionsListener,
+            onPageChanged: (i) {
+              index = i;
+              updateValue("lastRead", i);
+            },
+            bookmarks: bookmarks,
+            jsonData: widget.jsonData,
+            shouldHighlightText: widget.shouldHighlightText,
+            highlightVerse: widget.highlightVerse,
+            onShowAyahOptions: (p, s, v) => showAyahOptionsSheet(p, s, v),
+            translationDataList: translationDataList,
+            dataOfCurrentTranslation: dataOfCurrentTranslation,
+            isVerseStarred: isVerseStarred,
+            onBack: () => Navigator.pop(context),
+          );
         }
       }),
     );
   }
+
   showAyahOptionsSheet(index, surahNumber, verseNumber) {
     AyahOptionsSheet.show(
       context,
@@ -390,36 +345,42 @@ class QuranDetailsPageState extends State<QuranDetailsPage> {
       bookmarks: bookmarks,
       jsonData: widget.jsonData,
       onAddBookmark: (s, v) async {
-         List<String> colorOptions = ["0xFF2196F3", "0xFFF44336", "0xFFE91E63", "0xFF9C27B0", "0xFF3F51B5"];
-         String selectedColor = colorOptions[0];
-         bookmarks.add({
-             "suraNumber": s,
-             "verseNumber": v,
-             "color": selectedColor.replaceAll("0x", "")
-         });
-         updateValue("bookmarks", json.encode(bookmarks));
-         setState(() {});
+        List<String> colorOptions = [
+          "0xFF2196F3",
+          "0xFFF44336",
+          "0xFFE91E63",
+          "0xFF9C27B0",
+          "0xFF3F51B5"
+        ];
+        String selectedColor = colorOptions[0];
+        bookmarks.add({
+          "suraNumber": s,
+          "verseNumber": v,
+          "color": selectedColor.replaceAll("0x", "")
+        });
+        updateValue("bookmarks", json.encode(bookmarks));
+        setState(() {});
       },
       onRemoveBookmark: (s, v) {
-          bookmarks.removeWhere((element) => element["suraNumber"] == s && element["verseNumber"] == v);
-          updateValue("bookmarks", json.encode(bookmarks));
-          setState(() {});
+        bookmarks.removeWhere((element) =>
+            element["suraNumber"] == s && element["verseNumber"] == v);
+        updateValue("bookmarks", json.encode(bookmarks));
+        setState(() {});
       },
       isVerseStarred: isVerseStarred,
       onToggleStar: (s, v) {
-         if (isVerseStarred(s, v)) {
-            removeStarredVerse(s, v);
-         } else {
-            addStarredVerse(s, v);
-         }
-         setState(() {});
+        if (isVerseStarred(s, v)) {
+          removeStarredVerse(s, v);
+        } else {
+          addStarredVerse(s, v);
+        }
+        setState(() {});
       },
     );
   }
 
   bool showSuraHeader = true;
   bool addAppSlogan = true;
-  
 
   Set<String> starredVerses = {};
 
@@ -469,8 +430,4 @@ class QuranDetailsPageState extends State<QuranDetailsPage> {
   }
 
   bool isDownloading = false;
-  
-
-  
 }
-

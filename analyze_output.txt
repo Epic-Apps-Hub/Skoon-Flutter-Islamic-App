@@ -1,0 +1,934 @@
+Analyzing Skoon-Flutter-Islamic-App...                          
+
+warning - Unused import: 'package:nabd/GlobalHelpers/hive_helper.dart' - lib\GlobalHelpers\constants.dart:2:8 - unused_import
+warning - Unused import: 'package:nabd/models/TranslationInfo.dart' - lib\GlobalHelpers\constants.dart:3:8 - unused_import
+warning - Unused import: 'package:quran/quran.dart' - lib\GlobalHelpers\constants.dart:4:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\GlobalHelpers\constants.dart:26:22 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\GlobalHelpers\constants.dart:27:20 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\GlobalHelpers\constants.dart:28:21 - deprecated_member_use
+   info - The file name 'initializeData.dart' isn't a lower_case_with_underscores identifier - lib\GlobalHelpers\initializeData.dart:1:1 - file_names
+warning - Unused import: 'package:quran/quran.dart' - lib\GlobalHelpers\initializeData.dart:2:8 - unused_import
+warning - Unused import: 'package:hive/hive.dart' - lib\GlobalHelpers\messaging_helper.dart:4:8 - unused_import
+warning - The declaration '_firebaseMessagingBackgroundHandler' isn't referenced - lib\GlobalHelpers\messaging_helper.dart:7:14 - unused_element
+   info - Don't invoke 'print' in production code - lib\GlobalHelpers\messaging_helper.dart:10:3 - avoid_print
+   info - The file name 'printYellow.dart' isn't a lower_case_with_underscores identifier - lib\GlobalHelpers\printYellow.dart:1:1 - file_names
+   info - Don't invoke 'print' in production code - lib\GlobalHelpers\printYellow.dart:2:8 - avoid_print
+   info - The imported package 'bloc' isn't a dependency of the importing package - lib\blocs\bloc\bloc\player_bar_bloc.dart:1:8 - depend_on_referenced_packages
+warning - Unused import: 'package:just_audio/just_audio.dart' - lib\blocs\bloc\bloc\player_bar_bloc.dart:3:8 - unused_import
+   info - The imported package 'meta' isn't a dependency of the importing package - lib\blocs\bloc\bloc\player_bar_bloc.dart:4:8 - depend_on_referenced_packages
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: PlayerBarInitial.height - lib\blocs\bloc\bloc\player_bar_state.dart:6:7 - must_be_immutable
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: PlayerBarVisible.height - lib\blocs\bloc\bloc\player_bar_state.dart:13:7 - must_be_immutable
+   info - The imported package 'bloc' isn't a dependency of the importing package - lib\blocs\bloc\hadith_bloc.dart:1:8 - depend_on_referenced_packages
+   info - The imported package 'meta' isn't a dependency of the importing package - lib\blocs\bloc\hadith_bloc.dart:2:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/data/books.dart' - lib\blocs\bloc\hadith_bloc.dart:7:8 - uri_does_not_exist
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\hadith_bloc.dart:24:9 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\hadith_bloc.dart:26:11 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\hadith_bloc.dart:30:11 - avoid_print
+  error - Undefined name 'baseHadithUrl' - lib\blocs\bloc\hadith_bloc.dart:34:13 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\hadith_bloc.dart:40:15 - avoid_print
+   info - An uninitialized variable should have an explicit type annotation - lib\blocs\bloc\hadith_bloc.dart:50:13 - prefer_typing_uninitialized_variables
+   info - The variable name 'hadith_book' isn't a lowerCamelCase identifier - lib\blocs\bloc\hadith_state.dart:8:19 - non_constant_identifier_names
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: HadithDownloading.progress - lib\blocs\bloc\hadith_state.dart:16:7 - must_be_immutable
+   info - An uninitialized field should have an explicit type annotation - lib\blocs\bloc\hadith_state.dart:17:7 - prefer_typing_uninitialized_variables
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\observer.dart:7:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\observer.dart:13:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\observer.dart:19:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\observer.dart:25:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\observer.dart:30:5 - avoid_print
+  error - Target of URI doesn't exist: 'package:nabd/Core/audiopage/models/reciter.dart' - lib\blocs\bloc\player_bloc_bloc.dart:5:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\blocs\bloc\player_bloc_bloc.dart:7:8 - uri_does_not_exist
+   info - The imported package 'bloc' isn't a dependency of the importing package - lib\blocs\bloc\player_bloc_bloc.dart:11:8 - depend_on_referenced_packages
+   info - The imported package 'meta' isn't a dependency of the importing package - lib\blocs\bloc\player_bloc_bloc.dart:15:8 - depend_on_referenced_packages
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:53:11 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:55:13 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:60:13 - avoid_print
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\player_bloc_bloc.dart:109:20 - unnecessary_non_null_assertion
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:111:11 - avoid_print
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\player_bloc_bloc.dart:113:20 - unnecessary_non_null_assertion
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\player_bloc_bloc.dart:121:28 - unnecessary_non_null_assertion
+   info - 'ConcatenatingAudioSource' is deprecated and shouldn't be used. Use AudioPlayer.setAudioSources instead - lib\blocs\bloc\player_bloc_bloc.dart:127:15 - deprecated_member_use
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:130:11 - avoid_print
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\player_bloc_bloc.dart:133:20 - unnecessary_non_null_assertion
+  error - Undefined name 'playerbarBloc' - lib\blocs\bloc\player_bloc_bloc.dart:135:9 - undefined_identifier
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\player_bloc_bloc.dart:144:37 - unnecessary_non_null_assertion
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:155:9 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:157:11 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:161:11 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:168:11 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:173:13 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:197:9 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:199:11 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:203:11 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:212:13 - avoid_print
+   info - Don't invoke 'print' in production code - lib\blocs\bloc\player_bloc_bloc.dart:217:15 - avoid_print
+warning - The operand can't be 'null', so the condition is always 'true' - lib\blocs\bloc\player_bloc_bloc.dart:222:25 - unnecessary_null_comparison
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\player_bloc_bloc.dart:222:46 - unnecessary_non_null_assertion
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: StartPlaying.moshaf, StartPlaying.reciter, StartPlaying.suraNumber, StartPlaying.buildContext, StartPlaying.jsonData, StartPlaying.audioPlayer, StartPlaying.initialIndex - lib\blocs\bloc\player_bloc_event.dart:6:7 - must_be_immutable
+  error - Undefined class 'Moshaf' - lib\blocs\bloc\player_bloc_event.dart:7:3 - undefined_class
+  error - Undefined class 'Reciter' - lib\blocs\bloc\player_bloc_event.dart:8:3 - undefined_class
+   info - An uninitialized field should have an explicit type annotation - lib\blocs\bloc\player_bloc_event.dart:13:7 - prefer_typing_uninitialized_variables
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: DownloadSurah.moshaf, DownloadSurah.reciter, DownloadSurah.suraNumber, DownloadSurah.url - lib\blocs\bloc\player_bloc_event.dart:26:7 - must_be_immutable
+  error - Undefined class 'Moshaf' - lib\blocs\bloc\player_bloc_event.dart:27:4 - undefined_class
+  error - Undefined class 'Reciter' - lib\blocs\bloc\player_bloc_event.dart:28:3 - undefined_class
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: DownloadAllSurahs.moshaf, DownloadAllSurahs.reciter - lib\blocs\bloc\player_bloc_event.dart:40:7 - must_be_immutable
+  error - Undefined class 'Moshaf' - lib\blocs\bloc\player_bloc_event.dart:41:2 - undefined_class
+  error - Undefined class 'Reciter' - lib\blocs\bloc\player_bloc_event.dart:42:3 - undefined_class
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: PlayerBlocPlaying.moshaf, PlayerBlocPlaying.reciter, PlayerBlocPlaying.suraNumber, PlayerBlocPlaying.jsonData, PlayerBlocPlaying.audioPlayer, PlayerBlocPlaying.surahNumbers, PlayerBlocPlaying.playList - lib\blocs\bloc\player_bloc_state.dart:8:7 - must_be_immutable
+  error - Undefined class 'Moshaf' - lib\blocs\bloc\player_bloc_state.dart:9:3 - undefined_class
+  error - Undefined class 'Reciter' - lib\blocs\bloc\player_bloc_state.dart:10:3 - undefined_class
+   info - An uninitialized field should have an explicit type annotation - lib\blocs\bloc\player_bloc_state.dart:13:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\blocs\bloc\player_bloc_state.dart:15:25 - prefer_typing_uninitialized_variables
+warning - Unused import: 'dart:ffi' - lib\blocs\bloc\quran_page_player_bloc.dart:4:8 - unused_import
+   info - The imported package 'bloc' isn't a dependency of the importing package - lib\blocs\bloc\quran_page_player_bloc.dart:8:8 - depend_on_referenced_packages
+   info - The imported package 'meta' isn't a dependency of the importing package - lib\blocs\bloc\quran_page_player_bloc.dart:12:8 - depend_on_referenced_packages
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\quran_page_player_bloc.dart:88:20 - unnecessary_non_null_assertion
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\quran_page_player_bloc.dart:94:28 - unnecessary_non_null_assertion
+   info - 'ConcatenatingAudioSource' is deprecated and shouldn't be used. Use AudioPlayer.setAudioSources instead - lib\blocs\bloc\quran_page_player_bloc.dart:95:13 - deprecated_member_use
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\quran_page_player_bloc.dart:117:20 - unnecessary_non_null_assertion
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\quran_page_player_bloc.dart:118:20 - unnecessary_non_null_assertion
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\quran_page_player_bloc.dart:123:30 - unnecessary_non_null_assertion
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\quran_page_player_bloc.dart:124:41 - unnecessary_non_null_assertion
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\quran_page_player_bloc.dart:132:28 - unnecessary_non_null_assertion
+warning - The '!' will have no effect because the receiver can't be null - lib\blocs\bloc\quran_page_player_bloc.dart:138:28 - unnecessary_non_null_assertion
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: QuranPagePlayerPlaying.audioPlayerStream, QuranPagePlayerPlaying.player, QuranPagePlayerPlaying.suraNumber, QuranPagePlayerPlaying.durations, QuranPagePlayerPlaying.reciter - lib\blocs\bloc\quran_page_player_state.dart:9:7 - must_be_immutable
+   info - An uninitialized field should have an explicit type annotation - lib\blocs\bloc\quran_page_player_state.dart:14:5 - prefer_typing_uninitialized_variables
+   info - The file name 'convertNumberToAr.dart' isn't a lower_case_with_underscores identifier - lib\features\QuranPages\helpers\convertNumberToAr.dart:1:1 - file_names
+warning - The value of the local variable 'startDuration' isn't used - lib\features\QuranPages\helpers\quran_audio_helper.dart:45:11 - unused_local_variable
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/result.dart' - lib\features\QuranPages\helpers\quran_page_utils.dart:1:8 - uri_does_not_exist
+  error - Undefined class 'Result' - lib\features\QuranPages\helpers\quran_page_utils.dart:12:10 - undefined_class
+  error - The method 'Result' isn't defined for the type 'QuranPageUtils' - lib\features\QuranPages\helpers\quran_page_utils.dart:29:24 - undefined_method
+  error - The method 'Result' isn't defined for the type 'QuranPageUtils' - lib\features\QuranPages\helpers\quran_page_utils.dart:36:12 - undefined_method
+   info - Don't invoke 'print' in production code - lib\features\QuranPages\helpers\save_image.dart:27:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\QuranPages\helpers\save_image.dart:30:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\QuranPages\helpers\save_image.dart:33:5 - avoid_print
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/save_image.dart' - lib\features\QuranPages\helpers\share_image.dart:3:8 - uri_does_not_exist
+  error - The function 'saveImageToTempDirectory' isn't defined - lib\features\QuranPages\helpers\share_image.dart:8:33 - undefined_function
+   info - Don't invoke 'print' in production code - lib\features\QuranPages\helpers\share_image.dart:15:5 - avoid_print
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translations/muyassar.dart' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:5:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translations/sahih_english.dart' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:6:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translation_info.dart' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:7:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:8:8 - uri_does_not_exist
+  error - Undefined class 'TranslationData' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:12:39 - undefined_class
+  error - Undefined name 'Translation' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:15:38 - undefined_identifier
+  error - Undefined name 'muyassar' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:16:27 - undefined_identifier
+  error - Undefined name 'Translation' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:17:43 - undefined_identifier
+  error - Undefined name 'en_sahih' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:18:31 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\features\QuranPages\helpers\translation\get_translation_data.dart:39:1 - avoid_print
+  error - Undefined class 'TranslationData' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:47:39 - undefined_class
+  error - Undefined name 'Translation' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:51:38 - undefined_identifier
+  error - Undefined name 'muyassar' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:52:27 - undefined_identifier
+  error - Undefined name 'Translation' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:53:43 - undefined_identifier
+  error - Undefined name 'en_sahih' - lib\features\QuranPages\helpers\translation\get_translation_data.dart:54:31 - undefined_identifier
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart' - lib\features\QuranPages\helpers\translation\translation_info.dart:1:8 - uri_does_not_exist
+  error - Undefined class 'Translation' - lib\features\QuranPages\helpers\translation\translation_info.dart:9:9 - undefined_class
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translation_info.dart' - lib\features\QuranPages\helpers\translation\translationdata.dart:1:8 - uri_does_not_exist
+   info - The constant name 'ar_ma3any' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:11:3 - constant_identifier_names
+   info - The constant name 'ar_muyassar' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:12:3 - constant_identifier_names
+   info - The constant name 'bn_bengali' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:13:3 - constant_identifier_names
+   info - The constant name 'bs_korkut' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:14:3 - constant_identifier_names
+   info - The constant name 'de_bubenheim' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:15:3 - constant_identifier_names
+   info - The constant name 'en_sahih' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:16:3 - constant_identifier_names
+   info - The constant name 'es_navio' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:17:3 - constant_identifier_names
+   info - The constant name 'fr_hamidullah' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:18:3 - constant_identifier_names
+   info - The constant name 'ha_gumi' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:19:3 - constant_identifier_names
+   info - The constant name 'id_indonesian' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:20:3 - constant_identifier_names
+   info - The constant name 'it_piccardo' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:22:3 - constant_identifier_names
+   info - The constant name 'ku_asan' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:23:3 - constant_identifier_names
+   info - The constant name 'ml_abdulhameed' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:24:3 - constant_identifier_names
+   info - The constant name 'ms_basmeih' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:25:3 - constant_identifier_names
+   info - The constant name 'nl_siregar' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:26:3 - constant_identifier_names
+   info - The constant name 'pr_tagi' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:27:3 - constant_identifier_names
+   info - The constant name 'pt_elhayek' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:28:3 - constant_identifier_names
+   info - The constant name 'ru_kuliev' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:29:3 - constant_identifier_names
+   info - The constant name 'so_abduh' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:31:3 - constant_identifier_names
+   info - The constant name 'sq_nahi' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:32:3 - constant_identifier_names
+   info - The constant name 'sv_bernstrom' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:33:3 - constant_identifier_names
+   info - The constant name 'sw_barwani' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:34:3 - constant_identifier_names
+   info - The constant name 'ta_tamil' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:35:3 - constant_identifier_names
+   info - The constant name 'th_thai' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:36:3 - constant_identifier_names
+   info - The constant name 'tr_diyanet' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:37:3 - constant_identifier_names
+   info - The constant name 'ur_jalandhry' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:38:3 - constant_identifier_names
+   info - The constant name 'uz_sodik' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:39:3 - constant_identifier_names
+   info - The constant name 'zh_jian' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translationdata.dart:40:3 - constant_identifier_names
+  error - The name 'TranslationData' isn't a type, so it can't be used as a type argument - lib\features\QuranPages\helpers\translation\translationdata.dart:45:6 - non_type_as_type_argument
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:46:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:52:6 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:58:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:65:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:71:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:77:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:83:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:89:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:95:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:101:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:107:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:114:5 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:121:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:127:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:133:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:140:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:146:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:152:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:158:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:164:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:170:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:176:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:182:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:188:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:194:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:200:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:206:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:212:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:218:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:224:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:230:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:236:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:242:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:248:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:254:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:260:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:266:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:272:3 - undefined_function
+  error - The function 'TranslationData' isn't defined - lib\features\QuranPages\helpers\translation\translationdata.dart:278:3 - undefined_function
+   info - The variable name 'en_sahih' isn't a lowerCamelCase identifier - lib\features\QuranPages\helpers\translation\translations\sahih_english.dart:1:6 - non_constant_identifier_names
+   info - The file name 'quranDetailsPage.dart' isn't a lower_case_with_underscores identifier - lib\features\QuranPages\views\quranDetailsPage.dart:1:1 - file_names
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/remove_html_tags.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:12:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/bookmark_dialog.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:13:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:26:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:29:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/views/screenshot_preview.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:30:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/bismallah.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:31:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/header_widget.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:32:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/tafseer_and_translation_sheet.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:33:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/custom_page_view_scroll_physics.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:34:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/quran_page_utils.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:35:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/result.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:36:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/scroll_listener.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:37:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/widget_span_wrapper.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:38:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/details_page/quran_page_header.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:39:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/details_page/quran_page_view.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:40:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/details_page/quran_vertical_view.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:41:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/details_page/quran_verse_by_verse_view.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:42:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/quran_data.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:43:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:44:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/details_page/ayah_options_sheet.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:63:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/quran_audio_helper.dart' - lib\features\QuranPages\views\quranDetailsPage.dart:64:8 - uri_does_not_exist
+   info - The imported package 'wakelock' isn't a dependency of the importing package - lib\features\QuranPages\views\quranDetailsPage.dart:69:8 - depend_on_referenced_packages
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: QuranDetailsPage.pageNumber, QuranDetailsPage.jsonData, QuranDetailsPage.quarterJsonData, QuranDetailsPage.shouldHighlightText, QuranDetailsPage.highlightVerse, QuranDetailsPage.shouldHighlightSura - lib\features\QuranPages\views\quranDetailsPage.dart:91:7 - must_be_immutable
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quranDetailsPage.dart:93:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quranDetailsPage.dart:94:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quranDetailsPage.dart:95:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quranDetailsPage.dart:96:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quranDetailsPage.dart:97:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quranDetailsPage.dart:143:7 - prefer_typing_uninitialized_variables
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\views\quranDetailsPage.dart:147:30 - undefined_identifier
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quranDetailsPage.dart:155:7 - prefer_typing_uninitialized_variables
+  error - The method 'addReciters' isn't defined for the type 'QuranDetailsPageState' - lib\features\QuranPages\views\quranDetailsPage.dart:216:5 - undefined_method
+   info - The variable name '_pagecontroller_scrollListner' isn't a lowerCamelCase identifier - lib\features\QuranPages\views\quranDetailsPage.dart:230:8 - non_constant_identifier_names
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quranDetailsPage.dart:239:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quranDetailsPage.dart:240:7 - prefer_typing_uninitialized_variables
+  error - Undefined name 'QuranPageUtils' - lib\features\QuranPages\views\quranDetailsPage.dart:296:12 - undefined_identifier
+  error - The method 'QuranPageView' isn't defined for the type 'QuranDetailsPageState' - lib\features\QuranPages\views\quranDetailsPage.dart:330:20 - undefined_method
+  error - The method 'QuranVerticalView' isn't defined for the type 'QuranDetailsPageState' - lib\features\QuranPages\views\quranDetailsPage.dart:348:20 - undefined_method
+   info - Unnecessary 'this.' qualifier - lib\features\QuranPages\views\quranDetailsPage.dart:352:22 - unnecessary_this
+  error - The method 'QuranVerseByVerseView' isn't defined for the type 'QuranDetailsPageState' - lib\features\QuranPages\views\quranDetailsPage.dart:363:21 - undefined_method
+   info - Unnecessary 'this.' qualifier - lib\features\QuranPages\views\quranDetailsPage.dart:367:22 - unnecessary_this
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\views\quranDetailsPage.dart:375:38 - undefined_identifier
+  error - Undefined name 'AyahOptionsSheet' - lib\features\QuranPages\views\quranDetailsPage.dart:385:5 - undefined_identifier
+warning - Unused import: 'dart:io' - lib\features\QuranPages\views\quran_sura_list.dart:2:8 - unused_import
+warning - Unused import: 'package:dio/dio.dart' - lib\features\QuranPages\views\quran_sura_list.dart:4:8 - unused_import
+   info - The import of 'package:flutter/services.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/cupertino.dart' - lib\features\QuranPages\views\quran_sura_list.dart:9:8 - unnecessary_import
+warning - Unused import: 'package:fluttericon/mfg_labs_icons.dart' - lib\features\QuranPages\views\quran_sura_list.dart:13:8 - unused_import
+warning - Unused import: 'package:fluttertoast/fluttertoast.dart' - lib\features\QuranPages\views\quran_sura_list.dart:14:8 - unused_import
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/views/quranDetailsPage.dart' - lib\features\QuranPages\views\quran_sura_list.dart:19:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/widgets/hizb_quarter_circle.dart' - lib\features\QuranPages\views\quran_sura_list.dart:20:8 - uri_does_not_exist
+warning - Unused import: 'package:path_provider/path_provider.dart' - lib\features\QuranPages\views\quran_sura_list.dart:23:8 - unused_import
+warning - Unused import: 'package:superellipse_shape/superellipse_shape.dart' - lib\features\QuranPages\views\quran_sura_list.dart:28:8 - unused_import
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: SurahListPage.jsonData, SurahListPage.quarterjsonData - lib\features\QuranPages\views\quran_sura_list.dart:36:7 - must_be_immutable
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quran_sura_list.dart:37:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quran_sura_list.dart:38:7 - prefer_typing_uninitialized_variables
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:63:43 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:99:38 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:121:22 - deprecated_member_use
+  error - The method 'QuarterCircle' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:123:18 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:137:22 - deprecated_member_use
+  error - The method 'HalfCircle' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:139:18 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:153:22 - deprecated_member_use
+  error - The method 'ThreeQuartersCircle' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:155:18 - undefined_method
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quran_sura_list.dart:164:7 - prefer_typing_uninitialized_variables
+warning - The left operand can't be null, so the right operand is never executed - lib\features\QuranPages\views\quran_sura_list.dart:168:38 - dead_null_aware_expression
+warning - The value of the field '_currentIndex' isn't used - lib\features\QuranPages\views\quran_sura_list.dart:217:7 - unused_field
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\quran_sura_list.dart:225:7 - prefer_typing_uninitialized_variables
+  error - The method 'QuranDetailsPage' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:317:65 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:378:66 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:403:62 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:422:60 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:564:50 - deprecated_member_use
+  error - The method 'QuranDetailsPage' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:586:58 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:617:64 - deprecated_member_use
+  error - The method 'QuranDetailsPage' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:779:58 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:804:60 - deprecated_member_use
+   info - Unnecessary instance of 'Container' - lib\features\QuranPages\views\quran_sura_list.dart:932:53 - avoid_unnecessary_containers
+   info - Unnecessary instance of 'Container' - lib\features\QuranPages\views\quran_sura_list.dart:968:41 - avoid_unnecessary_containers
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:982:63 - deprecated_member_use
+  error - The method 'QuranDetailsPage' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:992:76 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:1039:56 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:1052:64 - deprecated_member_use
+warning - The value of the local variable 'suraNameTranslated' isn't used - lib\features\QuranPages\views\quran_sura_list.dart:1065:50 - unused_local_variable
+   info - Unnecessary instance of 'Container' - lib\features\QuranPages\views\quran_sura_list.dart:1073:52 - avoid_unnecessary_containers
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:1148:60 - deprecated_member_use
+  error - The method 'QuranDetailsPage' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:1173:72 - undefined_method
+  error - The method 'QuranDetailsPage' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:1226:76 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:1275:54 - deprecated_member_use
+  error - The method 'QuranDetailsPage' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:1318:54 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:1361:66 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\quran_sura_list.dart:1389:54 - deprecated_member_use
+  error - The method 'QuranDetailsPage' isn't defined for the type '_SurahListPageState' - lib\features\QuranPages\views\quran_sura_list.dart:1427:52 - undefined_method
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart' - lib\features\QuranPages\views\screenshot_preview.dart:13:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/remove_html_tags.dart' - lib\features\QuranPages\views\screenshot_preview.dart:14:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/save_image.dart' - lib\features\QuranPages\views\screenshot_preview.dart:15:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translation_info.dart' - lib\features\QuranPages\views\screenshot_preview.dart:16:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart' - lib\features\QuranPages\views\screenshot_preview.dart:17:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/bismallah.dart' - lib\features\QuranPages\views\screenshot_preview.dart:18:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/header_widget.dart' - lib\features\QuranPages\views\screenshot_preview.dart:19:8 - uri_does_not_exist
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: ScreenShotPreviewPage.firstVerse, ScreenShotPreviewPage.index, ScreenShotPreviewPage.jsonData, ScreenShotPreviewPage.lastVerse, ScreenShotPreviewPage.surahNumber, ScreenShotPreviewPage.isQCF - lib\features\QuranPages\views\screenshot_preview.dart:31:7 - must_be_immutable
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\screenshot_preview.dart:42:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\screenshot_preview.dart:43:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\screenshot_preview.dart:44:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\screenshot_preview.dart:45:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\screenshot_preview.dart:46:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\views\screenshot_preview.dart:55:7 - prefer_typing_uninitialized_variables
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\views\screenshot_preview.dart:89:30 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\features\QuranPages\views\screenshot_preview.dart:113:11 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\QuranPages\views\screenshot_preview.dart:114:11 - avoid_print
+  error - The method 'convertToArabicNumber' isn't defined for the type '_ScreenShotPreviewPageState' - lib\features\QuranPages\views\screenshot_preview.dart:161:21 - undefined_method
+warning - The value of the local variable 'verseText' isn't used - lib\features\QuranPages\views\screenshot_preview.dart:192:14 - unused_local_variable
+  error - The method 'convertToArabicNumber' isn't defined for the type '_ScreenShotPreviewPageState' - lib\features\QuranPages\views\screenshot_preview.dart:197:25 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\screenshot_preview.dart:536:54 - deprecated_member_use
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\views\screenshot_preview.dart:544:35 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\views\screenshot_preview.dart:549:51 - undefined_identifier
+   info - 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre - lib\features\QuranPages\views\screenshot_preview.dart:574:15 - deprecated_member_use
+   info - 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre - lib\features\QuranPages\views\screenshot_preview.dart:575:15 - deprecated_member_use
+   info - 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre - lib\features\QuranPages\views\screenshot_preview.dart:584:15 - deprecated_member_use
+   info - 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre - lib\features\QuranPages\views\screenshot_preview.dart:585:15 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\views\screenshot_preview.dart:632:62 - deprecated_member_use
+  error - The method 'HeaderWidget' isn't defined for the type '_ScreenShotPreviewPageState' - lib\features\QuranPages\views\screenshot_preview.dart:698:31 - undefined_method
+  error - The method 'Basmallah' isn't defined for the type '_ScreenShotPreviewPageState' - lib\features\QuranPages\views\screenshot_preview.dart:709:31 - undefined_method
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\views\screenshot_preview.dart:748:37 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\views\screenshot_preview.dart:756:56 - undefined_identifier
+  error - The method 'saveImageToGallery' isn't defined for the type '_ScreenShotPreviewPageState' - lib\features\QuranPages\views\screenshot_preview.dart:888:31 - undefined_method
+warning - Unused import: 'package:nabd/GlobalHelpers/hive_helper.dart' - lib\features\QuranPages\widgets\bismallah.dart:3:8 - unused_import
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: Basmallah.index - lib\features\QuranPages\widgets\bismallah.dart:6:7 - must_be_immutable
+   info - The import of 'package:flutter/widgets.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' - lib\features\QuranPages\widgets\bookmark_dialog.dart:5:8 - unnecessary_import
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: BookmarksDialog.verseNumber, BookmarksDialog.suraNumber - lib\features\QuranPages\widgets\bookmark_dialog.dart:9:7 - must_be_immutable
+   info - Invalid use of a private type in a public API - lib\features\QuranPages\widgets\bookmark_dialog.dart:17:3 - library_private_types_in_public_api
+   info - 'value' is deprecated and shouldn't be used. Use component accessors like .r or .g, or toARGB32 for an explicit conversion - lib\features\QuranPages\widgets\bookmark_dialog.dart:76:34 - deprecated_member_use
+   info - 'showLabel' is deprecated and shouldn't be used. Use empty list in [labelTypes] to disable label - lib\features\QuranPages\widgets\bookmark_dialog.dart:120:15 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/quran_audio_helper.dart' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:16:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/quran_data.dart' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:17:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/details_page/share_ayah_dialog.dart' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:18:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:19:8 - uri_does_not_exist
+warning - The value of the field '_isDownloading' isn't used - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:92:8 - unused_field
+  error - Undefined name 'reciters' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:96:9 - undefined_identifier
+  error - The method 'addReciters' isn't defined for the type '_AyahOptionsSheetState' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:96:27 - undefined_method
+  error - The method 'showShareAyahDialog' isn't defined for the type '_AyahOptionsSheetState' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:140:17 - undefined_method
+  error - Undefined name 'reciters' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:253:33 - undefined_identifier
+  error - Undefined name 'QuranAudioHelper' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:255:23 - undefined_identifier
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:268:21 - undefined_identifier
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:269:21 - undefined_identifier
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:272:17 - undefined_identifier
+  error - Undefined name 'reciters' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:311:30 - undefined_identifier
+  error - Undefined name 'reciters' - lib\features\QuranPages\widgets\details_page\ayah_options_sheet.dart:313:34 - undefined_identifier
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/quran_page_utils.dart' - lib\features\QuranPages\widgets\details_page\quran_page_header.dart:7:8 - uri_does_not_exist
+  error - Undefined name 'QuranPageUtils' - lib\features\QuranPages\widgets\details_page\quran_page_header.dart:88:20 - undefined_identifier
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:7:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:11:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/bismallah.dart' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:12:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/header_widget.dart' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:13:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/details_page/quran_page_header.dart' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:14:8 - uri_does_not_exist
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:109:40 - deprecated_member_use
+  error - The method 'QuranPageHeader' isn't defined for the type '_QuranPageViewState' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:127:23 - undefined_method
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:135:33 - undefined_identifier
+  error - The method 'HeaderWidget' isn't defined for the type '_QuranPageViewState' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:175:58 - undefined_method
+  error - The method 'Basmallah' isn't defined for the type '_QuranPageViewState' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:183:60 - undefined_method
+   info - An uninitialized variable should have an explicit type annotation - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:286:43 - prefer_typing_uninitialized_variables
+  error - The method 'HeaderWidget' isn't defined for the type '_QuranPageViewState' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:340:66 - undefined_method
+  error - The method 'Basmallah' isn't defined for the type '_QuranPageViewState' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:349:70 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:422:209 - deprecated_member_use
+warning - Unnecessary type check; the result is always 'true' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:423:110 - unnecessary_type_check
+  error - The method 'HeaderWidget' isn't defined for the type '_QuranPageViewState' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:502:68 - undefined_method
+  error - The method 'Basmallah' isn't defined for the type '_QuranPageViewState' - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:512:75 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\details_page\quran_page_view.dart:583:211 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:19:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart' - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:20:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/get_translation_data.dart' - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:21:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/bismallah.dart' - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:23:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/header_widget.dart' - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:24:8 - uri_does_not_exist
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:71:7 - prefer_typing_uninitialized_variables
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:107:23 - undefined_identifier
+  error - The method 'HeaderWidget' isn't defined for the type '_QuranVerseByVerseViewState' - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:114:61 - undefined_method
+  error - The method 'Basmallah' isn't defined for the type '_QuranVerseByVerseViewState' - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:115:93 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:135:172 - deprecated_member_use
+  error - The method 'convertToArabicNumber' isn't defined for the type '_QuranVerseByVerseViewState' - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:146:43 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:158:84 - deprecated_member_use
+   info - An uninitialized variable should have an explicit type annotation - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:227:35 - prefer_typing_uninitialized_variables
+   info - Empty catch block - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:233:52 - empty_catches
+   info - Don't use 'BuildContext's across async gaps - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:325:91 - use_build_context_synchronously
+   info - Use 'const' with the constructor to improve performance - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:342:79 - prefer_const_constructors
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\details_page\quran_verse_by_verse_view.dart:361:68 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:7:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:11:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/quran_page_utils.dart' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:12:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/bismallah.dart' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:13:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/header_widget.dart' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:14:8 - uri_does_not_exist
+  error - Undefined name 'QuranPageUtils' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:76:25 - undefined_identifier
+  error - Undefined name 'QuranPageUtils' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:82:74 - undefined_identifier
+  error - Undefined name 'QuranPageUtils' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:82:224 - undefined_identifier
+  error - Undefined name 'QuranPageUtils' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:82:402 - undefined_identifier
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:121:23 - undefined_identifier
+  error - The method 'HeaderWidget' isn't defined for the type '_QuranVerticalViewState' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:158:54 - undefined_method
+  error - The method 'Basmallah' isn't defined for the type '_QuranVerticalViewState' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:165:58 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:220:197 - deprecated_member_use
+  error - The method 'convertToArabicNumber' isn't defined for the type '_QuranVerticalViewState' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:234:59 - undefined_method
+   info - An uninitialized variable should have an explicit type annotation - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:276:35 - prefer_typing_uninitialized_variables
+  error - The method 'HeaderWidget' isn't defined for the type '_QuranVerticalViewState' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:327:62 - undefined_method
+  error - The method 'Basmallah' isn't defined for the type '_QuranVerticalViewState' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:337:63 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:400:205 - deprecated_member_use
+warning - Unnecessary type check; the result is always 'true' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:401:137 - unnecessary_type_check
+  error - The method 'convertToArabicNumber' isn't defined for the type '_QuranVerticalViewState' - lib\features\QuranPages\widgets\details_page\quran_vertical_view.dart:416:67 - undefined_method
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/remove_html_tags.dart' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:14:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/get_translation_data.dart' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:15:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/views/screenshot_preview.dart' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:17:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:28:8 - uri_does_not_exist
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:68:7 - prefer_typing_uninitialized_variables
+   info - 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:175:24 - deprecated_member_use
+   info - 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:183:13 - deprecated_member_use
+   info - 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:184:13 - deprecated_member_use
+   info - 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:191:24 - deprecated_member_use
+   info - 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:199:13 - deprecated_member_use
+   info - 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:200:13 - deprecated_member_use
+   info - 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:209:30 - deprecated_member_use
+   info - 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:230:28 - deprecated_member_use
+   info - 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:251:28 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:301:44 - deprecated_member_use
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:309:25 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:312:41 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:363:38 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:367:53 - deprecated_member_use
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:371:57 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:391:41 - undefined_identifier
+warning - The value of the local variable 'content' isn't used - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:421:24 - unused_local_variable
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:429:29 - undefined_identifier
+  error - The method 'removeHtmlTags' isn't defined for the type '_ShareAyahDialogState' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:442:42 - undefined_method
+   info - 'Share' is deprecated and shouldn't be used. Use SharePlus instead - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:448:17 - deprecated_member_use
+   info - 'share' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:448:23 - deprecated_member_use
+  error - The method 'ScreenShotPreviewPage' isn't defined for the type '_ShareAyahDialogState' - lib\features\QuranPages\widgets\details_page\share_ayah_dialog.dart:466:45 - undefined_method
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: HeaderWidget.e, HeaderWidget.jsonData, HeaderWidget.indexOfTheme - lib\features\QuranPages\widgets\header_widget.dart:7:7 - must_be_immutable
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\widgets\header_widget.dart:8:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\widgets\header_widget.dart:9:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\QuranPages\widgets\header_widget.dart:10:7 - prefer_typing_uninitialized_variables
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:14:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/get_translation_data.dart' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:15:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:16:8 - uri_does_not_exist
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: TafseerAndTranslateSheet.surahNumber, TafseerAndTranslateSheet.verseNumber, TafseerAndTranslateSheet.isVerseByVerseSelection - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:24:7 - must_be_immutable
+  error - The method 'getVerseTranslation' isn't defined for the type '_TafseerAndTranslateSheetState' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:61:18 - undefined_method
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:64:9 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:103:41 - deprecated_member_use
+  error - The method 'convertToArabicNumber' isn't defined for the type '_TafseerAndTranslateSheetState' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:110:21 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:136:41 - deprecated_member_use
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:202:52 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:206:99 - deprecated_member_use
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:210:53 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:212:79 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:248:59 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:258:57 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:260:76 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:285:55 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:289:64 - deprecated_member_use
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:293:61 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:299:91 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:330:48 - deprecated_member_use
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:338:29 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:343:45 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:367:22 - deprecated_member_use
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:371:30 - undefined_identifier
+  error - Undefined name 'translationDataList' - lib\features\QuranPages\widgets\tafseer_and_translation_sheet.dart:397:41 - undefined_identifier
+   info - Invalid use of a private type in a public API - lib\features\QuranPages\widgets\widget_span_wrapper.dart:9:3 - library_private_types_in_public_api
+  error - Target of URI doesn't exist: 'package:nabd/core/allah_names/data/allah_names.dart' - lib\features\allah_names\allah_names_page.dart:9:8 - uri_does_not_exist
+   info - Don't invoke 'print' in production code - lib\features\allah_names\allah_names_page.dart:24:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\allah_names\allah_names_page.dart:31:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\allah_names\allah_names_page.dart:33:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\allah_names\allah_names_page.dart:34:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\allah_names\allah_names_page.dart:35:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\allah_names\allah_names_page.dart:36:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\allah_names\allah_names_page.dart:37:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\allah_names\allah_names_page.dart:38:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\allah_names\allah_names_page.dart:40:5 - avoid_print
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\allah_names\allah_names_page.dart:146:53 - deprecated_member_use
+  error - Undefined name 'allahNamesAr' - lib\features\allah_names\allah_names_page.dart:152:29 - undefined_identifier
+   info - Unnecessary instance of 'Container' - lib\features\allah_names\allah_names_page.dart:162:17 - avoid_unnecessary_containers
+   info - Unnecessary instance of 'Container' - lib\features\allah_names\allah_names_page.dart:165:30 - avoid_unnecessary_containers
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\allah_names\allah_names_page.dart:181:65 - deprecated_member_use
+  error - Undefined name 'allahNamesAr' - lib\features\allah_names\allah_names_page.dart:196:47 - undefined_identifier
+  error - Undefined name 'allahNamesEnglish' - lib\features\allah_names\allah_names_page.dart:207:49 - undefined_identifier
+  error - Undefined name 'allahNamesEnglish' - lib\features\allah_names\allah_names_page.dart:218:47 - undefined_identifier
+  error - Undefined name 'allahNamesEnglish' - lib\features\allah_names\allah_names_page.dart:232:47 - undefined_identifier
+  error - Undefined name 'allahNamesAr' - lib\features\allah_names\allah_names_page.dart:254:33 - undefined_identifier
+  error - Undefined name 'allahNamesEnglish' - lib\features\allah_names\allah_names_page.dart:272:35 - undefined_identifier
+  error - Undefined name 'allahNamesEnglish' - lib\features\allah_names\allah_names_page.dart:290:39 - undefined_identifier
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\features\audiopage\player\player_bar.dart:18:8 - uri_does_not_exist
+  error - Undefined name 'playerPageBloc' - lib\features\audiopage\player\player_bar.dart:71:17 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\features\audiopage\player\player_bar.dart:77:19 - avoid_print
+   info - Use interpolation to compose strings and values - lib\features\audiopage\player\player_bar.dart:288:55 - prefer_interpolation_to_compose_strings
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\audiopage\player\player_bar.dart:483:66 - deprecated_member_use
+warning - The value of the local variable 'positionData' isn't used - lib\features\audiopage\player\player_bar.dart:553:55 - unused_local_variable
+   info - Unnecessary instance of 'Container' - lib\features\audiopage\player\player_bar.dart:559:58 - avoid_unnecessary_containers
+  error - Undefined name 'playerPageBloc' - lib\features\audiopage\player\player_bar.dart:704:59 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\audiopage\player\player_bar.dart:911:74 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\audiopage\player\player_bar.dart:971:62 - deprecated_member_use
+warning - The '!' will have no effect because the receiver can't be null - lib\features\audiopage\player\player_bar.dart:991:131 - unnecessary_non_null_assertion
+warning - The '!' will have no effect because the receiver can't be null - lib\features\audiopage\player\player_bar.dart:1007:88 - unnecessary_non_null_assertion
+   info - Don't invoke 'print' in production code - lib\features\audiopage\player\player_bar.dart:1031:21 - avoid_print
+warning - The '!' will have no effect because the receiver can't be null - lib\features\audiopage\player\player_bar.dart:1137:51 - unnecessary_non_null_assertion
+  error - Target of URI doesn't exist: 'package:nabd/Core/audiopage/models/reciter.dart' - lib\features\audiopage\views\audio_home_page.dart:13:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/audiopage/player/player_bar.dart' - lib\features\audiopage\views\audio_home_page.dart:19:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/audiopage/views/reciter_all_surahs_page.dart' - lib\features\audiopage\views\audio_home_page.dart:20:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\features\audiopage\views\audio_home_page.dart:23:8 - uri_does_not_exist
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: RecitersPage.jsonData - lib\features\audiopage\views\audio_home_page.dart:29:7 - must_be_immutable
+   info - An uninitialized field should have an explicit type annotation - lib\features\audiopage\views\audio_home_page.dart:31:7 - prefer_typing_uninitialized_variables
+   info - Invalid use of a private type in a public API - lib\features\audiopage\views\audio_home_page.dart:34:3 - library_private_types_in_public_api
+  error - The name 'Reciter' isn't a type, so it can't be used as a type argument - lib\features\audiopage\views\audio_home_page.dart:38:13 - non_type_as_type_argument
+  error - The name 'Reciter' isn't a type, so it can't be used as a type argument - lib\features\audiopage\views\audio_home_page.dart:41:13 - non_type_as_type_argument
+  error - The property 'id' can't be unconditionally accessed because the receiver can be 'null' - lib\features\audiopage\views\audio_home_page.dart:70:53 - unchecked_use_of_nullable_value
+warning - The value of the field '_transitionType' isn't used - lib\features\audiopage\views\audio_home_page.dart:77:33 - unused_field
+  error - The name 'Reciter' isn't a type, so it can't be used as a type argument - lib\features\audiopage\views\audio_home_page.dart:79:8 - non_type_as_type_argument
+  error - The name 'Moshaf' isn't a type, so it can't be used as a type argument - lib\features\audiopage\views\audio_home_page.dart:80:8 - non_type_as_type_argument
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:88:59 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:88:105 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:90:57 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:90:103 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:92:56 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:92:102 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:97:25 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:97:71 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:103:23 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:103:69 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:109:22 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:109:68 - use_build_context_synchronously
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\audio_home_page.dart:113:7 - avoid_print
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:121:27 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:121:73 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:131:23 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:131:69 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:133:21 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:133:67 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:135:20 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:135:66 - use_build_context_synchronously
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\audio_home_page.dart:137:1 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\audio_home_page.dart:145:9 - avoid_print
+  error - Undefined name 'Reciter' - lib\features\audiopage\views\audio_home_page.dart:146:42 - undefined_identifier
+  error - The property 'letter' can't be unconditionally accessed because the receiver can be 'null' - lib\features\audiopage\views\audio_home_page.dart:148:31 - unchecked_use_of_nullable_value
+  error - The property 'letter' can't be unconditionally accessed because the receiver can be 'null' - lib\features\audiopage\views\audio_home_page.dart:148:61 - unchecked_use_of_nullable_value
+  error - Undefined name 'Moshaf' - lib\features\audiopage\views\audio_home_page.dart:151:42 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\audio_home_page.dart:161:7 - avoid_print
+  error - The property 'name' can't be unconditionally accessed because the receiver can be 'null' - lib\features\audiopage\views\audio_home_page.dart:170:24 - unchecked_use_of_nullable_value
+  error - The property 'name' can't be unconditionally accessed because the receiver can be 'null' - lib\features\audiopage\views\audio_home_page.dart:183:24 - unchecked_use_of_nullable_value
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\audiopage\views\audio_home_page.dart:219:73 - deprecated_member_use
+   info - Unnecessary instance of 'Container' - lib\features\audiopage\views\audio_home_page.dart:317:44 - avoid_unnecessary_containers
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\audio_home_page.dart:507:63 - avoid_print
+  error - The property 'moshafType' can't be unconditionally accessed because the receiver can be 'null' - lib\features\audiopage\views\audio_home_page.dart:512:70 - unchecked_use_of_nullable_value
+  error - The property 'moshafType' can't be unconditionally accessed because the receiver can be 'null' - lib\features\audiopage\views\audio_home_page.dart:546:98 - unchecked_use_of_nullable_value
+  error - The property 'name' can't be unconditionally accessed because the receiver can be 'null' - lib\features\audiopage\views\audio_home_page.dart:557:75 - unchecked_use_of_nullable_value
+  error - The property 'moshafType' can't be unconditionally accessed because the receiver can be 'null' - lib\features\audiopage\views\audio_home_page.dart:565:95 - unchecked_use_of_nullable_value
+  error - The property 'moshafType' can't be unconditionally accessed because the receiver can be 'null' - lib\features\audiopage\views\audio_home_page.dart:568:102 - unchecked_use_of_nullable_value
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\audiopage\views\audio_home_page.dart:639:85 - deprecated_member_use
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\audio_home_page.dart:671:55 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\audio_home_page.dart:680:55 - avoid_print
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\audiopage\views\audio_home_page.dart:699:58 - deprecated_member_use
+  error - Undefined name 'playerPageBloc' - lib\features\audiopage\views\audio_home_page.dart:735:81 - undefined_identifier
+  error - The method 'RecitersSurahListPage' isn't defined for the type '_RecitersPageState' - lib\features\audiopage\views\audio_home_page.dart:737:81 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\audiopage\views\audio_home_page.dart:777:131 - deprecated_member_use
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\audiopage\views\audio_home_page.dart:793:81 - undefined_identifier
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\audiopage\views\audio_home_page.dart:808:95 - undefined_identifier
+  error - Undefined name 'playerPageBloc' - lib\features\audiopage\views\audio_home_page.dart:816:77 - undefined_identifier
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\audio_home_page.dart:819:81 - use_build_context_synchronously
+  error - Undefined name 'playerPageBloc' - lib\features\audiopage\views\audio_home_page.dart:835:77 - undefined_identifier
+  error - Target of URI doesn't exist: 'package:nabd/Core/audiopage/models/reciter.dart' - lib\features\audiopage\views\reciter_all_surahs_page.dart:14:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/audiopage/player/player_bar.dart' - lib\features\audiopage\views\reciter_all_surahs_page.dart:19:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\features\audiopage\views\reciter_all_surahs_page.dart:20:8 - uri_does_not_exist
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: RecitersSurahListPage.reciter, RecitersSurahListPage.mushaf, RecitersSurahListPage.jsonData - lib\features\audiopage\views\reciter_all_surahs_page.dart:24:7 - must_be_immutable
+  error - Undefined class 'Reciter' - lib\features\audiopage\views\reciter_all_surahs_page.dart:25:3 - undefined_class
+  error - Undefined class 'Moshaf' - lib\features\audiopage\views\reciter_all_surahs_page.dart:26:3 - undefined_class
+   info - An uninitialized field should have an explicit type annotation - lib\features\audiopage\views\reciter_all_surahs_page.dart:27:7 - prefer_typing_uninitialized_variables
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\reciter_all_surahs_page.dart:50:19 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\reciter_all_surahs_page.dart:51:19 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\reciter_all_surahs_page.dart:52:1 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\reciter_all_surahs_page.dart:60:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\reciter_all_surahs_page.dart:123:9 - avoid_print
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\audiopage\views\reciter_all_surahs_page.dart:169:77 - deprecated_member_use
+   info - Unnecessary instance of 'Container' - lib\features\audiopage\views\reciter_all_surahs_page.dart:259:46 - avoid_unnecessary_containers
+   info - Unnecessary instance of 'Container' - lib\features\audiopage\views\reciter_all_surahs_page.dart:526:19 - avoid_unnecessary_containers
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\audiopage\views\reciter_all_surahs_page.dart:548:27 - undefined_identifier
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\audiopage\views\reciter_all_surahs_page.dart:562:41 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\features\audiopage\views\reciter_all_surahs_page.dart:572:23 - avoid_print
+  error - Undefined name 'playerPageBloc' - lib\features\audiopage\views\reciter_all_surahs_page.dart:573:23 - undefined_identifier
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\reciter_all_surahs_page.dart:573:55 - use_build_context_synchronously
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\audiopage\views\reciter_all_surahs_page.dart:582:72 - deprecated_member_use
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\audiopage\views\reciter_all_surahs_page.dart:596:39 - undefined_identifier
+  error - Undefined name 'qurapPagePlayerBloc' - lib\features\audiopage\views\reciter_all_surahs_page.dart:612:53 - undefined_identifier
+  error - Undefined name 'playerPageBloc' - lib\features\audiopage\views\reciter_all_surahs_page.dart:622:35 - undefined_identifier
+   info - Don't use 'BuildContext's across async gaps - lib\features\audiopage\views\reciter_all_surahs_page.dart:624:63 - use_build_context_synchronously
+  error - Undefined name 'playerPageBloc' - lib\features\audiopage\views\reciter_all_surahs_page.dart:649:37 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\audiopage\views\reciter_all_surahs_page.dart:704:76 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/azkar/data/azkar.dart' - lib\features\azkar\views\azkar_homepage.dart:7:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/azkar/model/dua_model.dart' - lib\features\azkar\views\azkar_homepage.dart:9:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/azkar/views/zikr_detailspage.dart' - lib\features\azkar\views\azkar_homepage.dart:10:8 - uri_does_not_exist
+  error - Undefined name 'azkar' - lib\features\azkar\views\azkar_homepage.dart:23:20 - undefined_identifier
+  error - Undefined name 'azkar' - lib\features\azkar\views\azkar_homepage.dart:25:17 - undefined_identifier
+  error - Undefined name 'azkar' - lib\features\azkar\views\azkar_homepage.dart:32:19 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\azkar_homepage.dart:76:52 - deprecated_member_use
+  error - Undefined name 'azkar' - lib\features\azkar\views\azkar_homepage.dart:97:47 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\azkar_homepage.dart:119:16 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\azkar_homepage.dart:120:28 - deprecated_member_use
+  error - The method 'ZikrPage' isn't defined for the type '_AzkarHomePageState' - lib\features\azkar\views\azkar_homepage.dart:134:57 - undefined_method
+  error - Undefined name 'DuaModel' - lib\features\azkar\views\azkar_homepage.dart:135:47 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\azkar_homepage.dart:140:16 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\azkar_homepage.dart:140:43 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\azkar_homepage.dart:161:30 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/azkar/model/dua_model.dart' - lib\features\azkar\views\zikr_detailspage.dart:6:8 - uri_does_not_exist
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: ZikrPage.zikr - lib\features\azkar\views\zikr_detailspage.dart:9:7 - must_be_immutable
+  error - Undefined class 'DuaModel' - lib\features\azkar\views\zikr_detailspage.dart:10:3 - undefined_class
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\zikr_detailspage.dart:163:44 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\zikr_detailspage.dart:164:53 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\zikr_detailspage.dart:165:52 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\zikr_detailspage.dart:166:52 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\zikr_detailspage.dart:167:56 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\azkar\views\zikr_detailspage.dart:177:52 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\calender\calender.dart:150:74 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/data/books.dart' - lib\features\hadith\logic\get_hadith_book.dart:5:8 - uri_does_not_exist
+   info - An uninitialized variable should have an explicit type annotation - lib\features\hadith\logic\get_hadith_book.dart:10:7 - prefer_typing_uninitialized_variables
+   info - Don't invoke 'print' in production code - lib\features\hadith\logic\get_hadith_book.dart:29:3 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\hadith\logic\get_hadith_book.dart:31:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\hadith\logic\get_hadith_book.dart:35:5 - avoid_print
+  error - Undefined name 'baseHadithUrl' - lib\features\hadith\logic\get_hadith_book.dart:39:9 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\features\hadith\logic\get_hadith_book.dart:44:7 - avoid_print
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/models/hadith_min.dart' - lib\features\hadith\views\booklistpage.dart:11:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/views/hadithdetailspage.dart' - lib\features\hadith\views\booklistpage.dart:12:8 - uri_does_not_exist
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: HadithList.locale, HadithList.id, HadithList.count, HadithList.title - lib\features\hadith\views\booklistpage.dart:16:7 - must_be_immutable
+  error - The name 'HadithMin' isn't a type, so it can't be used as a type argument - lib\features\hadith\views\booklistpage.dart:34:8 - non_type_as_type_argument
+  error - The property 'title' can't be unconditionally accessed because the receiver can be 'null' - lib\features\hadith\views\booklistpage.dart:46:50 - unchecked_use_of_nullable_value
+  error - Undefined name 'HadithMin' - lib\features\hadith\views\booklistpage.dart:48:24 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\features\hadith\views\booklistpage.dart:59:7 - avoid_print
+  error - Undefined name 'HadithMin' - lib\features\hadith\views\booklistpage.dart:63:22 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\features\hadith\views\booklistpage.dart:74:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\hadith\views\booklistpage.dart:75:7 - avoid_print
+  error - Undefined name 'HadithMin' - lib\features\hadith\views\booklistpage.dart:77:45 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\features\hadith\views\booklistpage.dart:83:5 - avoid_print
+  error - The name 'HadithMin' isn't a type, so it can't be used as a type argument - lib\features\hadith\views\booklistpage.dart:92:8 - non_type_as_type_argument
+  error - The name 'HadithMin' isn't a type, so it can't be used as a type argument - lib\features\hadith\views\booklistpage.dart:93:8 - non_type_as_type_argument
+  error - The property 'title' can't be unconditionally accessed because the receiver can be 'null' - lib\features\hadith\views\booklistpage.dart:97:51 - unchecked_use_of_nullable_value
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\booklistpage.dart:120:88 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\booklistpage.dart:125:81 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\booklistpage.dart:134:103 - deprecated_member_use
+  error - The method 'HadithDetailsPage' isn't defined for the type '_HadithListState' - lib\features\hadith\views\booklistpage.dart:172:61 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\booklistpage.dart:179:108 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\booklistpage.dart:188:132 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\booklistpage.dart:190:106 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/models/category.dart' - lib\features\hadith\views\hadithbookspage.dart:14:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/views/booklistpage.dart' - lib\features\hadith\views\hadithbookspage.dart:15:8 - uri_does_not_exist
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: HadithBooksPage.locale - lib\features\hadith\views\hadithbookspage.dart:18:7 - must_be_immutable
+  error - The name 'Category' isn't a type, so it can't be used as a type argument - lib\features\hadith\views\hadithbookspage.dart:27:8 - non_type_as_type_argument
+  error - The method 'Category' isn't defined for the type '_HadithBooksPageState' - lib\features\hadith\views\hadithbookspage.dart:31:23 - undefined_method
+   info - Don't invoke 'print' in production code - lib\features\hadith\views\hadithbookspage.dart:36:7 - avoid_print
+  error - Undefined name 'Category' - lib\features\hadith\views\hadithbookspage.dart:38:44 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\features\hadith\views\hadithbookspage.dart:39:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\hadith\views\hadithbookspage.dart:42:7 - avoid_print
+  error - Undefined name 'Category' - lib\features\hadith\views\hadithbookspage.dart:49:26 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithbookspage.dart:77:88 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithbookspage.dart:82:54 - deprecated_member_use
+  error - The method 'HadithList' isn't defined for the type '_HadithBooksPageState' - lib\features\hadith\views\hadithbookspage.dart:103:53 - undefined_method
+   info - Unnecessary instance of 'Container' - lib\features\hadith\views\hadithbookspage.dart:109:28 - avoid_unnecessary_containers
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithbookspage.dart:115:107 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithbookspage.dart:121:74 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithbookspage.dart:141:77 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithbookspage.dart:142:42 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithbookspage.dart:154:75 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/models/hadith.dart' - lib\features\hadith\views\hadithdetailspage.dart:10:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/views/widgets/sharing_options.dart' - lib\features\hadith\views\hadithdetailspage.dart:11:8 - uri_does_not_exist
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: HadithDetailsPage.id, HadithDetailsPage.locale, HadithDetailsPage.title - lib\features\hadith\views\hadithdetailspage.dart:13:7 - must_be_immutable
+  error - Undefined class 'Hadith' - lib\features\hadith\views\hadithdetailspage.dart:27:8 - undefined_class
+   info - An uninitialized field should have an explicit type annotation - lib\features\hadith\views\hadithdetailspage.dart:28:7 - prefer_typing_uninitialized_variables
+   info - Don't invoke 'print' in production code - lib\features\hadith\views\hadithdetailspage.dart:32:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\hadith\views\hadithdetailspage.dart:35:5 - avoid_print
+  error - Undefined name 'Hadith' - lib\features\hadith\views\hadithdetailspage.dart:37:16 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:59:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:78:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:86:30 - deprecated_member_use
+   info - Unnecessary instance of 'Container' - lib\features\hadith\views\hadithdetailspage.dart:94:19 - avoid_unnecessary_containers
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:126:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:156:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:190:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:221:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:253:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:291:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:322:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:354:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:392:30 - deprecated_member_use
+  error - The method 'SharingOptions' isn't defined for the type '_HadithDetailsPageState' - lib\features\hadith\views\hadithdetailspage.dart:414:61 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:428:46 - deprecated_member_use
+  error - The method 'SharingOptions' isn't defined for the type '_HadithDetailsPageState' - lib\features\hadith\views\hadithdetailspage.dart:449:61 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:463:46 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:492:30 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\hadith\views\hadithdetailspage.dart:508:30 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart' - lib\features\hadith\views\widgets\screenshot_preview.dart:13:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/remove_html_tags.dart' - lib\features\hadith\views\widgets\screenshot_preview.dart:14:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/save_image.dart' - lib\features\hadith\views\widgets\screenshot_preview.dart:15:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translation_info.dart' - lib\features\hadith\views\widgets\screenshot_preview.dart:16:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/translation/translationdata.dart' - lib\features\hadith\views\widgets\screenshot_preview.dart:17:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/bismallah.dart' - lib\features\hadith\views\widgets\screenshot_preview.dart:18:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/widgets/header_widget.dart' - lib\features\hadith\views\widgets\screenshot_preview.dart:19:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/models/hadith.dart' - lib\features\hadith\views\widgets\screenshot_preview.dart:20:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/share_image.dart' - lib\features\hadith\views\widgets\screenshot_preview.dart:24:8 - uri_does_not_exist
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: HadithScreenShotPreviewPage.hadithAr, HadithScreenShotPreviewPage.hadithOtherLanguage, HadithScreenShotPreviewPage.addMeanings, HadithScreenShotPreviewPage.addExplanation - lib\features\hadith\views\widgets\screenshot_preview.dart:30:7 - must_be_immutable
+  error - Undefined class 'Hadith' - lib\features\hadith\views\widgets\screenshot_preview.dart:31:3 - undefined_class
+   info - An uninitialized field should have an explicit type annotation - lib\features\hadith\views\widgets\screenshot_preview.dart:32:7 - prefer_typing_uninitialized_variables
+  error - The method 'shareImage' isn't defined for the type '_ScreenShotPreviewPageState' - lib\features\hadith\views\widgets\screenshot_preview.dart:360:52 - undefined_method
+  error - The method 'saveImageToGallery' isn't defined for the type '_ScreenShotPreviewPageState' - lib\features\hadith\views\widgets\screenshot_preview.dart:384:31 - undefined_method
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/models/hadith.dart' - lib\features\hadith\views\widgets\sharing_options.dart:6:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/views/widgets/screenshot_preview.dart' - lib\features\hadith\views\widgets\sharing_options.dart:7:8 - uri_does_not_exist
+   info - An uninitialized field should have an explicit type annotation - lib\features\hadith\views\widgets\sharing_options.dart:11:9 - prefer_typing_uninitialized_variables
+  error - Undefined class 'Hadith' - lib\features\hadith\views\widgets\sharing_options.dart:73:19 - undefined_class
+  error - The method 'HadithScreenShotPreviewPage' isn't defined for the type '_SharingOptionsState' - lib\features\hadith\views\widgets\sharing_options.dart:100:99 - undefined_method
+   info - 'Share' is deprecated and shouldn't be used. Use SharePlus instead - lib\features\hadith\views\widgets\sharing_options.dart:102:28 - deprecated_member_use
+   info - 'share' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead - lib\features\hadith\views\widgets\sharing_options.dart:102:34 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/helpers/convertNumberToAr.dart' - lib\features\home.dart:30:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/views/quran_sura_list.dart' - lib\features\home.dart:31:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/QuranPages/views/screenshot_preview.dart' - lib\features\home.dart:32:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/allah_names/allah_names_page.dart' - lib\features\home.dart:33:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/audiopage/player/player_bar.dart' - lib\features\home.dart:34:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/audiopage/views/audio_home_page.dart' - lib\features\home.dart:35:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/azkar/views/azkar_homepage.dart' - lib\features\home.dart:36:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/calender/calender.dart' - lib\features\home.dart:37:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/hadith/views/hadithbookspage.dart' - lib\features\home.dart:39:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/live_tv/live_tv_page.dart' - lib\features\home.dart:40:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/notifications/data/40hadith.dart' - lib\features\home.dart:41:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/notifications/views/all_notification_page.dart' - lib\features\home.dart:42:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/qibla/q_compass.dart' - lib\features\home.dart:43:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/qibla/qibla_page.dart' - lib\features\home.dart:44:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/radio_page/radio_page.dart' - lib\features\home.dart:45:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/shortvideos/shortvideos.dart' - lib\features\home.dart:46:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/sibha/sibha_page.dart' - lib\features\home.dart:47:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/support/support_page.dart' - lib\features\home.dart:48:8 - uri_does_not_exist
+   info - An uninitialized field should have an explicit type annotation - lib\features\home.dart:83:7 - prefer_typing_uninitialized_variables
+   info - An uninitialized field should have an explicit type annotation - lib\features\home.dart:84:7 - prefer_typing_uninitialized_variables
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:93:11 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:98:59 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:98:105 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:103:23 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:103:69 - use_build_context_synchronously
+   info - Don't invoke 'print' in production code - lib\features\home.dart:107:7 - avoid_print
+warning - The value of the field '_subscription' isn't used - lib\features\home.dart:111:23 - unused_field
+warning - The value of the field '_subscription2' isn't used - lib\features\home.dart:112:23 - unused_field
+  error - Undefined name 'hadithes' - lib\features\home.dart:117:45 - undefined_identifier
+warning - The value of the field '_timer' isn't used - lib\features\home.dart:144:14 - unused_field
+warning - The value of the field '_timeLeftStream' isn't used - lib\features\home.dart:322:25 - unused_field
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:326:46 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:329:71 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:333:39 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:342:49 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:347:42 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:350:40 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:353:44 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:357:40 - use_build_context_synchronously
+   info - Don't invoke 'print' in production code - lib\features\home.dart:375:5 - avoid_print
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:380:11 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:389:61 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:389:107 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:391:59 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:391:105 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:393:58 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:393:104 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:399:25 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:399:71 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:405:23 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:405:69 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:411:22 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:411:68 - use_build_context_synchronously
+   info - Don't invoke 'print' in production code - lib\features\home.dart:414:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\home.dart:416:7 - avoid_print
+   info - An uninitialized field should have an explicit type annotation - lib\features\home.dart:424:7 - prefer_typing_uninitialized_variables
+   info - Don't invoke 'print' in production code - lib\features\home.dart:467:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\home.dart:468:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\home.dart:474:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\home.dart:496:9 - avoid_print
+   info - Use interpolation to compose strings and values - lib\features\home.dart:496:15 - prefer_interpolation_to_compose_strings
+   info - Don't invoke 'print' in production code - lib\features\home.dart:497:9 - avoid_print
+   info - Use interpolation to compose strings and values - lib\features\home.dart:497:15 - prefer_interpolation_to_compose_strings
+warning - The value of the local variable 'nextPrayerTim' isn't used - lib\features\home.dart:545:11 - unused_local_variable
+warning - The value of the local variable 'prayerTimings' isn't used - lib\features\home.dart:550:11 - unused_local_variable
+warning - The declaration '_updateTimeLeft' isn't referenced - lib\features\home.dart:557:8 - unused_element
+   info - Don't use 'BuildContext's across async gaps - lib\features\home.dart:603:28 - use_build_context_synchronously
+warning - This method overrides a method annotated as '@mustCallSuper' in 'AutomaticKeepAliveClientMixin', but doesn't invoke the overridden method - lib\features\home.dart:609:10 - must_call_super
+   info - Don't invoke 'print' in production code - lib\features\home.dart:616:42 - avoid_print
+   info - Use 'const' with the constructor to improve performance - lib\features\home.dart:623:26 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\home.dart:624:28 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\home.dart:631:26 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\home.dart:632:28 - prefer_const_constructors
+  error - The method 'PlayerBar' isn't defined for the type '_HomeState' - lib\features\home.dart:635:22 - undefined_method
+   info - Use 'const' with the constructor to improve performance - lib\features\home.dart:641:26 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\home.dart:642:28 - prefer_const_constructors
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home.dart:692:54 - deprecated_member_use
+  error - The method 'SurahListPage' isn't defined for the type '_HomeState' - lib\features\home.dart:1283:63 - undefined_method
+  error - The method 'RecitersPage' isn't defined for the type '_HomeState' - lib\features\home.dart:1313:73 - undefined_method
+  error - The method 'HadithBooksPage' isn't defined for the type '_HomeState' - lib\features\home.dart:1333:76 - undefined_method
+  error - The name 'CompassWithQibla' isn't a class - lib\features\home.dart:1379:73 - creation_with_non_type
+  error - The name 'AllahNamesPage' isn't a class - lib\features\home.dart:1390:73 - creation_with_non_type
+  error - The name 'AzkarHomePage' isn't a class - lib\features\home.dart:1401:73 - creation_with_non_type
+  error - The name 'NotificationsPage' isn't a class - lib\features\home.dart:1414:73 - creation_with_non_type
+  error - The name 'SibhaPage' isn't a class - lib\features\home.dart:1425:73 - creation_with_non_type
+  error - The name 'CalenderPage' isn't a class - lib\features\home.dart:1436:73 - creation_with_non_type
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home.dart:1453:60 - deprecated_member_use
+warning - The operand can't be 'null', so the condition is always 'true' - lib\features\home.dart:1465:66 - unnecessary_null_comparison
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home.dart:1476:96 - deprecated_member_use
+  error - The method 'ScreenShotPreviewPage' isn't defined for the type '_HomeState' - lib\features\home.dart:1540:178 - undefined_method
+   info - 'Share' is deprecated and shouldn't be used. Use SharePlus instead - lib\features\home.dart:1556:113 - deprecated_member_use
+   info - 'share' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead - lib\features\home.dart:1556:119 - deprecated_member_use
+  error - The method 'convertToArabicNumber' isn't defined for the type '_HomeState' - lib\features\home.dart:1602:77 - undefined_method
+  error - The name 'SupportPage' isn't a class - lib\features\home.dart:1648:69 - creation_with_non_type
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home.dart:1662:60 - deprecated_member_use
+warning - The operand can't be 'null', so the condition is always 'true' - lib\features\home.dart:1674:66 - unnecessary_null_comparison
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home.dart:1685:96 - deprecated_member_use
+  error - Undefined name 'hadithes' - lib\features\home.dart:1714:118 - undefined_identifier
+   info - 'Share' is deprecated and shouldn't be used. Use SharePlus instead - lib\features\home.dart:1727:85 - deprecated_member_use
+   info - 'share' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead - lib\features\home.dart:1727:91 - deprecated_member_use
+  error - Undefined name 'hadithes' - lib\features\home.dart:1727:97 - undefined_identifier
+  error - Undefined name 'hadithes' - lib\features\home.dart:1741:75 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home.dart:1807:38 - deprecated_member_use
+warning - The value of the field '_subscription2' isn't used - lib\features\home.dart:1918:23 - unused_field
+   info - Unnecessary instance of 'Container' - lib\features\home.dart:1947:13 - avoid_unnecessary_containers
+   info - The file name '40hadith.dart' isn't a lower_case_with_underscores identifier - lib\features\notifications\data\40hadith.dart:1:1 - file_names
+   info - The import of 'package:flutter/services.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/cupertino.dart' - lib\features\notifications\views\all_notification_page.dart:4:8 - unnecessary_import
+warning - Unused import: 'package:fluttertoast/fluttertoast.dart' - lib\features\notifications\views\all_notification_page.dart:6:8 - unused_import
+warning - Unused import: 'package:fluttericon/font_awesome_icons.dart' - lib\features\notifications\views\all_notification_page.dart:9:8 - unused_import
+warning - Unused import: 'package:nabd/GlobalHelpers/messaging_helper.dart' - lib\features\notifications\views\all_notification_page.dart:11:8 - unused_import
+warning - Unused import: 'package:flutter_local_notifications/flutter_local_notifications.dart' - lib\features\notifications\views\all_notification_page.dart:14:8 - unused_import
+   info - The prefix 'notificationPlugin' isn't a lower_case_with_underscores identifier - lib\features\notifications\views\all_notification_page.dart:15:8 - library_prefixes
+   info - 'activeColor' is deprecated and shouldn't be used. Use activeTrackColor instead. This feature was deprecated after v3.24.0-0.2.pre - lib\features\notifications\views\all_notification_page.dart:80:33 - deprecated_member_use
+   info - 'trackColor' is deprecated and shouldn't be used. Use inactiveTrackColor instead. This feature was deprecated after v3.24.0-0.2.pre - lib\features\notifications\views\all_notification_page.dart:84:33 - deprecated_member_use
+   info - 'activeColor' is deprecated and shouldn't be used. Use activeTrackColor instead. This feature was deprecated after v3.24.0-0.2.pre - lib\features\notifications\views\all_notification_page.dart:176:33 - deprecated_member_use
+   info - 'trackColor' is deprecated and shouldn't be used. Use inactiveTrackColor instead. This feature was deprecated after v3.24.0-0.2.pre - lib\features\notifications\views\all_notification_page.dart:180:33 - deprecated_member_use
+   info - 'activeColor' is deprecated and shouldn't be used. Use activeTrackColor instead. This feature was deprecated after v3.24.0-0.2.pre - lib\features\notifications\views\all_notification_page.dart:392:33 - deprecated_member_use
+   info - 'trackColor' is deprecated and shouldn't be used. Use inactiveTrackColor instead. This feature was deprecated after v3.24.0-0.2.pre - lib\features\notifications\views\all_notification_page.dart:396:33 - deprecated_member_use
+   info - 'activeColor' is deprecated and shouldn't be used. Use activeTrackColor instead. This feature was deprecated after v3.24.0-0.2.pre - lib\features\notifications\views\all_notification_page.dart:609:33 - deprecated_member_use
+   info - 'trackColor' is deprecated and shouldn't be used. Use inactiveTrackColor instead. This feature was deprecated after v3.24.0-0.2.pre - lib\features\notifications\views\all_notification_page.dart:613:33 - deprecated_member_use
+   info - 'activeColor' is deprecated and shouldn't be used. Use activeTrackColor instead. This feature was deprecated after v3.24.0-0.2.pre - lib\features\notifications\views\all_notification_page.dart:815:33 - deprecated_member_use
+   info - 'trackColor' is deprecated and shouldn't be used. Use inactiveTrackColor instead. This feature was deprecated after v3.24.0-0.2.pre - lib\features\notifications\views\all_notification_page.dart:819:33 - deprecated_member_use
+warning - Unused import: 'dart:developer' - lib\features\notifications\views\small_notification_popup.dart:1:8 - unused_import
+warning - Unused import: 'package:flutter_screenutil/flutter_screenutil.dart' - lib\features\notifications\views\small_notification_popup.dart:6:8 - unused_import
+warning - Unused import: 'package:nabd/GlobalHelpers/hive_helper.dart' - lib\features\notifications\views\small_notification_popup.dart:8:8 - unused_import
+warning - The value of the field '_goldColors' isn't used - lib\features\notifications\views\small_notification_popup.dart:20:9 - unused_field
+warning - The value of the field '_silverColors' isn't used - lib\features\notifications\views\small_notification_popup.dart:26:9 - unused_field
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\notifications\views\small_notification_popup.dart:76:38 - deprecated_member_use
+warning - Unused import: 'package:flutter_svg/flutter_svg.dart' - lib\features\qibla\q_compass.dart:4:8 - unused_import
+  error - Target of URI doesn't exist: 'package:nabd/core/qibla/qibla_maps.dart' - lib\features\qibla\q_compass.dart:6:8 - uri_does_not_exist
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\qibla\q_compass.dart:50:37 - deprecated_member_use
+   info - Use 'const' with the constructor to improve performance - lib\features\qibla\q_compass.dart:101:4 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\qibla\q_compass.dart:101:36 - prefer_const_constructors
+  error - Target of URI doesn't exist: 'package:nabd/core/sibha/models/tasbeh.dart' - lib\features\sibha\sibha_page.dart:9:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/sibha/widgets/add_tasbeeh_dialog.dart' - lib\features\sibha\sibha_page.dart:10:8 - uri_does_not_exist
+  error - The name 'Tasbeeh' isn't a type, so it can't be used as a type argument - lib\features\sibha\sibha_page.dart:20:8 - non_type_as_type_argument
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:21:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:27:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:33:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:39:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:45:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:51:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:58:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:66:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:74:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:82:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:89:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:97:5 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:106:5 - undefined_method
+   info - Don't invoke 'print' in production code - lib\features\sibha\sibha_page.dart:123:5 - avoid_print
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:126:25 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:145:23 - undefined_method
+  error - The method 'Tasbeeh' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:158:23 - undefined_method
+  error - The method 'AddTasbeehDialog' isn't defined for the type '_SibhaPageState' - lib\features\sibha\sibha_page.dart:213:39 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:243:48 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:262:57 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:271:57 - deprecated_member_use
+   info - Don't invoke 'print' in production code - lib\features\sibha\sibha_page.dart:297:23 - avoid_print
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:314:49 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:335:49 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:361:47 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:372:59 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:373:45 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:374:44 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:375:44 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\sibha_page.dart:376:48 - deprecated_member_use
+   info - The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' - lib\features\sibha\widgets\add_tasbeeh_dialog.dart:2:8 - unnecessary_import
+warning - This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: AddTasbeehDialog.function - lib\features\sibha\widgets\add_tasbeeh_dialog.dart:7:7 - must_be_immutable
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\sibha\widgets\add_tasbeeh_dialog.dart:21:30 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:nabd/core/audiopage/player/player_bar.dart' - lib\features\splash\splash_screen.dart:15:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\features\splash\splash_screen.dart:16:8 - uri_does_not_exist
+   info - Don't invoke 'print' in production code - lib\features\splash\splash_screen.dart:38:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\splash\splash_screen.dart:40:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\splash\splash_screen.dart:44:7 - avoid_print
+  error - The name 'Home' isn't a class - lib\features\splash\splash_screen.dart:53:41 - creation_with_non_type
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:68:37 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:68:83 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:70:27 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:70:73 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:73:26 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:73:72 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:76:13 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:85:63 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:85:109 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:87:61 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:87:107 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:89:60 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:89:106 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:94:27 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:94:73 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:100:25 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:100:71 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:106:24 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:106:70 - use_build_context_synchronously
+   info - Don't invoke 'print' in production code - lib\features\splash\splash_screen.dart:110:9 - avoid_print
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:120:46 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:123:71 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:127:39 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:136:49 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:141:42 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:144:40 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:147:44 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\splash\splash_screen.dart:151:40 - use_build_context_synchronously
+   info - 'Share' is deprecated and shouldn't be used. Use SharePlus instead - lib\features\support\support_page.dart:83:23 - deprecated_member_use
+   info - 'share' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead - lib\features\support\support_page.dart:83:29 - deprecated_member_use
+   info - The prefix 'notificationPlugin' isn't a lower_case_with_underscores identifier - lib\main.dart:15:8 - library_prefixes
+   info - The imported package 'flutter_localizations' isn't a dependency of the importing package - lib\main.dart:27:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:nabd/core/audiopage/player/player_bar.dart' - lib\main.dart:29:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/home.dart' - lib\main.dart:30:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/notifications/data/40hadith.dart' - lib\main.dart:31:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/notifications/views/small_notification_popup.dart' - lib\main.dart:32:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:nabd/core/splash/splash_screen.dart' - lib\main.dart:33:8 - uri_does_not_exist
+  error - The name 'TrueCallerOverlay' isn't a class - lib\main.dart:100:11 - creation_with_non_type
+  error - Undefined name 'hadithes' - lib\main.dart:260:11 - undefined_identifier
+  error - Undefined name 'hadithes' - lib\main.dart:266:21 - undefined_identifier
+  error - Undefined name 'hadithes' - lib\main.dart:278:11 - undefined_identifier
+  error - Undefined name 'hadithes' - lib\main.dart:284:21 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\main.dart:311:5 - avoid_print
+  error - Undefined name 'playerbarBloc' - lib\main.dart:370:50 - undefined_identifier
+  error - The method 'SplashScreen' isn't defined for the type '_MyAppState' - lib\main.dart:383:32 - undefined_method
+   info - The file name 'TranslationInfo.dart' isn't a lower_case_with_underscores identifier - lib\models\TranslationInfo.dart:1:1 - file_names
+   info - Use 'const' with the constructor to improve performance - quran-1.2.2\example\lib\main.dart:5:11 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - quran-1.2.2\example\lib\main.dart:5:29 - prefer_const_constructors
+   info - The constant name 'amh_muhammedsadiqan' isn't a lowerCamelCase identifier - quran-1.2.2\lib\quran.dart:377:3 - constant_identifier_names
+   info - The constant name 'ind_indonesianislam' isn't a lowerCamelCase identifier - quran-1.2.2\lib\quran.dart:378:3 - constant_identifier_names
+   info - The constant name 'jpn_ryoichimita' isn't a lowerCamelCase identifier - quran-1.2.2\lib\quran.dart:379:3 - constant_identifier_names
+   info - The constant name 'nld_fredleemhuis' isn't a lowerCamelCase identifier - quran-1.2.2\lib\quran.dart:380:3 - constant_identifier_names
+   info - The constant name 'por_helminasr' isn't a lowerCamelCase identifier - quran-1.2.2\lib\quran.dart:381:3 - constant_identifier_names
+   info - The constant name 'rus_ministryofawqaf' isn't a lowerCamelCase identifier - quran-1.2.2\lib\quran.dart:382:3 - constant_identifier_names
+   info - The variable name 'quran_text_normal' isn't a lowerCamelCase identifier - quran-1.2.2\lib\quran_text_normal.dart:1:6 - non_constant_identifier_names
+
